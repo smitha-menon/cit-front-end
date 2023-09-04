@@ -1,0 +1,40 @@
+.landing-page-header {
+    border-bottom: 2px solid #3B9BA1;
+    // background: linear-gradient(90deg,#00467f,#a5cc82);
+    padding: 30px 15px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+ 
+    .nav-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header-links {
+        background: #FFFFFF;
+        border: 2px solid #FD5E0F;
+        box-sizing: border-box;
+        border-radius: 5px;
+        text-align: center;
+        color: #1A73E8;
+        font-family: ProximaNova;
+        width: 10%;
+
+        .login-btn {
+            border: none;
+            background: #fff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .login-btn:hover {
+            color: #000000;
+        }
+    }
+    .header-links:hover {
+
+        cursor: pointer;
+        transform: scale(1.05);
+        transition-duration: 0.5s;
+    }
+
+}

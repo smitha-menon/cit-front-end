@@ -1,0 +1,93 @@
+<div class="main-element">
+    <div class="main-header">
+        <label>Incidents</label>
+    
+    <div class="table-content">
+        <div class="table-main">
+            <div class="search-container">
+                <i class="fa-magnifying-glass fa-solid" style="color: #14161a; margin-left: 10px;"></i>
+                <input type="text" class="search-input" placeholder="Search"
+                    (input)="searchPageFilter($event.target)" />
+
+            </div>
+            <!-- <div>
+                <button class="historyButton">
+                    <i #tooltip="matTooltip" matTooltip='View History' matTooltipPosition="below" matTooltipClass="allow-cr"
+                class="fa fa-history fa-lg"></i>
+                </button>
+                
+            </div> -->
+            <!-- <div class="button-outer-element">
+                <button class="create-new-btn" >
+                    Create New <img src="../../../../../assets/images/plus-icon.svg">
+                </button>
+            </div> -->
+        </div>
+
+        <mat-table #table [dataSource]="dataSource" matSort>
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="incidentId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> incidentId </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.incidentId}} </mat-cell>
+            </ng-container>
+
+            <!-- Name Column -->
+           
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="active">
+                <mat-header-cell *matHeaderCellDef> active </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.active}} </mat-cell>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="state">
+                <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+                <mat-cell *matCellDef="let element" [ngClass]="element.state"> {{element.state}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="priority">
+                <mat-header-cell *matHeaderCellDef> Priority </mat-header-cell>
+                <mat-cell *matCellDef="let element" [ngClass]="element.Priority"> {{element.priority}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="openedDate" >
+                <mat-header-cell *matHeaderCellDef > openedDate <mat-icon>calendar_today</mat-icon> </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.openedDate}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="assignedTo">
+                <mat-header-cell *matHeaderCellDef> assignedTo </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.assignedTo}} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="Result">
+                <mat-header-cell *matHeaderCellDef> Result </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <ng-container>
+                        <div  >
+                            {{element.result}}
+                        </div> 
+                    </ng-container>
+                     </mat-cell>
+            </ng-container> -->
+            <!-- <ng-container matColumnDef="Delete">
+                <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <ng-container>
+                        <button class=" journey-menu-button" (click)="deleteTest(element.executionid)">
+                            <img src="../../../../../assets/images/deleteIcon.png" class="delete-icon">
+                          </button>
+                    </ng-container>
+                     </mat-cell>
+            </ng-container> -->
+
+            <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="viewIncident(row)"></mat-row>
+        </mat-table>
+    </div>
+</div>
+</div>

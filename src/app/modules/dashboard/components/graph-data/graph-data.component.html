@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="column1">
+      <canvas baseChart 
+      [data]="doughnutChartData"
+      [labels]="doughnutChartLabels"
+      [chartType]="doughnutChartType">
+    </canvas>
+    </div>
+    <div class="column1">
+      <canvas class="doughnut" baseChart [data]="doughnutChartData1" [labels]="doughnutChartLabels1" [chartType]="doughnutChartType1"
+      [legend]=false [colors]="doughnutChartColors" [options]="doughnutChartOptions1"  [plugins]="doughnutChartPlugins" size="50">
+  </canvas>
+    </div>
+</div>
