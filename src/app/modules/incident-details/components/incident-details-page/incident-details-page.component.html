@@ -1,42 +1,36 @@
 <div class="main-element">
     <div class="main-header">
         <label>Incidents</label>
-    
-    <div class="table-content">
-        <div class="table-main">
-            <div class="search-container">
-                <i class="fa-magnifying-glass fa-solid" style="color: #14161a; margin-left: 10px;"></i>
-                <input type="text" class="search-input" placeholder="Search"
-                    (keyup)="searchPageFilter($event)" />
+        <div>
+            <div class="table-main">
+                <div>
+                    <i class="fa fa-refresh fa-xs"></i>
+                </div>
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #14161a; margin-left: 10px;"></i>
+                    <input type="text" class="search-input" placeholder="Search" (keyup)="searchPageFilter($event)" />
 
+                </div>
             </div>
-            <!-- <div>
-                <button class="historyButton">
-                    <i #tooltip="matTooltip" matTooltip='View History' matTooltipPosition="below" matTooltipClass="allow-cr"
-                class="fa fa-history fa-lg"></i>
-                </button>
-                
-            </div> -->
-            <!-- <div class="button-outer-element">
-                <button class="create-new-btn" >
-                    Create New <img src="../../../../../assets/images/plus-icon.svg">
-                </button>
-            </div> -->
-        </div>       
-        
-        <div class="wrapper">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-            <ng-container [matColumnDef]="column" *ngFor="let column of displayCols">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</th>
-              <td mat-cell *matCellDef="let emp">{{ emp[column] }}</td>
-            </ng-container>
-          
-            <tr mat-header-row *matHeaderRowDef="displayCols"></tr>
-            <tr mat-row *matRowDef="let emprow; columns: displayCols" (click)="viewIncident(emprow)"></tr>
-          </table>
+
+            <div class="wrapper">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+                    <ng-container [matColumnDef]="column" *ngFor="let column of displayCols">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</th>
+                        <td mat-cell *matCellDef="let emp" [ngClass]="emp[column] ">{{ emp[column] }}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayCols"></tr>
+                    <tr mat-row *matRowDef="let emprow; columns: displayCols" (click)="viewIncident(emprow)"></tr>
+                </table>
+            </div>
         </div>
 
-        
+        <!-- <div class="table-content"> -->
+
+
+
+
     </div>
-</div>
+    <!-- </div> -->
 </div>
