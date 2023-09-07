@@ -60,7 +60,7 @@ constructor(private routes: Router, private fb: FormBuilder, private apiservice:
   public loadIncidents() : void 
   {   
     
-    this.apiservice.getIncidents().subscribe({
+    this.apiservice.getIncidentsList().subscribe({
       next : (response: any) => {
                         console.log(response);                       
                         this.incidentDetails=response.map((data : any) =>{

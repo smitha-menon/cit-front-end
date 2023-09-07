@@ -1,126 +1,63 @@
 <div class="main-element">
-    <div class="main-header">
-        <label>Incident details</label>
-        <div class="card2">
-            <form [formGroup]="incidentForm" class="incident-form">
-              <div class="form-group">
-
-                  <label class="form-label">Incident ID</label>
-                  <input matInput type="text" class="form-control" formControlName="incidentId"
-                      name="incidentId" required>
-                  <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                    Please provide a valid email
-                  </div> -->
-              </div>
-              <div class="form-group">
-
-                  <label class="form-label">created date</label>
-                  <input matInput type="text" class="form-control" formControlName="time"
-                      name="time" required>
-                  <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                    Please provide a valid email
-                  </div> -->
-              </div>
-              <div class="form-group">
-
-                  <!-- <label class="form-label">Performance Test Scenario name</label> -->
-                  <!-- <input matInput type="text" class="form-control" formControlName="incidentId"
-                      name="incidentId" required> -->
-                  <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                    Please provide a valid email
-                  </div> -->
-              </div>
-              <div class="form-group">
-
-                  <label class="form-label">Assigned to</label>
-                  <input matInput type="text" class="form-control" formControlName="assignedto"
-                      name="assignedto" required>
-                  <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                    Please provide a valid email
-                  </div> -->
-              </div>
-
-              <div class="form-group">
-
-                  <label class="form-label">Description</label>
-                  <!-- <input matInput type="text" class="form-control" formControlName="testplanname"
-                      name="testplanname" required> -->
-                      <textarea rows="3" cols="50" id="description" class="form-control" appFilledInput formControlName="description"
-                      name="description" style="resize: none;"></textarea>
-                  <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                    Please provide a valid email
-                  </div> -->
-                  
-              </div>
-              <div class="form-group">
-
-                <label class="form-label">SLA</label>
-                <input matInput type="text" class="form-control" formControlName="sla"
-                    name="assignedto" required>
-                <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                  Please provide a valid email
-                </div> -->
-            </div>
-            <div class="form-group">
-
-              <label class="form-label">SLA Lapse</label>
-              <input matInput type="text" class="form-control" formControlName="slalapse"
-                  name="assignedto" required>
-              <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                Please provide a valid email
-              </div> -->
-          </div>
-          <div class="form-group">
-
-            <label class="form-label">State</label>
-            <input matInput type="text" class="form-control" formControlName="state"
-                name="assignedto" required>
-            <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-              Please provide a valid email
-            </div> -->
-        </div>
-        <div class="form-group">
-
-          <label class="form-label">Priority</label>
-          <input matInput type="text" class="form-control" formControlName="priority"
-              name="assignedto" required>
-          <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-            Please provide a valid email
-          </div> -->
+  <div class="main-header">
+    <label>Incident details</label>
+    <div style="border: 1px solid #b8b8b8; border-top: none;" *ngFor="let incident of incidentDetails">
+      <div class="card2">
+        <label>{{incident.number}}</label>
       </div>
-      <div class="form-group">
+      <div>
+        <table id="customers">
+          <tr>
+            <th>state</th>
+            <th>priority</th>
+            <th>assigned to</th>
+            <th>assigned group</th>
+            <th>due date</th>
+          </tr>
 
-        <label class="form-label">Active</label>
-        <input matInput type="text" class="form-control" formControlName="active"
-            name="assignedto" required>
-        <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-          Please provide a valid email
-        </div> -->
-    </div>
-    <div class="form-group">
+          <tr>
+            <td>{{incident.state}}</td>
+            <td>{{incident.priority}}</td>
+            <td>{{incident.assignedTo}}</td>
+            <td>{{incident.assignedgroup}}</td>
+            <td>{{incident.due}}</td>
+          </tr>
 
-      <label class="form-label">Tags</label>
-      <input matInput type="text" class="form-control" formControlName="tags"
-          name="tags" required>
-      <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-        Please provide a valid email
-      </div> -->
-  </div>
-          </form>
-       
+
+
+        </table>
+        <br>
+        <table id="customers">
+          <tr>
+            <th>Opened date</th>
+            <th>Opened by</th>
+            <th>Resolved Date</th>
+            <th>SLA</th>
+            <th>SLA Lapse</th>
+          </tr>
+
+          <tr>
+            <td>opened</td>
+            <td>high</td>
+            <td>alwin</td>
+            <td>alwin</td>
+            <td>alwin</td>
+          </tr>
+
+
+
+        </table>
+        <br>
+        <div >
+
         </div>
+       
+      </div>
+
     </div>
 
-    <!-- <div class="table-content">
-      <section class="mat-elevation-z2 mat-header-row">
-        <span class="mat-header-cell">Incident ID</span>
-        <span class="mat-header-cell">IncidentDescription</span>
-        <span class="mat-header-cell">Opened time</span>
+  </div>
 
-        <span class="mat-header-cell">ShortDescription</span>
-    </section>
 
-    </div> -->
- 
- 
+
 </div>

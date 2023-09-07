@@ -11,7 +11,7 @@ export class ApiservicesService {
   private apiUrl = environment.baseUrl;
   constructor(private http: HttpClient) { }
 
-  public getIncidents() : Observable<Incidents[]>
+  public getIncidentsList() : Observable<Incidents[]>
   {
     const incidentUrl = `${this.apiUrl}/getIncidents`;
     return this.http.get<Incidents[]>(incidentUrl);

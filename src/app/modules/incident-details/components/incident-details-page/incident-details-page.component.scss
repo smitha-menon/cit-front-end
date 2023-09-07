@@ -48,6 +48,7 @@
         margin-top: 20px;
         // margin-left: 7%;
     }
+   
 
     .mdc-data-table__header-cell {
         text-align: center;
@@ -73,7 +74,11 @@
         border: none;
         padding-top: 20px;
     }
-
+.mat-mdc-row {
+    &:nth-of-type(even) {
+        background: #eeeeee;
+    }
+}
 
 }
 
