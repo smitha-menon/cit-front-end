@@ -16,16 +16,16 @@
             <div class="login-content">
                 <form class="login-form" [formGroup]="loginForm" >
                     <div class="form-group">
-                      <label class="login-form-label">Email Address</label>
+                      <label class="login-form-label">Username</label>
                         <input type="email" id="email" class="form-control" autocomplete="false" appFilledInput
                          formControlName="email" name="email" />
                          <div class="text-danger input-feedback" *ngIf="f.email.errors && f.email.touched">
-                          Please provide a valid email
+                          Please provide a valid Username
                         </div>
                     </div>
                     <div class="form-group">
                       <label class="login-form-label">Password</label>
-                        <input type="password" id="password" class="form-control" autocomplete="false" formControlName="password"
+                        <input type="password" id="password" class="grp1284" autocomplete="false" formControlName="password"
                            appFilledInput name="password" />
                         <!-- <label class="form-label" for="password">Password</label> -->
                         <div class="text-danger input-feedback" *ngIf="f.password?.errors && f.password.touched">
@@ -43,3 +43,36 @@
         </div>
     </section>
 </div>
+<!-- <div class="Login" style="width: 100%; height: 100%; position: relative; background: white">
+  <div class="Group153" style="width: 900px; height: 664px; position: relative">
+      <div class="Rectangle63" style="width: 900px; height: 664px; left: 0px; top: 0px; position: absolute; background: white; border: 0.50px black solid"></div>
+      <div class="Group152" style="width: 400px; height: 447px; left: 440px; top: 60px; position: absolute">
+          <div class="Rectangle61" style="width: 400px; height: 447px; left: 0px; top: 0px; position: absolute; background: white; border: 0.50px black solid"></div>
+          <div class="ForgotPassword" style="left: 30px; top: 311px; position: absolute; color: #007BFF; font-size: 16px; font-family: Inter; font-weight: 500; word-wrap: break-word">Forgot Password?</div>
+          <div class="Group132" style="width: 340px; height: 175px; left: 30px; top: 115px; position: absolute">
+              <div class="Group88" style="width: 340px; height: 35px; left: 0px; top: 0px; position: absolute">
+                  <div class="Rectangle23" style="width: 340px; height: 35px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25); border-radius: 10px; border: 0.50px solid"></div>
+                  <div class="Username" style="width: 86.67px; left: 20.12px; top: 8px; position: absolute; color: #656565; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Username</div>
+              </div>
+              <div class="Group120" style="width: 340px; height: 45px; left: 0px; top: 130px; position: absolute">
+                  <div class="Rectangle23" style="width: 340px; height: 45px; left: 0px; top: 0px; position: absolute; background: #FD5E0F; border-radius: 5px"></div>
+                  <div class="Login" style="width: 88.04px; height: 43.46px; left: 126px; top: 1px; position: absolute; color: white; font-size: 24px; font-family: Inter; font-weight: 700; word-wrap: break-word" (click)="login()">Login</div>
+              </div>
+              <div class="Group88" style="width: 340px; height: 35px; left: 0px; top: 65px; position: absolute">
+                  <div class="Rectangle23" style="width: 340px; height: 35px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25); border-radius: 10px; border: 0.50px solid"></div>
+                  <img class="Hide1" style="width: 16px; height: 16px; left: 314px; top: 9px; position: absolute" src="../../../assets/images/hide1.png" />
+                  <div class="Password" style="width: 82.22px; left: 20.12px; top: 8px; position: absolute; color: #656565; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Password</div>
+              </div>
+          </div>
+          <div class="Rectangle62" style="width: 400px; height: 90px; left: 0px; top: 0px; position: absolute; background: #E5E4E4; border: 0.50px black solid"></div>
+      </div>
+      <div class="SignIn" style="left: 583px; top: 79px; position: absolute"><span style="color: black; font-size: 40px; font-family: Inter; font-weight: 400; word-wrap: break-word">Sign </span><span style="color: #CB2C27; font-size: 40px; font-family: Inter; font-weight: 400; word-wrap: break-word">In</span></div>
+      <div class="NewUserSignUp" style="left: 470px; top: 405px; position: absolute"><span style="color: black; font-size: 16px; font-family: Inter; font-weight: 500; word-wrap: break-word">New User? </span><span style="color: #007BFF; font-size: 16px; font-family: Inter; font-weight: 500; word-wrap: break-word">Sign Up</span></div>
+      <div class="ContactYourDomainAdminForHelpAdminG10xCom" style="width: 302px; left: 470px; top: 439px; position: absolute"><span style="color: black; font-size: 16px; font-family: Inter; font-weight: 500; word-wrap: break-word">Contact your Domain admin for help </span><span style="color: #007BFF; font-size: 16px; font-family: Inter; font-weight: 500; word-wrap: break-word">Admin@g10x.com</span></div>
+      <div class="Rectangle60" style="width: 200px; height: 116px; left: 60px; top: 60px; position: absolute; background: white; border: 0.50px black solid"></div>
+      <div class="Logo" style="left: 136px; top: 106px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 500; word-wrap: break-word">Logo</div>
+      <div class="LoremIpsumHasBeenTheIndustrySStandardDummyTextEverSinceThe1500sWhenAnUnknownPrinterTookAGalleyOfTypeAndScrambledItToMakeATypeSpecimenBook" style="width: 320px; left: 60px; top: 443px; position: absolute; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+      <div class="Cit" style="left: 126px; top: 192px; position: absolute; color: black; font-size: 48px; font-family: Inter; font-weight: 400; word-wrap: break-word">CIT</div>
+      <div class="LoremIpsumIsSimplyDummyTextOfThePrintingAndTypesettingIndustry" style="width: 282px; left: 60px; top: 317px; position: absolute; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Lorem Ipsum is simply dummy text of the printing and typesetting industry</div>
+  </div>
+</div> -->

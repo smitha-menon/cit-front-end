@@ -69,7 +69,7 @@ constructor(private routes: Router, private fb: FormBuilder, private apiservice:
                             Active : data.active,
                             State : data.state,
                             Priority : data.priority,
-                            AssignedTo :  data.openedBy,
+                            AssignedTo :  data.assignedTo,
                             OpenedDate : data.openedDate
                           }});                         
                           this.dataSource = new MatTableDataSource(this.incidentDetails)
