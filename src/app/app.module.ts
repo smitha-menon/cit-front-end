@@ -9,7 +9,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { NavbarLayoutComponent } from './core/layouts/navbar-layout.component';
 import { HomeLayoutComponent } from './core/layouts/home-layout.component';
-import { HttpClientModule } from '@angular/common/http';  
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     LandingPageComponent,
     NavbarComponent,
     NavbarLayoutComponent,
-    HomeLayoutComponent
+    HomeLayoutComponent,
   ],
   imports: [
     BrowserModule,

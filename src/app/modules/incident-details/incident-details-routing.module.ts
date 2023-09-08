@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { IncidentDetailsPageComponent } from './components/incident-details-page/incident-details-page.component';
 import { ViewDetailedStepsComponent } from './components/view-detailed-steps/view-detailed-steps.component';
+import { ResolutionsComponent } from './components/resolutions/resolutions.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'view-steps',
     component: ViewDetailedStepsComponent
+  },
+  {
+    path: 'resolutions',
+    component: ResolutionsComponent
   }
 ]
 

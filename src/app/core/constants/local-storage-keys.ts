@@ -1,0 +1,1 @@
+export const INCIDENT_ID_KEY = 'incidentId';

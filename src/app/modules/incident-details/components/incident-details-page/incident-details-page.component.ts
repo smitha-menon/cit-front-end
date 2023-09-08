@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ROUTES } from 'src/app/core/constants/constant';
+import { INCIDENT_ID_KEY } from 'src/app/core/constants/local-storage-keys';
 import { Incidents } from 'src/app/interfaces/incidents';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 
@@ -54,6 +55,7 @@ constructor(private routes: Router, private fb: FormBuilder, private apiservice:
 
   viewIncident(row: any) {
     console.log(row)
+    localStorage.setItem(INCIDENT_ID_KEY, row.Number)
     this.routes.navigateByUrl(ROUTES.VIEWSTEPS)
   }
 

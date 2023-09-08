@@ -25,12 +25,14 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { ViewDetailedStepsComponent } from './components/view-detailed-steps/view-detailed-steps.component';
+import { ResolutionsComponent } from './components/resolutions/resolutions.component';
 
 
 @NgModule({
   declarations: [
     IncidentDetailsPageComponent,
-    ViewDetailedStepsComponent
+    ViewDetailedStepsComponent,
+    ResolutionsComponent
   ],
   imports: [
     CommonModule,

@@ -9,7 +9,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 body {
     background: #fff;
-    font-family: "ProximaNova", sans-serif;
+    // background-image: url(./assets/images/rectangle-page.png);
+    // background-repeat: no-repeat;
+    // background-position: 100% 20%;
+    font-family: "inter", sans-serif;
     font-size: inherit;
     color: #222222;
     overflow: scroll
@@ -26,7 +29,7 @@ body {
     border-bottom: none;
     font-style: bold;
     margin-left: 85px;
-    font-family: ProximaNova;
+    font-family: inter;
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
@@ -68,7 +71,7 @@ body {
     width: 100%;
     margin-left: 5px;
     font-weight: 500;
-    font-size: 16px;;
+    font-size: 16px;
 }
 
 ::-webkit-scrollbar {

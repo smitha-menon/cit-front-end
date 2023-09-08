@@ -3,24 +3,24 @@
     <label>Incident details</label>
     <div style="border: 1px solid #b8b8b8; border-top: none;" *ngFor="let incident of incidentDetails">
       <div class="card2">
-        <label>{{incident.number}}</label>
+        <label>{{incident.incidentId}}</label>
       </div>
       <div>
         <table id="customers">
           <tr>
-            <th>state</th>
-            <th>priority</th>
-            <th>assigned to</th>
-            <th>assigned group</th>
-            <th>due date</th>
+            <th>State</th>
+            <th>Priority</th>
+            <th>Assigned To</th>
+            <th>Assigned Group</th>
+            <th>Due Date</th>
           </tr>
 
           <tr>
-            <td>{{incident.state}}</td>
+            <td [ngClass]="incident.state">{{incident.state}}</td>
             <td>{{incident.priority}}</td>
             <td>{{incident.assignedTo}}</td>
-            <td>{{incident.assignedgroup}}</td>
-            <td>{{incident.due}}</td>
+            <td>{{incident.assignedGroup}}</td>
+            <td>{{incident.dueDate}}</td>
           </tr>
 
 
@@ -37,21 +37,72 @@
           </tr>
 
           <tr>
-            <td>opened</td>
-            <td>high</td>
-            <td>alwin</td>
-            <td>alwin</td>
-            <td>alwin</td>
+            <td>{{incident.openedDate}}</td>
+            <td>{{incident.openedBy}}</td>
+            <td>{{incident.resolvedDate}}</td>
+            <td>{{incident.sla}}</td>
+            <td>{{incident.slalapse}}</td>
           </tr>
 
 
 
         </table>
         <br>
-        <div >
+        <div style="display: flex; gap: 72px">
+          <!-- <div> -->
+
+          <table id="bottom">
+            <tr>
+              <th>Description</th>
+
+            </tr>
+
+            <tr>
+              <td>{{incident.description}}</td>
+
+            </tr>
+
+
+
+          </table>
+          <div style="border: 1px solid #ddd; border-top: none; width: 35%;">
+            <div class="tag-label">
+              <label>Tags</label>
+            </div>
+            <div class="tag-content">
+              <div class="search-tag">
+                <i class="fa-solid fa-magnifying-glass fa-xs" style="color: #14161a; margin-left: 10px;"></i>
+                <input type="text" class="search-input" placeholder="Add Tag" [(ngModel)]="tagName"/>
+              </div>
+              <button class="add-tag-btn" (click)="addTag()">Add Tag</button>
+            </div>
+            <div style="overflow-y: scroll; height: 80px; margin-left: 8px;">
+              <div class="tags-bottom" *ngFor="let tag of tagList">
+                <div class="tag-card">
+                  {{tag.tagName}}
+                  <i class="fa fa-times" style="cursor:pointer" ></i>
+                </div>
+             
+              </div>
+            </div>
+        
+
+          </div>
+
+          <!-- </div> -->
+          <!-- <div style="width: 100%; height: 100%; background: #F5F5F5; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom: 0.50px #DADADA solid">
+            tags
+          </div> -->
+          <!-- <div class="tag-card" *ngFor="let tag of incident.tags">
+            
+            <div class="card-descrp">
+             {{tag}}
+            </div> -->
+          <!-- </div> -->
 
         </div>
-       
+        <br>
+
       </div>
 
     </div>

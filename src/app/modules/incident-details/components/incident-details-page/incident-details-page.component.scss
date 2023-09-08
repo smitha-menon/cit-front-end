@@ -10,15 +10,16 @@
         margin-top: 20px;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-        background: #F5F2F2;
+        background: rgb(0 108 190);
+        // background: #F5F2F2;
         padding: 10px;
         box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
         border-bottom: none;
         font-style: bold;
 
-        font-family: ProximaNova;
+        font-family: inter;
         font-style: normal;
-        font-weight: bold;
+        font-weight: bolder;
         font-size: 30px;
 
         color: #131313;
@@ -29,7 +30,8 @@
     .wrapper {
         overflow: hidden;
         padding: 10px;
-        background: #ffffff;
+        // background: linear-gradient(270deg,#e8807f,#e6c84f);
+        // background: #ffffff;
         font-size: 15px;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
@@ -52,7 +54,7 @@
 
     .mdc-data-table__header-cell {
         text-align: center;
-        font-family: ProximaNova;
+        font-family: inter;
         font-style: normal;
         font-weight: 700;
         font-size: 15px;
@@ -66,7 +68,7 @@
     .mat-mdc-footer-cell,
     .mat-mdc-row,
     .mat-mdc-footer-row {
-        font-family: ProximaNova;
+        font-family: inter;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -83,7 +85,8 @@
 }
 
 .open {
-    color: green;
+    color: 
+    #27CB4B;
 }
 
 .closed {

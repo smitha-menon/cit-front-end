@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { INCIDENT_ID_KEY } from 'src/app/core/constants/local-storage-keys';
+import { drillIncidents } from 'src/app/interfaces/incidents';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 
 @Component({
@@ -13,11 +15,12 @@ export class ViewDetailedStepsComponent implements OnInit {
 
   public incidentForm: FormGroup | any;
   formattedString: any = [];
-  incidentDetails: any;
+  incidentDetails: any = [];
+  tagList: any = [];
+  tagName: string = '';
   constructor(private routes: Router, private fb: FormBuilder, private apiservice: ApiservicesService) { }
 
   stepArray: any[] = [];
-
   arr: any;
 
   ngOnInit(): void {
@@ -25,35 +28,50 @@ export class ViewDetailedStepsComponent implements OnInit {
 
 
 
-    this.apiservice.getIncidentsList().subscribe((res: any) => {
-      console.log(res)
-      this.incidentDetails = res.map((data: any) => {
-        return {
+    this.apiservice.getIncident(localStorage.getItem(INCIDENT_ID_KEY)).subscribe({
+      next: (res: any) => {
+        console.log(res)
+        this.incidentDetails.push(res)
+        // this.incidentDetails.incidentId = res.incidentId
+        // this.incidentDetails = res.map((data: any) => {
+        //   return {
 
-          number: data.incidentId,
-          active: data.active,
-          state: data.state,
-          priority: data.priority,
-          assignedTo: data.assignedTo,
-          openedDate: data.openedDate,
-          assignedgroup: data.assignedGroup,
-          due: data.dueDate,
-          openedBy: data.openedBy,
-          resolvedDate: data.resolvedDate,
-          sla: data.sla,
-          slaLpase: data.slalapse
-        }
-      })
-      console.log(this.incidentDetails)
+        //     number: data.incidentId,
+        //     active: data.active,
+        //     state: data.state,
+        //     priority: data.priority,
+        //     assignedTo: data.assignedTo,
+        //     openedDate: data.openedDate,
+        //     assignedgroup: data.assignedGroup,
+        //     due: data.dueDate,
+        //     openedBy: data.openedBy,
+        //     resolvedDate: data.resolvedDate,
+        //     sla: data.sla,
+        //     slaLpase: data.slalapse
+        //   }
+        console.log(this.incidentDetails)
+        this.tagList = this.incidentDetails[0].tags.map((res: any) => {
+          console.log(res.tags)
+          return {
+            tagName: res
+          }
+
+        })
+        console.log(this.tagList)
+      }
     })
 
-
-
-
   }
-
-  // populateFormData(data: any) {
-  //  console.log(data)
-
+  // searchPageFilter(event: any) {
+  //   console.log(event?.target.value)
+  //   this.tagName = event?.target.value
   // }
+  addTag() {
+    var obj =
+      { tagName: '#' + this.tagName }
+
+    this.tagList.push(obj)
+    this.tagName = '';
+    console.log(obj)
+  }
 }
