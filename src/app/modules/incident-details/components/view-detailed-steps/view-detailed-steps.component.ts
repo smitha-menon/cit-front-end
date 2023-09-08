@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ROUTES } from 'src/app/core/constants/constant';
 import { INCIDENT_ID_KEY } from 'src/app/core/constants/local-storage-keys';
 import { drillIncidents } from 'src/app/interfaces/incidents';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
@@ -73,5 +74,9 @@ export class ViewDetailedStepsComponent implements OnInit {
     this.tagList.push(obj)
     this.tagName = '';
     console.log(obj)
+  }
+
+  goToReso() {
+    this.routes.navigateByUrl(ROUTES.RESOLUTION)
   }
 }
