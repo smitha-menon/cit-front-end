@@ -20,7 +20,7 @@
             <td>{{incident.priority}}</td>
             <td>{{incident.assignedTo}}</td>
             <td>{{incident.assignedGroup}}</td>
-            <td>{{incident.dueDate}}</td>
+            <td>{{incident.dueDate| date: 'dd/MM/yyyy'}}</td>
           </tr>
 
 
@@ -29,17 +29,17 @@
         <br>
         <table id="customers">
           <tr>
-            <th>Opened date</th>
-            <th>Opened by</th>
+            <th>Opened Date</th>
+            <th>Opened By</th>
             <th>Resolved Date</th>
             <th>SLA</th>
             <th>SLA Lapse</th>
           </tr>
 
           <tr>
-            <td>{{incident.openedDate}}</td>
+            <td>{{incident.openedDate| date: 'dd/MM/yyyy'}}</td>
             <td>{{incident.openedBy}}</td>
-            <td>{{incident.resolvedDate}}</td>
+            <td>{{incident.resolvedDate| date: 'dd/MM/yyyy'}}</td>
             <td>{{incident.sla}}</td>
             <td>{{incident.slalapse}}</td>
           </tr>
