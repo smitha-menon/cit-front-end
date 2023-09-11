@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ROUTES } from 'src/app/core/constants/constant';
-import { INCIDENT_ID_KEY } from 'src/app/core/constants/local-storage-keys';
+import { INCIDENT_ID_KEY, TAGS } from 'src/app/core/constants/local-storage-keys';
 import { drillIncidents } from 'src/app/interfaces/incidents';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 
@@ -19,15 +19,14 @@ export class ViewDetailedStepsComponent implements OnInit {
   incidentDetails: any = [];
   tagList: any = [];
   tagName: string = '';
+  
   constructor(private routes: Router, private fb: FormBuilder, private apiservice: ApiservicesService) { }
 
   stepArray: any[] = [];
-  arr: any;
-
+  tagsarr: any;
+  
   ngOnInit(): void {
-    this.stepArray = [];
-
-
+    this.stepArray = [];    
 
     this.apiservice.getIncident(localStorage.getItem(INCIDENT_ID_KEY)).subscribe({
       next: (res: any) => {
@@ -51,8 +50,11 @@ export class ViewDetailedStepsComponent implements OnInit {
         //     slaLpase: data.slalapse
         //   }
         console.log(this.incidentDetails)
+        this.tagsarr = this.incidentDetails[0].tags;
+        localStorage.setItem(TAGS,this.tagsarr.join(','));
+
         this.tagList = this.incidentDetails[0].tags.map((res: any) => {
-          console.log(res.tags)
+                 
           return {
             tagName: res
           }
@@ -77,6 +79,8 @@ export class ViewDetailedStepsComponent implements OnInit {
   }
 
   goToReso() {
-    this.routes.navigateByUrl(ROUTES.RESOLUTION)
+          
+    this.routes.navigateByUrl(ROUTES.RESOLUTION);    
+    
   }
 }
