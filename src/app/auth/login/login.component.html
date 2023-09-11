@@ -1,78 +1,81 @@
-<div class="row login-main-element">
-    <div class="col left-column">
-        <label class="login-label">CIT</label>
-        <section>
-            <label class="desc">Contionous Incident Telemetry </label>
-            <label class="subDesc">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-            </label>
-            <img src="../../../assets/images/loginImage2.png" class="loginImage">
-        </section>
+
+<div class="login-main-element">
+  <div class="login-box">
+    <div class="Column left-col">
+      <a href="#">
+        <label style= "margin-top: 144px;
+        font-family: 'Inter';
+        font-size: 40px;
+        font-weight: 900;
+        text-align: center;
+        width: 50%;">CIT</label>
+        <!-- <img src="../../../assets/images/TURBOPROBE_LOGO_SELECTED.svg" style="margin-top: 24px;
+            /* display: block; */
+            margin-left: 30px;
+            width: 50%"> -->
+      </a>
+
+      <!-- <label style="    font-family: ProximaNova;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 40px;
+          margin-left: 8px;
+          line-height: 42px;
+          color: #131313;"></label> -->
+      <section>
+        <p class="subDesc">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+          <br><br><br> <br><br><br>
+          <!-- <img class="loginImage" src="../../../assets/images/loginImage2.png"> -->
+          <!--                
+              <br><br><br>
+              At G10X, we are committed to helping you achieve outstanding performance for your systems. Partner with us to overcome performance challenges, validate your applications, and build future-proof solutions in the ever-evolving world of emerging technologies.
+              
+               
+              <br><br><br>
+              Contact us today to learn more about our services and how we can assist you in your performance testing and engineering endeavors.</p> -->
+      </section>
     </div>
-    <section class="col right-column">
-        <div class="login-element">
-            <div class="login-table">
-                <label>Sign In to your account</label>
-            </div>
-            <div class="login-content">
-                <form class="login-form" [formGroup]="loginForm" >
-                    <div class="form-group">
-                      <label class="login-form-label">Username</label>
-                        <input type="email" id="email" class="form-control" autocomplete="false" appFilledInput
-                         formControlName="email" name="email" />
-                         <div class="text-danger input-feedback" *ngIf="f.email.errors && f.email.touched">
-                          Please provide a valid Username
-                        </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="login-form-label">Password</label>
-                        <input type="password" id="password" class="grp1284" autocomplete="false" formControlName="password"
-                           appFilledInput name="password" />
-                        <!-- <label class="form-label" for="password">Password</label> -->
-                        <div class="text-danger input-feedback" *ngIf="f.password?.errors && f.password.touched">
-                          Please provide a valid password.
-                        </div>
-                      </div>
-                      <div class="login-form__footer">
-                        <button class="btn" (click)="login()">
-                          Log
-                          In
-                        </button>
-                      </div>
-                </form>
-            </div>
+    <section class="Column right-col">
+      <div class="login-element">
+        <div class="login-table">
+          <label>Sign</label><label style="color: #CB2C27;">In</label>
         </div>
-    </section>
-</div>
-<!-- <div class="Login" style="width: 100%; height: 100%; position: relative; background: white">
-  <div class="Group153" style="width: 900px; height: 664px; position: relative">
-      <div class="Rectangle63" style="width: 900px; height: 664px; left: 0px; top: 0px; position: absolute; background: white; border: 0.50px black solid"></div>
-      <div class="Group152" style="width: 400px; height: 447px; left: 440px; top: 60px; position: absolute">
-          <div class="Rectangle61" style="width: 400px; height: 447px; left: 0px; top: 0px; position: absolute; background: white; border: 0.50px black solid"></div>
-          <div class="ForgotPassword" style="left: 30px; top: 311px; position: absolute; color: #007BFF; font-size: 16px; font-family: Inter; font-weight: 500; word-wrap: break-word">Forgot Password?</div>
-          <div class="Group132" style="width: 340px; height: 175px; left: 30px; top: 115px; position: absolute">
-              <div class="Group88" style="width: 340px; height: 35px; left: 0px; top: 0px; position: absolute">
-                  <div class="Rectangle23" style="width: 340px; height: 35px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25); border-radius: 10px; border: 0.50px solid"></div>
-                  <div class="Username" style="width: 86.67px; left: 20.12px; top: 8px; position: absolute; color: #656565; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Username</div>
+        <div class="login-content">
+          <form class="login-form" [formGroup]="loginForm" >
+            <div class="form-group">
+              <!-- <label class="login-form-label">Username</label> -->
+                <input type="email" id="email" class="form-control" autocomplete="false" appFilledInput placeholder="Username"
+                 formControlName="email" name="email" />
+                 <div class="text-danger input-feedback" *ngIf="f.email.errors && f.email.touched">
+                  Please provide a valid Username
+                </div>
+            </div>
+            <div class="form-group">
+              <!-- <label class="login-form-label">Password</label> -->
+                <input type="password" id="password" class="form-control" autocomplete="false" formControlName="password" placeholder="Password"
+                   appFilledInput name="password" />
+                <!-- <label class="form-label" for="password">Password</label> -->
+                <div class="text-danger input-feedback" *ngIf="f.password?.errors && f.password.touched">
+                  Please provide a valid password.
+                </div>
               </div>
-              <div class="Group120" style="width: 340px; height: 45px; left: 0px; top: 130px; position: absolute">
-                  <div class="Rectangle23" style="width: 340px; height: 45px; left: 0px; top: 0px; position: absolute; background: #FD5E0F; border-radius: 5px"></div>
-                  <div class="Login" style="width: 88.04px; height: 43.46px; left: 126px; top: 1px; position: absolute; color: white; font-size: 24px; font-family: Inter; font-weight: 700; word-wrap: break-word" (click)="login()">Login</div>
+              <div class="login-form__footer">
+                <button class="btn" (click)="login()">
+                  Log
+                  In
+                </button>
               </div>
-              <div class="Group88" style="width: 340px; height: 35px; left: 0px; top: 65px; position: absolute">
-                  <div class="Rectangle23" style="width: 340px; height: 35px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25); border-radius: 10px; border: 0.50px solid"></div>
-                  <img class="Hide1" style="width: 16px; height: 16px; left: 314px; top: 9px; position: absolute" src="../../../assets/images/hide1.png" />
-                  <div class="Password" style="width: 82.22px; left: 20.12px; top: 8px; position: absolute; color: #656565; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Password</div>
-              </div>
-          </div>
-          <div class="Rectangle62" style="width: 400px; height: 90px; left: 0px; top: 0px; position: absolute; background: #E5E4E4; border: 0.50px black solid"></div>
+        </form>
+        <div style="gap: 9px;margin-top: 18px; display: flex; flex-direction: column;">
+          <label><a class="link-label">Forgot password?</a></label>
+          <label>New User?<a class="link-label"> Sign Up</a></label>
+          <label>Contact your Domain admin for help <a class="link-label">Admin@g10x.com</a></label>
+        </div>
+        </div>
       </div>
-      <div class="SignIn" style="left: 583px; top: 79px; position: absolute"><span style="color: black; font-size: 40px; font-family: Inter; font-weight: 400; word-wrap: break-word">Sign </span><span style="color: #CB2C27; font-size: 40px; font-family: Inter; font-weight: 400; word-wrap: break-word">In</span></div>
-      <div class="NewUserSignUp" style="left: 470px; top: 405px; position: absolute"><span style="color: black; font-size: 16px; font-family: Inter; font-weight: 500; word-wrap: break-word">New User? </span><span style="color: #007BFF; font-size: 16px; font-family: Inter; font-weight: 500; word-wrap: break-word">Sign Up</span></div>
-      <div class="ContactYourDomainAdminForHelpAdminG10xCom" style="width: 302px; left: 470px; top: 439px; position: absolute"><span style="color: black; font-size: 16px; font-family: Inter; font-weight: 500; word-wrap: break-word">Contact your Domain admin for help </span><span style="color: #007BFF; font-size: 16px; font-family: Inter; font-weight: 500; word-wrap: break-word">Admin@g10x.com</span></div>
-      <div class="Rectangle60" style="width: 200px; height: 116px; left: 60px; top: 60px; position: absolute; background: white; border: 0.50px black solid"></div>
-      <div class="Logo" style="left: 136px; top: 106px; position: absolute; color: black; font-size: 20px; font-family: Inter; font-weight: 500; word-wrap: break-word">Logo</div>
-      <div class="LoremIpsumHasBeenTheIndustrySStandardDummyTextEverSinceThe1500sWhenAnUnknownPrinterTookAGalleyOfTypeAndScrambledItToMakeATypeSpecimenBook" style="width: 320px; left: 60px; top: 443px; position: absolute; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
-      <div class="Cit" style="left: 126px; top: 192px; position: absolute; color: black; font-size: 48px; font-family: Inter; font-weight: 400; word-wrap: break-word">CIT</div>
-      <div class="LoremIpsumIsSimplyDummyTextOfThePrintingAndTypesettingIndustry" style="width: 282px; left: 60px; top: 317px; position: absolute; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Lorem Ipsum is simply dummy text of the printing and typesetting industry</div>
+    </section>
   </div>
-</div> -->
+  <!-- <div>
+      <img src="../../../assets/images/landingpage-images/landing-page-img.png">
+    </div> -->
+</div>

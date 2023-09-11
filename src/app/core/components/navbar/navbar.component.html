@@ -4,6 +4,13 @@
             <a href="#">
                 <img class="logo1" style="height: 65%;" src="../../../../assets/images/g10xLogo1.png">
             </a>
+            <label style="    font-family: inter;
+            margin-left: 16px;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 30px;
+            /* line-height: 42px; */
+            color: #131313;">CIT</label>
         </div>
         <!-- <div class="menu-item" >
             Dashboard
@@ -20,7 +27,7 @@
             <img src="../../../../assets/images/burgerMenu.png">
 
         </div>
-        <div>
+        <div (click)="logOut()" style="cursor: pointer;">
             <img src="../../../../assets/images/logoutImage.png">
         </div>
         <div>
@@ -63,7 +70,7 @@
             </li>
 
             <li class="nav__item" data-tooltip="Home">
-                <div class="nav_list">
+                <div class="nav_list" (click)="goToIncident()">
                     <label class="nav_label">
                         <i class="fa-solid fa-bars"></i>Incidents</label>
                     <!-- <i class="fa fa-user  fa-2xl icon" style="color: white;"></i>  -->
