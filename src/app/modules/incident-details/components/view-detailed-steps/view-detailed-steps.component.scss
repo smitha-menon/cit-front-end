@@ -223,15 +223,18 @@ td {
     color: green;
 }
 .recommended-reso-btn {
-  background: #fff;
-  border: 2px solid #1a73e8;
-  box-sizing: border-box;
-  border-radius: 5px;
-  color: #1a73e8;
-  font-family: ProximaNova;
-  font-weight: 700;
+  background: #000;  
+  border-radius: 5px;  
+  font-family: ProximaNova;  
   /* width: 10%; */
   line-height: 19px;
-  height: 45px;
+  height: 35px;
   margin-left: 30%;
+  color: #FFF;    
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  width: 204px;
+  flex-shrink: 0;
 }

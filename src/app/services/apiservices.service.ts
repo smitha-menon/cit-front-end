@@ -16,6 +16,7 @@ export class ApiservicesService {
   // Setting request headers to JSON
   headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
+    .set('Access-Control-Allow-Origin','*')
     .set('Accept', 'application/json');
 
   httpOptions = {
@@ -57,7 +58,7 @@ export class ApiservicesService {
     const url = `${this.apiUrl}/getResolutions`;
     
     this.newtag = matchtags.split(',');
-    return this.http.get<any>(url,this.newtag)
+    return this.http.put<any>(url,this.newtag)
     .pipe(
       tap(data => {   
         console.log("new resol")    ;
