@@ -19,6 +19,8 @@ export class ViewDetailedStepsComponent implements OnInit {
   incidentDetails: any = [];
   tagList: any = [];
   tagName: string = '';
+  tagClose: boolean = false;
+  tagIndexDelete: any;
   constructor(private routes: Router, private fb: FormBuilder, private apiservice: ApiservicesService) { }
 
   stepArray: any[] = [];
@@ -78,5 +80,20 @@ export class ViewDetailedStepsComponent implements OnInit {
 
   goToReso() {
     this.routes.navigateByUrl(ROUTES.RESOLUTION)
+  }
+  tagClosepop(index: number) {
+    this.tagIndexDelete = index;
+    this.tagClose = true;
+  }
+
+  deleteTag() {
+    this.tagList.splice(this.tagIndexDelete, 1)
+    this.tagClose = false;
+  }
+  cancel() {
+    this.tagClose = false;
+  }
+  refresh() {
+    window.location.reload()
   }
 }

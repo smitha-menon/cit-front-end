@@ -21,6 +21,9 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background: rgb(0 108 190);
+  display: flex;
+  gap: 10px;
+  align-items: center;
   padding: 10px;
   box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
   border-bottom: none;
@@ -234,4 +237,86 @@ td {
   line-height: 19px;
   height: 45px;
   margin-left: 30%;
+}
+.overlay {
+  font-family: ProximaNova;
+  position: fixed;
+  top: -20px;
+  bottom: -100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity 500ms;
+  visibility: visible;
+  opacity: 1;
+  z-index: 99;
+  .delete-popup {
+      width: 40%;
+          height: 250px;
+          // margin-left: 30%;
+          // margin-top: 6%;
+          background: #fff;
+          box-shadow: 1px 1px 15px #0000001a;
+          border-radius: 15px;
+  }
+
+      .test-plan-popup {
+          margin-left: 10%;
+
+          .edit-test-label {
+              font-family: ProximaNova;
+              font-style: normal;
+              font-weight: bold;
+              font-size: 25px;
+              line-height: 30px;
+              margin-top: 30px;
+              color: #474A4E;
+          }
+      }
+      .delete-test-label {
+          display: block;
+          font-family: ProximaNova;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 30px;
+          margin-top: 30px;
+          color: #474a4e
+      }
+
+      .execute-btn {
+          background: #FD5E0F;
+          height: 40px;
+          border: none;
+          text-align: center;
+          text-decoration: none;
+          width: 130px;
+          font-size: 18px;
+          border-radius: 5px;
+          font-family: ProximaNova;
+          font-style: normal;
+          font-weight: bold;
+          line-height: 16px;
+          color: #ffffff;
+      }
+      
+      .cancel-btn {
+          background: white;
+          height: 40px;
+          text-align: center;
+          text-decoration: none;
+          width: 130px;
+          font-size: 18px;
+          border-radius: 5px;
+          font-family: ProximaNova;
+          font-style: normal;
+          font-weight: bold;
+          line-height: 16px;
+          color: #080808;
+      }
+  
 }
