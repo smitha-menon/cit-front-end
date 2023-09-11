@@ -233,13 +233,15 @@ td {
   color: #1a73e8;
   font-family: ProximaNova;
   font-weight: 700;
-  /* width: 10%; */
+  width: 37%;
+  height: 38px;
+  /* margin-left: -7%; */
   line-height: 19px;
-  height: 45px;
+  /* height: 35px; */
   margin-left: 30%;
 }
 .overlay {
-  font-family: ProximaNova;
+  font-family: inter;
   position: fixed;
   top: -20px;
   bottom: -100px;
@@ -268,7 +270,7 @@ td {
           margin-left: 10%;
 
           .edit-test-label {
-              font-family: ProximaNova;
+              font-family: inter;
               font-style: normal;
               font-weight: bold;
               font-size: 25px;
@@ -279,7 +281,7 @@ td {
       }
       .delete-test-label {
           display: block;
-          font-family: ProximaNova;
+          font-family: inter;
           font-style: normal;
           font-weight: 400;
           font-size: 18px;
@@ -297,7 +299,7 @@ td {
           width: 130px;
           font-size: 18px;
           border-radius: 5px;
-          font-family: ProximaNova;
+          font-family: inter;
           font-style: normal;
           font-weight: bold;
           line-height: 16px;
@@ -312,7 +314,7 @@ td {
           width: 130px;
           font-size: 18px;
           border-radius: 5px;
-          font-family: ProximaNova;
+          font-family: inter;
           font-style: normal;
           font-weight: bold;
           line-height: 16px;
