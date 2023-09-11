@@ -19,4 +19,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl(ROUTES.INCIDENT)
   }
 
+  logOut() {
+   this.router.navigate(['/login']).then(() => {
+      window.location.reload();
+    });
+  }
 }

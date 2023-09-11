@@ -41,8 +41,7 @@ this.loginuser={
     
      this.apiservice.authenticateUser(this.loginuser).subscribe({
       next : (response: any) => {
-      console.log(response);      
-      debugger      
+      console.log(response);         
       this.routes.navigateByUrl(ROUTES.INCIDENT)
     },
     error: (err: any) => {
