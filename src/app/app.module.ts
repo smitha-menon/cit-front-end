@@ -10,6 +10,7 @@ import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { NavbarLayoutComponent } from './core/layouts/navbar-layout.component';
 import { HomeLayoutComponent } from './core/layouts/home-layout.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

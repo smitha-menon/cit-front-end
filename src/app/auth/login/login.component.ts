@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ROUTES } from 'src/app/core/constants/constant';
+import { NotifierService } from 'src/app/core/utils/notifier';
 import { user } from 'src/app/interfaces/user';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 
@@ -13,7 +14,7 @@ import { ApiservicesService } from 'src/app/services/apiservices.service';
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup | any;
   public loginuser: user | any;
-  constructor(private routes: Router, private fb: FormBuilder, private apiservice :ApiservicesService) {} 
+  constructor(private routes: Router, private fb: FormBuilder, private apiservice :ApiservicesService, private notifier: NotifierService) {} 
   
     
   get f() {
@@ -43,8 +44,16 @@ this.loginuser={
       next : (response: any) => {
       console.log(response);         
       this.routes.navigateByUrl(ROUTES.INCIDENT)
+      this.notifier.success(
+        'Login Success',
+        'User logged in successfully'
+      )
     },
     error: (err: any) => {
+      this.notifier.error(
+        'Login failed',
+        'Please try again with a valid credentials'
+      );
       console.log(err)
       this.routes.navigateByUrl(ROUTES.LOGIN)
     }
