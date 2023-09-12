@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ROUTES } from 'src/app/core/constants/constant';
 import { INCIDENT_ID_KEY, TAGS } from 'src/app/core/constants/local-storage-keys';
+import { NotifierService } from 'src/app/core/utils/notifier';
 import { drillIncidents } from 'src/app/interfaces/incidents';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 
@@ -22,7 +23,7 @@ export class ViewDetailedStepsComponent implements OnInit {
   tagClose: boolean = false;
   tagIndexDelete: any;
   
-  constructor(private routes: Router, private fb: FormBuilder, private apiservice: ApiservicesService) { }
+  constructor(private routes: Router, private fb: FormBuilder, private apiservice: ApiservicesService,private notifier: NotifierService) { }
 
   stepArray: any[] = [];
   tagsarr: any;
@@ -59,8 +60,6 @@ export class ViewDetailedStepsComponent implements OnInit {
     var obj =
       { tagName: '#' + this.tagName }
 
-    this.tagList.push(obj)
-    this.tagName = '';  
     this.tagsarr.push(obj.tagName);
     console.log(obj)
     localStorage.setItem(TAGS,this.tagsarr.join(','));
@@ -68,8 +67,28 @@ export class ViewDetailedStepsComponent implements OnInit {
     this.apiservice.modifyTags(this.tagsarr,localStorage.getItem(INCIDENT_ID_KEY)).subscribe({
       next :(data:any)=>{
         console.log(data)
+        this.tagList.push(obj)
+        this.tagName = '';  
+        this.notifier.success(
+          'Success!',
+          'Tag Generated Successfully'
+        )
       },
-      error: (err: any) => console.log(err)
+      error: (err: any) => {console.log(err)
+        if (err.status == 200) {
+          this.tagList.push(obj)
+          this.tagName = '';  
+          this.notifier.success(
+            'Success!',
+            'Tag Generated Successfully'
+          )
+        } else {
+          this.notifier.error(
+            'Failed!',
+            'Tag Generated Failed'
+          )
+        }
+      }
     });
   }
 

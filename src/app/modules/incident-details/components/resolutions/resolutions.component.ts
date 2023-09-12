@@ -56,6 +56,7 @@ public addResolutions():void{
       if (err.status === 201)
       {
         this.receivedData = ''
+        this.loadResolutions();
         this.notifier.success(
           'Resolution saved',
           'success'

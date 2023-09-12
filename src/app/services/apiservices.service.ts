@@ -56,7 +56,7 @@ export class ApiservicesService {
 
   public modifyTags(taglist:any,incid:any): Observable<any>{
     const url = this.apiUrl+'/modifyTags/'+incid;
-    debugger
+    // debugger
     return this.http.put<any>(url,taglist,this.httpOptions)
     .pipe(
       tap(data => {          
@@ -80,7 +80,7 @@ export class ApiservicesService {
   }
 
   public addResolutions(resol: any, incidentId: any): Observable<any> {
-    debugger
+    // debugger
     return this.http.post<any>(environment.baseUrl + '/addResolution/' + incidentId, resol, this.httpOptions)
       .pipe(
         tap(data => {          
