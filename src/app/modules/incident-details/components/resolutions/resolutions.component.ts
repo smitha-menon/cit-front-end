@@ -53,6 +53,14 @@ public addResolutions():void{
     },
     error: (err: any) => {
       console.log(err)
+      if (err.status === 201)
+      {
+        this.receivedData = ''
+        this.notifier.success(
+          'Resolution saved',
+          'success'
+        )
+      }
   
     }
   });
