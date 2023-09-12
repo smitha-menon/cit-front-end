@@ -16,7 +16,7 @@ export class ApiservicesService {
   // Setting request headers to JSON
   headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
-    .set('Access-Control-Allow-Origin','*')
+    // .set('Access-Control-Allow-Origin','*')
     .set('Accept', 'application/json');
 
   httpOptions = {
@@ -54,14 +54,25 @@ export class ApiservicesService {
     return this.http.get<recommendations[]>(url);
   }
 
+  public modifyTags(taglist:any,incid:any): Observable<any>{
+    const url = this.apiUrl+'/modifyTags/'+incid;
+    debugger
+    return this.http.put<any>(url,taglist,this.httpOptions)
+    .pipe(
+      tap(data => {          
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   public getResolutions(matchtags:any): Observable<any> {
     const url = `${this.apiUrl}/getResolutions`;
     
     this.newtag = matchtags.split(',');
     return this.http.put<any>(url,this.newtag)
     .pipe(
-      tap(data => {   
-        console.log("new resol")    ;
+      tap(data => {          
         console.log(data);
       }),
       catchError(this.handleError)
@@ -69,6 +80,7 @@ export class ApiservicesService {
   }
 
   public addResolutions(resol: any, incidentId: any): Observable<any> {
+    debugger
     return this.http.post<any>(environment.baseUrl + '/addResolution/' + incidentId, resol, this.httpOptions)
       .pipe(
         tap(data => {          

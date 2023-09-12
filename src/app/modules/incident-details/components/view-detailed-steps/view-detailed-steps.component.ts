@@ -34,23 +34,7 @@ export class ViewDetailedStepsComponent implements OnInit {
       next: (res: any) => {
         console.log(res)
         this.incidentDetails.push(res)
-        // this.incidentDetails.incidentId = res.incidentId
-        // this.incidentDetails = res.map((data: any) => {
-        //   return {
-
-        //     number: data.incidentId,
-        //     active: data.active,
-        //     state: data.state,
-        //     priority: data.priority,
-        //     assignedTo: data.assignedTo,
-        //     openedDate: data.openedDate,
-        //     assignedgroup: data.assignedGroup,
-        //     due: data.dueDate,
-        //     openedBy: data.openedBy,
-        //     resolvedDate: data.resolvedDate,
-        //     sla: data.sla,
-        //     slaLpase: data.slalapse
-        //   }
+       
         console.log(this.incidentDetails)
         this.tagsarr = this.incidentDetails[0].tags;
         localStorage.setItem(TAGS,this.tagsarr.join(','));
@@ -76,8 +60,17 @@ export class ViewDetailedStepsComponent implements OnInit {
       { tagName: '#' + this.tagName }
 
     this.tagList.push(obj)
-    this.tagName = '';
+    this.tagName = '';  
+    this.tagsarr.push(obj.tagName);
     console.log(obj)
+    localStorage.setItem(TAGS,this.tagsarr.join(','));
+
+    this.apiservice.modifyTags(this.tagsarr,localStorage.getItem(INCIDENT_ID_KEY)).subscribe({
+      next :(data:any)=>{
+        console.log(data)
+      },
+      error: (err: any) => console.log(err)
+    });
   }
 
   goToReso() {
