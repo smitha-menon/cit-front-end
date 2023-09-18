@@ -5,7 +5,7 @@ import { ROUTES } from 'src/app/core/constants/constant';
 import { USER_NAME } from 'src/app/core/constants/local-storage-keys';
 import { NotifierService } from 'src/app/core/utils/notifier';
 import { user } from 'src/app/interfaces/user';
-import { ApiservicesService } from 'src/app/services/apiservices.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,8 @@ import { ApiservicesService } from 'src/app/services/apiservices.service';
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup | any;
   public loginuser: user | any;
-  constructor(private routes: Router, private fb: FormBuilder, private apiservice :ApiservicesService, private notifierService:NotifierService) {} 
+  loginstatus:any ;
+  constructor(private routes: Router, private fb: FormBuilder, private authservice :AuthService, private notifierService:NotifierService) {} 
   
     
   get f() {
@@ -27,12 +28,12 @@ export class LoginComponent implements OnInit {
     email: ['', Validators.required],
     password: ['', Validators.required]
   }))
-  sessionStorage.removeItem(USER_NAME);    
-  sessionStorage.clear();    
+  localStorage.removeItem(USER_NAME);    
+  localStorage.clear();    
   }
 
 
-  login() {
+ login() {
 
     if (this.loginForm.invalid) {
       return;
@@ -42,30 +43,35 @@ this.loginuser={
    username:this.loginForm.value.email,
    password: this.loginForm.value.password
   }
-    
-     this.apiservice.authenticateUser(this.loginuser).subscribe({
-      next : (response: any) => {
-      console.log(response); 
-      sessionStorage.setItem(USER_NAME,this.loginuser.username);
-      this.routes.navigateByUrl(ROUTES.INCIDENT)
-      this.notifierService.success("Login Success","User Logged in Successfully")
-    
-    },
-    error: (err: any) => {
-      console.log(err)
-      if (err.status === 200)
-      {
-        sessionStorage.setItem(USER_NAME,this.loginuser.username);
-        this.routes.navigateByUrl(ROUTES.INCIDENT)
-        this.notifierService.success("Login Success","User Logged in Successfully")
-      }
-      else {
-        this.routes.navigateByUrl(ROUTES.LOGIN)
-      this.notifierService.error("Login Failed","Please try again with valid credentials")
-        
-      }
+   
+  
+ this.authservice.loginCheck1(this.loginuser).subscribe({
+  next : (result: any) => {
+    console.log('success'+ result)
+    if(result)
+    {
+    //this.loginstatus = true;
+    this.routes.navigateByUrl(ROUTES.INCIDENT)
+    this.notifierService.success("Login Success","User Logged in Successfully");
     }
-  });
+    else{
+      //this.loginstatus = false;
+      this.routes.navigateByUrl(ROUTES.LOGIN)
+    this.notifierService.error("Login Failed","Please try again with valid credentials")
+    }
+  },
+  error: (err: any) => {
+    console.log('errorlogin'+err.status)   
+   
+      //this.loginstatus = false;
+      this.routes.navigateByUrl(ROUTES.LOGIN)
+    this.notifierService.error("Login Failed","Please try again with valid credentials")
+      }
+});
+   console.log('logstat:'+this.loginstatus)
+  // 
+     
+   
 
     
     

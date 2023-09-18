@@ -3,19 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeLayoutComponent } from './core/layouts/home-layout.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { NavbarLayoutComponent } from './core/layouts/navbar-layout.component';
+import { AuthGuard } from './auth/guard/auth.guard';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [{
   path: '',
   component: HomeLayoutComponent,
   children: [
     {
-      path: 'login',
+      path: 'login',      
       loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
-    },
-    {
-      path: '',
-      component: LandingPageComponent
-    }
+    },    
+    {path:'', redirectTo:'/login',pathMatch:'full'}  
   ]
 },
 {
@@ -24,12 +23,15 @@ const routes: Routes = [{
   children: [
     {
       path: 'incidents',
+      canActivate:[AuthGuard],
       loadChildren: () => import('./modules/incident-details/incident-details.module').then((m) => m.IncidentDetailsModule)
     },
     {
       path: 'dashboard',
+      canActivate:[AuthGuard],
       loadChildren: () => import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule)
-    }
+    },  
+    {path:'', redirectTo:'/login',pathMatch:'full'}  
   ]
 }];
 

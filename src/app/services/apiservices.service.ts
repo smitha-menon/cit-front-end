@@ -24,7 +24,19 @@ export class ApiservicesService {
   };
   constructor(private http: HttpClient) { }
 
- 
+ public getUsersListToAssign():Observable<any>{
+  const Url = `${this.apiUrl}/getAssignedUsers`;
+  return this.http.get<any>(Url);
+ }
+ public getStatusList():Observable<any>{
+  const Url = `${this.apiUrl}/getIncidentStatuses`;
+  return this.http.get<any>(Url);
+ }
+
+ public getAssignedGrpList():Observable<any>{
+  const Url = `${this.apiUrl}/getAssignedGroups`;
+  return this.http.get<any>(Url);
+ }
 
   public getIncidentsList(): Observable<Incidents[]> {
     const incidentUrl = `${this.apiUrl}/getIncidents`;
@@ -66,6 +78,18 @@ export class ApiservicesService {
     );
   }
 
+  public UpdateIncident(incid:any,stateParam:string,userParam:string,groupParam:string): Observable<any>{
+    const url = this.apiUrl+'/updateIncident/'+incid;
+    // debugger
+    return this.http.put<any>(url, { stateParam, userParam, groupParam },this.httpOptions)
+    .pipe(
+      tap(data => {          
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   public getResolutions(matchtags:any): Observable<any> {
     const url = `${this.apiUrl}/getResolutions`;
     
@@ -91,7 +115,7 @@ export class ApiservicesService {
   }
 
   private handleError(error: any) {
-    return throwError(error);
+    return throwError(() =>error);
   }
 }
 

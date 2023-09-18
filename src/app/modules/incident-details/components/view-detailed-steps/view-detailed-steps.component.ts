@@ -22,6 +22,12 @@ export class ViewDetailedStepsComponent implements OnInit {
   tagName: string = '';
   tagClose: boolean = false;
   tagIndexDelete: any;
+  stateList:any =[];
+  assignGrpList: any =[];
+  assignUsrList:any =[];
+  selectedState: string | any;
+  selectedUser: string | any;
+  selectedGroup: string | any;
   
   constructor(private routes: Router, private fb: FormBuilder, private apiservice: ApiservicesService,private notifier: NotifierService) { }
 
@@ -30,6 +36,9 @@ export class ViewDetailedStepsComponent implements OnInit {
   
   ngOnInit(): void {
     this.stepArray = [];    
+    this.loadGroups();
+    this.loadStates();
+    this.loadUsers();
 
     this.apiservice.getIncident(localStorage.getItem(INCIDENT_ID_KEY)).subscribe({
       next: (res: any) => {
@@ -112,4 +121,52 @@ export class ViewDetailedStepsComponent implements OnInit {
   refresh() {
     window.location.reload()
   }
+
+  loadStates(){
+    this.apiservice.getStatusList().subscribe({
+      next :(data:any)=>{
+        console.log(data)
+        this.stateList = data
+        this.stateList =  data.split(',')       
+      },
+      error: (err: any) => {
+        console.log(err)
+        
+      }
+    });
+  }
+
+  loadGroups(){
+    this.apiservice.getAssignedGrpList().subscribe({
+      next :(data:any)=>{
+        console.log(data)
+        this.assignGrpList = data
+        this.assignGrpList = data.split(',')  
+      },
+      error: (err: any) => {
+        console.log(err)
+        
+      }
+    });
+  }
+
+  loadUsers(){
+    this.apiservice.getUsersListToAssign().subscribe({
+      next :(data:any)=>{
+        console.log(data)
+        this.assignUsrList =data
+        this.assignUsrList = data.split(',')  
+      },
+      error: (err: any) => {
+        console.log(err)        
+      }
+    });
+  }
+
+  updateIncident(){
+
+    
+  }
+
+
 }
