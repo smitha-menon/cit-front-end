@@ -1,40 +1,34 @@
 <div class="nav sticky" id="navbar">
     <div class="navbar-menu-left">
-        <div class="logo">
+        <!-- <div> -->
+        <!-- <div class="logo"> -->
+        <div style="width: 14%; height: 100%; background: rgba(217, 217, 217, 0.63)">
             <a href="#">
-                <img class="logo1" style="height: 65%;" src="../../../../assets/images/g10xLogo1.png">
+                <img class="logo1" src="../../../../assets/images/cit_logo.svg">
             </a>
-            <label style="    font-family: inter;
-            margin-left: 16px;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 30px;
-            /* line-height: 42px; */
-            color: #131313;">CIT</label>
         </div>
-        <!-- <div class="menu-item" >
-            Dashboard
-        </div> -->
-        <!-- <div class="menu-item" (click)="goToIncident()">
-            Incident
-        </div> -->
-        <!-- <div class="menu-item" >
-            Dashboard
-        </div> -->
-    </div>
-    <div class="navbar-top-right-items">
-        <div>
-            <img src="../../../../assets/images/burgerMenu.png">
+        <div style="position: relative;">
+            <img class="back-icon" src="../../../../assets/images/back-button.svg">
+        </div>
+        <div
+            style="width: 100%; height: 100%; background: rgba(217, 217, 217, 0.63); display: flex; align-items: center;justify-content: space-evenly;">
+            <label class="nav-label">Continous Incident Telemetry</label>
+            <div class="navbar-top-right-items">
+                <div>
+                    <img src="../../../../assets/images/burgermenu.svg">
+
+                </div>
+                <div (click)="logOut()" style="cursor: pointer;">
+                    <img src="../../../../assets/images/logout.svg">
+                </div>
+                <div>
+                    <img src="../../../../assets/images/settings.svg">
+                </div>
+            </div>
 
         </div>
-        <div (click)="logOut()" style="cursor: pointer;">
-            <img src="../../../../assets/images/logoutImage.png">
-        </div>
-        <div>
-            <img src="../../../../assets/images/settingsMenu.png">
-        </div>
-
     </div>
+
 </div>
 <div id="sidenavbar">
     <nav>
@@ -55,7 +49,7 @@
                         </div>
                     </div> -->
             </div>
-            <li class="nav__item" data-tooltip="Incident">
+            <li class="nav__item" >
                 <!-- <div  [ngClass]="{'active': tab==='test-plan'}" (click)="goToTestplan(); tab='test-plan'" >
                     <img src="../../../../assets/images/test-plan-icon.png" class="icons" >
                 </div> -->
@@ -63,13 +57,13 @@
 
                     <label class="nav_label">
                         <i class="fa-solid fa-house  icon"></i>
-                        Home</label>
+                        Dashboard</label>
                     <!-- <i class="fa fa-table fa-2xl icon" aria-hidden="true" style="color: white;"></i> -->
                 </div>
 
             </li>
 
-            <li class="nav__item" data-tooltip="Home">
+            <li class="nav__item" >
                 <div class="nav_list" (click)="goToIncident()">
                     <label class="nav_label">
                         <i class="fa-solid fa-bars"></i>Incidents</label>
@@ -78,7 +72,7 @@
                 </div>
             </li>
 
-            <li class="nav__item" data-tooltip="Home">
+            <li class="nav__item" >
 
                 <!-- <div  [ngClass]="{'active': tab==='report'}" (click)="goToReport(); tab='report'">
                     <img src="../../../../assets/images/report-icon.png" class="icons">

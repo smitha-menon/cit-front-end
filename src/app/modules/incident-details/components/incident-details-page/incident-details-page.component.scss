@@ -1,6 +1,6 @@
 .main-element {
-    margin-left: 60px;
-    margin-right: 60px;
+    margin-left: 80px;
+    margin-right: 20px;
     margin-top: 100px;
 
     .table-main {
@@ -10,14 +10,14 @@
         margin-top: 20px;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-        background: rgb(0 108 190);
+        // background: rgb(0 108 190);
         // background: #F5F2F2;
         padding: 10px;
-        box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
+        // box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
         border-bottom: none;
         font-style: bold;
 
-        font-family: inter;
+        font-family: Montserrat;
         font-style: normal;
         font-weight: bolder;
         font-size: 30px;
@@ -46,20 +46,23 @@
         cursor: pointer;
         border-collapse: initial;
         width: 85%;
-        border-spacing: 0 8px !important;
+        // border-spacing: 0 8px !important;
         margin-top: 20px;
         // margin-left: 7%;
     }
    
 
     .mdc-data-table__header-cell {
+        background: #676767 !important;
+    color: #fff;
+    border-right: 1px solid #fff;
         text-align: center;
-        font-family: inter;
+        font-family: Montserrat;
         font-style: normal;
-        font-weight: 700;
-        font-size: 15px;
+        font-weight: 600;
+        font-size: 18px;
         line-height: 30px;
-        color: #344054;
+        // color: #344054;
     }
 
     .mat-mdc-table tbody,
@@ -68,7 +71,7 @@
     .mat-mdc-footer-cell,
     .mat-mdc-row,
     .mat-mdc-footer-row {
-        font-family: inter;
+        font-family: Montserrat;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -92,7 +95,7 @@
     color: #FCCA59 !important; 
 }
 .on-hold {
-    color: #fc6f59 !important; 
+    color: #FD5E0F  !important; 
 }
 
 .open {

@@ -67,6 +67,8 @@ public addResolutions():void{
   });
 }
 
-
+viewData(this: any) {
+  console.log(this)
+}
 
 }
