@@ -1,6 +1,7 @@
 <div class="main-element">
   <div class="main-header">
     <label>Incident details</label>
+    
     <div style="border: 1px solid #b8b8b8; border-top: none;" *ngFor="let incident of incidentDetails">
       <div class="card2">
         <label>{{incident.incidentId}}</label>
@@ -81,6 +82,34 @@
 
         </table>
         <br>
+        <table id="customers">
+          <tr>
+            <th>State</th>
+            <th>Assigned Group</th>
+            <th>Assigned To</th>
+          </tr>
+          <tr>
+            <td>
+            <select [(ngModel)] ="selectedState">
+              <option>--Select--</option>
+              <option *ngFor ="let item of stateList" [value]="item">{{ item }}</option>
+            </select>
+          </td>
+         <td>
+            <select [(ngModel)] ="selectedUser">
+              <option>--Select--</option>
+              <option *ngFor ="let item of assignUsrList" [value]="item">{{ item }}</option>
+            </select>
+          </td>
+          <td>
+            <select [(ngModel)] ="selectedGroup">
+              <option>--Select--</option>
+              <option *ngFor ="let item of assignGrpList" [value]="item">{{ item }}</option>
+            </select>
+          </td>
+        </table>
+
+        <br>
         <div style="display: flex; gap: 72px">
           <!-- <div> -->
 
@@ -94,10 +123,8 @@
               <td>{{incident.description}}</td>
 
             </tr>
-
-
-
           </table>
+          
           <div style="border: 1px solid #ddd; border-top: none; width: 35%;">
             <div class="tag-label">
               <label>Tags</label>
@@ -125,6 +152,7 @@
         </div>
         <br>
         <div>
+          <button class="button-29" (click)="addTag()">Save</button>
           <button class="button-29" role="button" (click)="goToReso()">Recommended Resolutions</button>
         </div>
         <br>
