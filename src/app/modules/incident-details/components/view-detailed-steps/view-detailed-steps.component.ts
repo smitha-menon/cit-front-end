@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ROUTES } from 'src/app/core/constants/constant';
 import { INCIDENT_ID_KEY, TAGS } from 'src/app/core/constants/local-storage-keys';
@@ -24,6 +24,7 @@ export class ViewDetailedStepsComponent implements OnInit {
   tagIndexDelete: any;
   stateList:any =[];
   assignGrpList: any =[];
+  public editTestplanForm: FormGroup | any;
   assignUsrList:any =[];
   selectedState: string | any;
   selectedUser: string | any;
@@ -44,6 +45,18 @@ export class ViewDetailedStepsComponent implements OnInit {
       next: (res: any) => {
         console.log(res)
         this.incidentDetails.push(res)
+        this.editTestplanForm = this.fb.group(({
+          state: new FormControl({value: res.state, disabled: true}),
+          priority: new FormControl({value: res.priority, disabled: true}),
+          assignedto: new FormControl({value: res.assignedTo, disabled: true}),
+          assignedgroup: new FormControl({value: res.assignedGroup, disabled: true}),
+          duedate: new FormControl({value: res.dueDate, disabled: true}),
+          openeddate:  new FormControl({value: res.openedDate, disabled: true}),
+          openedby:  new FormControl({value: res.openedBy, disabled: true}),
+          resolveddate: new FormControl({value: res.resolvedDate, disabled: true}),
+          sla:  new FormControl({value: res.sla, disabled: true}),
+          slalapse: new FormControl({value: res.slalapse, disabled: true})
+        }))
        
         console.log(this.incidentDetails)
         this.tagsarr = this.incidentDetails[0].tags;
@@ -58,7 +71,9 @@ export class ViewDetailedStepsComponent implements OnInit {
         })
         console.log(this.tagList)
       }
+      
     })
+   
 
   }
   // searchPageFilter(event: any) {

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { INCIDENT_ID_KEY, TAGS } from 'src/app/core/constants/local-storage-keys';
 import { NotifierService } from 'src/app/core/utils/notifier';
@@ -11,8 +12,10 @@ import { ApiservicesService } from 'src/app/services/apiservices.service';
 })
 export class ResolutionsComponent {
   receivedData: any;
+  public viewResolutionForm: FormGroup | any;
+  viewPopup: boolean = false;
   
-  constructor(private route: ActivatedRoute, private apiservice:ApiservicesService, private notifier: NotifierService) {}
+  constructor(private route: ActivatedRoute, private apiservice:ApiservicesService, private notifier: NotifierService, private fb: FormBuilder) {}
   incid:any;
   taglist:string | any;
   resolutiondata: string[] | any;
@@ -23,6 +26,15 @@ export class ResolutionsComponent {
     this.taglist=localStorage.getItem(TAGS);    
     this.incid=localStorage.getItem(INCIDENT_ID_KEY);   
     this.loadResolutions();
+
+    this.viewResolutionForm = this.fb.group(({
+      createdon: ['', [Validators.required]],
+      updatedon: ['', [Validators.required]],
+      createdby: ['', [Validators.required]],
+      incidentid: [''],
+      errorkeyword: [''],
+      errorid: ['']
+    }))
   }
   public loadResolutions() : void 
   {  
@@ -67,8 +79,19 @@ public addResolutions():void{
   });
 }
 
-viewData(this: any) {
-  console.log(this)
+viewData(data: any , index: number) {
+  this.viewPopup = true;
+  console.log(this.resolutiondata, index)
+  this.viewResolutionForm = this.fb.group(({
+    createdon: [data.createdon, [Validators.required]],
+    // scriptlocation: [res.scriptLocation, [Validators.required]],
+    // scriptfilename: [res.scriptFileName, [Validators.required]],
+    // executioncmd: [res.executionCommand],
+    // testplanid: [res.testPlanId],
+    // status: [res.testPlanStatus]
+  }))
 }
-
+  cancelPopUp() {
+    this.viewPopup = false;
+  }
 }

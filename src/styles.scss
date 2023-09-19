@@ -16,9 +16,20 @@ body {
     font-family: "Montserrat", sans-serif;
     font-size: inherit;
     color: #222222;
-    overflow: scroll
+    overflow: scroll;
+    position: relative;
+    // overflow: hidden;
+    transition: left 0.5s ease; /* Animation styles are just for demo */
+    left:0;
   }
-
+  
+  // body { 
+   
+  // }
+  
+  // body.push {
+  //   left:-190px;
+  // }
   .main-header {
 	// height: 759px;
     /* line-height: 30px; */
