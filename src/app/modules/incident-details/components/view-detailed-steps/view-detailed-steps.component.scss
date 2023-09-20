@@ -40,9 +40,7 @@
   color: #fff;
 }
 
-.form-group {
-  display: flex;
-}
+
 
 // #customers {
 //   font-family: Arial, Helvetica, sans-serif;
@@ -237,8 +235,8 @@ line-height: normal;
 
 
 .tags-bottom {
-  background: #FD5E0F;
-  border-radius: 100px;
+  border: 1px solid #BDBDBD;
+  background: #FBFBFB;
   display: inline-block;
   margin-top: 15px;
   margin-left: 5px;
@@ -252,7 +250,7 @@ line-height: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 15px;
-  color: #fff;
+  color: #000000;
 }
 
 .open {
@@ -297,7 +295,7 @@ line-height: normal;
 .form-group {
   display: flex;
   gap: 10px;
-  align-items: center;
+  align-items: baseline;
 }
 
 .form-label {
@@ -316,7 +314,7 @@ line-height: normal;
 
 .form-control {
   width: 175px;
-  height: 27px;
+  height: 37px;
   color: #656565;
   font-family: Montserrat;
   font-size: 16px;
@@ -414,7 +412,8 @@ line-height: normal;
 
 /* CSS */
 .button-29 {
-  margin-left: 30%;
+  margin-left: 40%;
+  margin-top: 20px;
   align-items: center;
   appearance: none;
   background-image: radial-gradient(100% 100% at 100% 0, #ff8e5a 0, #FD5E0F 100%);
@@ -433,6 +432,7 @@ line-height: normal;
   overflow: hidden;
   padding-left: 16px;
   padding-right: 16px;
+  font-weight: 700;
   position: relative;
   text-align: left;
   text-decoration: none;

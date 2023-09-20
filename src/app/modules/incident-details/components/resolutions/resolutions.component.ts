@@ -14,6 +14,7 @@ export class ResolutionsComponent {
   receivedData: any;
   public viewResolutionForm: FormGroup | any;
   viewPopup: boolean = false;
+  createPopup: boolean = false;
   
   constructor(private route: ActivatedRoute, private apiservice:ApiservicesService, private notifier: NotifierService, private fb: FormBuilder) {}
   incid:any;
@@ -69,6 +70,7 @@ public addResolutions():void{
       {
         this.receivedData = ''
         this.loadResolutions();
+        this.createPopup = false;
         this.notifier.success(
           'Resolution saved',
           'success'
@@ -93,5 +95,9 @@ viewData(data: any , index: number) {
 }
   cancelPopUp() {
     this.viewPopup = false;
+    this.createPopup = false;
+  }
+  createReso() {
+    this.createPopup = true;
   }
 }

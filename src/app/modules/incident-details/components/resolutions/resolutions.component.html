@@ -12,23 +12,23 @@
               </div>
             <div class="inner-box">
                 <div class="Tags400BadRequest"><span
-                        style="color: black; font-size: 16px; font-family: Inter; font-weight: 600; word-wrap: break-word">Tags:
+                        style="color: black; font-size: 16px; font-family: Montserrat; font-weight: 600; word-wrap: break-word">Tags:
                     </span><span
-                        style="color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">{{taglist}}</span>
+                        style="color: black; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">{{taglist}}</span>
                 </div>
                 <p></p>
                 <p></p>
                 <p></p>
-                <table>
+                <table id="resolution">
                     <thead>
                         <tr>
-                            <th>Recommended Resolutions</th>
-                            <th>Action</th>
+                            <!-- <th>Recommended Resolutions</th>
+                            <th>Action</th> -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let rw of resolutiondata; let i=index">
-                            <td>{{rw.resolution}}</td>
+                            <td>{{i + 1}}. {{rw.resolution}}</td>
                             <td><button class="viewbtn" (click)="viewData(rw, i)">View</button></td>
                         </tr>
                         <!-- <tr *ngif = "!resolutiondata">
@@ -37,30 +37,49 @@
               </tr> -->
                     </tbody>
                 </table>
-                <div>
-                    <p></p>
-                    <div class="CreateResolutions"
-                        style="color: black; font-size: 16px; font-family: Inter; font-weight: 700; word-wrap: break-word">
-                        Create Resolutions</div>
-                    <textarea rows="4" placeholder="Type resolution" [(ngModel)]="receivedData"
-                        style="color: black; font-size: 16px; font-family: Inter;max-width:90%;"></textarea>
-                    <div style="color: #000;
-          font-family: Inter;
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;">You can create new resolutions here. It will be connected with the above tag group and
-                        saved.</div>
-                </div>
-                <div><span><button class="addbtn" (click)="addResolutions()">Add</button></span></div>
+              
                 <!-- <div  style="color: #b81414;
-        font-family: Inter;
+        font-family: Montserrat;
         font-size: 14px;"> Resolutions Saved</div> -->
             </div>
-
+            <div>
+                <button class="create-btn" (click)="createReso()">Create Resolution</button>
+            </div>
         </div>
     </div>
 </div>
+<div class="overlay" *ngIf="createPopup">
+    <div class="delete-popup" style="height: 400px;">
+        <div class="view-popup-label">
+            <label>Create Resolution</label>
+            <img style="float: right;
+            margin-right: 1%;
+            width: 4%;
+            margin-top: 1%;
+            cursor: pointer;" src="../../../../../assets/images/cancel.png" (click)="cancelPopUp()">
+        </div>
+        <div class="content">
+            <div>
+                <p></p>
+                <!-- <div class="CreateResolutions"
+                    style="color: black; font-size: 16px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">
+                    Create Resolutions</div> -->
+                <textarea rows="4" placeholder="Type resolution" [(ngModel)]="receivedData"
+                    style="color: black; font-size: 16px; font-family: Montserrat;max-width:90%;"></textarea>
+                <div style="color: #000;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;">You can create new resolutions here. It will be connected with the above tag group and
+                    saved.</div>
+            </div>
+            <br>
+            <div><span><button class="addbtn" (click)="addResolutions()">Add</button></span></div>
+        </div>
+    </div>
+</div>
+
 <div class="overlay" *ngIf="viewPopup">
     <div class="delete-popup">
         <div class="view-popup-label">
@@ -68,6 +87,7 @@
             <!-- <div> -->
                 <img style="float: right;
                 margin-right: 1%;
+                width: 4%;
                 margin-top: 1%;
                 cursor: pointer;" src="../../../../../assets/images/cancel.png" (click)="cancelPopUp()">
             <!-- </div> -->
