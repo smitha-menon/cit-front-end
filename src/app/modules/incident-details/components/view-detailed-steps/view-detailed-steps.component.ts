@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ROUTES } from 'src/app/core/constants/constant';
+import { ROUTES, statuses } from 'src/app/core/constants/constant';
 import { INCIDENT_ID_KEY, TAGS } from 'src/app/core/constants/local-storage-keys';
 import { NotifierService } from 'src/app/core/utils/notifier';
 import { drillIncidents } from 'src/app/interfaces/incidents';
@@ -29,7 +29,9 @@ export class ViewDetailedStepsComponent implements OnInit {
   selectedState: string | any;
   selectedUser: string | any;
   selectedGroup: string | any;
-  
+  defaultSelection :string ="--Select--";
+  isVisible:boolean =true;
+    
   constructor(private routes: Router, private fb: FormBuilder, private apiservice: ApiservicesService,private notifier: NotifierService) { }
 
   stepArray: any[] = [];
@@ -60,7 +62,15 @@ export class ViewDetailedStepsComponent implements OnInit {
        
         console.log(this.incidentDetails)
         this.tagsarr = this.incidentDetails[0].tags;
+        this.selectedState = this.incidentDetails[0].state??this.defaultSelection
+        this.selectedGroup = this.incidentDetails[0].assignedGroup?? this.defaultSelection
+        this.selectedUser = this.incidentDetails[0].assignedTo??this.defaultSelection
         localStorage.setItem(TAGS,this.tagsarr.join(','));
+
+        if(this.selectedState == statuses.closedState)
+        {
+          this.isVisible=false;
+        }
 
         this.tagList = this.incidentDetails[0].tags.map((res: any) => {
                  
@@ -109,7 +119,7 @@ export class ViewDetailedStepsComponent implements OnInit {
         } else {
           this.notifier.error(
             'Failed!',
-            'Tag Generated Failed'
+            'Tag Generation Failed'
           )
         }
       }
@@ -141,8 +151,8 @@ export class ViewDetailedStepsComponent implements OnInit {
     this.apiservice.getStatusList().subscribe({
       next :(data:any)=>{
         console.log(data)
-        this.stateList = data
-        this.stateList =  data.split(',')       
+        this.stateList = data + ''
+        this.stateList =  this.stateList.split(',')       
       },
       error: (err: any) => {
         console.log(err)
@@ -155,8 +165,8 @@ export class ViewDetailedStepsComponent implements OnInit {
     this.apiservice.getAssignedGrpList().subscribe({
       next :(data:any)=>{
         console.log(data)
-        this.assignGrpList = data
-        this.assignGrpList = data.split(',')  
+        this.assignGrpList = data + ''
+        this.assignGrpList = this.assignGrpList.split(',')  
       },
       error: (err: any) => {
         console.log(err)
@@ -169,8 +179,8 @@ export class ViewDetailedStepsComponent implements OnInit {
     this.apiservice.getUsersListToAssign().subscribe({
       next :(data:any)=>{
         console.log(data)
-        this.assignUsrList =data
-        this.assignUsrList = data.split(',')  
+        this.assignUsrList =data + ''
+        this.assignUsrList =  this.assignUsrList.split(',')  
       },
       error: (err: any) => {
         console.log(err)        
@@ -179,9 +189,34 @@ export class ViewDetailedStepsComponent implements OnInit {
   }
 
   updateIncident(){
-
+    this.apiservice.UpdateIncident(localStorage.getItem(INCIDENT_ID_KEY),this.selectedState,this.selectedUser,this.selectedGroup)
+                    .subscribe({
+                      next:(data:any)=>{ 
+                      this.notifier.success(
+                        'Success!',
+                        'Incident updated Successfully'
+                      )},
+                      error:(err:any)=>{
+                        console.log(err)
+			if(err.status==301)
+                        {                       
+                        
+                        this.notifier.success(
+                          'Success!',
+                          'Incident updated Successfully'
+                        )
+                        }
+                        else{
+                          this.notifier.success(
+                            'Failed',
+                            'Incident updation unsuccessfull')
+                        }
+                      }
+                    });
     
   }
 
 
 }
+
+

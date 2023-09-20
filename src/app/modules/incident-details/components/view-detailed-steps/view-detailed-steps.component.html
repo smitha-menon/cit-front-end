@@ -48,8 +48,12 @@
           <div class="form-group">
 
             <label class="form-label">State:</label>
-            <input matInput type="text" class="form-control" formControlName="state" name="state" 
-              required>
+            <!-- <input matInput type="text" class="form-control" formControlName="state" name="state" 
+              required> -->
+              <select  [(ngModel)]="selectedState" class="form-control" [ngModelOptions]="{standalone: true}">
+                <option>--Select--</option>
+                <option *ngFor="let item of stateList" [value]="item">{{ item }}</option>
+              </select>
             <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
                 Please provide a valid email
               </div> -->
@@ -64,16 +68,23 @@
           <div class="form-group">
 
             <label class="form-label">Assigned To:</label>
-            <input matInput type="text" class="form-control" formControlName="assignedto" name="assignedto"
-              required>
+            <!-- <input matInput type="text" class="form-control" formControlName="assignedto" name="assignedto"
+              required> -->
+              <select [(ngModel)]="selectedUser" class="form-control" [ngModelOptions]="{standalone: true}">
+                <option>--Select--</option>
+                <option *ngFor="let item of assignUsrList" [value]="item">{{ item }}</option>
+              </select>
 
           </div>
           <div class="form-group">
 
             <label class="form-label">Assigned Group:</label>
-            <input matInput type="text" class="form-control" formControlName="assignedgroup" name="assignedgroup"
-              required>
-      
+            <!-- <input matInput type="text" class="form-control" formControlName="assignedgroup" name="assignedgroup"
+              required> -->
+              <select [(ngModel)]="selectedGroup" class="form-control" [ngModelOptions]="{standalone: true}">
+                <option>--Select--</option>
+                <option *ngFor="let item of assignGrpList" [value]="item">{{ item }}</option>
+              </select>
           </div>
           <div class="form-group">
 
@@ -126,6 +137,9 @@
             <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
     Please provide a valid email
   </div> -->
+          </div>
+          <div>
+            <button *ngIf ="isVisible" class="button-29" (click)="updateIncident()">Update</button>
           </div>
         </form>
 
@@ -243,7 +257,7 @@
         </div>
         <br>
         <div>
-          <button class="button-29" (click)="addTag()">Save</button>
+          <!-- <button *ngIf ="isVisible" class="button-29" (click)="updateIncident()">Save</button> -->
           <button class="button-29" role="button" (click)="goToReso()">Recommended Resolutions</button>
         </div>
         <br>

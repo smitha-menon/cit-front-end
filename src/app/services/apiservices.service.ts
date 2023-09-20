@@ -61,9 +61,21 @@ export class ApiservicesService {
 
   }
 
-  public getKnownErrors(): Observable<recommendations[]> {
-    const url = `${this.apiUrl}/getKnownErrors`;
-    return this.http.get<recommendations[]>(url);
+  public getKnownErrorById(errorId:any): Observable<recommendations> {
+    const url = `${this.apiUrl}/getKnownError/`+`${errorId}`;
+    return this.http.get<recommendations>(url);
+  }
+
+  public submitKedbResolution(incid:any,errorid:any):Observable<any>
+  {
+    const url = this.apiUrl+'/addSuggestedSteps/'+incid+'/'+errorid;
+    return this.http.put<any>(url,null,this.httpOptions)
+    .pipe(
+      tap(data => {          
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
   }
 
   public modifyTags(taglist:any,incid:any): Observable<any>{
@@ -81,7 +93,7 @@ export class ApiservicesService {
   public UpdateIncident(incid:any,stateParam:string,userParam:string,groupParam:string): Observable<any>{
     const url = this.apiUrl+'/updateIncident/'+incid;
     // debugger
-    return this.http.put<any>(url, { stateParam, userParam, groupParam },this.httpOptions)
+    return this.http.put<any>(url, { "state":stateParam, "assignedTo": userParam, "assignedGroup":groupParam },this.httpOptions)
     .pipe(
       tap(data => {          
         console.log(data);

@@ -4,3 +4,5 @@ export const ROUTES = {
     VIEWSTEPS: '/incidents/view-steps',
     RESOLUTION : '/incidents/resolutions'
 }
+
+ export const statuses={ closedState:'closed'}
