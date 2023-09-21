@@ -9,7 +9,7 @@
         <div class="outer-box">
             <div class="card2">
                 <label>{{incid}}</label>
-              </div>
+            </div>
             <div class="inner-box">
                 <div class="Tags400BadRequest"><span
                         style="color: black; font-size: 16px; font-family: Montserrat; font-weight: 600; word-wrap: break-word">Tags:
@@ -37,7 +37,7 @@
               </tr> -->
                     </tbody>
                 </table>
-              
+
                 <!-- <div  style="color: #b81414;
         font-family: Montserrat;
         font-size: 14px;"> Resolutions Saved</div> -->
@@ -85,73 +85,91 @@
         <div class="view-popup-label">
             <label>Resolution Details</label>
             <!-- <div> -->
-                <img style="float: right;
+            <img style="float: right;
                 margin-right: 1%;
                 width: 4%;
                 margin-top: 1%;
                 cursor: pointer;" src="../../../../../assets/images/cancel.png" (click)="cancelPopUp()">
             <!-- </div> -->
-           
+
         </div>
-        <div class="content">
+        <div class="content" *ngFor="let details of viewDetails">
             <div>
                 <label class="steps-label">Resolution Steps</label>
-                <p class="steps-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pulvinar dictum nulla et ultricies. Proin purus lorem, sodales quis vulputate eu, aliquam id massa. Etiam molestie magna id euismod fermentum. Proin iaculis</p>
+                <p class="steps-content">{{details.resolution}}</p>
             </div>
             <div>
-                <form style="padding: 30px;" [formGroup]="viewResolutionForm">
-                    <div class="form-group">
-                        <label class="form-label">Created On:</label>
-                        <input matInput type="text" class="form-control" formControlName="createdon" name="createdon"
-                          required>
+                <section style="padding: 30px; display: flex; gap: 90px;">
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">Created On:</label>
+                            <label class="form-control"  data-placement="top" title="{{details.createdOn}}">{{details.createdOn}}</label>
+                            <!-- <input matInput type="text" class="form-control" formControlName="createdon" name="createdon"
+                              required> -->
+                            <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+                                Please provide a valid email
+                              </div> -->
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Updated On:</label>
+                            <label class="form-control"  data-placement="top" title="{{details.updatedOn}}">{{details.updatedOn}}</label>
+                            <!-- <input matInput type="text" class="form-control" formControlName="updatedon" name="updatedon"
+                              required> -->
+                            <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+                                Please provide a valid email
+                              </div> -->
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Created By:</label>
+                            <label class="form-control"  data-placement="top" title="{{details.createdBy}}">{{details.createdBy}}</label>
+                            <!-- <input matInput type="text" class="form-control" formControlName="createdby" name="createdby"
+                              required> -->
+                            <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+                                Please provide a valid email
+                              </div> -->
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Incident IDs:</label>
+                            <label class="form-control"  data-placement="top" title="{{details.incidentIds}}">{{details.incidentIds}}</label>
+                            <!-- <input matInput type="text" class="form-control" formControlName="incidentid" name="incidentid"
+                              required> -->
+                            <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+                                Please provide a valid email
+                              </div> -->
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Error Keywords:</label>
+                            <label class="form-control" data-placement="top" title="{{details.errorKeywords}}">{{details.errorKeywords}}</label>
+                            <!-- <input matInput type="text" class="form-control" formControlName="errorkeyword" name="errorkeyword"
+                              required> -->
+                            <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+                                Please provide a valid email
+                              </div> -->
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Error ID:</label>
+                            <label class="form-control"  data-placement="top" title="{{details.errorId}}">{{details.errorId}}</label>
+                            <!-- <input matInput type="text" class="form-control" formControlName="errorid" name="errorid"
+                              required> -->
+                            <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+                                Please provide a valid email
+                              </div> -->
+                        </div>
+                    </div>
+                  <div>
+                    <div style="display: block;">
+                        <label class="form-label">Error Description:</label>
+                        <label class="form-desc">{{details.errorDescription}}</label>
+                        <!-- <input matInput type="text" class="form-control" formControlName="errorid" name="errorid"
+                          required> -->
                         <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
                             Please provide a valid email
                           </div> -->
-                      </div>
-                      <div class="form-group">
-                        <label class="form-label">Updated On:</label>
-                        <input matInput type="text" class="form-control" formControlName="updatedon" name="updatedon"
-                          required>
-                        <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                            Please provide a valid email
-                          </div> -->
-                      </div>
-                      <div class="form-group">
-                        <label class="form-label">Created By:</label>
-                        <input matInput type="text" class="form-control" formControlName="createdby" name="createdby"
-                          required>
-                        <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                            Please provide a valid email
-                          </div> -->
-                      </div>
-                      <div class="form-group">
-                        <label class="form-label">Incident IDs:</label>
-                        <input matInput type="text" class="form-control" formControlName="incidentid" name="incidentid"
-                          required>
-                        <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                            Please provide a valid email
-                          </div> -->
-                      </div>
-                      <div class="form-group">
-                        <label class="form-label">Error Keywords:</label>
-                        <input matInput type="text" class="form-control" formControlName="errorkeyword" name="errorkeyword"
-                          required>
-                        <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                            Please provide a valid email
-                          </div> -->
-                      </div>
-                      <div class="form-group">
-                        <label class="form-label">Error ID:</label>
-                        <input matInput type="text" class="form-control" formControlName="errorid" name="errorid"
-                          required>
-                        <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                            Please provide a valid email
-                          </div> -->
-                      </div>
+                    </div>
+                  </div>
 
-                </form>
+                </section>
             </div>
-            <div></div>
         </div>
     </div>
 </div>

@@ -12,9 +12,10 @@ import { ApiservicesService } from 'src/app/services/apiservices.service';
 })
 export class ResolutionsComponent {
   receivedData: any;
-  public viewResolutionForm: FormGroup | any;
+
   viewPopup: boolean = false;
   createPopup: boolean = false;
+  viewDetails: any = [];
   
   constructor(private route: ActivatedRoute, private apiservice:ApiservicesService, private notifier: NotifierService, private fb: FormBuilder) {}
   incid:any;
@@ -28,14 +29,14 @@ export class ResolutionsComponent {
     this.incid=localStorage.getItem(INCIDENT_ID_KEY);   
     this.loadResolutions();
 
-    this.viewResolutionForm = this.fb.group(({
-      createdon: ['', [Validators.required]],
-      updatedon: ['', [Validators.required]],
-      createdby: ['', [Validators.required]],
-      incidentid: [''],
-      errorkeyword: [''],
-      errorid: ['']
-    }))
+    // this.viewResolutionForm = this.fb.group(({
+    //   createdon: ['', [Validators.required]],
+    //   updatedon: ['', [Validators.required]],
+    //   createdby: ['', [Validators.required]],
+    //   incidentid: [''],
+    //   errorkeyword: [''],
+    //   errorid: ['']
+    // }))
   }
   public loadResolutions() : void 
   {  
@@ -83,19 +84,21 @@ public addResolutions():void{
 
 viewData(data: any , index: number) {
   this.viewPopup = true;
-  console.log(this.resolutiondata, index)
-  this.viewResolutionForm = this.fb.group(({
-    createdon: [data.createdon, [Validators.required]],
+  console.log(data, index)
+  this.viewDetails.push(data)
+  // this.viewResolutionForm = this.fb.group(({
+  //   createdon: [data.createdon, [Validators.required]],
     // scriptlocation: [res.scriptLocation, [Validators.required]],
     // scriptfilename: [res.scriptFileName, [Validators.required]],
     // executioncmd: [res.executionCommand],
     // testplanid: [res.testPlanId],
     // status: [res.testPlanStatus]
-  }))
+  // }))
 }
   cancelPopUp() {
     this.viewPopup = false;
     this.createPopup = false;
+    this.viewDetails = [];
   }
   createReso() {
     this.createPopup = true;

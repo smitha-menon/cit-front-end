@@ -362,6 +362,11 @@ textarea {
   }
 
   .form-control {
+    // max-width: 480px;
+    white-space: nowrap!important;
+    overflow: hidden!important;
+    text-overflow: ellipsis!important;
+    padding: 2px;
     width: 175px;
     height: 27px;
     color: #656565;
