@@ -51,8 +51,8 @@
             <!-- <input matInput type="text" class="form-control" formControlName="state" name="state" 
               required> -->
               <select  [(ngModel)]="selectedState" class="form-control" [ngModelOptions]="{standalone: true}">
-                <option>--Select--</option>
-                <option *ngFor="let item of stateList" [value]="item">{{ item }}</option>
+                <option [value]="0">{{defaultSelection}}</option>
+                <option *ngFor="let item of stateList" [value]="item.statusValue">{{ item.statusValue }}</option>
               </select>
             <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
                 Please provide a valid email
@@ -71,8 +71,8 @@
             <!-- <input matInput type="text" class="form-control" formControlName="assignedto" name="assignedto"
               required> -->
               <select [(ngModel)]="selectedUser" class="form-control" [ngModelOptions]="{standalone: true}">
-                <option>--Select--</option>
-                <option *ngFor="let item of assignUsrList" [value]="item">{{ item }}</option>
+                <option [value]="0">{{defaultSelection}}</option>
+                <option *ngFor="let item of assignUsrList" [value]="item.username">{{ item.username }}</option>
               </select>
 
           </div>
@@ -82,8 +82,8 @@
             <!-- <input matInput type="text" class="form-control" formControlName="assignedgroup" name="assignedgroup"
               required> -->
               <select [(ngModel)]="selectedGroup" class="form-control" [ngModelOptions]="{standalone: true}">
-                <option>--Select--</option>
-                <option *ngFor="let item of assignGrpList" [value]="item">{{ item }}</option>
+                <option [value]="0">{{defaultSelection}}</option>
+                <option *ngFor="let item of assignGrpList" [value]="item.groupName">{{ item.groupName }}</option>
               </select>
           </div>
           <div class="form-group">

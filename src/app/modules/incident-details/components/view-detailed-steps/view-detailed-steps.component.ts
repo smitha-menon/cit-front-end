@@ -29,7 +29,7 @@ export class ViewDetailedStepsComponent implements OnInit {
   selectedState: string | any;
   selectedUser: string | any;
   selectedGroup: string | any;
-  defaultSelection :string ="--Select--";
+  defaultSelection: string ="--Select--";
   isVisible:boolean =true;
     
   constructor(private routes: Router, private fb: FormBuilder, private apiservice: ApiservicesService,private notifier: NotifierService) { }
@@ -62,9 +62,10 @@ export class ViewDetailedStepsComponent implements OnInit {
        
         console.log(this.incidentDetails)
         this.tagsarr = this.incidentDetails[0].tags;
-        this.selectedState = this.incidentDetails[0].state??this.defaultSelection
-        this.selectedGroup = this.incidentDetails[0].assignedGroup?? this.defaultSelection
-        this.selectedUser = this.incidentDetails[0].assignedTo??this.defaultSelection
+        this.selectedState =  (this.incidentDetails[0].state?.length ==0)?this.defaultSelection:this.incidentDetails[0].state
+        this.selectedGroup = (this.incidentDetails[0].assignedGroup?.length== 0)? this.defaultSelection:this.incidentDetails[0].assignedGroup
+        console.log("group:"+this.selectedGroup);
+        this.selectedUser = (this.incidentDetails[0].assignedTo?.length==0)?this.defaultSelection:this.incidentDetails[0].assignedTo
         localStorage.setItem(TAGS,this.tagsarr.join(','));
 
         if(this.selectedState == statuses.closedState)
@@ -151,8 +152,8 @@ export class ViewDetailedStepsComponent implements OnInit {
     this.apiservice.getStatusList().subscribe({
       next :(data:any)=>{
         console.log(data)
-        this.stateList = data + ''
-        this.stateList =  this.stateList.split(',')       
+        this.stateList = data 
+        //this.stateList =  this.stateList.split(',')       
       },
       error: (err: any) => {
         console.log(err)
@@ -165,8 +166,8 @@ export class ViewDetailedStepsComponent implements OnInit {
     this.apiservice.getAssignedGrpList().subscribe({
       next :(data:any)=>{
         console.log(data)
-        this.assignGrpList = data + ''
-        this.assignGrpList = this.assignGrpList.split(',')  
+        this.assignGrpList = data 
+       // this.assignGrpList = this.assignGrpList.split(',')  
       },
       error: (err: any) => {
         console.log(err)
@@ -179,8 +180,8 @@ export class ViewDetailedStepsComponent implements OnInit {
     this.apiservice.getUsersListToAssign().subscribe({
       next :(data:any)=>{
         console.log(data)
-        this.assignUsrList =data + ''
-        this.assignUsrList =  this.assignUsrList.split(',')  
+        this.assignUsrList =data 
+        //this.assignUsrList =  this.assignUsrList.split(',')  
       },
       error: (err: any) => {
         console.log(err)        
@@ -198,7 +199,7 @@ export class ViewDetailedStepsComponent implements OnInit {
                       )},
                       error:(err:any)=>{
                         console.log(err)
-			if(err.status==301)
+			                if(err.status==302)
                         {                       
                         
                         this.notifier.success(

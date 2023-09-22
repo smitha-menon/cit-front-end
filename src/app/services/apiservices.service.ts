@@ -29,7 +29,7 @@ export class ApiservicesService {
   return this.http.get<any>(Url);
  }
  public getStatusList():Observable<any>{
-  const Url = `${this.apiUrl}/getIncidentStatuses`;
+  const Url = `${this.apiUrl}/getIncidentStatusList`;
   return this.http.get<any>(Url);
  }
 
