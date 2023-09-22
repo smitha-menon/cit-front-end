@@ -12,8 +12,51 @@
 
                 </div>
             </div>
-
+            
             <div class="wrapper">
+                <div style="display: flex; gap: 25px;">
+                    <div class="search-container" style="width: 176px;
+                    height: 30px;
+                    ;">
+                        <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
+                        <input type="text" class="search-input" placeholder="Search" (keyup)="searchPageFilter($event)" />
+    
+                    </div>
+                    <div class="search-container" style="width: 164px;
+                    height: 30px; ;">
+                        <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
+                        <input type="text" class="search-input" placeholder="Search" (keyup)="searchPageFilter($event)" />
+    
+                    </div>
+                    <div class="search-container" style="width: 162px;
+                    height: 30px;
+                    ;">
+                        <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
+                        <input type="text" class="search-input" placeholder="Search" (keyup)="searchPageFilter($event)" />
+    
+                    </div>
+                    <div class="search-container" style="width: 162px;
+                    height: 30px;
+                    ;">
+                        <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
+                        <input type="text" class="search-input" placeholder="Search" (keyup)="searchPageFilter($event)" />
+    
+                    </div>
+                    <div class="search-container" style="width: 252px;
+                    height: 30px;
+                    ;">
+                        <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
+                        <input type="text" class="search-input" placeholder="Search" (keyup)="searchPageFilter($event)" />
+    
+                    </div>
+                    <div class="search-container" style="width: 139px;
+                    height: 30px;
+                    ;">
+                        <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
+                        <input type="text" class="search-input" placeholder="Search" (keyup)="searchPageFilter($event)" />
+    
+                    </div>
+                </div>
                 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
                     <ng-container [matColumnDef]="column" *ngFor="let column of displayCols">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</th>

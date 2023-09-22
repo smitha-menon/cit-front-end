@@ -43,19 +43,22 @@
 :host ::ng-deep {
 
     .mat-mdc-table {
+        padding: 0px;
+        box-shadow: none;
         cursor: pointer;
-        border-collapse: initial;
+        border-collapse: separate;
+        border-spacing: 0 7px;
         width: 85%;
         // border-spacing: 0 8px !important;
         margin-top: 20px;
         // margin-left: 7%;
     }
-   
+
 
     .mdc-data-table__header-cell {
         background: #676767 !important;
-    color: #fff;
-    border-right: 1px solid #fff;
+        color: #fff;
+        border-right: 1px solid #fff;
         text-align: center;
         font-family: Montserrat;
         font-style: normal;
@@ -63,6 +66,10 @@
         font-size: 18px;
         line-height: 30px;
         // color: #344054;
+    }
+
+    .mat-sort-header-arrow {
+        color: #fff;
     }
 
     .mat-mdc-table tbody,
@@ -75,27 +82,55 @@
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
+        // background: rgba(220, 220, 220, 0.3);
+        // background: rgba(220, 220, 220, 0.30);
         color: #393939;
         border: none;
-        padding-top: 20px;
+        padding: 18px
     }
-.mat-mdc-row {
-    &:nth-of-type(even) {
-        background: #eeeeee;
+
+    .mat-mdc-table tbody :hover {
+        background-color: #C0C0C070;
     }
-}
+
+    td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-Number.mat-column-Number.ng-star-inserted {
+        border-bottom-left-radius: 7px;
+        // background: rgba(220, 220, 220, 0.30);
+        border-top-left-radius: 7px;
+    }
+
+    td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-AssignedTo.mat-column-AssignedTo.ng-star-inserted {
+        border-right: none;
+        border-bottom-right-radius: 7px;
+        border-top-right-radius: 7px;
+    }
+
+    .mdc-data-table__row .mdc-data-table__cell {
+        border-right: 1px solid #000;
+    }
+
+    .mat-mdc-row {
+        &:nth-of-type(even) {
+          background: #C0C0C070;
+        }
+        &:nth-of-type(odd) {
+            background: #DCDCDC4D;
+          }
+    }
 
 }
 
 .closed {
-    color: 
-    #27CB4B;
+    color:
+        #27CB4B;
 }
-.in-progress {
-    color: #FCCA59 !important; 
+
+.progress {
+    color: #FCCA59 !important;
 }
-.on-hold {
-    color: #FD5E0F  !important; 
+
+.resolved {
+    color: #FD5E0F !important;
 }
 
 .open {
@@ -108,4 +143,18 @@
 
 .normal {
     color: green;
+}
+
+@media screen and (max-width: 1200px) {
+    // .login-box {
+    //     width: 990px !important;
+    // }
+    // .subDesc {
+    //     width: 480px !important;
+    //     margin-top: 120px;
+    // }
+    // .loginImage {
+    //     margin-left: 30%;
+    // }
+
 }

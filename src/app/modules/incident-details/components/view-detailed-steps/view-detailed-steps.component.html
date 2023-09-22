@@ -43,132 +43,127 @@
       <div style="padding: 28px;">
         <div style="display: flex; gap: 200px;">
 
-       
-        <form [formGroup]="editTestplanForm" class="testplan-form">
-          <div class="form-group">
 
-            <label class="form-label">State:</label>
-            <!-- <input matInput type="text" class="form-control" formControlName="state" name="state" 
+          <form [formGroup]="editTestplanForm" class="testplan-form">
+            <div class="form-group">
+
+              <label class="form-label">State:</label>
+              <!-- <input matInput type="text" class="form-control" formControlName="state" name="state" 
               required> -->
-              <select  [(ngModel)]="selectedState" class="form-control" [ngModelOptions]="{standalone: true}">
+              <select [(ngModel)]="selectedState" class="form-control" [ngModelOptions]="{standalone: true}">
                 <option>--Select--</option>
                 <option *ngFor="let item of stateList" [value]="item">{{ item }}</option>
               </select>
-            <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+              <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
                 Please provide a valid email
               </div> -->
-          </div>
-          <div class="form-group">
+            </div>
+            <div class="form-group">
 
-            <label class="form-label">Priority:</label>
-            <input matInput type="text" class="form-control" formControlName="priority" name="priority"
-              required>
-      
-          </div>
-          <div class="form-group">
+              <label class="form-label">Priority:</label>
+              <input matInput type="text" class="form-control" formControlName="priority" name="priority" required>
 
-            <label class="form-label">Assigned To:</label>
-            <!-- <input matInput type="text" class="form-control" formControlName="assignedto" name="assignedto"
+            </div>
+            <div class="form-group">
+
+              <label class="form-label">Assigned To:</label>
+              <!-- <input matInput type="text" class="form-control" formControlName="assignedto" name="assignedto"
               required> -->
               <select [(ngModel)]="selectedUser" class="form-control" [ngModelOptions]="{standalone: true}">
                 <option>--Select--</option>
                 <option *ngFor="let item of assignUsrList" [value]="item">{{ item }}</option>
               </select>
 
-          </div>
-          <div class="form-group">
+            </div>
+            <div class="form-group">
 
-            <label class="form-label">Assigned Group:</label>
-            <!-- <input matInput type="text" class="form-control" formControlName="assignedgroup" name="assignedgroup"
+              <label class="form-label">Assigned Group:</label>
+              <!-- <input matInput type="text" class="form-control" formControlName="assignedgroup" name="assignedgroup"
               required> -->
               <select [(ngModel)]="selectedGroup" class="form-control" [ngModelOptions]="{standalone: true}">
                 <option>--Select--</option>
                 <option *ngFor="let item of assignGrpList" [value]="item">{{ item }}</option>
               </select>
-          </div>
-          <div class="form-group">
+            </div>
+            <div class="form-group">
 
-            <label class="form-label">Due Date:</label>
-            <input matInput type="text" class="form-control" formControlName="duedate" name="duedate"
-              required>
-
-          </div>
-          <div class="form-group">
-
-            <label class="form-label">Opened Date:</label>
-            <input matInput type="text" class="form-control" formControlName="openeddate" name="openeddate"
-              required>
-            <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-        Please provide a valid email
-      </div> -->
-          </div>
-          <div class="form-group">
-
-            <label class="form-label">Opened By:</label>
-            <input matInput type="text" class="form-control" formControlName="openedby" name="openedby"
-              required>
-            <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-      Please provide a valid email
-    </div> -->
-          </div>
-          <div class="form-group">
-
-            <label class="form-label">Resolved Date:</label>
-            <input matInput type="text" class="form-control" formControlName="resolveddate" name="resolveddate"
-              required>
-            <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-        Please provide a valid email
-      </div> -->
-          </div>
-          <div class="form-group">
-
-            <label class="form-label">SLA</label>
-            <input matInput type="text" class="form-control" formControlName="sla" name="sla"
-              required>
-            <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-      Please provide a valid email
-    </div> -->
-          </div>
-          <div class="form-group">
-
-            <label class="form-label">SLA Lapse</label>
-            <input matInput type="text" class="form-control" formControlName="slalapse" name="slalapse"
-              required>
-            <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-    Please provide a valid email
-  </div> -->
-          </div>
-          <div>
-            <button *ngIf ="isVisible" class="button-29" (click)="updateIncident()">Update</button>
-          </div>
-        </form>
-
-        <div style=" border-top: none;">
-          <div style="display: flex; gap: 10px;">
-            <label class="tag-label">Tags</label>
-            <!-- <div class="tag-content">
-              <div class="search-tag"> -->
-                <!-- <i class="fa-solid fa-magnifying-glass fa-xs" style="color: #14161a; margin-left: 10px;"></i> -->
-                <input type="text" class="search-input" placeholder="Add Tag" [(ngModel)]="tagName" />
-              <!-- </div> -->
-              
-            <!-- </div> -->
-            <button class="add-tag-btn" (click)="addTag()">Add Tag</button>
-          </div>
-          
-          <div style="overflow-y: scroll; margin-top: 10px; border: 1px solid #DADADA; background: #FFF; max-width: 450px; height: 186px;">
-            <div class="tags-bottom" *ngFor="let tag of tagList; let i= index">
-              <div class="tag-card">
-                {{tag.tagName}}
-                <i class="fa fa-times" style="cursor:pointer" (click)="tagClosepop(i)"></i>
-              </div>
+              <label class="form-label">Due Date:</label>
+              <input matInput type="text" class="form-control" formControlName="duedate" name="duedate" required>
 
             </div>
-          </div>
+            <div class="form-group">
 
+              <label class="form-label">Opened Date:</label>
+              <input matInput type="text" class="form-control" formControlName="openeddate" name="openeddate" required>
+              <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+        Please provide a valid email
+      </div> -->
+            </div>
+            <div class="form-group">
+
+              <label class="form-label">Opened By:</label>
+              <input matInput type="text" class="form-control" formControlName="openedby" name="openedby" required>
+              <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+      Please provide a valid email
+    </div> -->
+            </div>
+            <div class="form-group">
+
+              <label class="form-label">Resolved Date:</label>
+              <input matInput type="text" class="form-control" formControlName="resolveddate" name="resolveddate"
+                required>
+              <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+        Please provide a valid email
+      </div> -->
+            </div>
+            <div class="form-group">
+
+              <label class="form-label">SLA</label>
+              <input matInput type="text" class="form-control" formControlName="sla" name="sla" required>
+              <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+      Please provide a valid email
+    </div> -->
+            </div>
+            <div class="form-group">
+
+              <label class="form-label">SLA Lapse</label>
+              <input matInput type="text" class="form-control" formControlName="slalapse" name="slalapse" required>
+              <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+    Please provide a valid email
+  </div> -->
+            </div>
+            <div>
+              <button *ngIf="isVisible" class="button-29" (click)="updateIncident()">Update</button>
+            </div>
+          </form>
+
+          <div style=" border-top: none;">
+            <div style="display: flex; gap: 10px;">
+              <label class="tag-label">Tags</label>
+              <!-- <div class="tag-content">
+              <div class="search-tag"> -->
+              <!-- <i class="fa-solid fa-magnifying-glass fa-xs" style="color: #14161a; margin-left: 10px;"></i> -->
+              <input type="text" class="search-input" placeholder="Add Tag" [(ngModel)]="tagName" />
+              <!-- </div> -->
+
+              <!-- </div> -->
+              <button class="add-tag-btn" (click)="addTag()">Add Tag</button>
+            </div>
+
+            <div
+              style="overflow-y: scroll; margin-top: 10px; border: 1px solid #DADADA; background: #FFF; max-width: 450px; height: 186px;">
+              <div class="tags-bottom" *ngFor="let tag of tagList; let i= index">
+                <div class="tag-card">
+                  {{tag.tagName}}
+                  <i class="fa fa-times" style="cursor:pointer" (click)="tagClosepop(i)"></i>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
         </div>
-      </div>
- 
+
         <!-- <table id="customers">
           <tr>
             <th>State</th>
