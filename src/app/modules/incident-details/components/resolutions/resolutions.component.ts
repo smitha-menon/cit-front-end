@@ -21,22 +21,15 @@ export class ResolutionsComponent {
   incid:any;
   taglist:string | any;
   resolutiondata: string[] | any;
-
+  errId:any;
+  dataByErrorId:any;
 
 
   ngOnInit() {
     this.taglist=localStorage.getItem(TAGS);    
     this.incid=localStorage.getItem(INCIDENT_ID_KEY);   
     this.loadResolutions();
-
-    // this.viewResolutionForm = this.fb.group(({
-    //   createdon: ['', [Validators.required]],
-    //   updatedon: ['', [Validators.required]],
-    //   createdby: ['', [Validators.required]],
-    //   incidentid: [''],
-    //   errorkeyword: [''],
-    //   errorid: ['']
-    // }))
+   
   }
   public loadResolutions() : void 
   {  
@@ -86,14 +79,8 @@ viewData(data: any , index: number) {
   this.viewPopup = true;
   console.log(data, index)
   this.viewDetails.push(data)
-  // this.viewResolutionForm = this.fb.group(({
-  //   createdon: [data.createdon, [Validators.required]],
-    // scriptlocation: [res.scriptLocation, [Validators.required]],
-    // scriptfilename: [res.scriptFileName, [Validators.required]],
-    // executioncmd: [res.executionCommand],
-    // testplanid: [res.testPlanId],
-    // status: [res.testPlanStatus]
-  // }))
+  this.errId = data.errorId
+ 
 }
   cancelPopUp() {
     this.viewPopup = false;
@@ -102,5 +89,58 @@ viewData(data: any , index: number) {
   }
   createReso() {
     this.createPopup = true;
+  }
+  
+  loadPopupData()
+  {
+    this.apiservice.getKnownErrorById(this.errId).subscribe({
+      next :(response:any)=>{
+        console.log(response)
+       this.dataByErrorId = response;
+        
+      },
+      error: (err: any) => {
+        console.log(err)
+        if (err.status === 201)
+        {        
+          this.dataByErrorId = err;
+         
+        }
+    
+      }
+    });
+
+  }
+
+  UseResolution()
+  {
+    this.apiservice.submitKedbResolution(this.incid,this.errId).subscribe({
+      next :(response:any)=>{
+        console.log(response)
+       
+        this.notifier.success(
+          'Resolution Used',
+          'success'
+        )
+      },
+      error: (err: any) => {
+        console.log(err)
+        if (err.status === 200)
+        {        
+          
+          this.notifier.success(
+            'Resolution Used',
+            'success'
+          )
+        }
+        else{
+
+          this.notifier.error(
+            'Failed',
+            'Resolution not saved for the incident')
+        }
+    
+      }
+    });
   }
 }

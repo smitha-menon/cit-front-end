@@ -39,6 +39,8 @@
         <ul class="nav__list">
             <div class="avatar">
                 <img src="../../../../assets/images/User.png">
+                <!-- <br> -->
+                <label>Admin</label>
                 <!-- <i class="fa-solid fa-user fa-2xl" style="margin-top: 50px;"></i> -->
                 <!-- <div class="user-name">Alwin</div> -->
                 <!-- <div class="avatar-dropdown">
@@ -55,50 +57,35 @@
                 <!-- <div  [ngClass]="{'active': tab==='test-plan'}" (click)="goToTestplan(); tab='test-plan'" >
                     <img src="../../../../assets/images/test-plan-icon.png" class="icons" >
                 </div> -->
-                <div class="nav_list">
+                <div class="nav_list" (click)="goToIncident()">
 
                     <label class="nav_label">
-                        <i class="fa-solid fa-house  icon"></i>
-                        Dashboard</label>
-                    <!-- <i class="fa fa-table fa-2xl icon" aria-hidden="true" style="color: white;"></i> -->
+                        <i class="fa-solid fa-bars"></i>
+                        Home</label>
+
                 </div>
+                <div class="dropdown-content">
+      
+                            <a class="nav_label">
+
+                                Resolution</a>
+
+                            <a class="nav_label">
+                                Incident Details</a>
+                           
+                            </div>
 
             </li>
 
             <li class="nav__item" >
-                <div class="nav_list" (click)="goToIncident()">
+                <div class="nav_list">
                     <label class="nav_label">
-                        <i class="fa-solid fa-bars"></i>Incidents</label>
+                        <img src="../../../../assets/images/dashboard-img.png" style="width: 20px;"> Dashboard</label>
                     <!-- <i class="fa fa-user  fa-2xl icon" style="color: white;"></i>  -->
                     <!-- <img src="../../../../assets/images/users-icon.png" class="icons"> -->
                 </div>
             </li>
-            <li class="nav__item" >
-                <!-- <div  [ngClass]="{'active': tab==='test-plan'}" (click)="goToTestplan(); tab='test-plan'" >
-                    <img src="../../../../assets/images/test-plan-icon.png" class="icons" >
-                </div> -->
-                <div class="nav_list">
-
-                    <label class="nav_label">
-                        <i class="fa-solid fa-house  icon"></i>
-                        Resolution</label>
-                    <!-- <i class="fa fa-table fa-2xl icon" aria-hidden="true" style="color: white;"></i> -->
-                </div>
-
-            </li>
-            <li class="nav__item" >
-                <!-- <div  [ngClass]="{'active': tab==='test-plan'}" (click)="goToTestplan(); tab='test-plan'" >
-                    <img src="../../../../assets/images/test-plan-icon.png" class="icons" >
-                </div> -->
-                <div class="nav_list">
-
-                    <label class="nav_label">
-                        <i class="fa-solid fa-house  icon"></i>
-                        Incident Details</label>
-                    <!-- <i class="fa fa-table fa-2xl icon" aria-hidden="true" style="color: white;"></i> -->
-                </div>
-
-            </li>
+           
 
             <li class="nav__item" >
 
