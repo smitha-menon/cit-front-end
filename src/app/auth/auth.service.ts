@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { USER_NAME } from '../core/constants/local-storage-keys';
+import { USER_NAME, USER_TOKEN } from '../core/constants/local-storage-keys';
 import { ROUTES } from '../core/constants/constant';
 import { ApiservicesService } from '../services/apiservices.service';
 import { user } from '../interfaces/user';
@@ -11,7 +11,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-
+  token: string | any;
+  
   constructor(private routes: Router,private apiservice: ApiservicesService) { }
 
   isLoggedIn() {
@@ -27,8 +28,10 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem(USER_NAME);
-    this.routes.navigateByUrl(ROUTES.LOGIN);
+    localStorage.clear();
+    this.token = null;
+    // localStorage.removeItem(USER_NAME);
+    // this.routes.navigateByUrl(ROUTES.LOGIN);
   }
 
   public loginCheck(userdata:user):any
@@ -65,8 +68,6 @@ export class AuthService {
     
       return this.apiservice.authenticateUser(userdata).pipe(
         map(data =>{       
-
-          
             localStorage.setItem(USER_NAME,userdata.username);
             //this.routes.navigateByUrl(ROUTES.INCIDENT);
             return true;
@@ -74,6 +75,8 @@ export class AuthService {
         }),
         catchError((error: HttpErrorResponse)=> {
           if (error.status === 200) {
+            console.log(error.error.text)
+            this.setToken(error.error.text)
             localStorage.setItem(USER_NAME,userdata.username);
             return of(true);
           }
@@ -83,5 +86,14 @@ export class AuthService {
 
       );    
     
+  }
+
+  setToken(response: any) {
+    this.token = response
+    localStorage.setItem(USER_TOKEN, response);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(USER_TOKEN);
   }
 }

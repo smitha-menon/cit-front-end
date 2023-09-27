@@ -132,11 +132,17 @@
    // float: right;
    // margin-left: 7%;
    vertical-align: bottom;
-   margin-bottom: 10px;
+   margin-top: 115px;
    height: 30%;
    width: 100%;
    border-bottom-left-radius: 10px;
    border-bottom-right-radius: 10px;
+}
+.citLogo {
+   margin-top: 100px;
+          /* display: block; */
+          margin-left: 129px;
+          width: 63%;
 }
 
 @media screen and (max-width: 1200px) {
@@ -148,7 +154,11 @@
        margin-top: 120px;
    }
    .loginImage {
-       margin-left: 30%;
+      //  margin-left: 30%;
+      margin-top: 186px;
+   }
+   .citLogo {
+      margin-left: 98px !important;
    }
 
 }

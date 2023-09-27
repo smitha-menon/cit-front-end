@@ -19,7 +19,7 @@ export class IncidentDetailsPageComponent implements OnInit {
   @ViewChild(MatSort)matsort = new MatSort()
 
   // displayedColumns = ['incidentId', 'active', 'state','priority','openedDate','assignedTo'];
-  displayCols = ['Number','Active','State','Priority','OpenedDate','AssignedTo'];  
+  displayCols = ['Number','Active','State','Priority','Opened Date','Assigned To'];  
   incidentDetails: any = [];
   dataSource = new MatTableDataSource(this.incidentDetails);   
 
@@ -67,12 +67,12 @@ constructor(private routes: Router, private fb: FormBuilder, private apiservice:
                         console.log(response);                       
                         this.incidentDetails=response.map((data : any) =>{
                           return {
-                            Number :data.incidentId,
-                            Active : data.active,
-                            State : data.state,
-                            Priority : data.priority,
-                            AssignedTo :  data.assignedTo,
-                            OpenedDate : data.openedDate
+                            'Number' :data.incidentId,
+                            'Active' : data.active,
+                            'State' : data.state,
+                            'Priority' : data.priority,
+                            'Assigned To' :  data.assignedTo,
+                            'Opened Date' : data.openedDate
                           }});                         
                           this.dataSource = new MatTableDataSource(this.incidentDetails)
                           this.dataSource.sort=this.matsort
