@@ -91,6 +91,35 @@ export class ViewDetailedStepsComponent implements OnInit {
   //   console.log(event?.target.value)
   //   this.tagName = event?.target.value
   // }
+
+
+saveTags(successMsg:string, failMsg:string){
+
+  this.apiservice.modifyTags(this.tagsarr,localStorage.getItem(INCIDENT_ID_KEY)).subscribe({
+    next :(data:any)=>{
+      console.log(data)      
+      this.notifier.success(
+        'Success!',
+        successMsg
+      )
+    },
+    error: (err: any) => {console.log(err)
+      if (err.status == 200) {
+        
+        this.notifier.success(
+          'Success!',
+          successMsg
+        )
+      } else {
+        this.notifier.error(
+          'Failed!',
+          failMsg
+        )
+      }
+    }
+  });
+}
+
   addTag() {
     var obj =
       { tagName: '#' + this.tagName }
@@ -98,33 +127,9 @@ export class ViewDetailedStepsComponent implements OnInit {
     this.tagsarr.push(obj.tagName);
     console.log(obj)
     localStorage.setItem(TAGS,this.tagsarr.join(','));
-
-    this.apiservice.modifyTags(this.tagsarr,localStorage.getItem(INCIDENT_ID_KEY)).subscribe({
-      next :(data:any)=>{
-        console.log(data)
-        this.tagList.push(obj)
-        this.tagName = '';  
-        this.notifier.success(
-          'Success!',
-          'Tag Generated Successfully'
-        )
-      },
-      error: (err: any) => {console.log(err)
-        if (err.status == 200) {
-          this.tagList.push(obj)
-          this.tagName = '';  
-          this.notifier.success(
-            'Success!',
-            'Tag Generated Successfully'
-          )
-        } else {
-          this.notifier.error(
-            'Failed!',
-            'Tag Generation Failed'
-          )
-        }
-      }
-    });
+    this.saveTags( 'Tag Generated Successfully','Tag Generation Failed');  
+    this.tagList.push(obj)
+    this.tagName = '';    
   }
 
   goToReso() {
@@ -139,7 +144,10 @@ export class ViewDetailedStepsComponent implements OnInit {
 
   deleteTag() {
     this.tagList.splice(this.tagIndexDelete, 1)
+    this.tagsarr.splice(this.tagIndexDelete, 1)
     this.tagClose = false;
+    localStorage.setItem(TAGS,this.tagsarr.join(','));
+    this.saveTags( 'Tag deletion Successfull','Tag deletion Failed');     
   }
   cancel() {
     this.tagClose = false;
@@ -153,6 +161,7 @@ export class ViewDetailedStepsComponent implements OnInit {
       next :(data:any)=>{
         console.log(data)
         this.stateList = data 
+      
         //this.stateList =  this.stateList.split(',')       
       },
       error: (err: any) => {
@@ -208,7 +217,7 @@ export class ViewDetailedStepsComponent implements OnInit {
                         )
                         }
                         else{
-                          this.notifier.success(
+                          this.notifier.error(
                             'Failed',
                             'Incident updation unsuccessfull')
                         }

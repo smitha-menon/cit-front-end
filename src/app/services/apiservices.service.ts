@@ -56,8 +56,8 @@ export class ApiservicesService {
   return this.http.get<any>(Url,options);
  }
 
-  public getIncidentsList(): Observable<Incidents[]> {
-    const incidentUrl = `${this.apiUrl}/getIncidents`;
+  public getIncidentsList(start:number,end:number): Observable<Incidents[]> {
+    const incidentUrl = `${this.apiUrl}/getIncidents?beginIndex=`+`${start}&endIndex=`+`${end}`;
     
       // const incidentUrl = `${this.apiUrl}/getIncidents`;
       const token = localStorage.getItem(USER_TOKEN);
@@ -109,7 +109,7 @@ export class ApiservicesService {
     const options = {
        headers: header,
     };
-    return this.http.put<any>(url,null,this.httpOptions)
+    return this.http.put<any>(url,null,options)
     .pipe(
       tap(data => {          
         console.log(data);
@@ -120,8 +120,13 @@ export class ApiservicesService {
 
   public modifyTags(taglist:any,incid:any): Observable<any>{
     const url = this.apiUrl+'/modifyTags/'+incid;
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const options = {
+       headers: header,
+    };
     // debugger
-    return this.http.put<any>(url,taglist,this.httpOptions)
+    return this.http.put<any>(url,taglist,options)
     .pipe(
       tap(data => {          
         console.log(data);
@@ -138,7 +143,7 @@ export class ApiservicesService {
     const options = {
        headers: header,
     };
-    return this.http.put<any>(url, { "state":stateParam, "assignedTo": userParam, "assignedGroup":groupParam },options)
+    return this.http.put<any>(url, { "state":Number(stateParam), "assignedTo": Number(userParam), "assignedGroup":Number(groupParam) },options)
     .pipe(
       tap(data => {          
         console.log(data);
@@ -167,7 +172,12 @@ export class ApiservicesService {
 
   public addResolutions(resol: any, incidentId: any): Observable<any> {
     // debugger
-    return this.http.post<any>(environment.baseUrl + '/addResolution/' + incidentId, resol, this.httpOptions)
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const options = {
+       headers: header,
+    };
+    return this.http.post<any>(this.apiUrl + '/addResolution/' + incidentId, resol, options)
       .pipe(
         tap(data => {          
           console.log(data);

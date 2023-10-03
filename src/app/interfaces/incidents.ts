@@ -20,4 +20,5 @@ export interface drillIncidents {
     sla: string;
     slaLapse: string
     assignedgroup: string;
+    comment:string;
 }
