@@ -31,7 +31,7 @@ export class ViewDetailedStepsComponent implements OnInit {
   selectedGroup: string | any;
   defaultSelection: string ="--Select--";
   isVisible:boolean =true;
-    
+  comments:string | any;
   constructor(private routes: Router, private fb: FormBuilder, private apiservice: ApiservicesService,private notifier: NotifierService) { }
 
   stepArray: any[] = [];
@@ -67,6 +67,7 @@ export class ViewDetailedStepsComponent implements OnInit {
         console.log("group:"+this.selectedGroup);
         this.selectedUser = (this.incidentDetails[0].assignedTo?.length==0)?this.defaultSelection:this.incidentDetails[0].assignedTo
         localStorage.setItem(TAGS,this.tagsarr.join(','));
+        this.comments=this.incidentDetails[0].comments;
 
         if(this.selectedState == statuses.closedState)
         {
@@ -160,9 +161,7 @@ saveTags(successMsg:string, failMsg:string){
     this.apiservice.getStatusList().subscribe({
       next :(data:any)=>{
         console.log(data)
-        this.stateList = data 
-      
-        //this.stateList =  this.stateList.split(',')       
+        this.stateList = data           
       },
       error: (err: any) => {
         console.log(err)
@@ -175,8 +174,7 @@ saveTags(successMsg:string, failMsg:string){
     this.apiservice.getAssignedGrpList().subscribe({
       next :(data:any)=>{
         console.log(data)
-        this.assignGrpList = data 
-       // this.assignGrpList = this.assignGrpList.split(',')  
+        this.assignGrpList = data         
       },
       error: (err: any) => {
         console.log(err)
@@ -189,8 +187,7 @@ saveTags(successMsg:string, failMsg:string){
     this.apiservice.getUsersListToAssign().subscribe({
       next :(data:any)=>{
         console.log(data)
-        this.assignUsrList =data 
-        //this.assignUsrList =  this.assignUsrList.split(',')  
+        this.assignUsrList =data         
       },
       error: (err: any) => {
         console.log(err)        
@@ -199,7 +196,7 @@ saveTags(successMsg:string, failMsg:string){
   }
 
   updateIncident(){
-    this.apiservice.UpdateIncident(localStorage.getItem(INCIDENT_ID_KEY),this.selectedState,this.selectedUser,this.selectedGroup)
+    this.apiservice.UpdateIncident(localStorage.getItem(INCIDENT_ID_KEY),this.selectedState,this.selectedUser,this.selectedGroup,this.comments)
                     .subscribe({
                       next:(data:any)=>{ 
                       this.notifier.success(

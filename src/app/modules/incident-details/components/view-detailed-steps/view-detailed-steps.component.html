@@ -149,6 +149,7 @@
               <!-- </div> -->
               <button class="add-tag-btn" (click)="addTag()">Add Tag</button>
             </div>
+           
 
             <div
               style="overflow-y: scroll; margin-top: 10px; border: 1px solid #DADADA; background: #FFF; max-width: 450px; height: 186px;">
@@ -161,7 +162,15 @@
               </div>
             </div>
 
+            <div>
+              <label class="tag-label">Comments</label>
+              <textarea class="textarea-comments" [(ngModel)]="comments" placeholder="Type here"></textarea>
+  
+            </div>
+
           </div>
+
+         
         </div>
 
         <!-- <table id="customers">

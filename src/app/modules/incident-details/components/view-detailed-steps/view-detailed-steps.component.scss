@@ -410,6 +410,22 @@ line-height: normal;
 
 }
 
+
+.textarea-comments {
+
+  padding: 8px;
+  width: 450px;
+  height: 140px;
+  flex-shrink: 0; 
+  border: 1px solid #DADADA;
+  background: #FFF;
+  color: black;
+ font-size: 16px;
+  font-family: Montserrat;
+  margin: 5px;
+  max-width: 450px; 
+}
+
 /* CSS */
 .button-29 {
   margin-left: 40%;

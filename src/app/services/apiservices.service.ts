@@ -135,7 +135,7 @@ export class ApiservicesService {
     );
   }
 
-  public UpdateIncident(incid:any,stateParam:string,userParam:string,groupParam:string): Observable<any>{
+  public UpdateIncident(incid:any,stateParam:string,userParam:string,groupParam:string,commentParam:string): Observable<any>{
     const url = this.apiUrl+'/updateIncident/'+incid;
     // debugger
     const token = localStorage.getItem(USER_TOKEN);
@@ -143,7 +143,10 @@ export class ApiservicesService {
     const options = {
        headers: header,
     };
-    return this.http.put<any>(url, { "state":Number(stateParam), "assignedTo": Number(userParam), "assignedGroup":Number(groupParam) },options)
+    return this.http.put<any>(url, 
+      { "state":Number(stateParam), 
+      "assignedTo": Number(userParam),
+       "assignedGroup":Number(groupParam),"comments": commentParam},options)
     .pipe(
       tap(data => {          
         console.log(data);

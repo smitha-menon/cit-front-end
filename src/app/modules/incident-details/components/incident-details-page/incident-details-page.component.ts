@@ -21,7 +21,7 @@ export class IncidentDetailsPageComponent implements OnInit {
   @ViewChild(MatSort)matsort = new MatSort()
   @ViewChild(MatPaginator)paginator : MatPaginator | any;
 
-  currentPage: number = 1;
+  currentPage: number = 0;
   //itemsPerPage: number = 10;
   //totalItems: number=0;
   totalPages:number =0;
@@ -65,11 +65,11 @@ constructor(private routes: Router, private fb: FormBuilder, private apiservice:
     console.log("pagesize"+event.pageSize);
     console.log(event.length);
     
-    this.totalPages = event.pageSize / event.length;
+    this.totalPages = Math.ceil(event.length / event.pageSize);
     console.log("totalpages"+this.totalPages);
     if(this.currentPage + 1 >= this.totalPages)
     {
-      this.startIndex= event.length+1;
+      this.startIndex= event.length;
       this.endIndex=this.startIndex+10;
       this.loadIncidents();
     }
