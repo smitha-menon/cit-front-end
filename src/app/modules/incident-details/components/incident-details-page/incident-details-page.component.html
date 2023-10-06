@@ -11,7 +11,19 @@
                     <input type="text" class="search-input" placeholder="Search" (keyup)="searchPageFilter($event)" />
 
                 </div>
-                
+                <div >                   
+                  
+                    <!-- <mat-form-field>
+                        <mat-label>Enter a date range</mat-label>
+                        <mat-date-range-input [rangePicker]="picker">
+                          <input matStartDate placeholder="Start date">
+                          <input matEndDate placeholder="End date">
+                        </mat-date-range-input>
+                        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                      </mat-form-field> -->
+                  </div>
             </div>
             
             <div class="wrapper">
@@ -58,7 +70,7 @@
     
                     </div>
                 </div> -->
-
+                <mat-paginator [pageSizeOptions]="[5,10,15]" showFirstLastButtons  (page)="onPageChange($event)" aria-label="Select page"></mat-paginator>
                 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
                     <ng-container [matColumnDef]="column" *ngFor="let column of displayCols">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header  class="table-head">{{column}}
@@ -73,15 +85,9 @@
 
                     <tr mat-header-row *matHeaderRowDef="displayCols"></tr>
                     <tr mat-row *matRowDef="let emprow; columns: displayCols" (click)="viewIncident(emprow)"></tr>
-                </table>
-                <mat-paginator [pageSizeOptions]="[5,10,15]" showFirstLastButtons  (page)="onPageChange($event)" aria-label="Select page"></mat-paginator>
+                </table>                
             </div>
         </div>
-
-        <!-- <div class="table-content"> -->
-
-
-
 
     </div>
     <!-- </div> -->
