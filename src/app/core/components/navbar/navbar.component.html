@@ -57,15 +57,13 @@
                 <!-- <div  [ngClass]="{'active': tab==='test-plan'}" (click)="goToTestplan(); tab='test-plan'" >
                     <img src="../../../../assets/images/test-plan-icon.png" class="icons" >
                 </div> -->
-                <div class="nav_list" (click)="goToIncident()">
+                <div class="nav_list" (click)="goToIncident()" id="mobile-menu-items">
 
                     <label class="nav_label">
                         <i class="fa-solid fa-home"></i>
                         Home</label>
 
-                </div>
-                
-                <div class="dropdown-content">
+                        <div class="dropdown-content">
       
                             <a class="nav_label">
 
@@ -74,7 +72,11 @@
                             <a class="nav_label">
                                 Incident Details</a>
                            
-                            </div>
+                </div>
+
+                </div>
+                
+               
 
             </li>
 
@@ -89,10 +91,12 @@
            
 
             <li class="nav__item" >
-
-                <!-- <div  [ngClass]="{'active': tab==='report'}" (click)="goToReport(); tab='report'">
-                    <img src="../../../../assets/images/report-icon.png" class="icons">
-                </div> -->
+                <div class="nav_list" (click)="addIncident()">
+                    <label class="nav_label">
+                        <img src="../../../../assets/images/dashboard-img.png" style="width: 20px;" > Add Incident</label>
+                    <!-- <i class="fa fa-user  fa-2xl icon" style="color: white;"></i>  -->
+                    <!-- <img src="../../../../assets/images/users-icon.png" class="icons"> -->
+                </div>
             </li>
         </ul>
     </nav>

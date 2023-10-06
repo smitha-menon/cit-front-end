@@ -1,0 +1,131 @@
+<div class="main-element">
+    <div class="main-header">
+      <label>Add Incident</label>
+  
+      <div style="border: 1px solid #b8b8b8; border-top: none;">
+        <div class="card2">
+  
+          </div>
+     
+            <div style="padding: 28px;">
+              <div >
+      
+      
+                <form  class="testplan-form">
+                  <div class="form-group">
+      
+                    <label class="form-label">State:</label>
+                    <!-- <input matInput type="text" class="form-control" formControlName="state" name="state" 
+                    required> -->
+                    <select  [(ngModel)]="selectedState" class="form-control" [ngModelOptions]="{standalone: true}">
+                      <option [value]="0">{{defaultSelection}}</option>
+                      <option *ngFor="let item of stateList" [value]="item.statusId">{{ item.statusValue }}</option>
+                    </select>
+                    <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+                      Please provide a valid email
+                    </div> -->
+                  </div>
+                  <div class="form-group">
+      
+                    <label class="form-label">Priority:</label>
+                    <input matInput type="text" class="form-control" formControlName="priority" name="priority" required>
+      
+                  </div>
+                  <div class="form-group">
+      
+                    <label class="form-label">Assigned To:</label>
+                    <!-- <input matInput type="text" class="form-control" formControlName="assignedto" name="assignedto"
+                    required> -->
+                    <select [(ngModel)]="selectedUser" class="form-control" [ngModelOptions]="{standalone: true}">
+                      <option [value]="0">{{defaultSelection}}</option>
+                      <option *ngFor="let item of assignUsrList" [value]="item.userId">{{ item.username }}</option>
+                    </select>
+      
+                  </div>
+                  <div class="form-group">
+      
+                    <label class="form-label">Assigned Group:</label>
+                    <!-- <input matInput type="text" class="form-control" formControlName="assignedgroup" name="assignedgroup"
+                    required> -->
+                    <select [(ngModel)]="selectedGroup" class="form-control" [ngModelOptions]="{standalone: true}">
+                      <option [value]="0">{{defaultSelection}}</option>
+                      <option *ngFor="let item of assignGrpList" [value]="item.groupId">{{ item.groupName }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+      
+                    <label class="form-label">Due Date:</label>
+                    <input matInput type="text" class="form-control" formControlName="duedate" name="duedate" required>
+      
+                  </div>
+                  <div class="form-group">
+      
+                    <label class="form-label">Opened Date:</label>
+                    <input matInput type="text" class="form-control" formControlName="openeddate" name="openeddate" required>
+                    <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+              Please provide a valid email
+            </div> -->
+                  </div>
+                  <div class="form-group">
+      
+                    <label class="form-label">Opened By:</label>
+                    <input matInput type="text" class="form-control" formControlName="openedby" name="openedby" required>
+                    <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+            Please provide a valid email
+          </div> -->
+                  </div>
+                  <div class="form-group">
+      
+                    <label class="form-label">Resolved Date:</label>
+                    <input matInput type="text" class="form-control" formControlName="resolveddate" name="resolveddate"
+                      required>
+                    <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+              Please provide a valid email
+            </div> -->
+                  </div>
+                  <div class="form-group">
+      
+                    <label class="form-label">SLA</label>
+                    <input matInput type="text" class="form-control" formControlName="sla" name="sla" required>
+                    <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+            Please provide a valid email
+          </div> -->
+                  </div>
+                  <div class="form-group">
+      
+                    <label class="form-label">SLA Lapse</label>
+                    <input matInput type="text" class="form-control" formControlName="slalapse" name="slalapse" required>
+                    <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+          Please provide a valid email
+        </div> -->
+                  </div>
+                  <div class="form-group">
+      
+                    <label class="form-label">Description</label>
+                    <!-- <input matInput type="text" class="form-control" formControlName="slalapse" name="slalapse" required> -->
+                    <textarea  class="textarea-reso" rows="4" placeholder="Type resolution" class="form-control" formControlName="slalapse" name="slalapse" ></textarea>
+                    <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+          Please provide a valid email
+        </div> -->
+                  </div>
+                  <div>
+                    <!-- <button  class="button-29" >ADD</button> -->
+                  </div>
+                </form>
+      
+              </div>
+      
+        
+  
+              
+              <br>
+            </div>
+  
+          </div>
+  
+          <div>
+            <!-- <i class="fa fa-refresh fa-xs" style="cursor: pointer;" (click)="refresh()"></i> -->
+          </div>
+
+        </div>
+      </div>

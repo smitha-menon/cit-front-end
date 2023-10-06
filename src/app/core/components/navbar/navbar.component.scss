@@ -174,4 +174,18 @@
 		line-height: 60px;
 		// background: #333;
 	}
+
+	
+}
+.dropdown-content {
+	display: none;
+}
+.view-mobile-menu .dropdown-content {
+	display: block;
+}
+.nav-main {
+	display: none;
+}
+.navback .nav-main {
+display: block;
 }

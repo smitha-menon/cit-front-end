@@ -31,6 +31,12 @@ const routes: Routes = [{
       canActivate:[AuthGuard],
       loadChildren: () => import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule)
     },  
+    {
+      path: 'create-incident',
+      canActivate: [AuthGuard],
+      loadChildren: () => import('./modules/create-incident/create-incident.module').then((m) => m.CreateIncidentModule)
+    },
+    
     {path:'', redirectTo:'/login',pathMatch:'full'}  
   ]
 }];

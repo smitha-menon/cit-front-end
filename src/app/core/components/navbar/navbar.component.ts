@@ -18,6 +18,9 @@ export class NavbarComponent implements OnInit {
 
   goToIncident() {
     this.router.navigateByUrl(ROUTES.INCIDENT)
+    const app = document.getElementById("mobile-menu-items");
+
+      app?.classList.toggle("view-mobile-menu");
   }
 
   logOut() {
@@ -29,4 +32,14 @@ export class NavbarComponent implements OnInit {
   toggleSideBar() {
     console.log('work')
   }
+  
+  addIncident() {
+    this.router.navigateByUrl(ROUTES.CREATEINCIDENT)
+  }
+
+  // backButton() {
+  //   const app = document.getElementById("sidenavbar");
+
+  //     app?.classList.toggle("navback");
+  // }
 }

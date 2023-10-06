@@ -32,7 +32,7 @@ import { ResolutionsComponent } from './components/resolutions/resolutions.compo
   declarations: [
     IncidentDetailsPageComponent,
     ViewDetailedStepsComponent,
-    ResolutionsComponent
+    ResolutionsComponent,
   ],
   imports: [
     CommonModule,
