@@ -1,6 +1,6 @@
 
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,6 +10,9 @@ import { ROUTES } from 'src/app/core/constants/constant';
 import { INCIDENT_ID_KEY } from 'src/app/core/constants/local-storage-keys';
 import { Incidents } from 'src/app/interfaces/incidents';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
+import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { MatDatepicker } from '@angular/material/datepicker';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-incident-details-page',
@@ -20,7 +23,7 @@ import { ApiservicesService } from 'src/app/services/apiservices.service';
 export class IncidentDetailsPageComponent implements OnInit {
   @ViewChild(MatSort)matsort = new MatSort()
   @ViewChild(MatPaginator)paginator : MatPaginator | any;
-
+  
   currentPage: number = 0;
   //itemsPerPage: number = 10;
   //totalItems: number=0;
@@ -30,14 +33,16 @@ export class IncidentDetailsPageComponent implements OnInit {
   displayCols = ['Number','Active','State','Priority','Opened Date','Assigned To'];  
   incidentDetails: any = [];
   dataSource = new MatTableDataSource(this.incidentDetails);   
+  selectedDate:NgbDateStruct | any;
+  searchText:any;
+  pipe = new DatePipe('en-US');
 
 incidentDetailForm: boolean = false;
 
 constructor(private routes: Router, private fb: FormBuilder, private apiservice:ApiservicesService ) {}
   
-
   ngOnInit(): void {
-    
+   
     this.loadIncidents();
     console.log(this.incidentDetails);  
     
@@ -75,6 +80,25 @@ constructor(private routes: Router, private fb: FormBuilder, private apiservice:
     }
 
   }
+ 
+  onInputChange(){
+    const inputDate = new Date(this.searchText);
+    if(isNaN(inputDate.getDate()))
+    {
+      console.log("date"+inputDate.getDate())
+      console.log("date1"+this.searchText)
+     // this.searchText= this.pipe.transform(this.searchText,'dd/MM/yyyy')
+      console.log("date2"+this.searchText)
+    }
+    else{
+      console.log("search"+this.searchText)
+    }
+    this.incidentDetails = [];
+    this.startIndex=0;
+    this.endIndex=11;
+  this.loadIncidents()
+
+  }
 
   viewIncident(row: any) {
     console.log(row)
@@ -85,7 +109,7 @@ constructor(private routes: Router, private fb: FormBuilder, private apiservice:
   public loadIncidents() : void 
   {   
    let newdata:any;
-    this.apiservice.getIncidentsList(this.startIndex,this.endIndex).subscribe({
+    this.apiservice.getIncidentsList(this.startIndex,this.endIndex,this.searchText).subscribe({
       next : (response: any) => {
                         console.log(response);                       
                         newdata=response.map((data : any) =>{

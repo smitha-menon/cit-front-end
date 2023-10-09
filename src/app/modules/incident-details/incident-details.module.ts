@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { IncidentDetailsPageComponent } from './components/incident-details-page/incident-details-page.component';
 import { IncidentDetailsRoutingModule } from './incident-details-routing.module';
@@ -59,6 +60,7 @@ import { ResolutionsComponent } from './components/resolutions/resolutions.compo
     ReactiveFormsModule,
     MatSortModule,
     MatRadioModule,
+    NgbModule
    
   ]
 })

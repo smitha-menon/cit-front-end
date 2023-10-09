@@ -38,7 +38,7 @@ export class AuthService {
   {
     this.apiservice.authenticateUser(userdata).subscribe({
       next : (response: any) => {
-      console.log(response); 
+      console.log("new:"+response.token); 
       localStorage.setItem(USER_NAME,userdata.username);
       this.routes.navigateByUrl(ROUTES.INCIDENT);
       return true;   
@@ -68,6 +68,8 @@ export class AuthService {
     
       return this.apiservice.authenticateUser(userdata).pipe(
         map(data =>{       
+          console.log("new:"+data.token);
+          this.setToken(data.token);
             localStorage.setItem(USER_NAME,userdata.username);
             //this.routes.navigateByUrl(ROUTES.INCIDENT);
             return true;

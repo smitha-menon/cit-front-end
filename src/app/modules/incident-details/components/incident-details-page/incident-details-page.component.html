@@ -8,11 +8,48 @@
                 </div> -->
                 <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
-                    <input type="text" class="search-input" placeholder="Search" (keyup)="searchPageFilter($event)" />
-
+                    <input type="text" ngbDatepicker #d="ngbDatepicker" 
+                                        class="search-input"
+                                         placeholder="search using Text/Date"
+                                         [(ngModel)]="searchText" 
+                                         (input)="onInputChange()"                                         
+                                         />
+                    <button class="btn btn-primary" (click)="d.toggle()"><i class="fa fa-calendar"></i></button>
+                    <!-- <input type="text" id ="datepicker" class="search-input" [(ngModel)]="selectedDate" [ngbDatepicker]="datepicker" placeholder="Search" (keyup)="searchPageFilter($event)" />
+                    <ngb-datepicker #datepicker></ngb-datepicker> -->
+                    
                 </div>
-                <div >                   
-                  
+                <div  >  
+                    
+                    <form class="row row-cols-sm-auto">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input
+                                    class="form-control"
+                                    placeholder="yyyy-mm-dd"
+                                    name="dp"
+                                    [(ngModel)]="searchText"
+                                    ngbDatepicker
+                                    #d="ngbDatepicker"
+                                />
+                                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+                            </div>
+                        </div>
+                    </form>
+                      
+                    <!-- <form class="form-inline" [formGroup]="_fg">
+                        <div class="form-group">
+                          <div class="input-group">
+                            <input matInput class="form-control" placeholder="dd/mm/yyyy"
+                                   name="dp" ngbDatepicker [(ngModel)]="model" [ngModelOptions]="{standalone: true}" appDate [form]="_fg" [controlName]="'date'" #d="ngbDatepicker">
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="btn btn-outline-secondary" > submit </button>
+                      </form>              -->
+                     
                     <!-- <mat-form-field>
                         <mat-label>Enter a date range</mat-label>
                         <mat-date-range-input [rangePicker]="picker">

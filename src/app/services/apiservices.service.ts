@@ -56,8 +56,13 @@ export class ApiservicesService {
   return this.http.get<any>(Url,options);
  }
 
-  public getIncidentsList(start:number,end:number): Observable<Incidents[]> {
-    const incidentUrl = `${this.apiUrl}/getIncidents?beginIndex=`+`${start}&endIndex=`+`${end}`;
+  public getIncidentsList(start:number,end:number,search:any): Observable<Incidents[]> {
+    let incidentUrl = `${this.apiUrl}/getIncidents?beginIndex=`+`${start}&endIndex=`+`${end}`;
+    if (search != undefined)
+    {
+      incidentUrl = incidentUrl +'&filter='+`${search}`;
+
+    }   
     
       // const incidentUrl = `${this.apiUrl}/getIncidents`;
       const token = localStorage.getItem(USER_TOKEN);

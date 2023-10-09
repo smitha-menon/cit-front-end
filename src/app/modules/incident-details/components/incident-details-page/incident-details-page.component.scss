@@ -41,7 +41,11 @@
 }
 
 :host ::ng-deep {
-
+   
+    .mat-mdc-paginator-container {
+        justify-content: space-between;
+    }
+   
     .mat-mdc-table {
         padding: 0px;
         box-shadow: none;
