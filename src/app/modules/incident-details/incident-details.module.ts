@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { NgbDateAdapter, NgbDateParserFormatter, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-import { CustomAdapter, CustomDateParserFormatter, IncidentDetailsPageComponent } from './components/incident-details-page/incident-details-page.component';
+import {  IncidentDetailsPageComponent } from './components/incident-details-page/incident-details-page.component';
 import { IncidentDetailsRoutingModule } from './incident-details-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -62,10 +62,6 @@ import { ResolutionsComponent } from './components/resolutions/resolutions.compo
     MatRadioModule,
     NgbModule
    
-  ],
-  providers: [
-		{ provide: NgbDateAdapter, useClass: CustomAdapter },
-		{ provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
-	],
+  ]
 })
 export class IncidentDetailsModule { }
