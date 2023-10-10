@@ -177,6 +177,18 @@
 
 	
 }
+.active {
+	background: #e7e7e7 !important;
+	text-align: center;
+			// border-bottom: 1px solid #000;
+			// background: #676767;
+			font-family: Montserrat;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 15px;
+			line-height: 30px;
+			color: #272727 !important;
+}
 .dropdown-content {
 	display: none;
 }

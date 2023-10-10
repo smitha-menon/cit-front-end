@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotifierService } from 'src/app/core/utils/notifier';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
@@ -12,19 +12,51 @@ import { ApiservicesService } from 'src/app/services/apiservices.service';
 export class AddIncidentComponent implements OnInit{
   assignUsrList:any =[];
   assignGrpList: any =[];
+  priorityList: any = [];
   stateList:any =[];
   selectedState: string | any;
   selectedUser: string | any;
+  selectedPriority:string | any;
   selectedGroup: string | any;
   defaultSelection: string ="--Select--";
+  public addIncident: FormGroup | any;
   constructor(private routes: Router, private fb: FormBuilder, private apiservice: ApiservicesService,private notifier: NotifierService) { }
   
   ngOnInit(): void {
     this.loadGroups();
     this.loadStates();
     this.loadUsers();
+    this.loadPriority();
+    
+    this.addIncident = this.fb.group(({
+      incident: [''],
+      // state: [''],
+      // priority: [''],
+      // assignedto: [''],
+      description: [''],
+      duedate: [''],
+      openeddate: [''],
+      openedby:  [''],
+      resolveddate: [''],
+      sla:  [''],
+      slalapse: [''],
+      
+    }))
   }
-
+  loadPriority() {
+    this.apiservice.getPriorityList().subscribe({
+      next :(data:any)=>{
+        console.log(data)
+        this.priorityList = data 
+      
+        //this.stateList =  this.stateList.split(',')       
+      },
+      error: (err: any) => {
+        console.log(err)
+        
+      }
+    });
+  }
   loadStates(){
     this.apiservice.getStatusList().subscribe({
       next :(data:any)=>{
@@ -61,6 +93,46 @@ export class AddIncidentComponent implements OnInit{
       },
       error: (err: any) => {
         console.log(err)        
+      }
+    });
+  }
+
+  addinci() {
+    const obj = {
+      incidentId: this.addIncident.value.incident,
+      state: this.selectedState,
+      priority: this.selectedPriority,
+      assignedTo: this.selectedUser,
+      assignedGroup: this.selectedGroup,
+      resolvedDate: this.addIncident.value.resolveddate,
+      sla: this.addIncident.value.sla,
+      slalapse: this.addIncident.value.slalapse,
+      dueDate: this.addIncident.value.duedate,
+      openedBy:this.addIncident.value.openedby,
+      openedDate: this.addIncident.value.openeddate,
+      description: this.addIncident.value.description
+
+    }
+    console.log(obj)
+    this.apiservice.addIncident(obj).subscribe({
+      next :(response:any)=>{
+        console.log(response)
+        // this.receivedData = ''
+        this.notifier.success(
+          'Resolution saved',
+          'success'
+        )
+      },
+      error: (err: any) => {
+        console.log(err)
+        if (err.status === 201)
+        {
+          this.notifier.success(
+            'Resolution saved',
+            'success'
+          )
+        }
+    
       }
     });
   }

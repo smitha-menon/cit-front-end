@@ -8,19 +8,19 @@
                 </div> -->
                 <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
-                    <input type="text" ngbDatepicker #d="ngbDatepicker" 
+                    <input type="text" ngbDatepicker #d="ngbDatepicker" (dateSelect)="onInputChange()"
                                         class="search-input"
                                          placeholder="search using Text/Date"
                                          [(ngModel)]="searchText" 
                                          (input)="onInputChange()"                                         
                                          />
-                    <button class="btn btn-primary" (click)="d.toggle()"><i class="fa fa-calendar"></i></button>
+                    <button class="btn btn-primary calender-icon" (click)="d.toggle()"><i class="fa fa-calendar"></i></button>
                     <!-- <input type="text" id ="datepicker" class="search-input" [(ngModel)]="selectedDate" [ngbDatepicker]="datepicker" placeholder="Search" (keyup)="searchPageFilter($event)" />
                     <ngb-datepicker #datepicker></ngb-datepicker> -->
                     
                 </div>
                 <div  >  
-                    
+<!--                     
                     <form class="row row-cols-sm-auto">
                         <div class="col-12">
                             <div class="input-group">
@@ -35,7 +35,7 @@
                                 <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
                       
                     <!-- <form class="form-inline" [formGroup]="_fg">
                         <div class="form-group">

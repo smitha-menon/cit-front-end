@@ -9,8 +9,11 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor(private router: Router, private _authService :AuthService) { }
+  tab: any
+  constructor(private router: Router, private _authService :AuthService,private route: Router,) {
+    this.tab = this.route.url.replace('/','');
+    console.log(this.tab)
+   }
 
   ngOnInit(): void {
 
@@ -18,9 +21,6 @@ export class NavbarComponent implements OnInit {
 
   goToIncident() {
     this.router.navigateByUrl(ROUTES.INCIDENT)
-    const app = document.getElementById("mobile-menu-items");
-
-      app?.classList.toggle("view-mobile-menu");
   }
 
   logOut() {
@@ -34,7 +34,13 @@ export class NavbarComponent implements OnInit {
   }
   
   addIncident() {
+    console.log(this.tab)
     this.router.navigateByUrl(ROUTES.CREATEINCIDENT)
+  }
+  dropDown() {
+    const app = document.getElementById("mobile-menu-items");
+
+    app?.classList.toggle("view-mobile-menu");
   }
 
   // backButton() {

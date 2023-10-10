@@ -57,7 +57,7 @@
                 <!-- <div  [ngClass]="{'active': tab==='test-plan'}" (click)="goToTestplan(); tab='test-plan'" >
                     <img src="../../../../assets/images/test-plan-icon.png" class="icons" >
                 </div> -->
-                <div class="nav_list" (click)="goToIncident()" id="mobile-menu-items">
+                <div class="nav_list"  [ngClass]="{'active': tab==='incidents'}" (click)="goToIncident(); tab='incidents'" id="mobile-menu-items">
 
                     <label class="nav_label">
                         <i class="fa-solid fa-home"></i>
@@ -75,6 +75,9 @@
                 </div>
 
                 </div>
+                <img src="../../../../assets/images/drop-icon.png" style="position: absolute;
+                top: 20px;
+                right: 27px;" (click)="dropDown()">
                 
                
 
@@ -91,9 +94,9 @@
            
 
             <li class="nav__item" >
-                <div class="nav_list" (click)="addIncident()">
+                <div class="nav_list"  [ngClass]="{'active': tab==='create-incident'}" (click)="addIncident(); tab='create-incident'">
                     <label class="nav_label">
-                        <img src="../../../../assets/images/dashboard-img.png" style="width: 20px;" > Add Incident</label>
+                        <i class="fa-solid fa-circle-plus"></i>  Add Incident</label>
                     <!-- <i class="fa fa-user  fa-2xl icon" style="color: white;"></i>  -->
                     <!-- <img src="../../../../assets/images/users-icon.png" class="icons"> -->
                 </div>

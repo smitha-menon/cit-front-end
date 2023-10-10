@@ -1,5 +1,5 @@
 
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Injectable, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -10,9 +10,51 @@ import { ROUTES } from 'src/app/core/constants/constant';
 import { INCIDENT_ID_KEY } from 'src/app/core/constants/local-storage-keys';
 import { Incidents } from 'src/app/interfaces/incidents';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
-import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar, NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
+
+@Injectable()
+export class CustomAdapter extends NgbDateAdapter<string> {
+	readonly DELIMITER = '-';
+
+	fromModel(value: string | null): NgbDateStruct | null {
+		if (value) {
+			const date = value.split(this.DELIMITER);
+			return {
+				day: parseInt(date[0], 10),
+				month: parseInt(date[1], 10),
+				year: parseInt(date[2], 10),
+			};
+		}
+		return null;
+	}
+
+	toModel(date: NgbDateStruct | null): string | null {
+		return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
+	}
+}
+
+@Injectable()
+export class CustomDateParserFormatter extends NgbDateParserFormatter {
+	readonly DELIMITER = '/';
+
+	parse(value: string): NgbDateStruct | null {
+		if (value) {
+			const date = value.split(this.DELIMITER);
+			return {
+				day: parseInt(date[0], 10),
+				month: parseInt(date[1], 10),
+				year: parseInt(date[2], 10),
+			};
+		}
+		return null;
+	}
+
+	format(date: NgbDateStruct | null): string {
+		return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
+	}
+}
 
 @Component({
   selector: 'app-incident-details-page',
@@ -23,7 +65,6 @@ import { DatePipe } from '@angular/common';
 export class IncidentDetailsPageComponent implements OnInit {
   @ViewChild(MatSort)matsort = new MatSort()
   @ViewChild(MatPaginator)paginator : MatPaginator | any;
-  
   currentPage: number = 0;
   //itemsPerPage: number = 10;
   //totalItems: number=0;
@@ -39,7 +80,7 @@ export class IncidentDetailsPageComponent implements OnInit {
 
 incidentDetailForm: boolean = false;
 
-constructor(private routes: Router, private fb: FormBuilder, private apiservice:ApiservicesService ) {}
+constructor(private routes: Router, private fb: FormBuilder, private apiservice:ApiservicesService,private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string> ) {}
   
   ngOnInit(): void {
    
@@ -54,10 +95,13 @@ constructor(private routes: Router, private fb: FormBuilder, private apiservice:
     this.incidentDetailForm = true;
     
   }  
-
   editCancelButton() {
     this.incidentDetailForm = false;
   }
+
+  get today() {
+		return this.dateAdapter.toModel(this.ngbCalendar.getToday())!;
+	}
 
   searchPageFilter(input: any) {
     this.dataSource.filter= input.target.value;
