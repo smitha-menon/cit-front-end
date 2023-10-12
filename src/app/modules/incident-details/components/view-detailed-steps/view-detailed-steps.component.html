@@ -133,7 +133,7 @@
   </div> -->
             </div>
             <div>
-              <button *ngIf="isVisible" class="button-29" (click)="updateIncident()">Update</button>
+              <button *ngIf="isUpdateVisible" class="button-29" (click)="updateIncident()">Update</button>
             </div>
           </form>
 
@@ -143,11 +143,11 @@
               <!-- <div class="tag-content">
               <div class="search-tag"> -->
               <!-- <i class="fa-solid fa-magnifying-glass fa-xs" style="color: #14161a; margin-left: 10px;"></i> -->
-              <input type="text" class="search-input" placeholder="Add Tag" [(ngModel)]="tagName" />
+              <input type="text" *ngIf ="isAddTagVisible" class="search-input" placeholder="Add Tag" [(ngModel)]="tagName" />
               <!-- </div> -->
 
               <!-- </div> -->
-              <button class="add-tag-btn" (click)="addTag()">Add Tag</button>
+              <button class="add-tag-btn" *ngIf ="isAddTagVisible" (click)="addTag()">Add Tag</button>
             </div>
            
 

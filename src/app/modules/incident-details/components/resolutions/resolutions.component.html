@@ -69,7 +69,7 @@
               
             </div>
             <br>
-            <div><span><button class="addbtn" (click)="addResolutions()">Add</button></span></div>
+            <div><span><button class="addbtn" *ngIf ="isAddvisible" (click)="addResolutions()">Add</button></span></div>
         </div>
     </div>
 </div>
@@ -137,7 +137,7 @@
                 </section>
                 <div style="float:right">
                     <label style="padding-right:10px;font-family: Montserrat;font-size:large;line-height: 20px;">Use this Resolution for <b>{{incid}} </b></label><span>
-                        <button class="addbtn" (click)="UseResolution()">Submit</button></span></div>
+                        <button class="addbtn" *ngIf="isUseVisible" (click)="UseResolution()">Submit</button></span></div>
             </div>
         </div>
     </div>

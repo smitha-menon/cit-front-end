@@ -6,6 +6,7 @@ import { ApiservicesService } from '../services/apiservices.service';
 import { user } from '../interfaces/user';
 import { Observable, catchError, map, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PermissionsService } from '../services/permissions.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class AuthService {
   token: string | any;
   
-  constructor(private routes: Router,private apiservice: ApiservicesService) { }
+  constructor(private routes: Router,private apiservice: ApiservicesService,private permissionsService: PermissionsService) { }
 
   isLoggedIn() {
     const loggedIn = localStorage.getItem(USER_NAME);
@@ -71,6 +72,9 @@ export class AuthService {
           console.log("new:"+data.token);
           this.setToken(data.token);
             localStorage.setItem(USER_NAME,userdata.username);
+            const userPermissions = data.deniedAccessMethodNames;
+            this.permissionsService.setPermissions(userPermissions);
+            this.permissionsService.setUserToken(data.token)
             //this.routes.navigateByUrl(ROUTES.INCIDENT);
             return true;
          

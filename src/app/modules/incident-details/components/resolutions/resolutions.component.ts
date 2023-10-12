@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { FEATURES } from 'src/app/core/constants/constant';
 import { INCIDENT_ID_KEY, TAGS } from 'src/app/core/constants/local-storage-keys';
 import { NotifierService } from 'src/app/core/utils/notifier';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
+import { PermissionsService } from 'src/app/services/permissions.service';
 
 @Component({
   selector: 'app-resolutions',
@@ -16,8 +18,15 @@ export class ResolutionsComponent {
   viewPopup: boolean = false;
   createPopup: boolean = false;
   viewDetails: any = [];
+  isAddvisible:boolean= true;
+  isUseVisible:boolean =true;
+  userPermissions: any;
   
-  constructor(private route: ActivatedRoute, private apiservice:ApiservicesService, private notifier: NotifierService, private fb: FormBuilder) {}
+  constructor(private route: ActivatedRoute,
+             private apiservice:ApiservicesService, 
+             private notifier: NotifierService,
+             private permissionsService: PermissionsService,
+             private fb: FormBuilder) {}
   incid:any;
   taglist:string | any;
   resolutiondata: string[] | any;
@@ -29,6 +38,11 @@ export class ResolutionsComponent {
     this.taglist=localStorage.getItem(TAGS);    
     this.incid=localStorage.getItem(INCIDENT_ID_KEY);   
     this.loadResolutions();
+    this.permissionsService.permissions$.subscribe((permissions) => {
+      this.userPermissions = permissions;
+    });
+    this.isAddvisible=this.userPermissions.includes(FEATURES.addResolution)? false:true;
+    this.isUseVisible = this.userPermissions.includes(FEATURES.addSuggestedSteps)? false:true;
    
   }
   public loadResolutions() : void 
