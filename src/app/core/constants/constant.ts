@@ -7,3 +7,12 @@ export const ROUTES = {
 }
 
  export const statuses={ closedState:'closed'}
+
+ export const FEATURES={
+
+    modifyTags:'modifyTags',
+    updateIncident:'updateIncident',
+    addIncident:'addIncident',
+    addResolution:'addResolution',
+    addSuggestedSteps:'addSuggestedSteps'
+ }

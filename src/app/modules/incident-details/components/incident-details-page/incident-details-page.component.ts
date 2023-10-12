@@ -10,9 +10,46 @@ import { ROUTES } from 'src/app/core/constants/constant';
 import { INCIDENT_ID_KEY } from 'src/app/core/constants/local-storage-keys';
 import { Incidents } from 'src/app/interfaces/incidents';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
-import { NgbCalendar, NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
+import { PermissionsService } from 'src/app/services/permissions.service';
+
+@Injectable()
+
+export class CustomDateParserFormatter extends NgbDateParserFormatter {
+
+  readonly DELIMITER = '/'; 
+
+  parse(value: string): NgbDateStruct | null {
+
+    if (value) {
+
+      const date = value.split(this.DELIMITER);
+
+      return {
+
+        day: parseInt(date[0], 10),
+
+        month: parseInt(date[1], 10),
+
+        year: parseInt(date[2], 10),
+
+      };
+
+    }
+
+    return null;
+
+  }
+
+  format(date: NgbDateStruct | null): string {
+
+    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
+
+  }
+
+}
 
 @Component({
   selector: 'app-incident-details-page',
@@ -28,23 +65,30 @@ export class IncidentDetailsPageComponent implements OnInit {
   //totalItems: number=0;
   totalPages:number =0;
   startIndex:number=0;
-  endIndex:number =11;
-  displayCols = ['Number','Active','State','Priority','Opened Date','Assigned To'];  
+  endIndex:number =16;
+  displayCols = ['Number','Active','State','Priority','Opened Date','Assigned To']; 
+  itemsPerPage=[5,10,15] ;
   incidentDetails: any = [];
+  filteredIncidents: any =[];
   dataSource = new MatTableDataSource(this.incidentDetails);   
   selectedDate:NgbDateStruct | any;
   searchText:any;
+  filterInput:any;
   pipe = new DatePipe('en-US');
+  userPermissions: string[] = [];
 
 incidentDetailForm: boolean = false;
 
-constructor(private routes: Router, private fb: FormBuilder, private apiservice:ApiservicesService,private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string> ) {}
+constructor(private routes: Router, private permissionsService:PermissionsService,
+             private fb: FormBuilder, private apiservice:ApiservicesService ) {}
   
   ngOnInit(): void {
-   
+   this.permissionsService.permissions$.subscribe((permissions) => {
+      this.userPermissions = permissions;
+    });
+    console.log("permissiona"+this.userPermissions);
     this.loadIncidents();
-    console.log(this.incidentDetails);  
-    
+    console.log("from init"+this.incidentDetails);      
   }
 
 
@@ -56,10 +100,6 @@ constructor(private routes: Router, private fb: FormBuilder, private apiservice:
   editCancelButton() {
     this.incidentDetailForm = false;
   }
-
-  get today() {
-		return this.dateAdapter.toModel(this.ngbCalendar.getToday())!;
-	}
 
   searchPageFilter(input: any) {
     this.dataSource.filter= input.target.value;
@@ -74,30 +114,34 @@ constructor(private routes: Router, private fb: FormBuilder, private apiservice:
     
     this.totalPages = Math.ceil(event.length / event.pageSize);
     console.log("totalpages"+this.totalPages);
-    if(this.currentPage + 1 >= this.totalPages)
+    if(this.currentPage + 1 == this.totalPages)
     {
       this.startIndex= event.length;
-      this.endIndex=this.startIndex+10;
+      this.endIndex=this.startIndex+this.itemsPerPage[2]+1;
       this.loadIncidents();
     }
 
-  }
+  }  
  
   onInputChange(){
-    const inputDate = new Date(this.searchText);
-    if(isNaN(inputDate.getDate()))
+    console.log("start"+this.searchText)
+    console.log("after"+this.searchText.day);
+    
+    if(this.searchText.day !=undefined)
     {
-      console.log("date"+inputDate.getDate())
-      console.log("date1"+this.searchText)
-     // this.searchText= this.pipe.transform(this.searchText,'dd/MM/yyyy')
+       let inputDate = new Date(this.searchText.year,this.searchText.month-1,this.searchText.day);
+       this.filterInput= this.pipe.transform(inputDate,'dd/MM/yyyy')
+      
       console.log("date2"+this.searchText)
     }
     else{
+      this.filterInput=this.searchText
       console.log("search"+this.searchText)
     }
     this.incidentDetails = [];
+    this.filteredIncidents= [];
     this.startIndex=0;
-    this.endIndex=11;
+    this.endIndex=this.itemsPerPage[2]+1;
   this.loadIncidents()
 
   }
@@ -108,10 +152,13 @@ constructor(private routes: Router, private fb: FormBuilder, private apiservice:
     this.routes.navigateByUrl(ROUTES.VIEWSTEPS)
   }
 
+
   public loadIncidents() : void 
   {   
    let newdata:any;
-    this.apiservice.getIncidentsList(this.startIndex,this.endIndex,this.searchText).subscribe({
+   console.log("length"+this.filterInput?.length);    
+  
+    this.apiservice.getIncidentsList(this.startIndex,this.endIndex,this.filterInput).subscribe({
       next : (response: any) => {
                         console.log(response);                       
                         newdata=response.map((data : any) =>{
@@ -123,11 +170,25 @@ constructor(private routes: Router, private fb: FormBuilder, private apiservice:
                             'Assigned To' :  data.assignedTo,
                             'Opened Date' : data.openedDate
                           }});   
-                          this.incidentDetails=this.incidentDetails.concat(newdata)                      
+                         
+                          if (this.filterInput?.length>0)
+                          {
+                            
+                            this.filteredIncidents=this.filteredIncidents.concat(newdata)                      
+
+                          this.dataSource = new MatTableDataSource(this.filteredIncidents)
+                          this.incidentDetails=[];
+
+                          }
+                          else{
+                            this.filteredIncidents=[];
+                            this.incidentDetails=this.incidentDetails.concat(newdata)                      
                           this.dataSource = new MatTableDataSource(this.incidentDetails)
+                          }                          
                           this.dataSource.sort=this.matsort
                           this.dataSource.paginator= this.paginator
-                          console.log(this.incidentDetails);
+                          console.log("inside load"+this.incidentDetails);
+                          
                           },
       error: (err: any) => console.log(err)});
     }

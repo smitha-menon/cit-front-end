@@ -1,11 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ROUTES, statuses } from 'src/app/core/constants/constant';
+import { FEATURES, ROUTES, statuses } from 'src/app/core/constants/constant';
 import { INCIDENT_ID_KEY, TAGS } from 'src/app/core/constants/local-storage-keys';
 import { NotifierService } from 'src/app/core/utils/notifier';
 import { drillIncidents } from 'src/app/interfaces/incidents';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
+import { PermissionsService } from 'src/app/services/permissions.service';
 
 @Component({
   selector: 'app-view-detailed-steps',
@@ -30,19 +31,28 @@ export class ViewDetailedStepsComponent implements OnInit {
   selectedUser: string | any;
   selectedGroup: string | any;
   defaultSelection: string ="--Select--";
-  isVisible:boolean =true;
+  isUpdateVisible:boolean =true;
+  isAddTagVisible:boolean =true;
   comments:string | any;
-  constructor(private routes: Router, private fb: FormBuilder, private apiservice: ApiservicesService,private notifier: NotifierService) { }
+  constructor(private routes: Router, 
+              private fb: FormBuilder,
+               private apiservice: ApiservicesService,
+               private permissionsService: PermissionsService,
+               private notifier: NotifierService) { }
 
   stepArray: any[] = [];
   tagsarr: any;
+  userPermissions: string[] = [];
   
   ngOnInit(): void {
     this.stepArray = [];    
     this.loadGroups();
     this.loadStates();
     this.loadUsers();
-
+    this.permissionsService.permissions$.subscribe((permissions) => {
+      this.userPermissions = permissions;
+    });
+    console.log(this.userPermissions);
     this.apiservice.getIncident(localStorage.getItem(INCIDENT_ID_KEY)).subscribe({
       next: (res: any) => {
         console.log(res)
@@ -68,11 +78,11 @@ export class ViewDetailedStepsComponent implements OnInit {
         this.selectedUser = (this.incidentDetails[0].assignedTo?.length==0)?this.defaultSelection:this.incidentDetails[0].assignedTo
         localStorage.setItem(TAGS,this.tagsarr.join(','));
         this.comments=this.incidentDetails[0].comments;
-
-        if(this.selectedState == statuses.closedState)
-        {
-          this.isVisible=false;
-        }
+       
+        this.isUpdateVisible=(this.selectedState == statuses.closedState || 
+                              this.userPermissions.includes(FEATURES.updateIncident))?false:true; 
+        this.isAddTagVisible =this.userPermissions.includes(FEATURES.modifyTags)? false:true;
+      
 
         this.tagList = this.incidentDetails[0].tags.map((res: any) => {
                  
@@ -84,8 +94,7 @@ export class ViewDetailedStepsComponent implements OnInit {
         console.log(this.tagList)
       }
       
-    })
-   
+    })   
 
   }
   // searchPageFilter(event: any) {
