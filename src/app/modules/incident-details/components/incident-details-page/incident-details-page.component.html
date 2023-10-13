@@ -19,6 +19,15 @@
                 </div>
                
             </div>
+            <div *ngIf="showloader" class="example-loading-shade ">
+                <div style="position: relative;">
+                    <mat-progress-spinner color="primary" diameter="40" mode="indeterminate" style="position: absolute;
+                    top: 0px;
+                    left: 0px;">
+                    </mat-progress-spinner>
+                </div>
+            
+            </div>
             
             <div class="wrapper">
                 <!-- <div style="display: flex; gap: 25px; width: 89%;">

@@ -66,6 +66,7 @@ export class IncidentDetailsPageComponent implements OnInit {
   totalPages:number =0;
   startIndex:number=0;
   endIndex:number =16;
+  showloader: boolean = true;
   displayCols = ['Number','Active','State','Priority','Opened Date','Assigned To']; 
   itemsPerPage=[5,10,15] ;
   incidentDetails: any = [];
@@ -156,6 +157,7 @@ constructor(private routes: Router, private permissionsService:PermissionsServic
   public loadIncidents() : void 
   {   
    let newdata:any;
+   this.showloader = true;
    console.log("length"+this.filterInput?.length);    
   
     this.apiservice.getIncidentsList(this.startIndex,this.endIndex,this.filterInput).subscribe({
@@ -170,7 +172,7 @@ constructor(private routes: Router, private permissionsService:PermissionsServic
                             'Assigned To' :  data.assignedTo,
                             'Opened Date' : data.openedDate
                           }});   
-                         
+                         this.showloader = false;
                           if (this.filterInput?.length>0)
                           {
                             
