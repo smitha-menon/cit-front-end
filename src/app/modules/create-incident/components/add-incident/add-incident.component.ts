@@ -37,7 +37,7 @@ export class AddIncidentComponent implements OnInit{
       // assignedto: [''],
       description: [''],
       duedate: [''],
-      openeddate: [''],
+      openeddate: [(new Date()).toLocaleDateString()+' '+(new Date()).toLocaleTimeString()],//new FormControl((new Date()).toISOString().substring(0,10)),
       openedby:  [''],
       resolveddate: [''],
       sla:  [''],

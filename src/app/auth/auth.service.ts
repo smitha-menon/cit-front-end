@@ -7,12 +7,14 @@ import { user } from '../interfaces/user';
 import { Observable, catchError, map, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PermissionsService } from '../services/permissions.service';
+import { loginResponse } from '../interfaces/loginResponse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   token: string | any;
+  logresponse:loginResponse | any;
   
   constructor(private routes: Router,private apiservice: ApiservicesService,private permissionsService: PermissionsService) { }
 
@@ -70,12 +72,22 @@ export class AuthService {
       return this.apiservice.authenticateUser(userdata).pipe(
         map(data =>{       
           console.log("new:"+data.token);
+          
+          this.logresponse={ token: data.token,  
+                             assignedGroupId:data.assignedGroupId,
+                             assignedToId:data.assignedToId ,
+                             loginUser: userdata.username, 
+                             roleName:data.roleName,
+                             deniedAccessMethodNames: data.deniedAccessMethodNames};
+          
+          this.permissionsService.setLoginResponse(this.logresponse);
+          console.log("login2"+this.logresponse);
+
           this.setToken(data.token);
-            localStorage.setItem(USER_NAME,userdata.username);
-            const userPermissions = data.deniedAccessMethodNames;
-            this.permissionsService.setPermissions(userPermissions);
-            this.permissionsService.setUserToken(data.token)
-            //this.routes.navigateByUrl(ROUTES.INCIDENT);
+          localStorage.setItem(USER_NAME,userdata.username); 
+          //this.permissionsService.setPermissions(data.deniedAccessMethodNames);
+           
+           
             return true;
          
         }),

@@ -16,3 +16,8 @@ export const ROUTES = {
     addResolution:'addResolution',
     addSuggestedSteps:'addSuggestedSteps'
  }
+
+ export const userRoles={ SRE:'Service_Reliability_Engineer',
+                         GA:'Group_Administrator',
+                         SA:'Super_Administrator',
+                         BU:'Business_User'}

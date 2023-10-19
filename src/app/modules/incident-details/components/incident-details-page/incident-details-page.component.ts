@@ -6,7 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
-import { ROUTES } from 'src/app/core/constants/constant';
+import { ROUTES, userRoles } from 'src/app/core/constants/constant';
 import { INCIDENT_ID_KEY } from 'src/app/core/constants/local-storage-keys';
 import { Incidents } from 'src/app/interfaces/incidents';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
@@ -77,6 +77,8 @@ export class IncidentDetailsPageComponent implements OnInit {
   filterInput:any;
   pipe = new DatePipe('en-US');
   userPermissions: string[] = [];
+  groupid:any;
+  userid:any;
 
 incidentDetailForm: boolean = false;
 
@@ -84,8 +86,16 @@ constructor(private routes: Router, private permissionsService:PermissionsServic
              private fb: FormBuilder, private apiservice:ApiservicesService ) {}
   
   ngOnInit(): void {
-   this.permissionsService.permissions$.subscribe((permissions) => {
-      this.userPermissions = permissions;
+  //  this.permissionsService.permissions$.subscribe((permissions) => {
+  //     this.userPermissions = permissions;
+  //   });
+  //   console.log("permissiona"+this.userPermissions);
+
+    this.permissionsService.loginreponse$.subscribe((data)=>{
+      console.log("datauser"+JSON.stringify(data));
+      this.userid=(data.roleName == userRoles.BU || data.roleName == userRoles.SA)?null:data.assignedToId;
+      this.groupid=(data.roleName == userRoles.BU || data.roleName == userRoles.SA)?data.assignedGroupId:null;
+      this.userPermissions= data.deniedAccessMethodNames;
     });
     console.log("permissiona"+this.userPermissions);
     this.loadIncidents();
@@ -160,10 +170,10 @@ constructor(private routes: Router, private permissionsService:PermissionsServic
    this.showloader = true;
    console.log("length"+this.filterInput?.length);    
   
-    this.apiservice.getIncidentsList(this.startIndex,this.endIndex,this.filterInput).subscribe({
+    this.apiservice.getIncidentsList(this.startIndex,this.endIndex,this.filterInput,this.userid,this.groupid).subscribe({
       next : (response: any) => {
                         console.log(response);                       
-                        newdata=response.map((data : any) =>{
+                        newdata=response?.map((data : any) =>{
                           return {
                             'Number' :data.incidentId,
                             'Active' : data.active,
@@ -192,7 +202,10 @@ constructor(private routes: Router, private permissionsService:PermissionsServic
                           console.log("inside load"+this.incidentDetails);
                           
                           },
-      error: (err: any) => console.log(err)});
+      error: (err: any) =>{ 
+        this.showloader = false;
+        console.log(err);}
+    });
     }
 
    

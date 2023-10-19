@@ -67,19 +67,27 @@ export class ApiservicesService {
     return this.http.get<any>(Url, options);
   }
 
-  public getIncidentsList(start: number, end: number, search: any): Observable<Incidents[]> {
-    let incidentUrl = `${this.apiUrl}/getIncidents?beginIndex=` + `${start}&endIndex=` + `${end}`;
+  public getIncidentsList(start: number, end: number, search: any, assignedId:any, groupId:any): Observable<Incidents[]> {
+    let incidentUrl = `${this.apiUrl}/getIncidentsByUser?beginIndex=` + `${start}&endIndex=` + `${end}`;
     if (search != undefined) {
       incidentUrl = incidentUrl + '&filter=' + `${search}`;
-
+    }
+    if(assignedId !=undefined)
+    {
+      incidentUrl = incidentUrl + '&assignedId=' + `${assignedId}`;
+    }
+    if(groupId != undefined)
+    {
+      incidentUrl = incidentUrl + '&groupId=' + `${groupId}`;
     }
 
     // const incidentUrl = `${this.apiUrl}/getIncidents`;
-    const token = localStorage.getItem(USER_TOKEN);
+    const token =  localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     const options = {
       headers: header,
     };
+    
     return this.http.get<Incidents[]>(incidentUrl, options);
   }
 

@@ -11,6 +11,7 @@ import { NavbarLayoutComponent } from './core/layouts/navbar-layout.component';
 import { HomeLayoutComponent } from './core/layouts/home-layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { PermissionsService } from './services/permissions.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [PermissionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

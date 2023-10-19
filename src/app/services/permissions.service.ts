@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { loginResponse } from '../interfaces/loginResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -7,24 +8,22 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class PermissionsService {
 
   constructor() { }
-  private permissionsSubject: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
-  private userTokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  permissions$: Observable<string[]> = this.permissionsSubject.asObservable();
-  userToken$:Observable<string> = this.userTokenSubject.asObservable();
+  private loginresponse !:loginResponse
+  //private permissionsSubject: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
+  //private userTokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  private loginSubject: BehaviorSubject<loginResponse> = new BehaviorSubject<loginResponse>(this.loginresponse);
+  //permissions$: Observable<string[]> = this.permissionsSubject.asObservable();
+  //userToken$:Observable<string> = this.userTokenSubject.asObservable();
+  loginreponse$:Observable<loginResponse> = this.loginSubject.asObservable();
 
-  setPermissions(permissions: string[]): void {
-    this.permissionsSubject.next(permissions);
+  setLoginResponse(response: loginResponse): void {
+    this.loginSubject.next(response);
+   // this.setPermissions(this.loginSubject.value.deniedAccessMethodNames);
   }
 
-  setUserToken(token: string): void {
-    this.userTokenSubject.next(token)
-  }
+  getLoginResponse(): loginResponse {
+    return this.loginSubject.value;
+  } 
 
-  getPermissions(): string[] {
-    return this.permissionsSubject.value;
-  }
-
-  getUserToken(): string {
-    return this.userTokenSubject.value;
-  }
+  
 }

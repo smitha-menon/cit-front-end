@@ -38,8 +38,8 @@ export class ResolutionsComponent {
     this.taglist=localStorage.getItem(TAGS);    
     this.incid=localStorage.getItem(INCIDENT_ID_KEY);   
     this.loadResolutions();
-    this.permissionsService.permissions$.subscribe((permissions) => {
-      this.userPermissions = permissions;
+    this.permissionsService.loginreponse$.subscribe((data) => {
+      this.userPermissions = data.deniedAccessMethodNames;
     });
     this.isAddvisible=this.userPermissions.includes(FEATURES.addResolution)? false:true;
     this.isUseVisible = this.userPermissions.includes(FEATURES.addSuggestedSteps)? false:true;

@@ -49,10 +49,11 @@ export class ViewDetailedStepsComponent implements OnInit {
     this.loadGroups();
     this.loadStates();
     this.loadUsers();
-    this.permissionsService.permissions$.subscribe((permissions) => {
-      this.userPermissions = permissions;
+    
+    this.permissionsService.loginreponse$.subscribe((data) => {
+      this.userPermissions = data.deniedAccessMethodNames;
     });
-    console.log(this.userPermissions);
+   
     this.apiservice.getIncident(localStorage.getItem(INCIDENT_ID_KEY)).subscribe({
       next: (res: any) => {
         console.log(res)
