@@ -37,7 +37,7 @@ export class AddIncidentComponent implements OnInit{
       // assignedto: [''],
       description: [''],
       duedate: [''],
-      openeddate: [(new Date()).toLocaleDateString()+' '+(new Date()).toLocaleTimeString()],//new FormControl((new Date()).toISOString().substring(0,10)),
+      openeddate: [(new Date()).toLocaleDateString()+' '+(new Date()).toLocaleTimeString('en-IT', { hour12: false })],
       openedby:  [''],
       resolveddate: [''],
       sla:  [''],
@@ -49,9 +49,7 @@ export class AddIncidentComponent implements OnInit{
     this.apiservice.getPriorityList().subscribe({
       next :(data:any)=>{
         console.log(data)
-        this.priorityList = data 
-      
-        //this.stateList =  this.stateList.split(',')       
+        this.priorityList = data           
       },
       error: (err: any) => {
         console.log(err)
@@ -63,9 +61,8 @@ export class AddIncidentComponent implements OnInit{
     this.apiservice.getStatusList().subscribe({
       next :(data:any)=>{
         console.log(data)
-        this.stateList = data 
-      
-        //this.stateList =  this.stateList.split(',')       
+        this.stateList = data      
+         
       },
       error: (err: any) => {
         console.log(err)
@@ -78,7 +75,6 @@ export class AddIncidentComponent implements OnInit{
       next :(data:any)=>{
         console.log(data)
         this.assignGrpList = data 
-       // this.assignGrpList = this.assignGrpList.split(',')  
       },
       error: (err: any) => {
         console.log(err)
@@ -91,7 +87,6 @@ export class AddIncidentComponent implements OnInit{
       next :(data:any)=>{
         console.log(data)
         this.assignUsrList =data 
-        //this.assignUsrList =  this.assignUsrList.split(',')  
       },
       error: (err: any) => {
         console.log(err)        

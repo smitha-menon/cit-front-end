@@ -4,6 +4,6 @@ export interface loginResponse{
     assignedToId:string,
     deniedAccessMethodNames:string [],
     allowedAccessMethodNames:string[],
-    roleName:string,
+    roleCode:string,
     loginUser:string
 }

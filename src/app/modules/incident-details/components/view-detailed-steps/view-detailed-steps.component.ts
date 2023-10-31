@@ -73,10 +73,10 @@ export class ViewDetailedStepsComponent implements OnInit {
        
         console.log(this.incidentDetails)
         this.tagsarr = this.incidentDetails[0].tags;
-        this.selectedState =  (this.incidentDetails[0].state?.length ==0)?this.defaultSelection:this.incidentDetails[0].state
-        this.selectedGroup = (this.incidentDetails[0].assignedGroup?.length== 0)? this.defaultSelection:this.incidentDetails[0].assignedGroup
+        this.selectedState =  this.incidentDetails[0].state
+        this.selectedGroup = this.incidentDetails[0].assignedGroup
         console.log("group:"+this.selectedGroup);
-        this.selectedUser = (this.incidentDetails[0].assignedTo?.length==0)?this.defaultSelection:this.incidentDetails[0].assignedTo
+        this.selectedUser = this.incidentDetails[0].assignedTo
         localStorage.setItem(TAGS,this.tagsarr.join(','));
         this.comments=this.incidentDetails[0].comments;
        

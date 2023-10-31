@@ -17,7 +17,7 @@ export const ROUTES = {
     addSuggestedSteps:'addSuggestedSteps'
  }
 
- export const userRoles={ SRE:'Service_Reliability_Engineer',
-                         GA:'Group_Administrator',
-                         SA:'Super_Administrator',
-                         BU:'Business_User'}
+ export const userRoles={ SRE:'SRE',
+                         GA:'GA',
+                         SA:'SA',
+                         BU:'BU'}

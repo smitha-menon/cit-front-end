@@ -28,7 +28,7 @@ export class ApiservicesService {
   constructor(private http: HttpClient) { }
 
   public getUsersListToAssign(): Observable<any> {
-    const Url = `${this.apiUrl}/getAssignedUsers`;
+    const Url = `${this.apiUrl}/auth/getActiveUsers`;
     const token = localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     const options = {
@@ -58,7 +58,7 @@ export class ApiservicesService {
   }
 
   public getAssignedGrpList(): Observable<any> {
-    const Url = `${this.apiUrl}/getAssignedGroups`;
+    const Url = `${this.apiUrl}/getActiveAssignedGroups`;
     const token = localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     const options = {
