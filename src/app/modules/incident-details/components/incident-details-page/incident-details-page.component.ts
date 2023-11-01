@@ -93,8 +93,8 @@ constructor(private routes: Router, private permissionsService:PermissionsServic
 
     this.permissionsService.loginreponse$.subscribe((data)=>{
       console.log("datauser"+JSON.stringify(data));
-      this.userid=(data.roleName == userRoles.BU || data.roleName == userRoles.SA)?null:data.assignedToId;
-      this.groupid=(data.roleName == userRoles.BU || data.roleName == userRoles.SA)?data.assignedGroupId:null;
+      this.userid=(data.roleCode == userRoles.BU || data.roleCode == userRoles.SA)?null:data.assignedToId;
+      this.groupid=(data.roleCode == userRoles.BU || data.roleCode == userRoles.SA)?data.assignedGroupId:null;
       this.userPermissions= data.deniedAccessMethodNames;
     });
     console.log("permissiona"+this.userPermissions);

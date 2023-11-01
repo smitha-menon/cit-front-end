@@ -75,9 +75,9 @@ export class AuthService {
           
           this.logresponse={ token: data.token,  
                              assignedGroupId:data.assignedGroupId,
-                             assignedToId:data.assignedToId ,
+                             assignedToId:data.userId,
                              loginUser: userdata.username, 
-                             roleName:data.roleName,
+                             roleCode:data.roleCode,
                              deniedAccessMethodNames: data.deniedAccessMethodNames};
           
           this.permissionsService.setLoginResponse(this.logresponse);

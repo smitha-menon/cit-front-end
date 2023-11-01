@@ -5,7 +5,8 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { NavbarLayoutComponent } from './core/layouts/navbar-layout.component';
 import { AuthGuard } from './auth/guard/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
-
+import { HasRolesGuard } from './auth/guard/has-roles.guard';
+import { userRoles } from './core/constants/constant';
 const routes: Routes = [{
   path: '',
   component: HomeLayoutComponent,
@@ -33,7 +34,10 @@ const routes: Routes = [{
     },  
     {
       path: 'create-incident',
-      canActivate: [AuthGuard],
+      canActivate: [AuthGuard, HasRolesGuard],
+      data:{
+        role:userRoles.SRE+','+userRoles.GA
+      },
       loadChildren: () => import('./modules/create-incident/create-incident.module').then((m) => m.CreateIncidentModule)
     },
     {

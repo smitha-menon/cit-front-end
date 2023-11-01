@@ -50,8 +50,8 @@
               <label class="form-label">State:</label>
               <!-- <input matInput type="text" class="form-control" formControlName="state" name="state" 
               required> -->
-              <select [(ngModel)]="selectedState" class="form-control" [ngModelOptions]="{standalone: true}">
-                <option [value]="0">{{defaultSelection}}</option>
+              <select  [(ngModel)]="selectedState" class="form-control" [ngModelOptions]="{standalone: true}">
+                <option [value]="undefined">{{defaultSelection}}</option>
                 <option *ngFor="let item of stateList" [value]="item.statusId">{{ item.statusValue }}</option>
               </select>
               <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
@@ -70,7 +70,7 @@
               <!-- <input matInput type="text" class="form-control" formControlName="assignedto" name="assignedto"
               required> -->
               <select [(ngModel)]="selectedUser" class="form-control" [ngModelOptions]="{standalone: true}">
-                <option [value]="0">{{defaultSelection}}</option>
+                <option [value]="undefined">{{defaultSelection}}</option>
                 <option *ngFor="let item of assignUsrList" [value]="item.userId">{{ item.username }}</option>
               </select>
 
@@ -81,7 +81,7 @@
               <!-- <input matInput type="text" class="form-control" formControlName="assignedgroup" name="assignedgroup"
               required> -->
               <select [(ngModel)]="selectedGroup" class="form-control" [ngModelOptions]="{standalone: true}">
-                <option [value]="0">{{defaultSelection}}</option>
+                <option [value]="undefined">{{defaultSelection}}</option>
                 <option *ngFor="let item of assignGrpList" [value]="item.groupId">{{ item.groupName }}</option>
               </select>
             </div>
