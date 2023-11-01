@@ -58,7 +58,7 @@ export class ApiservicesService {
   }
 
   public getAssignedGrpList(): Observable<any> {
-    const Url = `${this.apiUrl}/getAssignedGroups`;
+    const Url = `${this.apiUrl}/getActiveAssignedGroups`;
     const token = localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     const options = {
@@ -112,6 +112,26 @@ export class ApiservicesService {
         catchError(this.handleError)
       );
 
+  }
+
+  public getActiveUsers(): Observable<any> {
+    const url = `${this.apiUrl}/auth/getActiveUsers`;
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const options = {
+      headers: header,
+    };
+    return this.http.get<any>(url,options)
+  }
+
+  public getActiveRole(): Observable<any> {
+    const url = `${this.apiUrl}/getActiveRoles`;
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const options = {
+      headers: header,
+    };
+    return this.http.get<any>(url, options)
   }
 
   public getKnownErrorById(errorId: any): Observable<recommendations> {
@@ -228,6 +248,15 @@ export class ApiservicesService {
         }),
         catchError(this.handleError)
       );
+  }
+
+  public addUser(data: any): Observable<any> {
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const options = {
+      headers: header,
+    };
+    return this.http.post<any>(this.apiUrl + '/auth/addUser' ,data ,options)
   }
 
   private handleError(error: any) {

@@ -1,0 +1,75 @@
+<div class="main-element">
+    <div class="main-header">
+        <div style="display: flex; justify-content: space-between">
+            <label>Users</label>
+            <button class="create-new-btn" (click)="addUserPopUp()">Add Users</button>
+        </div>
+        <div class="search-container">
+            <i class="fa-magnifying-glass fa-solid" style="color: #14161a; margin-left: 10px;font-size: 19px;"></i>
+            <input type="text" class="search-input" placeholder="Search" />
+
+        </div>
+        <div style=" border-top: none;">
+            <!-- <div class="card2"> -->
+            <mat-table #table [dataSource]="dataSource">
+
+                <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="Name">
+                    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+
+
+                    <mat-cell *matCellDef="let element">
+                        <div class="avatar">
+                            {{ getInitials(element.name) }}
+                        </div>
+
+
+                        {{element.name}}
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Email Column -->
+                <ng-container matColumnDef="Email">
+                    <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+                </ng-container>
+
+                <!-- Role Column -->
+                <ng-container matColumnDef="Role">
+                    <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        {{element.role}}
+                        <!-- <span class="mat-cell3" *ngIf="element.status == 'READY_FOR_EXECUTION'">
+                                <label class="statusLabel" [ngClass]="element.status"
+                                    >Execute</label>
+                            </span> -->
+                        <!-- <span class="mat-cell3" *ngIf="element.status == 'EXECUTING'">
+                                <label class="statusLabel" [ngClass]="element.status">Executing</label>
+                            </span> -->
+                    </mat-cell>
+                </ng-container>
+
+                <!-- state Column -->
+                <ng-container matColumnDef="State">
+                    <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <span *ngIf="element.state == 'active'">
+                            <label class="statusLabel" [ngClass]="element.state">Active</label>
+                        </span>
+                        <span *ngIf="element.state == 'inactive'">
+                            <label class="statusLabel" [ngClass]="element.state">Inactive</label>
+                        </span>
+                    </mat-cell>
+
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="main-element">
+  <div class="container main-header">
+    <label>Create Group</label>
+    <div style="border: 1px solid #b8b8b8; border-top: none;">
+      <div class="card2">
+      </div>
+      <form>
+        <div>
+          <div class="form-group">
+
+            <label class="form-label">Group name</label>
+            <input matInput type="text" class="form-control" formControlName="incident" name="incident" required>
+
+          </div>
+          <div class="form-group">
+
+            <label class="form-label">Group ID</label>
+            <input matInput type="text" class="form-control" formControlName="incident" name="incident" required>
+
+          </div>
+          <div class="form-group">
+
+            <label class="form-label">Is Active</label>
+            <input matInput type="text" class="form-control" formControlName="incident" name="incident" required>
+
+          </div>
+          <div>
+            <button class="button-29">Add Group</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="main-header">
+    <div>
+      <label>Groups</label>
+    </div>
+
+    <div class="search-container">
+      <i class="fa-magnifying-glass fa-solid" style="color: #14161a; margin-left: 10px;font-size: 19px;"></i>
+      <input type="text" class="search-input" placeholder="Search" />
+
+    </div>
+    <div>
+      <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="Group Name">
+          <mat-header-cell *matHeaderCellDef> Group Name </mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.groupname}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Group Id">
+          <mat-header-cell *matHeaderCellDef> Group Id </mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.groupid}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Is Active">
+          <mat-header-cell *matHeaderCellDef> Is Active </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span *ngIf="element.isactive == true">
+              <label class="statusLabel" [ngClass]="element.isactive">{{element.isactive}}</label>
+          </span>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+    </div>
+  </div>
+</div>

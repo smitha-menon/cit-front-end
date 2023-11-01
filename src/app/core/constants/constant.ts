@@ -3,7 +3,10 @@ export const ROUTES = {
     INCIDENT: '/incidents',
     VIEWSTEPS: '/incidents/view-steps',
     RESOLUTION : '/incidents/resolutions',
-    CREATEINCIDENT: '/create-incident'
+    CREATEINCIDENT: '/create-incident',
+    USERS: '/users',
+    ADDUSER: '/users/create-user',
+    GROUP: '/groups'
 }
 
  export const statuses={ closedState:'closed'}

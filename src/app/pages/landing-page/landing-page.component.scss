@@ -1,40 +1,267 @@
+@import 'aos/dist/aos.css';
+
 .landing-page-header {
-    border-bottom: 2px solid #3B9BA1;
+    // border-bottom: 2px solid #3B9BA1;
     // background: linear-gradient(90deg,#00467f,#a5cc82);
-    padding: 30px 15px;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
- 
+    background-image: url(../../../assets/images/landing-page-images/background-image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 170%;
+    position: relative;
+
+    .globe-top {
+        position: absolute;
+        width: 420px;
+        left: calc(50% - 80px);
+
+    }
+
+    .side-globe {
+        position: absolute;
+        top: 150px;
+
+    }
+
+
     .nav-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 20px;
+
+        .header-links {
+            // background: #e6560e;
+            border: 2px solid #ffffff;
+            box-sizing: border-box;
+            border-radius: 0px;
+            text-align: center;
+            color: #ececec;
+            font-family: Montserrat;
+            width: 10%;
+
+            .login-btn {
+                border: none;
+                // background: #e6560e;
+                font-size: 20px;
+                font-weight: 600;
+                color: #FFF;
+            }
+
+            // .login-btn:hover {
+            //     color: #000000;
+            // }
+        }
+
+        .header-links:hover {
+
+            cursor: pointer;
+            transform: scale(1.05);
+            transition-duration: 0.5s;
+        }
+    }
+
+    .landing-page-banner {
+        margin-top: 200px;
+
+        .homepage-banner {
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+
+            .homepage-banner-heading {
+                color: #FFF;
+                font-family: Montserrat;
+                font-size: 40px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+            }
+
+            .homepage-banner-desc {
+                color: #000;
+                width: 860px;
+                text-align: center;
+                font-family: Montserrat;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 30px;
+            }
+        }
+
+    }
+
+}
+
+.card-section {
+    // position: absolute;
+    // height: 100%;
+    padding-bottom: 70px;
+    background-size: cover;
+    margin-top: -659px;
+    background-image: url(../../../assets/images/landing-page-images/section-image.svg);
+
+    .feature-card {
+        padding-top: 500px;
+        text-align: center;
+    }
+
+    .feature-label {
+        color: #282828;
+        margin-bottom: 40px;
+        font-family: Montserrat;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .box {
+        // width: 307px;
+        // height: 235px;
+        background: #F8F8F8;
+        padding: 10px;
+        min-height: 271px;
+        margin-bottom: 15px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+        // padding: 15px;
+        // border-bottom: 2px solid #3B9BA1;
+        // animation: bounce 4s infinite;
+    }
+
+    .box-header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        color: #282828;
+        padding: 8px;
+        font-family: Montserrat;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .box-label {
+        text-align: left;
+        display: inline-block;
+        padding-left: 10px;
+    }
+
+    .box-content {
+        // width: 267px;
+        color: #282828;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-style: normal;
+        text-align: left;
+        font-weight: 400;
+        padding: 8px;
+        line-height: normal;
+    }
+}
+
+.bottom-section-content {
+    display: flex;
+    gap: 30px;
+    margin-top: 80px;
+    justify-content: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+// footer
+.landing-page-footer {
+    padding: 30px 15px;
+    background: linear-gradient(92deg, #000 -87.76%, #FD5E0F 33.06%, #000 229.27%);
+    ;
+
+    .footer-top {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    .header-links {
-        background: #FFFFFF;
-        border: 2px solid #FD5E0F;
-        box-sizing: border-box;
-        border-radius: 5px;
-        text-align: center;
-        color: #1A73E8;
-        font-family: ProximaNova;
-        width: 10%;
+    .social-links {
+        display: flex;
+        // gap: 10px;
+        justify-content: space-evenly;
+        align-items: center;
 
-        .login-btn {
-            border: none;
-            background: #fff;
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .login-btn:hover {
-            color: #000000;
+        .list-item {
+            margin-left: 2px;
         }
     }
-    .header-links:hover {
 
+    .link-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s;
+    }
+
+    // .linkedin-logo {
+    //     width: 30px;
+    //     height: 30px;
+    // }
+
+    .linkedin-logo:hover {
         cursor: pointer;
-        transform: scale(1.05);
+        transform: scale(1.20);
         transition-duration: 0.5s;
     }
 
+    .instagram-logo:hover {
+        cursor: pointer;
+        transform: scale(1.20);
+        transition-duration: 0.5s;
+    }
+}
+
+.footer-text {
+    padding-top: 25px;
+    /* border-top: 1px solid rgba(158, 158, 158, 0.2); */
+    display: flex;
+    color: white;
+    justify-content: space-around;
+}
+
+@media only screen and (max-width: 1400px) {
+    .feature-card {
+        padding-top: 691px !important;
+    }
+    .landing-page-header {
+        height: 140% !important;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .landing-page-header {
+        height: 103%  !important;
+    }
+
+    .landing-page-banner {
+        margin-top: 130px !important;
+    }
+
+    .side-globe {
+        width: 170px;
+    }
+
+    .globe-top {
+        width: 420px;
+    }
+
+    .homepage-banner-desc {
+        width: 682px !important
+    }
+
+    .feature-card {
+        padding-top: 664px !important;
+    }
 }

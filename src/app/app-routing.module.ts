@@ -36,8 +36,18 @@ const routes: Routes = [{
       canActivate: [AuthGuard],
       loadChildren: () => import('./modules/create-incident/create-incident.module').then((m) => m.CreateIncidentModule)
     },
+    {
+      path: 'users',
+      canActivate: [AuthGuard],
+      loadChildren: () => import('./modules/user-management/user-management.module').then((m) => m.UserManagementModule)
+    },
+    {
+      path: 'groups',
+      canActivate: [AuthGuard],
+      loadChildren: () => import('./modules/groups/groups.module').then((m) => m.GroupsModule)
+    }
     
-    {path:'', redirectTo:'/login',pathMatch:'full'}  
+    // {path:'', redirectTo:'/login',pathMatch:'full'}  
   ]
 }];
 
