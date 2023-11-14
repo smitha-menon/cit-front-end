@@ -31,13 +31,12 @@ export class AddIncidentComponent implements OnInit{
     this.loadPriority();
     
     this.addIncident = this.fb.group(({
-      incident: [''],
       // state: [''],
       // priority: [''],
       // assignedto: [''],
       description: [''],
       duedate: [''],
-      openeddate: [(new Date()).toLocaleDateString()+' '+(new Date()).toLocaleTimeString('en-IT', { hour12: false })],
+      openeddate: [(new Date()).toLocaleDateString("en-GB")+' '+(new Date()).toLocaleTimeString('en-IT', { hour12: false })],
       openedby:  [''],
       resolveddate: [''],
       sla:  [''],
@@ -96,7 +95,6 @@ export class AddIncidentComponent implements OnInit{
 
   addinci() {
     const obj = {
-      "incidentId": this.addIncident.value.incident,
       "state": this.selectedState,
       "priority": this.selectedPriority,
       "assignedTo": this.selectedUser,

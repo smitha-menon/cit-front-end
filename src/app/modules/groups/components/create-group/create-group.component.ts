@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { NotifierService } from 'src/app/core/utils/notifier';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 
 export interface Execution {
@@ -18,12 +20,17 @@ export interface Execution {
 export class CreateGroupComponent implements OnInit {
   displayedColumns = ['Group Name', 'Group Id', 'Is Active']
   groupList: Array<any> = [];
-  constructor(private apiservice: ApiservicesService) { }
+  addGroupForm: FormGroup | any;
+  constructor(private apiservice: ApiservicesService, private fb: FormBuilder,private notifier: NotifierService) { }
   dataSource: MatTableDataSource<Execution> = new MatTableDataSource<Execution>(this.groupList);
 
   ngOnInit(): void {
 
     this.loadGroup();
+    this.addGroupForm = this.fb.group({
+      groupname: [''],
+      isactive: ['true']
+    })
   }
 
   loadGroup() {
@@ -42,6 +49,35 @@ export class CreateGroupComponent implements OnInit {
       },
       error: (err: any) => {
         console.log(err)
+      }
+    })
+  }
+
+  addGroup() {
+    const data = {
+      "groupName": this.addGroupForm.value.groupname,
+      "isActive": true
+    }
+    console.log(data)
+    this.apiservice.addGroup(data).subscribe({
+      next: (res: any) => {
+        console.log(res)
+    
+      },
+      error: (err: any) => {
+        console.log(err)
+        if (err.status === 200)
+        {
+          this.notifier.success(
+            'User created successfully',
+            'success'
+          )
+          this.addGroupForm.reset();
+          this.loadGroup();
+         
+          
+        }
+    
       }
     })
   }

@@ -258,6 +258,23 @@ export class ApiservicesService {
     };
     return this.http.post<any>(this.apiUrl + '/auth/addUser' ,data ,options)
   }
+  public addRole(data: any): Observable<any> {
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const options = {
+      headers: header,
+    };
+    return this.http.post<any>(this.apiUrl + '/addRole' ,data ,options)
+  }
+
+  public addGroup(data: any): Observable<any> {
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const options = {
+      headers: header,
+    };
+    return this.http.post<any>(this.apiUrl + '/addAssignedGroup', data, options)
+  }
 
   public approveIncident(incidentId :any): Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);

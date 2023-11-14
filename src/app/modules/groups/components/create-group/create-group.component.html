@@ -4,28 +4,28 @@
     <div style="border: 1px solid #b8b8b8; border-top: none;">
       <div class="card2">
       </div>
-      <form>
+      <form [formGroup]="addGroupForm">
         <div>
           <div class="form-group">
 
             <label class="form-label">Group name</label>
-            <input matInput type="text" class="form-control" formControlName="incident" name="incident" required>
+            <input matInput type="text" class="form-control" formControlName="groupname" name="groupname" required>
 
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
 
             <label class="form-label">Group ID</label>
-            <input matInput type="text" class="form-control" formControlName="incident" name="incident" required>
+            <input matInput type="text" class="form-control" formControlName="groupid" name="groupid" required>
 
-          </div>
+          </div> -->
           <div class="form-group">
 
             <label class="form-label">Is Active</label>
-            <input matInput type="text" class="form-control" formControlName="incident" name="incident" required>
+            <input matInput type="text" class="form-control" formControlName="isactive" name="isactive" required>
 
           </div>
           <div>
-            <button class="button-29">Add Group</button>
+            <button class="button-29" (click)="addGroup()">Add Group</button>
           </div>
         </div>
       </form>
@@ -36,11 +36,6 @@
       <label>Groups</label>
     </div>
 
-    <div class="search-container">
-      <i class="fa-magnifying-glass fa-solid" style="color: #14161a; margin-left: 10px;font-size: 19px;"></i>
-      <input type="text" class="search-input" placeholder="Search" />
-
-    </div>
     <div>
       <mat-table #table [dataSource]="dataSource">
         <ng-container matColumnDef="Group Name">

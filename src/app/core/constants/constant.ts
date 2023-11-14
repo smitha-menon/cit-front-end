@@ -7,7 +7,8 @@ export const ROUTES = {
     USERS: '/users',
     ADDUSER: '/users/create-user',
     GROUP: '/groups',
-    APPROVALS: '/incident-approval'
+    APPROVALS: '/incident-approval',        
+    ROLES: 'users/roles'
 }
 
  export const statuses={ closedState:'closed'}
