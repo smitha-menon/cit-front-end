@@ -65,6 +65,9 @@ export class UserComponent implements OnInit {
   addUserPopUp() {
     this.router.navigateByUrl(ROUTES.ADDUSER)
   }
+  goToRoles() {
+    this.router.navigateByUrl(ROUTES.ROLES)
+  }
 
   checkState(state: any) {
     if (state.isActive === true) {

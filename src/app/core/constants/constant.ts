@@ -6,7 +6,8 @@ export const ROUTES = {
     CREATEINCIDENT: '/create-incident',
     USERS: '/users',
     ADDUSER: '/users/create-user',
-    GROUP: '/groups'
+    GROUP: '/groups',
+    ROLES: 'users/roles'
 }
 
  export const statuses={ closedState:'closed'}

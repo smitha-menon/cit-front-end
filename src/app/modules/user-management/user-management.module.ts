@@ -25,13 +25,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { CreateUserComponent } from './components/create-user/create-user.component';
+import { RolesComponent } from './components/roles/roles.component';
 
 
 
 @NgModule({
   declarations: [
     UserComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    RolesComponent
   ],
   imports: [
     CommonModule,

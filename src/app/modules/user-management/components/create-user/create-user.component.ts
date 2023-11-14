@@ -29,7 +29,7 @@ export class CreateUserComponent implements OnInit {
       company: ['G10X'],
       applicationname: ['CIT 3.0'],
       createdby: [''],
-      createdon: [(new Date()).toLocaleDateString() + ' ' + (new Date()).toLocaleTimeString('en-IT', { hour12: false })],
+      createdon: [(new Date()).toLocaleDateString("en-GB") + ' ' + (new Date()).toLocaleTimeString('en-IT', { hour12: false })],
 
     })
   }
