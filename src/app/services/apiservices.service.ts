@@ -276,13 +276,13 @@ export class ApiservicesService {
     return this.http.post<any>(this.apiUrl + '/addAssignedGroup', data, options)
   }
 
-  public approveIncident(incidentId :any): Observable<any>{
+  public approveIncident(incidentId :any, status:any): Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     const options = {
       headers: header,
     };
-    const url = `${this.apiUrl}/statusUpdateByGroupAdmin/`+`${incidentId}/APPROVED`;
+    const url = `${this.apiUrl}/statusUpdateByGroupAdmin/`+`${incidentId}/`+`${status}`;
     return this.http.put(url,null,options).pipe(
       tap(data => {
         console.log(data);

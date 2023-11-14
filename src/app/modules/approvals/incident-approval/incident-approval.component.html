@@ -47,11 +47,20 @@
                     <th mat-header-cell *matHeaderCellDef> ApprovalStatus </th>
                     <td mat-cell *matCellDef="let element"> {{element.ApprovalStatus}} </td>
                 </ng-container>
-                <ng-container matColumnDef="Action">
-                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                <ng-container matColumnDef="Approve">
+                    <th mat-header-cell *matHeaderCellDef> Approve </th>
                       <td mat-cell *matCellDef="let element">
-                        <a mat-icon-button (click)="approve(element)">
-                            <mat-icon>edit</mat-icon>        
+                        <a mat-icon-button (click)="approve(element,'APPROVED')">
+                            <mat-icon>check</mat-icon>        
+                          </a>
+                        <!-- <i class="material-icons" >Action</i> -->
+                    </td>
+                </ng-container> 
+                <ng-container matColumnDef="Reject">
+                    <th mat-header-cell *matHeaderCellDef> Reject </th>
+                      <td mat-cell *matCellDef="let element">
+                        <a mat-icon-button (click)="approve(element,'REJECTED')">
+                            <mat-icon>cancel</mat-icon>        
                           </a>
                         <!-- <i class="material-icons" >Action</i> -->
                     </td>

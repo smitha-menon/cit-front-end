@@ -10,7 +10,7 @@ import { PermissionsService } from 'src/app/services/permissions.service';
   styleUrls: ['./incident-approval.component.scss']
 })
 export class IncidentApprovalComponent implements OnInit{
-  displayedColumns = ['IncidentId', 'Active', 'Priority', 'State','OpenedBy','OpenedDate','ApprovalStatus','Action'];
+  displayedColumns = ['IncidentId', 'Active', 'Priority', 'State','OpenedBy','OpenedDate','ApprovalStatus','Approve','Reject'];
   incidentList: any = [];
   dataSource: any ;   
   groupid:any;
@@ -30,14 +30,14 @@ this.groupid=data.assignedGroupId;
 this.groupid=1;
 this.loadIncidents();
   }
-public approve(element:any):void{
+public approve(element:any, status:any):void{
   console.log("approve:"+JSON.stringify(element));
-   this.apiservice.approveIncident(element.IncidentId).subscribe({
+   this.apiservice.approveIncident(element.IncidentId,status).subscribe({
     next :(data:any)=>{
       console.log(data)      
       this.notifier.success(
         'Success!',
-        "Incident Approved")
+        "Incident approval status set to - "+status)
     },
     error: (err: any) => {
       console.log(err)
@@ -45,8 +45,8 @@ public approve(element:any):void{
         
         this.notifier.success(
           'Success!',
-          "Incident Approved"
-        )
+          "Incident approval status set to - "+status)
+        
       } else {
         this.notifier.error(
           'Failed!',
