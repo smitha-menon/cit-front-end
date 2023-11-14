@@ -49,6 +49,11 @@ const routes: Routes = [{
       path: 'groups',
       canActivate: [AuthGuard],
       loadChildren: () => import('./modules/groups/groups.module').then((m) => m.GroupsModule)
+    },
+    {
+      path:'incident-approval',
+      canActivate: [AuthGuard],
+      loadChildren: () => import('./modules/approvals/approvals.module').then((m) => m.ApprovalsModule)
     }
     
     // {path:'', redirectTo:'/login',pathMatch:'full'}  

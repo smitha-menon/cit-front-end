@@ -60,11 +60,9 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
 export class IncidentDetailsPageComponent implements OnInit {
   @ViewChild(MatSort)matsort = new MatSort()
   @ViewChild(MatPaginator)paginator : MatPaginator | any;
-  currentPage: number = 0;
-  //itemsPerPage: number = 10;
-  //totalItems: number=0;
+  currentPage: number = 0;  
   totalPages:number =0;
-  startIndex:number=0;
+  startIndex:number=1;
   endIndex:number =16;
   showloader: boolean = true;
   displayCols = ['Number','Active','State','Priority','Opened Date','Assigned To']; 
@@ -86,11 +84,7 @@ constructor(private routes: Router, private permissionsService:PermissionsServic
              private fb: FormBuilder, private apiservice:ApiservicesService ) {}
   
   ngOnInit(): void {
-  //  this.permissionsService.permissions$.subscribe((permissions) => {
-  //     this.userPermissions = permissions;
-  //   });
-  //   console.log("permissiona"+this.userPermissions);
-
+  
     this.permissionsService.loginreponse$.subscribe((data)=>{
       console.log("datauser"+JSON.stringify(data));
       this.userid=(data.roleCode == userRoles.BU || data.roleCode == userRoles.SA)?null:data.assignedToId;

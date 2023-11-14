@@ -112,9 +112,16 @@
             <li class="nav__item" >
                 <div class="nav_list"  [ngClass]="{'active': tab==='groups'}" (click)="groups(); tab='groups'">
                     <label class="nav_label">
-                        <i class="fa-solid fa-users-between-lines"></i>Groups </label>
+                        <i class="fa-solid fa-users-between-lines" ></i>Groups </label>
                     <!-- <i class="fa fa-user  fa-2xl icon" style="color: white;"></i>  -->
                     <!-- <img src="../../../../assets/images/users-icon.png" class="icons"> -->
+                </div>
+            </li>
+            <li class="nav__item" >
+                <div class="nav_list" (click)="approvals()">
+                    <label class="nav_label">
+                        <i class="fa-solid fa-users-between-lines"></i>Approvals </label>
+
                 </div>
             </li>
         </ul>

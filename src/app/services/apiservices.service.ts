@@ -259,6 +259,35 @@ export class ApiservicesService {
     return this.http.post<any>(this.apiUrl + '/auth/addUser' ,data ,options)
   }
 
+  public approveIncident(incidentId :any): Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const options = {
+      headers: header,
+    };
+    const url = `${this.apiUrl}/statusUpdateByGroupAdmin/`+`${incidentId}/APPROVED`;
+    return this.http.put(url,null,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+  public getIncidentApprovals(groupId:any): Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const options = {
+      headers: header,
+    };
+    const url = `${this.apiUrl}/getIncidentsForApprovalByGroupAdmin/`+`${groupId}`;
+    return this.http.get(url,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: any) {
     return throwError(() => error);
   }
