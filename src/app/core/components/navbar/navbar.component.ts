@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTES } from '../../constants/constant';
 import { AuthService } from 'src/app/auth/auth.service';
+import { PermissionsService } from 'src/app/services/permissions.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,13 +11,16 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class NavbarComponent implements OnInit {
   tab: any
-  constructor(private router: Router, private _authService :AuthService,private route: Router,) {
+  loginUser!:string;
+  constructor(private router: Router, private _authService :AuthService,private route: Router,private permissionService :PermissionsService) {
     this.tab = this.route.url.replace('/','');
     console.log(this.tab)
    }
 
   ngOnInit(): void {
-
+    this.permissionService.loginreponse$.subscribe((data)=>{
+      this.loginUser= data.loginUser
+    });
   }
 
   goToIncident() {

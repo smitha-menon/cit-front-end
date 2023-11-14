@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTES } from 'src/app/core/constants/constant';
-import * as AOS from 'aos';
+//import * as AOS from 'aos';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,11 +12,11 @@ export class LandingPageComponent implements OnInit{
 
   constructor(private router: Router) {}
   ngOnInit(): void {
-    AOS.init({
-      once: true,
-      // anchorPlacement: 'bottom',
-      // offset: 0
-    });
+    // AOS.init({
+    //   once: true,
+    //   // anchorPlacement: 'bottom',
+    //   // offset: 0
+    // });
 
   }
 
