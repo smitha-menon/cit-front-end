@@ -78,31 +78,7 @@
         
       }
 }
-.card2 {
-    // height: 60px;
-    line-height: 30px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background: #676767;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    padding: 10px;
-    // box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
-    border-bottom: none;
-    font-style: bold;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    // margin-left: 70px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 42px;
-    color: #fff;
-  }
-
-  :host ::ng-deep {
+ :host ::ng-deep {
 
     .mat-mdc-table {
         padding: 0px;

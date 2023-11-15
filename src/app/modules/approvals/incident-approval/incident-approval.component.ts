@@ -10,7 +10,7 @@ import { PermissionsService } from 'src/app/services/permissions.service';
   styleUrls: ['./incident-approval.component.scss']
 })
 export class IncidentApprovalComponent implements OnInit{
-  displayedColumns = ['IncidentId', 'Active', 'Priority', 'State','OpenedBy','OpenedDate','ApprovalStatus','Approve','Reject'];
+  displayedColumns = ['IncidentId', 'Active', 'Priority', 'State','OpenedBy','OpenedDate','Approve','Reject'];
   incidentList: any = [];
   dataSource: any ;   
   groupid:any;
@@ -73,7 +73,7 @@ public approve(element:any, status:any):void{
                             'Priority' : data.priority,
                             'OpenedBy' :  data.openedBy,
                             'OpenedDate' : data.openedDate,
-                            'ApprovalStatus': data.approvalStatus                            
+                            // 'ApprovalStatus': data.approvalStatus                            
                           }});   
                           this.dataSource = new MatTableDataSource(this.incidentList)
 

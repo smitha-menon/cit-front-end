@@ -1,70 +1,70 @@
 <div class="main-element">
-   
+
     <div class="main-header">
         <div style="display: flex; justify-content: space-between">
             <label>Incident Approval</label>
         </div>
 
-        <div style=" border-top: none;">
+        <div class="wrapper" style=" border-top: none;">
             <!-- <div class="card2"> -->
-            <mat-table #table [dataSource]="dataSource">
+            <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" >
                 <!-- <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
                     <th mat-header-cell *matHeaderCellDef  class="table-head">{{column}}                       
                     </th>
-                    <td mat-cell *matCellDef="let emp" [ngClass]="emp[column] ">{{ emp[column] }}</td>
+                    <mat-cell mat-cell *matCellDef="let emp" [ngClass]="emp[column] ">{{ emp[column] }}</mat-cell>
                 </ng-container> -->
                 <ng-container matColumnDef="IncidentId">
-                    <th mat-header-cell *matHeaderCellDef> IncidentId </th>
-                    <td mat-cell *matCellDef="let element"> {{element.IncidentId}} </td>
+                    <mat-header-cell *matHeaderCellDef> IncidentId </mat-header-cell>
+                    <mat-cell mat-cell *matCellDef="let element"> {{element.IncidentId}} </mat-cell>
                 </ng-container>
-            
+
                 <!-- Name Column -->
                 <ng-container matColumnDef="Active">
-                    <th mat-header-cell *matHeaderCellDef> Active </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Active}} </td>
+                    <mat-header-cell mat-header-cell *matHeaderCellDef> Active </mat-header-cell>
+                    <mat-cell mat-cell *matCellDef="let element"> {{element.Active}} </mat-cell>
                 </ng-container>
-            
+
                 <!-- Weight Column -->
                 <ng-container matColumnDef="Priority">
-                    <th mat-header-cell *matHeaderCellDef> Priority </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Priority}} </td>
+                    <mat-header-cell mat-header-cell *matHeaderCellDef> Priority </mat-header-cell>
+                    <mat-cell mat-cell *matCellDef="let element"> {{element.Priority}} </mat-cell>
                 </ng-container>
-            
+
                 <!-- Symbol Column -->
                 <ng-container matColumnDef="State">
-                    <th mat-header-cell *matHeaderCellDef> State </th>
-                    <td mat-cell *matCellDef="let element"> {{element.State}} </td>
+                    <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+                    <mat-cell mat-cell *matCellDef="let element"> {{element.State}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="OpenedBy">
-                    <th mat-header-cell *matHeaderCellDef> OpenedBy </th>
-                    <td mat-cell *matCellDef="let element"> {{element.OpenedBy}} </td>
+                    <mat-header-cell *matHeaderCellDef> OpenedBy </mat-header-cell>
+                    <mat-cell mat-cell *matCellDef="let element"> {{element.OpenedBy}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="OpenedDate">
-                    <th mat-header-cell *matHeaderCellDef> OpenedDate </th>
-                    <td mat-cell *matCellDef="let element"> {{element.OpenedDate}} </td>
+                    <mat-header-cell *matHeaderCellDef> OpenedDate </mat-header-cell>
+                    <mat-cell mat-cell *matCellDef="let element"> {{element.OpenedDate}} </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="ApprovalStatus">
-                    <th mat-header-cell *matHeaderCellDef> ApprovalStatus </th>
-                    <td mat-cell *matCellDef="let element"> {{element.ApprovalStatus}} </td>
-                </ng-container>
+                <!-- <ng-container matColumnDef="ApprovalStatus">
+                    <mat-header-cell *matHeaderCellDef> ApprovalStatus </mat-header-cell>
+                    <mat-cell mat-cell *matCellDef="let element"> {{element.ApprovalStatus}} </mat-cell>
+                </ng-container> -->
                 <ng-container matColumnDef="Approve">
-                    <th mat-header-cell *matHeaderCellDef> Approve </th>
-                      <td mat-cell *matCellDef="let element">
-                        <a mat-icon-button (click)="approve(element,'APPROVED')">
-                            <mat-icon>check</mat-icon>        
-                          </a>
+                    <mat-header-cell *matHeaderCellDef> Approve </mat-header-cell>
+                    <mat-cell mat-cell *matCellDef="let element">
+                        <button mat-icon-button (click)="approve(element,'APPROVED')">
+                            <mat-icon>check</mat-icon>
+                        </button>
                         <!-- <i class="material-icons" >Action</i> -->
-                    </td>
-                </ng-container> 
+                    </mat-cell>
+                </ng-container>
                 <ng-container matColumnDef="Reject">
-                    <th mat-header-cell *matHeaderCellDef> Reject </th>
-                      <td mat-cell *matCellDef="let element">
-                        <a mat-icon-button (click)="approve(element,'REJECTED')">
-                            <mat-icon>cancel</mat-icon>        
-                          </a>
+                    <mat-header-cell *matHeaderCellDef> Reject </mat-header-cell>
+                    <mat-cell mat-cell *matCellDef="let element">
+                        <button mat-icon-button (click)="approve(element,'REJECTED')">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
                         <!-- <i class="material-icons" >Action</i> -->
-                    </td>
-                </ng-container> 
+                    </mat-cell>
+                </ng-container>
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             </mat-table>
