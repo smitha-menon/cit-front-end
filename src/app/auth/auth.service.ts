@@ -16,7 +16,9 @@ export class AuthService {
   token: string | any;
   logresponse:loginResponse | any;
   
-  constructor(private routes: Router,private apiservice: ApiservicesService,private permissionsService: PermissionsService) { }
+  constructor(private routes: Router,private apiservice: ApiservicesService,private permissionsService: PermissionsService) {
+    
+   }
 
   isLoggedIn() {
     const loggedIn = localStorage.getItem(USER_NAME);

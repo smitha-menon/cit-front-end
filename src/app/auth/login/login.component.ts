@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup | any;
   public loginuser: user | any;
   loginstatus:any ;
-  constructor(private routes: Router, private fb: FormBuilder, private authservice :AuthService, private notifierService:NotifierService) {} 
+  constructor(private routes: Router, private fb: FormBuilder, private authservice :AuthService, private notifierService:NotifierService) {
+    authservice.logout();
+  } 
   
     
   get f() {

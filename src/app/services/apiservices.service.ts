@@ -279,6 +279,7 @@ export class ApiservicesService {
   public approveIncident(incidentId :any, status:any): Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    header.set('Content-Type', 'application/json');
     const options = {
       headers: header,
     };
@@ -293,6 +294,7 @@ export class ApiservicesService {
   public getIncidentApprovals(groupId:any): Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
     const options = {
       headers: header,
     };

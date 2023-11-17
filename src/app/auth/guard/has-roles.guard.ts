@@ -23,7 +23,7 @@ export class HasRolesGuard implements CanActivate {
     if(!route.data['role'].includes(this.userRole))
     {
       this.notifier.error("Warning","Not Authorized to use!!")    
-    }
+    }  
       return route.data['role'].includes(this.userRole);
     
   }
