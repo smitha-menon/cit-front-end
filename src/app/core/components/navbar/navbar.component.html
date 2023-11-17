@@ -118,7 +118,7 @@
                 </div>
             </li>
             <li class="nav__item" >
-                <div class="nav_list" (click)="approvals()">
+                <div class="nav_list" [ngClass]="{'active': tab==='approval'}" (click)="approvals(); tab='approval'">
                     <label class="nav_label">
                         <i class="fa-solid fa-users-between-lines"></i>Approvals </label>
 
