@@ -43,10 +43,10 @@
                     <mat-header-cell *matHeaderCellDef> OpenedDate </mat-header-cell>
                     <mat-cell mat-cell *matCellDef="let element"> {{element.OpenedDate}} </mat-cell>
                 </ng-container>
-                <!-- <ng-container matColumnDef="ApprovalStatus">
-                    <mat-header-cell *matHeaderCellDef> ApprovalStatus </mat-header-cell>
-                    <mat-cell mat-cell *matCellDef="let element"> {{element.ApprovalStatus}} </mat-cell>
-                </ng-container> -->
+                <ng-container matColumnDef="Description">
+                    <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+                    <mat-cell mat-cell *matCellDef="let element"> {{element.Description}} </mat-cell>
+                </ng-container>
                 <ng-container matColumnDef="Approve">
                     <mat-header-cell *matHeaderCellDef> Approve </mat-header-cell>
                     <mat-cell mat-cell *matCellDef="let element">

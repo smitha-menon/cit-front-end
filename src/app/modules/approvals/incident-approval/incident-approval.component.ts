@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ApprovalStatus } from 'src/app/core/constants/constant';
 import { NotifierService } from 'src/app/core/utils/notifier';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 import { PermissionsService } from 'src/app/services/permissions.service';
@@ -10,10 +11,11 @@ import { PermissionsService } from 'src/app/services/permissions.service';
   styleUrls: ['./incident-approval.component.scss']
 })
 export class IncidentApprovalComponent implements OnInit{
-  displayedColumns = ['IncidentId', 'Active', 'Priority', 'State','OpenedBy','OpenedDate','Approve','Reject'];
+  displayedColumns = ['IncidentId', 'Active', 'Priority', 'State','OpenedBy','OpenedDate','Description','Approve','Reject'];
   incidentList: any = [];
   dataSource: any ;   
   groupid:any;
+  public approvalStatus=ApprovalStatus;
 
   constructor( private permissionsService:PermissionsService,
                private apiservice:ApiservicesService,
@@ -22,14 +24,13 @@ export class IncidentApprovalComponent implements OnInit{
 ngOnInit(): void {
 
 this.permissionsService.loginreponse$.subscribe((data)=>{
-
 this.groupid=data.assignedGroupId;
+});      
 
-});
-      
-this.groupid=1;
+//this.groupid=1;
 this.loadIncidents();
   }
+
 public approve(element:any, status:any):void{
   console.log("approve:"+JSON.stringify(element));
    this.apiservice.approveIncident(element.IncidentId,status).subscribe({
@@ -73,6 +74,7 @@ public approve(element:any, status:any):void{
                             'Priority' : data.priority,
                             'OpenedBy' :  data.openedBy,
                             'OpenedDate' : data.openedDate,
+                            'Description': data.description
                             // 'ApprovalStatus': data.approvalStatus                            
                           }});   
                           this.dataSource = new MatTableDataSource(this.incidentList)

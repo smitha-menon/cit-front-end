@@ -42,23 +42,26 @@ const routes: Routes = [{
     },
     {
       path: 'users',
-      canActivate: [AuthGuard],
-      // data: {
-      //   role: userRoles.SRE
-      // },
+      canActivate: [AuthGuard,HasRolesGuard],
+      data: {
+        role: userRoles.SA
+      },
       loadChildren: () => import('./modules/user-management/user-management.module').then((m) => m.UserManagementModule)
     },
     {
       path: 'groups',
-      canActivate: [AuthGuard],
-      // data: {
-      //   role: userRoles.SRE
-      // },
+      canActivate: [AuthGuard,HasRolesGuard],
+      data: {
+        role: userRoles.SA
+      },
       loadChildren: () => import('./modules/groups/groups.module').then((m) => m.GroupsModule)
     },
     {
       path:'incident-approval',
-      canActivate: [AuthGuard],
+      canActivate: [AuthGuard,HasRolesGuard],
+      data: {
+        role: userRoles.GA
+      },
       loadChildren: () => import('./modules/approvals/approvals.module').then((m) => m.ApprovalsModule)
     }
     

@@ -26,6 +26,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PermissionsService } from 'src/app/services/permissions.service';
 
 @NgModule({
   declarations: [IncidentApprovalComponent],
@@ -55,6 +56,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSortModule,
     MatRadioModule,
     NgbModule
-  ]
+  ],
+  providers: [PermissionsService],
 })
 export class ApprovalsModule { }

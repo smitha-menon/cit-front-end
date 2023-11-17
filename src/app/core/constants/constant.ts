@@ -26,3 +26,9 @@ export const ROUTES = {
                          GA:'GA',
                          SA:'SA',
                          BU:'BU'}
+
+export enum ApprovalStatus {
+                            APPROVED='APPROVED',
+                             PENDING='PENDING', 
+                             REJECTED='REJECTED'
+                        }
