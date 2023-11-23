@@ -124,6 +124,13 @@
 
                 </div>
             </li>
+            <li class="nav__item" >
+                <div class="nav_list" [ngClass]="{'active': tab==='reports'}" (click)="reports(); tab='reports'">
+                    <label class="nav_label">
+                        <i class="fa fa-table" aria-hidden="true"></i>Report </label>
+
+                </div>
+            </li>
         </ul>
     </nav>
 </div>

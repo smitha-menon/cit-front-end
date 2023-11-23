@@ -55,6 +55,9 @@ export class NavbarComponent implements OnInit {
 
     app?.classList.toggle("view-mobile-menu");
   }
+  reports() {
+    this.router.navigateByUrl(ROUTES.REPORT)
+  }
 
   // backButton() {
   //   const app = document.getElementById("sidenavbar");

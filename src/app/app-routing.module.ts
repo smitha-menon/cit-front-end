@@ -63,6 +63,11 @@ const routes: Routes = [{
         role: userRoles.GA
       },
       loadChildren: () => import('./modules/approvals/approvals.module').then((m) => m.ApprovalsModule)
+    },
+    {
+      path: 'reports',
+      canActivate: [AuthGuard],
+      loadChildren: () => import('./modules/report/report.module').then((m) => m.ReportModule)
     }
     
     // {path:'', redirectTo:'/login',pathMatch:'full'}  
