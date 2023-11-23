@@ -65,16 +65,15 @@
 
 
     .mdc-data-table__header-cell {
-        background: #676767 !important;
-        color: #fff;
-        border-right: 1px solid #fff;
+        background: #e8e8e8 !important;
+        color: #000;
+        border-right: 1px solid #6b6b6b;
         text-align: center;
         font-family: Montserrat;
         font-style: normal;
         font-weight: 600;
         font-size: 18px;
         line-height: 30px;
-        // color: #344054;
     }
 
     .mat-sort-header-arrow {
@@ -95,37 +94,33 @@
         // background: rgba(220, 220, 220, 0.30);
         color: #393939;
         border: none;
-        padding: 10px
+        // padding: 10px
     }
 
     mat-row.mat-mdc-row:hover {
         background-color: #C0C0C070;
     }
 
-    mat-cell.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-IncidentId.mat-column-IncidentId{
-        border-bottom-left-radius: 7px;
-        // background: rgba(220, 220, 220, 0.30);
-        border-top-left-radius: 7px;
+    
+    mat-cell.mat-mdc-cell.mdc-data-table__cell.cdk-cell {
+        border-right: 1px solid #3e3e3e;
     }
-
-    mat-cell.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-Reject.mat-column-Reject {
-        border-right: none;
-        border-bottom-right-radius: 7px;
-        border-top-right-radius: 7px;
-    }
+   
     .mat-mdc-row {
         &:nth-of-type(even) {
-          background: #C0C0C070;
+          background: #e8e8e8;
           padding: 0px;
           height: 52px;
-          margin-top: 10px;
+          border-top: 1px solid rgb(101 94 94);
+        //   margin-top: 10px;
       
         }
         &:nth-of-type(odd) {
-            background: #DCDCDC4D;
+            background: #fff;
             padding: 0px;
             height: 52px;
-            margin-top: 10px;
+            border-top: 1px solid rgb(101 94 94);
+            // margin-top: 10px;
         
           }
     }

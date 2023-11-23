@@ -18,18 +18,25 @@ export interface Execution {
 export class ReportsComponent implements OnInit {
   displayedColumns = ['Number', 'Priority', 'State','Active','Opened Date']
   
-  groupList: Array<any> = [];
-  dataSource: MatTableDataSource<Execution> = new MatTableDataSource<Execution>(this.groupList);
+  reportList: Array<any> = [];
+  dataSource: MatTableDataSource<Execution> = new MatTableDataSource<Execution>(this.reportList);
   ngOnInit(): void {
 
-    this.groupList = [{
+    this.reportList = [{
+      number: '1234',
+      priority: 'priority-3',
+      state: 'resolved',
+      active: 'null',
+      openeddate: '12-03-2023'
+     },
+     {
       number: '1234',
       priority: 'priority-3',
       state: 'resolved',
       active: 'null',
       openeddate: '12-03-2023'
      }]
-   this.dataSource = new MatTableDataSource(this.groupList)
+   this.dataSource = new MatTableDataSource(this.reportList)
   }
 
 }
