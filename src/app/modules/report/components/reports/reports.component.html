@@ -41,20 +41,38 @@
                         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                     </mat-table>
             </div>
+            <form [formGroup]="reportfilters" class="testplan-form">
             <div class="filters-section">
                 <div class="filter-group">
                     <div>
-                        <label>Assignment Group</label>
+                        <label>Priority</label>
+                        <select  [(ngModel)]="selectedPriority" class="form-control" [ngModelOptions]="{standalone: true}">
+                            <option [value]="undefined">{{defaultSelection}}</option>
+                            <option *ngFor="let item of priorityList" [value]="item.priorityId">{{ item.priorityValue }}</option>
+                          </select>
+                    </div>
+                    <div>
+                        <label>Incident State</label>
+                        <select  [(ngModel)]="selectedState" class="form-control" [ngModelOptions]="{standalone: true}">
+                            <option [value]="undefined">{{defaultSelection}}</option>
+                            <option *ngFor="let item of stateList" [value]="item.statusId">{{ item.statusValue }}</option>
+                          </select>
                     </div>
                     <div>
                         <label>Assignment Group</label>
-                    </div>
-                    <div>
-                        <label>Assignment Group</label>
+                        <select  [(ngModel)]="selectedGroup" class="form-control" [ngModelOptions]="{standalone: true}">
+                            <option [value]="undefined">{{defaultSelection}}</option>
+                            <option *ngFor="let item of assignGrpList" [value]="item.statusId">{{ item.statusValue }}</option>
+                          </select>
                     </div>
                     
                 </div>
+                <div>
+                    <button class="btn btn-primary mb-3">View Report</button>
+                    <button (click)="exportexcel()" class="btn btn-primary mb-3">Download Report</button>
+                </div>
             </div>
+        </form>
         </div>
     </div>
 </div>
