@@ -2,77 +2,91 @@
     <div class="main-header">
         <label>Report</label>
 
-        <div style="border: 1px solid #b8b8b8; border-top: none; position: relative;">
+        <div style="border: 1px solid #b8b8b8; border-top: none;">
             <div class="card2">
 
             </div>
-
-            <div style="padding: 8px; width: 80%;">
-                    <mat-table #table [dataSource]="dataSource">
-
-                        <ng-container matColumnDef="Number">
-                            <mat-header-cell *matHeaderCellDef>Number </mat-header-cell>
-                            <mat-cell *matCellDef="let element">{{element.number}}</mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="Priority">
-                            <mat-header-cell *matHeaderCellDef> Priority </mat-header-cell>
-                            <mat-cell *matCellDef="let element">{{element.priority}}</mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="State">
-                            <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
-                            <mat-cell *matCellDef="let element">{{element.state}}
-                            </mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="Active">
-                            <mat-header-cell *matHeaderCellDef> Active </mat-header-cell>
-                            <mat-cell *matCellDef="let element">{{element.active}}
-                            </mat-cell>
-                        </ng-container>
-
-                        <ng-container matColumnDef="Opened Date">
-                            <mat-header-cell *matHeaderCellDef> Opened Date </mat-header-cell>
-                            <mat-cell *matCellDef="let element">{{element.openeddate}}
-                            </mat-cell>
-                        </ng-container>
-                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                    </mat-table>
+            <div style="margin-left: 20px;">
+                <button class="filter-btn" (click)="toggle($event)">Filters
+                </button>
             </div>
-            <form [formGroup]="reportfilters" class="testplan-form">
-            <div class="filters-section">
-                <div class="filter-group">
-                    <div>
-                        <label>Priority</label>
-                        <select  [(ngModel)]="selectedPriority" class="form-control" [ngModelOptions]="{standalone: true}">
-                            <option [value]="undefined">{{defaultSelection}}</option>
-                            <option *ngFor="let item of priorityList" [value]="item.priorityId">{{ item.priorityValue }}</option>
-                          </select>
+            <div [class.toggled]="!toggled">
+                <form [formGroup]="reportfilters" class="testplan-form">
+                    <div class="filter-group">
+                        <div class="form-group">
+                            <label class="form-label">Priority</label>
+                            <select [(ngModel)]="selectedPriority" class="form-control"
+                                [ngModelOptions]="{standalone: true}">
+                                <option [value]="undefined">{{defaultSelection}}</option>
+                                <option *ngFor="let item of priorityList" [value]="item.priorityId">{{
+                                    item.priorityValue }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Incident State</label>
+                            <select [(ngModel)]="selectedState" class="form-control"
+                                [ngModelOptions]="{standalone: true}">
+                                <option [value]="undefined">{{defaultSelection}}</option>
+                                <option *ngFor="let item of stateList" [value]="item.statusId">{{ item.statusValue }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Assignment Group</label>
+                            <select [(ngModel)]="selectedGroup" class="form-control"
+                                [ngModelOptions]="{standalone: true}">
+                                <option [value]="undefined">{{defaultSelection}}</option>
+                                <option *ngFor="let item of assignGrpList" [value]="item.groupId">{{ item.groupName
+                                    }}</option>
+                            </select>
+                        </div>
+
                     </div>
-                    <div>
-                        <label>Incident State</label>
-                        <select  [(ngModel)]="selectedState" class="form-control" [ngModelOptions]="{standalone: true}">
-                            <option [value]="undefined">{{defaultSelection}}</option>
-                            <option *ngFor="let item of stateList" [value]="item.statusId">{{ item.statusValue }}</option>
-                          </select>
-                    </div>
-                    <div>
-                        <label>Assignment Group</label>
-                        <select  [(ngModel)]="selectedGroup" class="form-control" [ngModelOptions]="{standalone: true}">
-                            <option [value]="undefined">{{defaultSelection}}</option>
-                            <option *ngFor="let item of assignGrpList" [value]="item.statusId">{{ item.statusValue }}</option>
-                          </select>
-                    </div>
-                    
-                </div>
-                <div>
-                    <button class="btn btn-primary mb-3">View Report</button>
-                    <button (click)="exportexcel()" class="btn btn-primary mb-3">Download Report</button>
-                </div>
+                    <!-- <div> -->
+                    <button class="button-29">View Report</button>
+                    <!-- </div> -->
+                </form>
             </div>
-        </form>
+
+
+            <div style="padding: 8px;">
+                <mat-table #table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="Number">
+                        <mat-header-cell *matHeaderCellDef>Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.number}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Priority">
+                        <mat-header-cell *matHeaderCellDef> Priority </mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.priority}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="State">
+                        <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.state}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Active">
+                        <mat-header-cell *matHeaderCellDef> Active </mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.active}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Opened Date">
+                        <mat-header-cell *matHeaderCellDef> Opened Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.openeddate}}
+                        </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+
+            </div>
+            <div style="float: right;">
+                <button (click)="exportexcel()" class="button-29">Download Report</button>
+            </div>
         </div>
     </div>
 </div>

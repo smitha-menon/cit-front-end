@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
-import * as XLSX from 'xlsx';
+import * as fileSaver from 'file-saver';
 
 export interface Execution {
   number: string;
@@ -28,6 +28,8 @@ export class ReportsComponent implements OnInit {
   selectedState: string | any;
   selectedPriority: string | any;
   selectedGroup: string | any;
+  toggled: boolean = true;
+  statusClass = 'non-active';
 
   constructor( private fb: FormBuilder,private apiservice: ApiservicesService){}
   
@@ -107,32 +109,24 @@ export class ReportsComponent implements OnInit {
    fileName = 'ExcelSheet.xlsx';
 
   exportexcel() {
-    /**passing table id**/
-   // let data = document.getElementById('table-data');
-  //  debugger
-  //   const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.dataSource );
-
-  //   /**Generate workbook and add the worksheet**/
-  //   const wb: XLSX.WorkBook = XLSX.utils.book_new();
-  //   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-  //   /*save to file*/
-  //   XLSX.writeFile(wb, this.fileName);
-   // Create a workbook and add a worksheet
+ 
    const data = [
-    //this.displayCols,
+
     this.reportList
-    // Add your data here
+
   ];
   console.table(data);
-   const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet( data);
+  let flattenedData: any[] = data.flat(); // Use flat() to flatten the array
+  let jsonStrings: string[] = flattenedData.map(obj => JSON.stringify(obj));
 
-   // Create a workbook with a single sheet
-   const wb: XLSX.WorkBook = XLSX.utils.book_new();
-   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
- 
-   // Save the workbook as an Excel file
-   XLSX.writeFile(wb, 'exported-data.xlsx');
+  // Create a Blob from the JSON strings
+  let blob: Blob = new Blob(jsonStrings, { type: 'application/pdf; charset=utf-8' });
+  
+  // Save the Blob as a PDF
+  fileSaver.saveAs(blob, 'summaryReport.pdf');
   }
 
+  toggle(event:any) {
+    this.toggled = !this.toggled  
+  }
 }
