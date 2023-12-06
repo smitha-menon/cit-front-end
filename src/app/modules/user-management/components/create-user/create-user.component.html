@@ -27,16 +27,21 @@
                             </div>
                             <div class="form-group">
 
-                                <label class="form-label">Role:</label>
-                                <!-- <input matInput type="text" class="form-control" formControlName="role" name="role"
-                                    required> -->
-                                <select  [(ngModel)]="selectedState" class="form-control" [ngModelOptions]="{standalone: true}">
-                        <option [value]="undefined">{{defaultSelection}}</option>
-                        <option *ngFor="let item of priorityList" [value]="item.roleName">{{ item.roleName }}</option>
-                      </select>
+                                <label class="form-label">Email:</label>
+                                <input matInput type="text" class="form-control" formControlName="email"
+                                    name="email" required>
                                 <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                        Please provide a valid email
-                      </div> -->
+                Please provide a valid email
+              </div> -->
+                            </div>
+                            <div class="form-group">
+
+                                <label class="form-label">Phone Number:</label>
+                                <input matInput type="text" class="form-control" formControlName="phone"
+                                    name="phone" required>
+                                <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+                Please provide a valid email
+              </div> -->
                             </div>
 
                             <div class="form-group">
@@ -73,25 +78,62 @@
               Please provide a valid email
             </div> -->
                             </div>
+
+
+                        </div>
+                        <br>
+                        <div style="display: flex; gap: 10px;">
                             <div class="form-group">
-        
-                                <label class="form-label">Assigned Group:</label>
+
+                                <!-- <label class="form-label">Role:</label> -->
+                                <!-- <input matInput type="text" class="form-control" formControlName="role" name="role"
+                                    required> -->
+                                <select [(ngModel)]="selectedState" class="form-control"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <option [value]="undefined">Role</option>
+                                    <option *ngFor="let item of priorityList" [value]="item.roleName">{{ item.roleName
+                                        }}</option>
+                                </select>
+                                <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
+                        Please provide a valid email
+                      </div> -->
+                            </div>
+                            <div class="form-group">
+
+                                <!-- <label class="form-label">Assigned Group:</label> -->
                                 <!-- <input matInput type="text" class="form-control" formControlName="assignedgroup" name="assignedgroup"
                                 required> -->
-                                <select [(ngModel)]="selectedGroup" class="form-control" [ngModelOptions]="{standalone: true}">
-                                  <option [value]="undefined">{{defaultSelection}}</option>
-                                  <option *ngFor="let item of assignGrpList" [value]="item.groupId">{{ item.groupName }}</option>
+                                <select [(ngModel)]="selectedGroup" class="form-control"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <option [value]="undefined">Assigned Group</option>
+                                    <option *ngFor="let item of assignGrpList" [value]="item.groupId">{{ item.groupName
+                                        }}</option>
                                 </select>
-                              </div>
+                            </div>
                             <div>
-                                <button  class="button-29" (click)="addUser()">Add User</button>
+                                <button class="add-btn" (click)="addGroupRo()">Add</button>
                             </div>
                         </div>
 
-                        <!-- <div> -->
-                        <!-- </div> -->
-
-
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Roles</th>
+                                    <th>Groups</th>
+                                    <!-- Add more headers based on your API response structure -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of tableData">
+                                    <td>{{ row.column1 }}</td>
+                                    <td>{{ row.column2 }}</td>
+                                    <!-- Add more cells based on your API response structure -->
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <button class="button-29" (click)="addUser()">Add User</button>
+                        </div>
                     </form>
 
                 </div>

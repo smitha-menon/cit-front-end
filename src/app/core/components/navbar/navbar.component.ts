@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ROUTES } from '../../constants/constant';
+import { ROUTES, userRoles } from '../../constants/constant';
 import { AuthService } from 'src/app/auth/auth.service';
 import { PermissionsService } from 'src/app/services/permissions.service';
 
@@ -11,15 +11,16 @@ import { PermissionsService } from 'src/app/services/permissions.service';
 })
 export class NavbarComponent implements OnInit {
   tab: any
-  loginUser!:string;
-  constructor(private router: Router, private _authService :AuthService,private route: Router,private permissionService :PermissionsService) {
-    this.tab = this.route.url.replace('/','');
+  loginUser!: string;
+  rolesU= userRoles
+  constructor(private router: Router, private _authService: AuthService, private route: Router, private permissionService: PermissionsService) {
+    this.tab = this.route.url.replace('/', '');
     console.log(this.tab)
-   }
+  }
 
   ngOnInit(): void {
-    this.permissionService.loginreponse$.subscribe((data)=>{
-      this.loginUser= data.loginUser
+    this.permissionService.loginreponse$.subscribe((data) => {
+      this.loginUser = data.loginUser
     });
   }
 
@@ -36,7 +37,7 @@ export class NavbarComponent implements OnInit {
   toggleSideBar() {
     console.log('work')
   }
-  
+
   addIncident() {
     console.log(this.tab)
     this.router.navigateByUrl(ROUTES.CREATEINCIDENT)
@@ -44,10 +45,13 @@ export class NavbarComponent implements OnInit {
   users() {
     this.router.navigateByUrl(ROUTES.USERS)
   }
+  roles() {
+    this.router.navigateByUrl(ROUTES.ROLES)
+  }
   groups() {
     this.router.navigateByUrl(ROUTES.GROUP)
   }
-  approvals(){
+  approvals() {
     this.router.navigateByUrl(ROUTES.APPROVALS)
   }
   dropDown() {
@@ -55,10 +59,19 @@ export class NavbarComponent implements OnInit {
 
     app?.classList.toggle("view-mobile-menu");
   }
+  dropDowns() {
+    const app = document.getElementById("mobile-menu-item");
+
+    app?.classList.toggle("view-mobile-menu");
+  }
+
   reports() {
     this.router.navigateByUrl(ROUTES.REPORT)
   }
 
+  isUserInRole(requiredRoles: string[]): boolean {
+    return requiredRoles.some(role => this._authService.hasRole(role));
+  }
   // backButton() {
   //   const app = document.getElementById("sidenavbar");
 

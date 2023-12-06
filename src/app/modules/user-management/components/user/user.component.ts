@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ROUTES } from 'src/app/core/constants/constant';
@@ -10,6 +10,7 @@ export interface Execution {
   email: string;
   role: string;
   state: string;
+  action: string;
 }
 
 
@@ -20,9 +21,11 @@ export interface Execution {
 })
 export class UserComponent implements OnInit {
 
-  displayedColumns = ['Name', 'Email', 'Role', 'State'];
+  displayedColumns = ['Name', 'Email', 'Role', 'State', 'Action'];
   userList: any = [];
   dataSource: MatTableDataSource<Execution> = new MatTableDataSource<Execution>(this.userList);
+  public editUsersDetailsForm: FormGroup | any;
+  userEditPopup: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +34,11 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.loadUsers();
 
+    this.editUsersDetailsForm = this.fb.group({
+      editusername: ['', [Validators.required]],
+      editemailid: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      edituserrole: ['', [Validators.required]],
+    });
 
   }
 
@@ -67,6 +75,18 @@ export class UserComponent implements OnInit {
   }
   goToRoles() {
     this.router.navigateByUrl(ROUTES.ROLES)
+  }
+  userEditPop(index: any) {
+    this.userEditPopup = true;
+    this.editUsersDetailsForm = this.fb.group({
+      editusername: [this.userList[index].name, [Validators.required]],
+      editemailid: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      edituserrole: [this.userList[index].role, [Validators.required]],
+    });
+  }
+
+  editCancelButton() {
+    this.userEditPopup = false;
   }
 
   checkState(state: any) {

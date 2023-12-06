@@ -10,7 +10,7 @@
         <div style="position: relative;" id="msbo">
             <!-- <button id="collapseBtn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleSideBar()" >
                 Toggle</button> -->
-            <img  class="back-icon" src="../../../../assets/images/back-button.svg">
+            <img class="back-icon" src="../../../../assets/images/back-button.svg">
         </div>
         <div
             style="width: 100%; height: 100%; background: rgb(217 217 217); display: flex; align-items: center;justify-content: space-evenly;">
@@ -41,90 +41,108 @@
                 <img src="../../../../assets/images/User.png">
                 <!-- <br> -->
                 <label>{{loginUser}}</label>
-                <!-- <i class="fa-solid fa-user fa-2xl" style="margin-top: 50px;"></i> -->
-                <!-- <div class="user-name">Alwin</div> -->
-                <!-- <div class="avatar-dropdown">
-                        <div class="dropdown-link">
-                            <div class="user-name">Aadhithya Das</div>
-                        </div>
-                        <div class="dropdown-link">
-                            <div><img id="menu-icon" src="../../../../assets/images/logout-icon.svg" style="width: 18px; background: #f5f2f2;"></div>
-                            <div><button class="profile-dropdown-item-btn" (click)="logOut()">Logout</button></div>
-                        </div>
-                    </div> -->
+
             </div>
-            <li class="nav__item" >
-                <!-- <div  [ngClass]="{'active': tab==='test-plan'}" (click)="goToTestplan(); tab='test-plan'" >
-                    <img src="../../../../assets/images/test-plan-icon.png" class="icons" >
-                </div> -->
-                <div class="nav_list"  [ngClass]="{'active': tab==='incidents'}" (click)="goToIncident(); tab='incidents'" id="mobile-menu-items">
+            <li class="nav__item">
+                <div class="nav_list" [ngClass]="{'active': tab==='incidents'}"
+                    (click)="goToIncident(); tab='incidents'" id="mobile-menu-items">
 
                     <label class="nav_label">
                         <i class="fa-solid fa-home"></i>
                         Home</label>
 
-                        <div class="dropdown-content">
-      
-                            <a class="nav_label">
+                    <div class="dropdown-content">
 
-                                Resolution</a>
+                        <a class="nav_label">
 
-                            <a class="nav_label">
-                                Incident Details</a>
-                           
-                </div>
+                            Resolution</a>
+
+                        <a class="nav_label">
+                            Incident Details</a>
+
+                    </div>
 
                 </div>
                 <img src="../../../../assets/images/drop-icon.png" style="position: absolute;
                 top: 20px;
                 right: 27px;" (click)="dropDown()">
-                
-               
+
+
 
             </li>
 
-            <li class="nav__item" >
+            <li class="nav__item">
                 <div class="nav_list">
                     <label class="nav_label">
-                        <img src="../../../../assets/images/dashboard-img.png" style="width: 20px; filter: invert(0.6);"> Dashboard</label>
+                        <img src="../../../../assets/images/dashboard-img.png"
+                            style="width: 20px; filter: invert(0.6);"> Dashboard</label>
                     <!-- <i class="fa fa-user  fa-2xl icon" style="color: white;"></i>  -->
                     <!-- <img src="../../../../assets/images/users-icon.png" class="icons"> -->
                 </div>
             </li>
-           
+            <li class="nav__item" *ngIf="isUserInRole([rolesU.SA])">
+                <div class="nav_list" id="mobile-menu-item">
 
-            <li class="nav__item" >
-                <div class="nav_list"  [ngClass]="{'active': tab==='create-incident'}" (click)="addIncident(); tab='create-incident'">
+                    <label class="nav_label" (click)="dropDowns()">
+                        <i class="fa-solid fa-users"></i>
+                        Management</label>
+
+                    <div class="dropdown-content">
+
+                        <!-- <div class="nav_list" [ngClass]="{'active': tab==='users'}" (click)="users(); tab='users'"> -->
+                        <label class="nav_label" [ngClass]="{'sideactive': tab==='users'}"
+                            (click)="users(); tab='users'">
+                            <i class="fa-solid fa-user"></i>Users </label>
+                        <!-- <i class="fa fa-user  fa-2xl icon" style="color: white;"></i>  -->
+                        <!-- <img src="../../../../assets/images/users-icon.png" class="icons"> -->
+                        <!-- </div> -->
+
+                        <!-- <div class="nav_list" [ngClass]="{'active': tab==='groups'}" (click)="groups(); tab='groups'"> -->
+                        <label class="nav_label" [ngClass]="{'sideactive': tab==='groups'}"
+                            (click)="groups(); tab='groups'">
+                            <i class="fa-solid fa-users-between-lines"></i>Groups </label>
+                        <!-- <i class="fa fa-user  fa-2xl icon" style="color: white;"></i>  -->
+                        <!-- <img src="../../../../assets/images/users-icon.png" class="icons"> -->
+                        <!-- </div> -->
+                        <label class="nav_label" [ngClass]="{'sideactive': tab==='roles'}"
+                            (click)="roles(); tab='roles'">
+                            <i class="fa-solid fa-users-between-lines"></i>Roles </label>
+
+                    </div>
+
+                </div>
+                <img src="../../../../assets/images/drop-icon.png" style="position: absolute;
+                top: 20px;
+                right: 20px;" (click)="dropDowns()">
+
+
+
+            </li>
+
+            <li class="nav__item" *ngIf="isUserInRole([rolesU.SRE , rolesU.GA])">
+                <div class="nav_list" [ngClass]="{'active': tab==='create-incident'}"
+                    (click)="addIncident(); tab='create-incident'">
                     <label class="nav_label">
-                        <i class="fa-solid fa-circle-plus"></i>  Add Incident</label>
-                    <!-- <i class="fa fa-user  fa-2xl icon" style="color: white;"></i>  -->
-                    <!-- <img src="../../../../assets/images/users-icon.png" class="icons"> -->
+                        <i class="fa-solid fa-circle-plus"></i> Add Incident</label>
                 </div>
             </li>
-            <li class="nav__item" >
-                <div class="nav_list"  [ngClass]="{'active': tab==='users'}" (click)="users(); tab='users'">
+            <!-- <li class="nav__item">
+               
+            </li> -->
+            <!-- <li class="nav__item">
+                <div class="nav_list" [ngClass]="{'active': tab==='groups'}" (click)="groups(); tab='groups'">
                     <label class="nav_label">
-                        <i class="fa-solid fa-user"></i>Users </label>
-                    <!-- <i class="fa fa-user  fa-2xl icon" style="color: white;"></i>  -->
-                    <!-- <img src="../../../../assets/images/users-icon.png" class="icons"> -->
+                        <i class="fa-solid fa-users-between-lines"></i>Groups </label>
                 </div>
-            </li>
-            <li class="nav__item" >
-                <div class="nav_list"  [ngClass]="{'active': tab==='groups'}" (click)="groups(); tab='groups'">
-                    <label class="nav_label">
-                        <i class="fa-solid fa-users-between-lines" ></i>Groups </label>
-                    <!-- <i class="fa fa-user  fa-2xl icon" style="color: white;"></i>  -->
-                    <!-- <img src="../../../../assets/images/users-icon.png" class="icons"> -->
-                </div>
-            </li>
-            <li class="nav__item" >
+            </li> -->
+            <li class="nav__item" *ngIf="isUserInRole([rolesU.GA])">
                 <div class="nav_list" [ngClass]="{'active': tab==='approval'}" (click)="approvals(); tab='approval'">
                     <label class="nav_label">
                         <i class="fa-solid fa-users-between-lines"></i>Approvals </label>
 
                 </div>
             </li>
-            <li class="nav__item" >
+            <li class="nav__item">
                 <div class="nav_list" [ngClass]="{'active': tab==='reports'}" (click)="reports(); tab='reports'">
                     <label class="nav_label">
                         <i class="fa fa-table" aria-hidden="true"></i>Report </label>

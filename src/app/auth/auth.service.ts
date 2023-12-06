@@ -15,6 +15,7 @@ import { loginResponse } from '../interfaces/loginResponse';
 export class AuthService {
   token: string | any;
   logresponse:loginResponse | any;
+  userRoles: any;
   
   constructor(private routes: Router,private apiservice: ApiservicesService,private permissionsService: PermissionsService) {
     
@@ -106,6 +107,15 @@ export class AuthService {
 
       );    
     
+  }
+
+ 
+  hasRole(role: string): boolean {
+    this.permissionsService.loginreponse$.subscribe((data: any)=>{
+      this.userRoles= data.roleCode
+    });
+
+    return this.userRoles.includes(role);
   }
 
   setToken(response: any) {

@@ -2,7 +2,7 @@
     <div class="main-header">
         <div style="display: flex; justify-content: space-between">
             <label>Users</label>
-            <button class="create-new-btn" (click)="goToRoles()">Add Roles</button>
+            <!-- <button class="create-new-btn" (click)="goToRoles()">Add Roles</button> -->
             <button class="create-new-btn" (click)="addUserPopUp()">Add Users</button>
         </div>
         <div class="search-container">
@@ -43,13 +43,6 @@
                     <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
                     <mat-cell *matCellDef="let element">
                         {{element.role}}
-                        <!-- <span class="mat-cell3" *ngIf="element.status == 'READY_FOR_EXECUTION'">
-                                <label class="statusLabel" [ngClass]="element.status"
-                                    >Execute</label>
-                            </span> -->
-                        <!-- <span class="mat-cell3" *ngIf="element.status == 'EXECUTING'">
-                                <label class="statusLabel" [ngClass]="element.status">Executing</label>
-                            </span> -->
                     </mat-cell>
                 </ng-container>
 
@@ -67,10 +60,67 @@
 
                 </ng-container>
 
+                <!-- Action -->
+                <ng-container matColumnDef="Action">
+                    <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                    <mat-cell *matCellDef="let element; let i = index;">
+                        <ng-container>
+                            <button class="edit-button" (click)="userEditPop(i)">Edit
+                                <img src="../../../../../assets/images/edit-icon.png">
+                            </button>
+                        </ng-container>
+                    </mat-cell>
+                </ng-container>
+
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             </mat-table>
             <!-- </div> -->
         </div>
+    </div>
+       <div class="overlay" *ngIf="userEditPopup">
+      <div class="popup">
+        <div class="users-popup-details">
+          <label class="new-user-label">Edit user</label>
+          <div class="users-close-icon">
+            <mat-icon (click)="editCancelButton()">close</mat-icon>
+          </div>
+          <br>
+          <br>
+          <form [formGroup]="editUsersDetailsForm" >
+            <mat-form-field>
+              <mat-label>User name</mat-label>
+              <input matInput type="text" formControlName="editusername" required>
+              <mat-error *ngIf="editUsersDetailsForm.get('editusername')">
+                User name is required.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Email ID</mat-label>
+              <input matInput type="text" formControlName="editemailid" required>
+              <mat-error *ngIf="editUsersDetailsForm.get('editemailid')">
+                Email ID is required.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field >
+              <mat-select placeholder="User role" formControlName="edituserrole" required>
+                <div *ngFor="let user of userList">
+                    <mat-option [value]="user.role">{{user.role}}</mat-option>
+                </div>
+                
+                <!-- <mat-option [value]="'User'">User</mat-option> -->
+              </mat-select>
+              <mat-error *ngIf="editUsersDetailsForm.get('edituserrole')">
+                User role is required.
+              </mat-error>
+            </mat-form-field>
+            <div>
+              <button  class="user-save-button">Save</button>
+              <button class="users-cancel-button" (click)="editCancelButton()">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
     </div>
 </div>

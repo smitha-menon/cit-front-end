@@ -166,7 +166,7 @@ export class IncidentDetailsPageComponent implements OnInit {
         newdata = response?.map((data: any) => {
           return {
             'Number': data.incidentId,
-            'Active': data.active,
+            'Active': this.checkActive(data.active),
             'State': data.state,
             'Priority': data.priority,
             'Assigned To': data.assignedTo,
@@ -199,7 +199,13 @@ export class IncidentDetailsPageComponent implements OnInit {
     });
   }
 
-
+  checkActive(data: any) {
+    if (data == 'null') {
+      return '-'
+    } else {
+      return data
+    }
+  }
   // goToIncident() {
   //   this.routes.navigateByUrl(ROUTES.VIEWSTEPS)
   // }

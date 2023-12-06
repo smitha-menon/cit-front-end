@@ -26,7 +26,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { RolesComponent } from './components/roles/roles.component';
-
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -54,6 +54,7 @@ import { RolesComponent } from './components/roles/roles.component';
     MatDatepickerModule,
     MatSelectModule,
     MatNativeDateModule,
+    MatInputModule,
     MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,

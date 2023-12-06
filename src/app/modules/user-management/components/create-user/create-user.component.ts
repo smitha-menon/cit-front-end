@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ROUTES } from 'src/app/core/constants/constant';
 import { NotifierService } from 'src/app/core/utils/notifier';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
@@ -14,16 +14,18 @@ import { PermissionsService } from 'src/app/services/permissions.service';
 export class CreateUserComponent implements OnInit {
   public createUser: FormGroup | any;
   selectedState: string | any;
-  assignGrpList: any =[];
+  assignGrpList: any = [];
+  tableData: any = [];
   selectedGroup: string | any;
   defaultSelection: string = "--Select--";
   priorityList: any = [];
-  constructor(private fb: FormBuilder, private apiservice: ApiservicesService,private notifier: NotifierService, private routes: Router, private permissonRes: PermissionsService) { }
+  constructor(private fb: FormBuilder, private apiservice: ApiservicesService, private notifier: NotifierService, private routes: Router, private permissonRes: PermissionsService) { }
 
   ngOnInit(): void {
     this.loadRole();
     this.loadGroups();
-// console.log(this.permissonRes.getLoginResponse())
+   
+    // console.log(this.permissonRes.getLoginResponse())
     this.createUser = this.fb.group({
       username: [''],
       company: ['G10X'],
@@ -43,16 +45,16 @@ export class CreateUserComponent implements OnInit {
       error: (err: any) => console.log(err)
     })
   }
-  loadGroups(){
+  loadGroups() {
     this.apiservice.getAssignedGrpList().subscribe({
-      next :(data:any)=>{
+      next: (data: any) => {
         console.log(data)
-        this.assignGrpList = data 
-       // this.assignGrpList = this.assignGrpList.split(',')  
+        this.assignGrpList = data
+        // this.assignGrpList = this.assignGrpList.split(',')  
       },
       error: (err: any) => {
         console.log(err)
-        
+
       }
     });
   }
@@ -61,44 +63,56 @@ export class CreateUserComponent implements OnInit {
     const obj = {
       "username": this.createUser.value.username,
       "password": Array(8).fill("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz").map(function (x) { return x[Math.floor(Math.random() * x.length)] }).join(''),
-      "role": this.selectedState,
+      "role": this.tableData.map((arr: any) => arr.column1),
       "applicationName": this.createUser.value.applicationname,
       "company": this.createUser.value.company,
       "createdBy": "superadmin",
       "updatedBy": "superadmin",
       "createdOn": this.createUser.value.createdon,
       "updatedOn": this.createUser.value.createdon,
-      "assignedGroup": this.selectedGroup,
+      "assignedGroup": this.tableData.map((arr: any) => arr.column2),
       "isActive": true
     }
     console.log(obj)
-    this.apiservice.addUser(obj).subscribe({
-      next :(response:any)=>{
-        console.log(response)
-        // this.receivedData = ''
-        this.notifier.success(
-          'User Created successfully',
-          'success'
-        )
-         this.createUser.reset()
-          this.routes.navigateByUrl(ROUTES.USERS)
-      },
-      error: (err: any) => {
-        console.log(err)
-        if (err.status === 201)
-        {
-          this.notifier.success(
-            'User created successfully',
-            'success'
-          )
-          
-        }
-    
-      }
+    // this.apiservice.addUser(obj).subscribe({
+    //   next :(response:any)=>{
+    //     console.log(response)
+    //     // this.receivedData = ''
+    //     this.notifier.success(
+    //       'User Created successfully',
+    //       'success'
+    //     )
+    //      this.createUser.reset()
+    //       this.routes.navigateByUrl(ROUTES.USERS)
+    //   },
+    //   error: (err: any) => {
+    //     console.log(err)
+    //     if (err.status === 201)
+    //     {
+    //       this.notifier.success(
+    //         'User created successfully',
+    //         'success'
+    //       )
+
+    //     }
+
+    //   }
 
 
-    })
+    // })
   }
 
+  addGroupRo() {
+ 
+    const groupValue = this.selectedGroup;
+    const roleValue = this.selectedState
+
+    this.tableData.push({
+      column1: roleValue,
+      column2: groupValue,
+    });
+   
+    console.log(this.tableData)
+  }
 
 }

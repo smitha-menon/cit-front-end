@@ -65,12 +65,12 @@
   display: flex;
   gap: 10px;
   align-items: baseline;
-  justify-content: space-evenly;
+  // justify-content: space-evenly;
 }
 
 .testplan-form {
-  display: flex;
-  justify-content: space-around;
+  display: block;
+  // justify-content: space-around;
 }
 
 .form-label {
@@ -147,4 +147,74 @@
 .button-29:active {
   box-shadow: #ff8e5a 0 3px 7px inset;
   transform: translateY(2px);
+}
+
+.add-btn {
+  margin-left: 40%;
+  // margin-top: 20px;
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(100% 100% at 100% 0, #ff8e5a 0, #FD5E0F 100%);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "Montserrat";
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-weight: 700;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s, transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
+}
+
+.add-btn:focus {
+  box-shadow: #ff8e5a 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #ff8e5a 0 -3px 0 inset;
+}
+
+.add-btn:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #ff8e5a 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.add-btn:active {
+  box-shadow: #ff8e5a 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+  color: #000;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
