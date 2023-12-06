@@ -307,6 +307,47 @@ export class ApiservicesService {
     );
   }
 
+  public deleteRole(roleId:any):Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,
+    };
+    const url = `${this.apiUrl}/deleteRole/`+`${roleId}`;
+    return this.http.delete(url,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  public modifyRole(data:any): Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const options = {
+      headers: header,
+    };
+    return this.http.put<any>(this.apiUrl + '/modifyRole/'+data.roleId ,data ,options)
+  }
+  
+  public deleteGroup(grpId:any):Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,
+    };
+    const url = `${this.apiUrl}/deleteAssignedGroup/`+`${grpId}`;
+    return this.http.delete(url,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: any) {
     return throwError(() => error);
   }

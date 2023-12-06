@@ -18,7 +18,7 @@ export interface Execution {
   styleUrls: ['./create-group.component.scss']
 })
 export class CreateGroupComponent implements OnInit {
-  displayedColumns = ['Group Name', 'Group Id', 'Is Active']
+  displayedColumns = [ 'Group Id','Group Name', 'Is Active','Action']
   groupList: Array<any> = [];
   addGroupForm: FormGroup | any;
   constructor(private apiservice: ApiservicesService, private fb: FormBuilder,private notifier: NotifierService) { }
@@ -41,7 +41,8 @@ export class CreateGroupComponent implements OnInit {
           return {
             groupname: data.groupName,
             groupid: data.groupId,
-            isactive: data.isActive
+            isactive: data.isActive,
+            action:null
           }
         })
         console.log(this.groupList)
@@ -69,7 +70,7 @@ export class CreateGroupComponent implements OnInit {
         if (err.status === 200)
         {
           this.notifier.success(
-            'User created successfully',
+            'Group created successfully',
             'success'
           )
           this.addGroupForm.reset();
@@ -80,6 +81,40 @@ export class CreateGroupComponent implements OnInit {
     
       }
     })
+  }
+
+  deleteGroup(data:any)
+  {
+    console.log(data);
+    this.apiservice.deleteGroup(data.groupid).subscribe({
+      next:(response:any)=>{
+
+        this.notifier.success(
+        'Group deleted successfully',
+        'success'
+      );      
+      this.loadGroup(); 
+      },
+      error:(err:any)=>{
+        if (err.status === 410)
+        {
+          this.notifier.success(
+            'success',
+            'Group deleted successfully'            
+          )         
+          this.loadGroup();  
+        }
+        else
+        {
+          this.notifier.error(
+            'Failed',
+            'Group deletion unsuccessfull'
+            
+          )
+        }
+      }
+    });
+
   }
 
 }

@@ -38,15 +38,14 @@
 
     <div>
       <mat-table #table [dataSource]="dataSource">
-        <ng-container matColumnDef="Group Name">
-          <mat-header-cell *matHeaderCellDef> Group Name </mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.groupname}}</mat-cell>
-        </ng-container>
-
         <ng-container matColumnDef="Group Id">
           <mat-header-cell *matHeaderCellDef> Group Id </mat-header-cell>
           <mat-cell *matCellDef="let element">{{element.groupid}}</mat-cell>
         </ng-container>
+        <ng-container matColumnDef="Group Name">
+          <mat-header-cell *matHeaderCellDef> Group Name </mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.groupname}}</mat-cell>
+        </ng-container>     
 
         <ng-container matColumnDef="Is Active">
           <mat-header-cell *matHeaderCellDef> Is Active </mat-header-cell>
@@ -56,6 +55,15 @@
           </span>
           </mat-cell>
         </ng-container>
+        <ng-container matColumnDef="Action">
+          <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+          <mat-cell mat-cell *matCellDef="let element">
+              <button mat-icon-button (click)="deleteGroup(element)">
+                  <mat-icon>cancel</mat-icon>
+              </button>
+              <!-- <i class="material-icons" >Action</i> -->
+          </mat-cell>
+      </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
