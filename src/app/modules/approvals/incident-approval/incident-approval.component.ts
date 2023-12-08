@@ -24,7 +24,7 @@ export class IncidentApprovalComponent implements OnInit{
 ngOnInit(): void {
 
 this.permissionsService.loginreponse$.subscribe((data)=>{
-this.groupid=data.assignedGroupId;
+this.groupid=data.groupRoles[0].assignedGroupId;
 });      
 
 //this.groupid=1;

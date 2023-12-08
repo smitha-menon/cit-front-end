@@ -14,7 +14,7 @@ export class HasRolesGuard implements CanActivate {
   constructor(private permissionService:PermissionsService,private notifier: NotifierService){
 
     this.permissionService.loginreponse$.subscribe((data)=>{
-      this.userRole= data.roleCode
+      this.userRole= data.roles[0].roleCode
     });
   }
   canActivate(

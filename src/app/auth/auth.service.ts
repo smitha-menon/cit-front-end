@@ -77,19 +77,17 @@ export class AuthService {
           console.log("new:"+data.token);
           
           this.logresponse={ token: data.token,  
-                             assignedGroupId:data.assignedGroupId,
-                             assignedToId:data.userId,
+                             groupRoles:data.groupRoles,
+                             assignedToId:data.assignedToId,
                              loginUser: userdata.username, 
-                             roleCode:data.roleCode,
-                             deniedAccessMethodNames: data.deniedAccessMethodNames};
+                             roles:data.roles
+                             };
           
           this.permissionsService.setLoginResponse(this.logresponse);
           console.log("login2"+this.logresponse);
 
           this.setToken(data.token);
-          localStorage.setItem(USER_NAME,userdata.username); 
-          //this.permissionsService.setPermissions(data.deniedAccessMethodNames);
-           
+          localStorage.setItem(USER_NAME,userdata.username);            
            
             return true;
          

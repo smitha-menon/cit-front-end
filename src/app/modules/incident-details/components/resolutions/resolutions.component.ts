@@ -39,7 +39,7 @@ export class ResolutionsComponent {
     this.incid=localStorage.getItem(INCIDENT_ID_KEY);   
     this.loadResolutions();
     this.permissionsService.loginreponse$.subscribe((data) => {
-      this.userPermissions = data.deniedAccessMethodNames;
+      this.userPermissions = data.roles[0].deniedAccessMethodNames;
     });
     this.isAddvisible=this.userPermissions.includes(FEATURES.addResolution)? false:true;
     this.isUseVisible = this.userPermissions.includes(FEATURES.addSuggestedSteps)? false:true;

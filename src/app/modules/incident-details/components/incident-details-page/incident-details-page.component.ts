@@ -87,9 +87,9 @@ export class IncidentDetailsPageComponent implements OnInit {
 
     this.permissionsService.loginreponse$.subscribe((data) => {
       console.log("datauser" + JSON.stringify(data));
-      this.userid = (data.roleCode == userRoles.BU || data.roleCode == userRoles.SA) ? null : data.assignedToId;
-      this.groupid = (data.roleCode == userRoles.BU || data.roleCode == userRoles.SA) ? data.assignedGroupId : null;
-      this.userPermissions = data.deniedAccessMethodNames;
+      this.userid = (data.roles[0].roleCode == userRoles.BU || data.roles[0].roleCode == userRoles.SA) ? null : data.assignedToId;
+      this.groupid = (data.roles[0].roleCode == userRoles.BU || data.roles[0].roleCode == userRoles.SA) ? data.groupRoles[0].assignedGroupId : null;
+      this.userPermissions = data.roles[0].deniedAccessMethodNames;
     });
     console.log("permissiona" + this.userPermissions);
     this.loadIncidents();
