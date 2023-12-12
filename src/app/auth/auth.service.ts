@@ -105,16 +105,8 @@ export class AuthService {
 
       );    
     
-  }
-
- 
-  hasRole(role: string): boolean {
-    this.permissionsService.loginreponse$.subscribe((data: any)=>{
-      this.userRoles= data.roleCode
-    });
-
-    return this.userRoles.includes(role);
-  }
+  } 
+  
 
   setToken(response: any) {
     this.token = response

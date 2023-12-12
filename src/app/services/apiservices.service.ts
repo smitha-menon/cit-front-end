@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap, throwError, BehaviorSubject } from 'rxjs';
-import { Incidents, drillIncidents } from '../interfaces/incidents';
+import { Incidents, drillIncidents, reportFilters } from '../interfaces/incidents';
 import { environment } from 'src/environment/environment';
 import { user } from '../interfaces/user';
 import { recommendations } from '../interfaces/knownErrors';
@@ -347,6 +347,23 @@ export class ApiservicesService {
       catchError(this.handleError)
     );
   }
+
+  public getReport(filters:reportFilters):Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,      
+    };
+    const url = `${this.apiUrl}/getIncidentsForReportPageByFilters`;
+    return this.http.post(url,filters,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
 
   private handleError(error: any) {
     return throwError(() => error);

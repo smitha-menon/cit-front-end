@@ -22,3 +22,14 @@ export interface drillIncidents {
     assignedgroup: string;
     comment:string;
 }
+
+export interface reportFilters{
+    assignedId: string,
+  assignedGroupId: string,
+  state: string,
+  priority: string,
+  fromDate: string,
+  toDate: string
+//   page: number,
+//   size: number
+}

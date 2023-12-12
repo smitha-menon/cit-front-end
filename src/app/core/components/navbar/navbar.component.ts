@@ -12,7 +12,8 @@ import { PermissionsService } from 'src/app/services/permissions.service';
 export class NavbarComponent implements OnInit {
   tab: any
   loginUser!: string;
-  rolesU= userRoles
+  rolesU= userRoles;
+  logedUserRole!:string;
   constructor(private router: Router, private _authService: AuthService, private route: Router, private permissionService: PermissionsService) {
     this.tab = this.route.url.replace('/', '');
     console.log(this.tab)
@@ -20,7 +21,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.permissionService.loginreponse$.subscribe((data) => {
-      this.loginUser = data.loginUser
+      this.loginUser = data.loginUser;
+      this.logedUserRole=data.roles[0].roleCode;
     });
   }
 
@@ -70,8 +72,13 @@ export class NavbarComponent implements OnInit {
   }
 
   isUserInRole(requiredRoles: string[]): boolean {
-    return requiredRoles.some(role => this._authService.hasRole(role));
+   
+    return requiredRoles.includes(this.logedUserRole);
   }
+
+
+
+
   // backButton() {
   //   const app = document.getElementById("sidenavbar");
 
