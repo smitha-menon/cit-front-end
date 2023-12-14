@@ -157,6 +157,31 @@ export class ReportsComponent implements OnInit {
             'OpenedBy':data.openedBy
           }
         });
+        this.reportList.forEach(item =>{
+          //priority
+          this.priorityList.find(function (x:any) {            
+                                                      if( x.priorityId === item.Priority)
+                                                       {            
+                                                          item.Priority = x.priorityValue;             
+                                                       }
+                                                 });
+          this.stateList.find(function(x:any){            
+                                                    if( x.statusId === item.State)
+                                                       {            
+                                                          item.State = x.statusValue;             
+                                                       }
+
+                                            });
+          this.assignUsrList.find(function(x:any){
+            
+            // item.AssignedTo= ( x.userId === item.AssignedTo)?"":x.username;
+                                                      //  {      console.log("assignto"+x.username);      
+                                                      //     item.AssignedTo = x.username;             
+                                                      //  }
+
+                                                  });
+           
+        });
         this.dataSource = new MatTableDataSource(this.reportList)
       },
       error:(err)=>{console.log(err)}

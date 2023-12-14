@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ROUTES } from 'src/app/core/constants/constant';
 import { NotifierService } from 'src/app/core/utils/notifier';
+import { groupRoles } from 'src/app/interfaces/user';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 import { PermissionsService } from 'src/app/services/permissions.service';
 
@@ -13,13 +14,28 @@ import { PermissionsService } from 'src/app/services/permissions.service';
 })
 export class CreateUserComponent implements OnInit {
   public createUser: FormGroup | any;
-  selectedState: string | any;
+  selectedRole: string | any;
   assignGrpList: any = [];
   tableData: any = [];
   selectedGroup: string | any;
   defaultSelection: string = "--Select--";
-  priorityList: any = [];
-  constructor(private fb: FormBuilder, private apiservice: ApiservicesService, private notifier: NotifierService, private routes: Router, private permissonRes: PermissionsService) { }
+  roleList: any = [];
+  userPermissions: string[]=[];
+  selectedItems:string[]=[];
+  logedUser:string | any;
+  
+
+
+
+  constructor(private fb: FormBuilder, 
+    private apiservice: ApiservicesService, 
+    private notifier: NotifierService,
+    private routes: Router, private permissionsService: PermissionsService) { 
+
+      this.permissionsService.loginreponse$.subscribe((data) => {
+        this.logedUser = data.loginUser;
+      });
+    }
 
   ngOnInit(): void {
     this.loadRole();
@@ -29,7 +45,9 @@ export class CreateUserComponent implements OnInit {
     this.createUser = this.fb.group({
       username: [''],
       company: ['G10X'],
-      applicationname: ['CIT 3.0'],
+      passwordtxt: [''],
+      phone:[''],
+      email:[''],
       createdby: [''],
       createdon: [(new Date()).toLocaleDateString("en-GB") + ' ' + (new Date()).toLocaleTimeString('en-IT', { hour12: false })],
 
@@ -39,8 +57,8 @@ export class CreateUserComponent implements OnInit {
   loadRole() {
     this.apiservice.getActiveRole().subscribe({
       next: (res: any) => {
-        // console.log(res)
-        this.priorityList = res
+        console.log(res)
+        this.roleList = res
       },
       error: (err: any) => console.log(err)
     })
@@ -59,57 +77,96 @@ export class CreateUserComponent implements OnInit {
     });
   }
 
+  eventCheck(data:any){
+
+   if(data.target.checked && this.selectedRole!= "undefined")
+   {this.userPermissions=[];
+     this.roleList.find((x:any)=>{       
+      if(x.roleName=== this.selectedRole)
+      {
+        this.userPermissions=x.deniedAccessMethodNames;        
+      }
+    });   
+
+   }
+  }
+  onSelectionChange(event:any){
+    this.selectedItems = event.source.selectedOptions.selected.map((option:any) => option.value);
+    console.log('Selected Items:', this.selectedItems);
+  }
+
+
+deleteItem(data:any){
+  
+  this.tableData = this.tableData.splice((item:any) => item.column2 == data);
+}
+
   addUser() {
+    let roles:groupRoles[]=[];
+
+  this.tableData.forEach((element:any) => {
+  
+  roles.push({assignedGroupId:element.column2,
+            customizedPrivileges:element.column3,
+            roleId:this.roleList.find((x:any)=> x.roleName==element.column1).roleId
+        });
+});
+
+   
     const obj = {
       "username": this.createUser.value.username,
-      "password": Array(8).fill("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz").map(function (x) { return x[Math.floor(Math.random() * x.length)] }).join(''),
-      "role": this.tableData.map((arr: any) => arr.column1),
-      "applicationName": this.createUser.value.applicationname,
+      "password": this.createUser.value.passwordtxt,//Array(8).fill("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz").map(function (x) { return x[Math.floor(Math.random() * x.length)] }).join(''),
+      //"role": this.tableData.map((arr: any) => arr.column1),
+      "emailAddress": this.createUser.value.email,
+      "phoneNumber":this.createUser.value.phone,
       "company": this.createUser.value.company,
-      "createdBy": "superadmin",
-      "updatedBy": "superadmin",
+      "createdBy":  this.logedUser,
+      "updatedBy": "",
       "createdOn": this.createUser.value.createdon,
-      "updatedOn": this.createUser.value.createdon,
-      "assignedGroup": this.tableData.map((arr: any) => arr.column2),
-      "isActive": true
+      "updatedOn": "",
+      //"assignedGroup": this.tableData.map((arr: any) => arr.column2),
+      "isActive": true,
+      //"customizedPrivileges":this.tableData.map((arr: any) => arr.column3),
+      "groupRoles":roles
     }
     console.log(obj)
-    // this.apiservice.addUser(obj).subscribe({
-    //   next :(response:any)=>{
-    //     console.log(response)
-    //     // this.receivedData = ''
-    //     this.notifier.success(
-    //       'User Created successfully',
-    //       'success'
-    //     )
-    //      this.createUser.reset()
-    //       this.routes.navigateByUrl(ROUTES.USERS)
-    //   },
-    //   error: (err: any) => {
-    //     console.log(err)
-    //     if (err.status === 201)
-    //     {
-    //       this.notifier.success(
-    //         'User created successfully',
-    //         'success'
-    //       )
+    this.apiservice.addUser(obj).subscribe({
+      next :(response:any)=>{
+        console.log(response)
+        // this.receivedData = ''
+        this.notifier.success(
+          'User Created successfully',
+          'success'
+        )
+         this.createUser.reset()
+          this.routes.navigateByUrl(ROUTES.USERS)
+      },
+      error: (err: any) => {
+        console.log(err)
+        if (err.status === 201)
+        {
+          this.notifier.success(
+            'User created successfully',
+            'success'
+          )
 
-    //     }
+        }
 
-    //   }
+      }
 
 
-    // })
+    })
   }
 
   addGroupRo() {
  
     const groupValue = this.selectedGroup;
-    const roleValue = this.selectedState
+    const roleValue = this.selectedRole
 
     this.tableData.push({
       column1: roleValue,
       column2: groupValue,
+      column3:this.selectedItems
     });
    
     console.log(this.tableData)

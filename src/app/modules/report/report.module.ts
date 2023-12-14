@@ -25,6 +25,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { NgbDateAdapter, NgbDateParserFormatter, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import { NgbDateAdapter, NgbDateParserFormatter, NgbModule } from '@ng-bootstrap
     ReactiveFormsModule,
     MatSortModule,
     MatRadioModule,
+    MatInputModule,
     NgbModule
   ]
 })

@@ -27,6 +27,8 @@ import { MatCardModule } from '@angular/material/card';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+
 
 
 @NgModule({
@@ -62,6 +64,7 @@ import { MatInputModule } from '@angular/material/input';
     HttpClientModule,
     MatRadioModule,
     MatCardModule,
+    MatListModule
   ]
 })
 export class UserManagementModule { }

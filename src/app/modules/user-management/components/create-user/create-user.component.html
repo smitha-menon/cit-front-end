@@ -46,9 +46,9 @@
 
                             <div class="form-group">
 
-                                <label class="form-label">Application Name:</label>
-                                <input matInput type="text" class="form-control" formControlName="applicationname"
-                                    name="applicationname" required>
+                                <label class="form-label">Password:</label>
+                                <input matInput type="password" class="form-control" formControlName="passwordtxt"
+                                    name="passwordtxt" required>
 
                             </div>
                             <div class="form-group">
@@ -88,16 +88,17 @@
                                 <!-- <label class="form-label">Role:</label> -->
                                 <!-- <input matInput type="text" class="form-control" formControlName="role" name="role"
                                     required> -->
-                                <select [(ngModel)]="selectedState" class="form-control"
+                                <select [(ngModel)]="selectedRole" class="form-control"
                                     [ngModelOptions]="{standalone: true}">
                                     <option [value]="undefined">Role</option>
-                                    <option *ngFor="let item of priorityList" [value]="item.roleName">{{ item.roleName
+                                    <option *ngFor="let item of roleList" [value]="item.roleName">{{ item.roleName
                                         }}</option>
                                 </select>
                                 <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
                         Please provide a valid email
                       </div> -->
                             </div>
+                            
                             <div class="form-group">
 
                                 <!-- <label class="form-label">Assigned Group:</label> -->
@@ -110,8 +111,20 @@
                                         }}</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="customize" name="customize"  (change)="eventCheck($event)">
+                                <label class="form-checkbox" for="customize"> Customize Role</label><br>
+                            </div>
                             <div>
                                 <button class="add-btn" (click)="addGroupRo()">Add</button>
+                            </div>
+                            <div>
+                                <mat-selection-list [multiple]="true"[(ngModel)]="userPermissions" [ngModelOptions]="{standalone: true}" (selectionChange)="onSelectionChange($event)">
+                                    <mat-list-option *ngFor="let item of userPermissions" [value]="item">
+                                      
+                                      {{ item }}
+                                    </mat-list-option>
+                                  </mat-selection-list>
                             </div>
                         </div>
 
@@ -120,6 +133,8 @@
                                 <tr>
                                     <th>Roles</th>
                                     <th>Groups</th>
+                                    <th>Customized Privileges</th>
+                                    <th>Delete</th>
                                     <!-- Add more headers based on your API response structure -->
                                 </tr>
                             </thead>
@@ -127,6 +142,8 @@
                                 <tr *ngFor="let row of tableData">
                                     <td>{{ row.column1 }}</td>
                                     <td>{{ row.column2 }}</td>
+                                    <td>{{ row.column3 }}</td>
+                                    <td><a class="material-icons" (click)="deleteItem(row.column2)">delete</a></td>
                                     <!-- Add more cells based on your API response structure -->
                                 </tr>
                             </tbody>
