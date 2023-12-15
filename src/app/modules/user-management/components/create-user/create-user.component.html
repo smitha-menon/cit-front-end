@@ -118,10 +118,9 @@
                             <div>
                                 <button class="add-btn" (click)="addGroupRo()">Add</button>
                             </div>
-                            <div>
+                            <div >
                                 <mat-selection-list [multiple]="true"[(ngModel)]="userPermissions" [ngModelOptions]="{standalone: true}" (selectionChange)="onSelectionChange($event)">
-                                    <mat-list-option *ngFor="let item of userPermissions" [value]="item">
-                                      
+                                    <mat-list-option *ngFor="let item of userPermissions" [value]="item">                                      
                                       {{ item }}
                                     </mat-list-option>
                                   </mat-selection-list>
@@ -131,6 +130,7 @@
                         <table>
                             <thead>
                                 <tr>
+                                    <th>Sl.no</th>
                                     <th>Roles</th>
                                     <th>Groups</th>
                                     <th>Customized Privileges</th>
@@ -140,10 +140,11 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let row of tableData">
+                                    <td>{{ row.column4 }}</td>
                                     <td>{{ row.column1 }}</td>
                                     <td>{{ row.column2 }}</td>
                                     <td>{{ row.column3 }}</td>
-                                    <td><a class="material-icons" (click)="deleteItem(row.column2)">delete</a></td>
+                                    <td><a class="material-icons" (click)="deleteItem(row.column4)">delete</a></td>
                                     <!-- Add more cells based on your API response structure -->
                                 </tr>
                             </tbody>

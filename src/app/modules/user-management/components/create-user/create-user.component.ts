@@ -98,7 +98,15 @@ export class CreateUserComponent implements OnInit {
 
 deleteItem(data:any){
   
-  this.tableData = this.tableData.splice((item:any) => item.column2 == data);
+  let somedata=[];
+  somedata = this.tableData.filter((item:any) => item.column4 !== data);
+  
+  this.tableData=somedata;
+  let count = 1
+  this.tableData.forEach((item:any) =>{
+    item.column4= count;
+    count+=1;
+  });
 }
 
   addUser() {
@@ -123,7 +131,7 @@ deleteItem(data:any){
       "createdBy":  this.logedUser,
       "updatedBy": "",
       "createdOn": this.createUser.value.createdon,
-      "updatedOn": "",
+      "updatedOn": this.createUser.value.createdon,
       //"assignedGroup": this.tableData.map((arr: any) => arr.column2),
       "isActive": true,
       //"customizedPrivileges":this.tableData.map((arr: any) => arr.column3),
@@ -163,13 +171,17 @@ deleteItem(data:any){
     const groupValue = this.selectedGroup;
     const roleValue = this.selectedRole
 
+    var sno = this.tableData.length +1;
+
     this.tableData.push({
+      column4:sno,
       column1: roleValue,
       column2: groupValue,
       column3:this.selectedItems
+
     });
    
-    console.log(this.tableData)
+    //console.log(this.tableData)
   }
 
 }
