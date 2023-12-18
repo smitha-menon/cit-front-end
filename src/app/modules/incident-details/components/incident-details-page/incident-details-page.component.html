@@ -7,17 +7,16 @@
                     <i class="fa fa-refresh fa-xs"></i>
                 </div> -->
                 <div class="search-container">
-                    <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;font-size: 19px;"></i>
+                    <i class="fa-solid fa-magnifying-glass fa-xs"
+                        style="color: #676767; margin-left: 10px;font-size: 19px;"></i>
                     <input type="text" ngbDatepicker #d="ngbDatepicker" (dateSelect)="onInputChange()"
-                                        class="search-input"
-                                         placeholder="search using Text/Date"
-                                         [(ngModel)]="searchText" 
-                                         (keyup.enter)="onInputChange()"                                                                             
-                                         />
-                    <button class="btn btn-primary calender-icon" (click)="d.toggle()"><i class="fa fa-calendar"></i></button>
-                   
+                        class="search-input" placeholder="search using Text/Date" [(ngModel)]="searchText"
+                        (keyup.enter)="onInputChange()" />
+                    <button class="btn btn-primary calender-icon" (click)="d.toggle()"><i
+                            class="fa fa-calendar"></i></button>
+
                 </div>
-               
+
             </div>
             <div *ngIf="showloader" class="example-loading-shade ">
                 <div style="position: relative;">
@@ -26,9 +25,9 @@
                     left: 0px;">
                     </mat-progress-spinner>
                 </div>
-            
+
             </div>
-            
+
             <div class="wrapper">
                 <!-- <div style="display: flex; gap: 25px; width: 89%;">
                     <div class="search-container" style="width: 176px;
@@ -73,10 +72,11 @@
     
                     </div>
                 </div> -->
-                <mat-paginator [pageSizeOptions]="itemsPerPage" showFirstLastButtons  (page)="onPageChange($event)" aria-label="Select page"></mat-paginator>
+                <mat-paginator [pageSizeOptions]="itemsPerPage" showFirstLastButtons (page)="onPageChange($event)"
+                    aria-label="Select page"></mat-paginator>
                 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
                     <ng-container [matColumnDef]="column" *ngFor="let column of displayCols">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header  class="table-head">{{column}}
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-head">{{column}}
                             <!-- <div class="search-container search-box" >
                         <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
                         <input type="text" class="search-input" placeholder="Search" (keyup)="searchPageFilter($event)" />
@@ -88,10 +88,34 @@
 
                     <tr mat-header-row *matHeaderRowDef="displayCols"></tr>
                     <tr mat-row *matRowDef="let emprow; columns: displayCols" (click)="viewIncident(emprow)"></tr>
-                </table>                
+                </table>
             </div>
         </div>
 
     </div>
     <!-- </div> -->
+</div>
+
+<div class="overlay" *ngIf="logGroupPopup">
+    <div class="delete-popup">
+        <div class="view-popup-label">
+            <label>Login Success</label>
+        </div>
+        <div class="content">
+            <div>
+                <div>
+                    <label class="steps-label">User Logged in Successfully</label>
+                </div>
+                <div style="padding: 20px;">
+                    <img src="../../../../../assets/images/check 2.png">
+                </div>
+                <div>
+                    <label class="steps-content">Please choose in which Group you want to Login</label>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="add-btn" (click)="logGroup()">Next</button>
+        </div>
+    </div>
 </div>

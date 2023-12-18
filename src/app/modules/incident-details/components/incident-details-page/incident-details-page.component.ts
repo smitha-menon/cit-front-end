@@ -77,14 +77,11 @@ export class IncidentDetailsPageComponent implements OnInit {
   userPermissions: string[] = [];
   groupid: any;
   userid: any;
-
+  logGroupPopup: boolean = true;
   incidentDetailForm: boolean = false;
   priorityList: any = [];
   stateList: any = [];
-
   assignUsrList: any;
-  // priorityList:any;
-  // stateList:any;
 
 
   constructor(private routes: Router, private permissionsService: PermissionsService,
@@ -149,7 +146,9 @@ export class IncidentDetailsPageComponent implements OnInit {
      });
    }
   
-
+   logGroup() {
+    this.logGroupPopup = false;
+   }
 
   editForm(index: any) {
     console.log(this.incidentDetails[index])
