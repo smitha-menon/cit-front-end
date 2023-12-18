@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 import * as fileSaver from 'file-saver';
 import { reportFilters } from 'src/app/interfaces/incidents';
+import { formatDate } from '@angular/common';
+import * as XLSX from 'xlsx';
 
 export interface Execution {
   number: string;
@@ -34,42 +36,20 @@ export class ReportsComponent implements OnInit {
   toggled: boolean = true;
   statusClass = 'non-active';
   assignUsrList: any;
+  startDate:any;
+  endDate:any;
 
   constructor( private fb: FormBuilder,private apiservice: ApiservicesService){}
   
   reportList: Array<any> = [];
   dataSource: MatTableDataSource<Execution> = new MatTableDataSource<Execution>(this.reportList);
   ngOnInit(): void {
-
-    // this.reportList = [{
-    //   number: '1234',
-    //   priority: 'priority-3',
-    //   state: 'resolved',
-    //   active: 'null',
-    //   openeddate: '12-03-2023'
-    //  },
-    //  {
-    //   number: '1234',
-    //   priority: 'priority-3',
-    //   state: 'resolved',
-    //   active: 'null',
-    //   openeddate: '12-03-2023'
-    //  }]
    this.dataSource = new MatTableDataSource(this.reportList)
    this.loadGroups();
    this.loadPriorityList();
    this.loadStates();
    this.loadUsers();
-   
-
-  //  this.reportfilters = this.fb.group(({
-  //   state: new FormControl({value:, disabled: true}),
-  //   priority: new FormControl({value: , disabled: true}),   
-  //   assignedgroup: new FormControl({value: , disabled: true}),
-  //   duedate: new FormControl({value: , disabled: true}),
-  //   openeddate:  new FormControl({value: , disabled: true}),
-    
-  // }))
+ 
    }
 
   loadStates(){
@@ -127,6 +107,9 @@ export class ReportsComponent implements OnInit {
 
   viewreport(){
 
+    this.startDate=isNaN(this.startDate)?new Date( Date.now()).toLocaleDateString("en-GB"):this.startDate.toLocaleDateString("en-GB");    
+    this.endDate =isNaN(this.endDate)?new Date( Date.now()).toLocaleDateString("en-GB"):this.endDate.toLocaleDateString("en-GB"); 
+    
     this.selectedGroup=(this.selectedGroup=="undefined")?undefined:this.selectedGroup;
     this.selectedUser=(this.selectedUser=="undefined")?undefined:this.selectedUser;
     this.selectedPriority=(this.selectedPriority=="undefined")?undefined:this.selectedPriority;
@@ -138,8 +121,8 @@ export class ReportsComponent implements OnInit {
       assignedId: this.selectedUser,
       state: this.selectedState,
       priority: this.selectedPriority,
-      fromDate: "01/02/2023 00:00:00",
-      toDate: "01/12/2023 00:00:00"
+      fromDate: this.startDate+" 00:00:00",
+      toDate:  this.endDate+" 00:00:00"
       
     };
     
@@ -158,30 +141,12 @@ export class ReportsComponent implements OnInit {
           }
         });
         this.reportList.forEach(item =>{
-          //priority
-          this.priorityList.find(function (x:any) {            
-                                                      if( x.priorityId === item.Priority)
-                                                       {            
-                                                          item.Priority = x.priorityValue;             
-                                                       }
-                                                 });
-          this.stateList.find(function(x:any){            
-                                                    if( x.statusId === item.State)
-                                                       {            
-                                                          item.State = x.statusValue;             
-                                                       }
-
-                                            });
-          this.assignUsrList.find(function(x:any){
-            
-            // item.AssignedTo= ( x.userId === item.AssignedTo)?"":x.username;
-                                                      //  {      console.log("assignto"+x.username);      
-                                                      //     item.AssignedTo = x.username;             
-                                                      //  }
-
-                                                  });
+         
+          item.Priority = this.priorityList.find((x:any)=>( x.priorityId === item.Priority))?.priorityValue;
+          item.State =  this.stateList.find((x:any)=>( x.statusId === item.State))?.statusValue;
+          item.AssignedTo =  this.assignUsrList.find((x:any)=>(x.userId == item.AssignedTo))?.username;
            
-        });
+       });
         this.dataSource = new MatTableDataSource(this.reportList)
       },
       error:(err)=>{console.log(err)}
@@ -191,24 +156,47 @@ export class ReportsComponent implements OnInit {
     
   }
    /**Default name for excel file when download**/
-   fileName = 'ExcelSheet.xlsx';
-
-  exportexcel() {
+   fileName = 'IncidentReport.xlsx';
  
-   const data = [
 
-    this.reportList
 
-  ];
+  exportexcel(){
+  const ws = XLSX.utils.json_to_sheet(this.reportList);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+ let buf = XLSX.write(wb,{bookType:"xlsx",type:"buffer"})
+ XLSX.write(wb,{bookType:"xlsx",type:"binary"});
+ XLSX.writeFile(wb,this.fileName);
+}
+
+
+  exportPDF() {
+ 
+   const data =     this.reportList;
+
+  
   console.table(data);
+  //const htmlContent ='<h1>Hello, PDF!</h1><p>This is a sample PDF content.</p>';// this.generateHtmlFromData();
+
   let flattenedData: any[] = data.flat(); // Use flat() to flatten the array
   let jsonStrings: string[] = flattenedData.map(obj => JSON.stringify(obj));
 
   // Create a Blob from the JSON strings
   let blob: Blob = new Blob(jsonStrings, { type: 'application/pdf; charset=utf-8' });
-  
+  //const blob = new Blob(data, { type: 'application/pdf; charset=utf-8'});
+  const url = window.URL.createObjectURL(blob);
+  //console.log(htmlContent);
   // Save the Blob as a PDF
   fileSaver.saveAs(blob, 'summaryReport.pdf');
+  }
+
+  private generateHtmlFromData(): string {
+    // Create an HTML table from the array data
+    const tableRows = this.reportList.map(item => `<tr><td>${item.Number}</td><td>${item.Description}</td></tr>`).join('');
+
+    
+    const htmlContent = `<table><thead><tr><th>Name</th><th>Value</th></tr></thead><tbody>${tableRows}</tbody></table>`;
+    return htmlContent;
   }
 
   toggle(event:any) {
