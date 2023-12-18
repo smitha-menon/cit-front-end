@@ -52,7 +52,7 @@ const routes: Routes = [{
       path: 'groups',
       canActivate: [AuthGuard,HasRolesGuard],
       data: {
-        role: userRoles.SRE
+        role: userRoles.SA
       },
       loadChildren: () => import('./modules/groups/groups.module').then((m) => m.GroupsModule)
     },

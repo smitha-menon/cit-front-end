@@ -71,7 +71,7 @@
 
             </li>
 
-            <li class="nav__item" *ngIf="isUserInRole([rolesU.SRE])">
+            <li class="nav__item" *ngIf="isUserInRole([rolesU.SA])">
                 <div class="nav_list" id="mobile-menu-item">
 
                     <!-- <label class="nav_label" (click)="dropDowns()">
@@ -95,7 +95,7 @@
 
 
             </li>
-            <li class="nav__item" *ngIf="isUserInRole([rolesU.SRE])">
+            <li class="nav__item" *ngIf="isUserInRole([rolesU.SA])">
                 <div class="nav_list" id="mobile-menu-item">
                     <label class="nav_label" [ngClass]="{'active': tab==='groups'}"
                         (click)="groups(); tab='groups'">
