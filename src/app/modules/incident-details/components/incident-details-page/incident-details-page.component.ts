@@ -82,6 +82,11 @@ export class IncidentDetailsPageComponent implements OnInit {
   priorityList: any = [];
   stateList: any = [];
 
+  assignUsrList: any;
+  // priorityList:any;
+  // stateList:any;
+
+
   constructor(private routes: Router, private permissionsService: PermissionsService,
     private fb: FormBuilder, private apiservice: ApiservicesService) { }
 
@@ -98,7 +103,52 @@ export class IncidentDetailsPageComponent implements OnInit {
     console.log("permissiona" + this.userPermissions);
     this.loadIncidents();
     console.log("from init" + this.incidentDetails);
-  }
+
+    this.loadPriorityList();
+    this.loadStates();
+    this.loadUsers();
+  
+    }
+ 
+   loadStates(){
+     this.apiservice.getStatusList().subscribe({
+       next :(data:any)=>{
+         console.log(data)
+         this.stateList = data           
+       },
+       error: (err: any) => {
+         console.log(err)
+         
+       }
+     });
+   } 
+ 
+ loadUsers(){
+     this.apiservice.getUsersListToAssign().subscribe({
+       next :(data:any)=>{
+         console.log(data)
+         this.assignUsrList =data         
+       },
+       error: (err: any) => {
+         console.log(err)        
+       }
+     });
+   }
+ 
+   loadPriorityList(){
+ 
+     this.apiservice.getPriorityList().subscribe({
+       next :(data:any)=>{
+         console.log(data)
+         this.priorityList = data         
+       },
+       error: (err: any) => {
+         console.log(err)
+         
+       }
+     });
+   }
+  
 
 
   editForm(index: any) {
@@ -168,12 +218,14 @@ export class IncidentDetailsPageComponent implements OnInit {
       next: (response: any) => {
         console.log(response);
         newdata = response?.map((data: any) => {
+
+         // data=this.updateData(data);
           return {
             'Number': data.incidentId,
             'Active': this.checkActive(data.active),
-            'State': data.state,
-            'Priority': data.priority,
-            'Assigned To': data.assignedTo,
+            'State': this.stateList.find((x:any)=>( x.statusId === data.state))?.statusValue,
+            'Priority': this.priorityList.find((x:any)=>( x.priorityId === data.priority))?.priorityValue,
+            'Assigned To':this.assignUsrList.find((x:any)=>(x.userId == data.assignedTo))?.username,
             'Opened Date': data.openedDate
           }
         });
@@ -181,14 +233,15 @@ export class IncidentDetailsPageComponent implements OnInit {
         if (this.filterInput?.length > 0) {
 
           this.filteredIncidents = this.filteredIncidents.concat(newdata)
-
+          //this.updateData(this.filteredIncidents);
           this.dataSource = new MatTableDataSource(this.filteredIncidents)
           this.incidentDetails = [];
           this.updateIncidents(this.filteredIncidents);
         }
         else {
           this.filteredIncidents = [];
-          this.incidentDetails = this.incidentDetails.concat(newdata)
+          this.incidentDetails = this.incidentDetails.concat(newdata);
+          //this.updateData(this.incidentDetails);
           this.dataSource = new MatTableDataSource(this.incidentDetails)
           this.updateIncidents(this.incidentDetails);
         }
@@ -212,32 +265,32 @@ export class IncidentDetailsPageComponent implements OnInit {
     }
   }
 
-  loadPriorityList() {
+  // loadPriorityList() {
 
-    this.apiservice.getPriorityList().subscribe({
-      next: (data: any) => {
-        console.log(data)
-        this.priorityList = data
-      },
-      error: (err: any) => {
-        console.log(err)
+  //   this.apiservice.getPriorityList().subscribe({
+  //     next: (data: any) => {
+  //       console.log(data)
+  //       this.priorityList = data
+  //     },
+  //     error: (err: any) => {
+  //       console.log(err)
 
-      }
-    });
-  }
+  //     }
+  //   });
+  // }
 
-  loadStates() {
-    this.apiservice.getStatusList().subscribe({
-      next: (data: any) => {
-        console.log(data)
-        this.stateList = data
-      },
-      error: (err: any) => {
-        console.log(err)
+  // loadStates() {
+  //   this.apiservice.getStatusList().subscribe({
+  //     next: (data: any) => {
+  //       console.log(data)
+  //       this.stateList = data
+  //     },
+  //     error: (err: any) => {
+  //       console.log(err)
 
-      }
-    });
-  }
+  //     }
+  //   });
+  // }
 
   updateIncidents(data: any) {
   

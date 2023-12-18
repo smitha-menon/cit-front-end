@@ -120,6 +120,13 @@ export class CreateUserComponent implements OnInit {
       });
     });
 
+  this.tableData.forEach((element:any) => {
+  
+  roles.push({assignedGroupId:this.assignGrpList.find((x:any)=> x.groupName==element.column2).groupId,
+            customizedPrivileges:element.column3,
+            roleId:this.roleList.find((x:any)=> x.roleName==element.column1).roleId
+        });
+});
 
     const obj = {
       "username": this.createUser.value.username,
