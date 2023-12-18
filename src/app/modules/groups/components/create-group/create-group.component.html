@@ -1,74 +1,28 @@
 <div class="main-element">
-  <div class="container main-header">
-    <label>Create Group</label>
-    <div style="border: 1px solid #b8b8b8; border-top: none;">
-      <div class="card2">
-      </div>
-      <form [formGroup]="addGroupForm">
-        <div>
-          <div class="form-group">
-
-            <label class="form-label">Group name</label>
-            <input matInput type="text" class="form-control" formControlName="groupname" name="groupname" required>
-
-          </div>
-          <!-- <div class="form-group">
-
-            <label class="form-label">Group ID</label>
-            <input matInput type="text" class="form-control" formControlName="groupid" name="groupid" required>
-
-          </div> -->
-          <div class="form-group">
-
-            <label class="form-label">Is Active</label>
-            <input matInput type="text" class="form-control" formControlName="isactive" name="isactive" required>
-
-          </div>
-          <div>
-            <button class="button-29" (click)="addGroup()">Add Group</button>
-          </div>
-        </div>
-      </form>
-    </div>
+  <div class="btn-container">
+    <label class="switch btn-color-mode-switch">
+      <input type="checkbox" name="color_mode" id="color_mode" value="1" (click)="togglePage()">
+      <label for="color_mode" data-on="Groups" data-off="Roles" class="btn-color-mode-switch-inner"></label>
+    </label>
   </div>
-  <div class="main-header">
-    <div>
-      <label>Groups</label>
-    </div>
 
-    <div>
-      <mat-table #table [dataSource]="dataSource">
-        <ng-container matColumnDef="Group Id">
-          <mat-header-cell *matHeaderCellDef> Group Id </mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.groupid}}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="Group Name">
-          <mat-header-cell *matHeaderCellDef> Group Name </mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.groupname}}</mat-cell>
-        </ng-container>     
-
-        <ng-container matColumnDef="Is Active">
-          <mat-header-cell *matHeaderCellDef> Is Active </mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            <span *ngIf="element.isactive == true">
-              <label class="statusLabel" [ngClass]="element.isactive">{{element.isactive}}</label>
-          </span>
-          </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="Action">
-          <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
-          <mat-cell mat-cell *matCellDef="let element">
-              <button mat-icon-button (click)="deleteGroup(element)">
-                  <mat-icon>cancel</mat-icon>
-              </button>
-              <!-- <i class="material-icons" >Action</i> -->
-          </mat-cell>
-      </ng-container>
-
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-
-    </div>
+  <!-- Roles Page starts here -->
+  <div class="button-outer-element">
+    <button *ngIf="isPageOne" class="create-new-btn">
+      Add New Role
+    </button>
+    <button *ngIf="!isPageOne" class="create-new-btn">
+      Add New Group
+    </button>
   </div>
+  <div>
+    <app-role-page *ngIf="isPageOne"></app-role-page>
+  </div>
+
+  <!-- Groups Page starts here -->
+
+<div>
+  <app-group-page *ngIf="!isPageOne"></app-group-page>
+</div>
+
 </div>

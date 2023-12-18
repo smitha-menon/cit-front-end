@@ -21,7 +21,7 @@ export interface Execution {
 })
 export class UserComponent implements OnInit {
 
-  displayedColumns = ['Name', 'Email', 'Role', 'State', 'Action'];
+  displayedColumns = ['Name', 'Email', 'Number', 'State', 'Action'];
   userList: any = [];
   dataSource: MatTableDataSource<Execution> = new MatTableDataSource<Execution>(this.userList);
   public editUsersDetailsForm: FormGroup | any;
@@ -58,7 +58,9 @@ export class UserComponent implements OnInit {
           return {
             'name': res.username,
             'role': res.role,
-            'state': this.checkState(res)
+            'email':res.emailAddress,
+            'state': this.checkState(res),
+            'number': res.phoneNumber
           }
 
         })

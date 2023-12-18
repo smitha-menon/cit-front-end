@@ -47,9 +47,7 @@ export class NavbarComponent implements OnInit {
   users() {
     this.router.navigateByUrl(ROUTES.USERS)
   }
-  roles() {
-    this.router.navigateByUrl(ROUTES.ROLES)
-  }
+
   groups() {
     this.router.navigateByUrl(ROUTES.GROUP)
   }

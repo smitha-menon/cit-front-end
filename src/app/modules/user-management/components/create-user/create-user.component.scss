@@ -160,13 +160,13 @@
 }
 
 .add-btn {
-  margin-left: 40%;
+  margin-left: 1%;
   // margin-top: 20px;
   align-items: center;
   appearance: none;
   background-image: radial-gradient(100% 100% at 100% 0, #ff8e5a 0, #FD5E0F 100%);
   border: 0;
-  border-radius: 6px;
+  // border-radius: 6px;
   box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
   box-sizing: border-box;
   color: #fff;
@@ -209,7 +209,7 @@
 
 table {
   border-collapse: collapse;
-  width: 50%;
+  width: 100%;
   color: #000;
   font-family: Montserrat;
   font-size: 16px;
@@ -223,8 +223,33 @@ th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  max-width: 200px; /* Adjust the value based on your needs */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+.role-table {
+  border: 1px solid #C8C8C8;
+  background: #FAFAFA;
+  width: 715px;
+  /* height: 373.892px; */
+  // display: flex;
+  // gap: 10px;
+  // align-items: center;
+}
+
+:host ::ng-deep {
+  mat-selection-list.mat-mdc-selection-list.mat-mdc-list-base.mdc-list {
+    border: 1px solid #C8C8C8;
+    background: #FFF;
+    width: 451px;
+    height: 160px;
+    overflow-y: scroll;
+    margin-left: 50px;
+  }
 }

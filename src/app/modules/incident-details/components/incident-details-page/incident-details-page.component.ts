@@ -79,11 +79,15 @@ export class IncidentDetailsPageComponent implements OnInit {
   userid: any;
 
   incidentDetailForm: boolean = false;
+  priorityList: any = [];
+  stateList: any = [];
 
   constructor(private routes: Router, private permissionsService: PermissionsService,
     private fb: FormBuilder, private apiservice: ApiservicesService) { }
 
   ngOnInit(): void {
+    this.loadPriorityList();
+    this.loadStates();
 
     this.permissionsService.loginreponse$.subscribe((data) => {
       console.log("datauser" + JSON.stringify(data));
@@ -180,12 +184,13 @@ export class IncidentDetailsPageComponent implements OnInit {
 
           this.dataSource = new MatTableDataSource(this.filteredIncidents)
           this.incidentDetails = [];
-
+          this.updateIncidents(this.filteredIncidents);
         }
         else {
           this.filteredIncidents = [];
           this.incidentDetails = this.incidentDetails.concat(newdata)
           this.dataSource = new MatTableDataSource(this.incidentDetails)
+          this.updateIncidents(this.incidentDetails);
         }
         this.dataSource.sort = this.matsort
         this.dataSource.paginator = this.paginator
@@ -206,6 +211,51 @@ export class IncidentDetailsPageComponent implements OnInit {
       return data
     }
   }
+
+  loadPriorityList() {
+
+    this.apiservice.getPriorityList().subscribe({
+      next: (data: any) => {
+        console.log(data)
+        this.priorityList = data
+      },
+      error: (err: any) => {
+        console.log(err)
+
+      }
+    });
+  }
+
+  loadStates() {
+    this.apiservice.getStatusList().subscribe({
+      next: (data: any) => {
+        console.log(data)
+        this.stateList = data
+      },
+      error: (err: any) => {
+        console.log(err)
+
+      }
+    });
+  }
+
+  updateIncidents(data: any) {
+  
+    data.forEach((item: { Priority: any; State: any; }) => {
+      const foundPriority = this.priorityList.find((x: any) => x.priorityId === item.Priority);
+  
+      if (foundPriority) {
+        item.Priority = foundPriority.priorityValue;
+      }
+  
+      const foundState = this.stateList.find((x: any) => x.statusId === item.State);
+  
+      if (foundState) {
+        item.State = foundState.statusValue;
+      }
+    });
+  }
+
   // goToIncident() {
   //   this.routes.navigateByUrl(ROUTES.VIEWSTEPS)
   // }

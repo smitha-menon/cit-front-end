@@ -24,12 +24,17 @@ import { MatSortModule } from '@angular/material/sort';
 import { HttpClientModule } from '@angular/common/http';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { RolePageComponent } from './components/role-page/role-page.component';
+import { GroupPageComponent } from './components/group-page/group-page.component';
 
 
 
 @NgModule({
   declarations: [
-    CreateGroupComponent
+    CreateGroupComponent,
+    RolePageComponent,
+    GroupPageComponent
   ],
   imports: [
     CommonModule,
@@ -55,6 +60,7 @@ import { MatCardModule } from '@angular/material/card';
     ReactiveFormsModule,
     MatSortModule,
     HttpClientModule,
+    MatInputModule,
     MatRadioModule,
     MatCardModule,
   ]

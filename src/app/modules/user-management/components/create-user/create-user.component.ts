@@ -20,34 +20,34 @@ export class CreateUserComponent implements OnInit {
   selectedGroup: string | any;
   defaultSelection: string = "--Select--";
   roleList: any = [];
-  userPermissions: string[]=[];
-  selectedItems:string[]=[];
-  logedUser:string | any;
-  
+  userPermissions: string[] = [];
+  selectedItems: string[] = [];
+  logedUser: string | any;
+  selectionEvent: boolean = false;
 
 
 
-  constructor(private fb: FormBuilder, 
-    private apiservice: ApiservicesService, 
+  constructor(private fb: FormBuilder,
+    private apiservice: ApiservicesService,
     private notifier: NotifierService,
-    private routes: Router, private permissionsService: PermissionsService) { 
+    private routes: Router, private permissionsService: PermissionsService) {
 
-      this.permissionsService.loginreponse$.subscribe((data) => {
-        this.logedUser = data.loginUser;
-      });
-    }
+    this.permissionsService.loginreponse$.subscribe((data) => {
+      this.logedUser = data.loginUser;
+    });
+  }
 
   ngOnInit(): void {
     this.loadRole();
     this.loadGroups();
-   
+
     // console.log(this.permissonRes.getLoginResponse())
     this.createUser = this.fb.group({
       username: [''],
       company: ['G10X'],
       passwordtxt: [''],
-      phone:[''],
-      email:[''],
+      phone: [''],
+      email: [''],
       createdby: [''],
       createdon: [(new Date()).toLocaleDateString("en-GB") + ' ' + (new Date()).toLocaleTimeString('en-IT', { hour12: false })],
 
@@ -77,82 +77,81 @@ export class CreateUserComponent implements OnInit {
     });
   }
 
-  eventCheck(data:any){
+  eventCheck(data: any) {
+    this.selectionEvent = true;
+    if (data.target.checked && this.selectedRole != "undefined") {
+      this.userPermissions = [];
+      this.roleList.find((x: any) => {
+        if (x.roleName === this.selectedRole) {
+          this.userPermissions = x.deniedAccessMethodNames;
+        }
+      });
 
-   if(data.target.checked && this.selectedRole!= "undefined")
-   {this.userPermissions=[];
-     this.roleList.find((x:any)=>{       
-      if(x.roleName=== this.selectedRole)
-      {
-        this.userPermissions=x.deniedAccessMethodNames;        
-      }
-    });   
-
-   }
+    }
   }
-  onSelectionChange(event:any){
-    this.selectedItems = event.source.selectedOptions.selected.map((option:any) => option.value);
+  onSelectionChange(event: any) {
+    this.selectedItems = event.source.selectedOptions.selected.map((option: any) => option.value);
     console.log('Selected Items:', this.selectedItems);
   }
 
 
-deleteItem(data:any){
-  
-  let somedata=[];
-  somedata = this.tableData.filter((item:any) => item.column4 !== data);
-  
-  this.tableData=somedata;
-  let count = 1
-  this.tableData.forEach((item:any) =>{
-    item.column4= count;
-    count+=1;
-  });
-}
+  deleteItem(data: any) {
+
+    let somedata = [];
+    somedata = this.tableData.filter((item: any) => item.column4 !== data);
+
+    this.tableData = somedata;
+    let count = 1
+    this.tableData.forEach((item: any) => {
+      item.column4 = count;
+      count += 1;
+    });
+  }
 
   addUser() {
-    let roles:groupRoles[]=[];
+    let roles: groupRoles[] = [];
 
-  this.tableData.forEach((element:any) => {
-  
-  roles.push({assignedGroupId:element.column2,
-            customizedPrivileges:element.column3,
-            roleId:this.roleList.find((x:any)=> x.roleName==element.column1).roleId
-        });
-});
+    this.tableData.forEach((element: any) => {
 
-   
+      roles.push({
+        assignedGroupId: element.column2,
+        customizedPrivileges: element.column3,
+        roleId: this.roleList.find((x: any) => x.roleName == element.column1).roleId
+      });
+    });
+
+
     const obj = {
       "username": this.createUser.value.username,
       "password": this.createUser.value.passwordtxt,//Array(8).fill("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz").map(function (x) { return x[Math.floor(Math.random() * x.length)] }).join(''),
       //"role": this.tableData.map((arr: any) => arr.column1),
       "emailAddress": this.createUser.value.email,
-      "phoneNumber":this.createUser.value.phone,
+      "phoneNumber": this.createUser.value.phone,
       "company": this.createUser.value.company,
-      "createdBy":  this.logedUser,
+      "createdBy": this.logedUser,
       "updatedBy": "",
       "createdOn": this.createUser.value.createdon,
       "updatedOn": this.createUser.value.createdon,
       //"assignedGroup": this.tableData.map((arr: any) => arr.column2),
       "isActive": true,
       //"customizedPrivileges":this.tableData.map((arr: any) => arr.column3),
-      "groupRoles":roles
+      "groupRoles": roles
     }
     console.log(obj)
     this.apiservice.addUser(obj).subscribe({
-      next :(response:any)=>{
+      next: (response: any) => {
         console.log(response)
         // this.receivedData = ''
         this.notifier.success(
           'User Created successfully',
           'success'
         )
-         this.createUser.reset()
-          this.routes.navigateByUrl(ROUTES.USERS)
+        this.createUser.reset()
+        this.routes.navigateByUrl(ROUTES.USERS)
       },
       error: (err: any) => {
         console.log(err)
-        if (err.status === 201)
-        {
+        if (err.status === 201) {
           this.notifier.success(
             'User created successfully',
             'success'
@@ -167,20 +166,20 @@ deleteItem(data:any){
   }
 
   addGroupRo() {
- 
+
     const groupValue = this.selectedGroup;
     const roleValue = this.selectedRole
 
-    var sno = this.tableData.length +1;
+    var sno = this.tableData.length + 1;
 
     this.tableData.push({
-      column4:sno,
+      column4: sno,
       column1: roleValue,
       column2: groupValue,
-      column3:this.selectedItems
+      column3: this.selectedItems
 
     });
-   
+
     //console.log(this.tableData)
   }
 

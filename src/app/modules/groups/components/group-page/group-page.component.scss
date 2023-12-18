@@ -1,0 +1,155 @@
+@import 'aos/dist/aos.css';
+
+@import 'aos/dist/aos.css';
+
+:host ::ng-deep {
+    .mat-elevation-z2 {
+      box-shadow: none;
+      line-height: 30px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background: #676767;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      // box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
+      border-bottom: none;
+      font-style: bold;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      // margin-left: 70px;
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 42px;
+      color: #fff;
+  
+  
+      .mat-header-cell {
+        color: #FFF;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        width: 32%;
+        line-height: normal;
+  
+      }
+  
+      .mat-header-cell1 {
+        color: #FFF;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        width: 32%;
+        line-height: normal;
+  
+      }
+  
+      .mat-header-cell2 {
+        color: #FFF;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        width: 22%;
+        line-height: normal;
+  
+      }
+
+    }
+  
+    .mat-accordion .mat-expansion-panel {
+      &:nth-of-type(even) {
+  
+        border-radius: 7px;
+        background: rgba(220, 220, 220, 0.30);
+        margin-bottom: 10px;
+      }
+  
+      &:nth-of-type(odd) {
+        border-radius: 7px;
+        background: rgba(192, 192, 192, 0.44);
+        margin-bottom: 10px;
+      }
+  
+    }
+  
+    mat-expansion-panel-header {
+      color: #000;
+      font-family: Montserrat;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+  
+  }
+  
+  .statusLabel {
+    width: 90px;
+    // border-radius: 20px;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    // color: #ffffff;
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 13px;
+    color: #000000;
+    font-weight: 700;
+    color: #fff;
+    padding-left: 25px;
+    // padding-right: 17px;
+    background: #158E30;
+  
+  }
+
+  .save-btn {
+    background: #27CB4B;
+    height: 40px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    width: 130px;
+    font-size: 18px;
+    border-radius: 5px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 16px;
+    color: #ffffff;
+  }
+  .edit-btn {
+    background: #676767;
+    height: 40px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    width: 130px;
+    font-size: 18px;
+    border-radius: 5px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 16px;
+    color: #ffffff;
+  }
+  
+  .cancel-btn {
+    background: white;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    width: 130px;
+    font-size: 18px;
+    border-radius: 5px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 16px;
+    color: #080808;
+  }

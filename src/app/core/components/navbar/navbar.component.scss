@@ -74,15 +74,22 @@
 	text-align: center;
 	line-height: 80px;
 	transition: all 0.4s ease;
-	width: 120px;
-	border: 1px solid #D9D9D9;
-	background: #FFF;
-	border-radius: 100px;
-	height: 120px;
 	/* background: #ffffff; */
 	width: 153px;
 	height: 160px;
 	flex-shrink: 0;
+	font-family: Montserrat;
+	font-size: 16px;
+	font-weight: 500;
+
+	.avatar-img {
+		border: 1px solid #D9D9D9;
+		background: #FFF;
+		border-radius: 100px;
+		width: 70px;
+		height: 70px;
+	}
+
 }
 
 .nav__list {
@@ -141,14 +148,21 @@
 		//     background: #0b0f32;
 		//   }
 		.nav_list {
-			text-align: center;
+			// text-align: center;
 			border-bottom: 1px solid #000;
 			background: #e7e7e7;
+			// font-family: Montserrat;
+			// font-style: normal;
+			// font-weight: 500;
+			// font-size: 15px;
+			// line-height: 30px;
 			font-family: Montserrat;
-			font-style: normal;
+			font-size: 16px;
 			font-weight: 500;
-			font-size: 15px;
-			line-height: 30px;
+			line-height: 20px;
+			letter-spacing: 0em;
+			text-align: left;
+
 			color: #515151;
 		}
 	}
@@ -161,7 +175,7 @@
 		align-items: center;
 		gap: 6px;
 		height: 45px;
-		margin-left: 10px;
+		// margin-left: 10px;
 		// justify-content: center;
 	}
 
@@ -198,7 +212,7 @@
 	font-weight: 500;
 	font-size: 15px;
 	line-height: 30px;
-	color: #fd5e0f  !important;
+	color: #fd5e0f !important;
 }
 
 .dropdown-content {

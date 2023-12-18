@@ -1,0 +1,37 @@
+<div  class="main-header" style="margin-top: 50px;" data-aos="fade-left" data-aos-delay="200"
+data-aos-duration="600">
+<mat-accordion displayMode="flat" multi class="mat-table">
+  <section class="mat-elevation-z2 mat-header-row">
+    <span class="mat-header-cell">Group Id</span>
+    <!-- <span class="mat-header-cell1">Steps</span> -->
+    <span class="mat-header-cell1">Group Name</span>
+    <span class="mat-header-cell2">Is Active</span>
+  </section>
+  <mat-expansion-panel *ngFor="let group of groupList; let i = index">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{group.groupid}}
+      </mat-panel-title>
+      <mat-panel-title>
+        {{group.groupname}}
+      </mat-panel-title>
+      <mat-panel-title *ngIf="group.isactive == true">
+        <label class="statusLabel" [ngClass]="group.isactive">True</label>
+      </mat-panel-title>
+
+    </mat-expansion-panel-header>
+
+    <div style="display: flex; margin-top: 20px; gap: 10px;">
+      <div>
+        <button class="save-btn">Save</button>
+      </div>
+      <div>
+        <button class="edit-btn" >Edit</button>
+      </div>
+      <div>
+        <button class="cancel-btn">cancel</button>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+</div>

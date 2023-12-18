@@ -1,31 +1,33 @@
+@import 'aos/dist/aos.css';
+
 .main-element {
   margin-left: 80px;
   margin-right: 20px;
   margin-top: 100px;
 
-  .card2 {
-    // height: 60px;
-    line-height: 30px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background: #676767;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    padding: 10px;
-    // box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
-    border-bottom: none;
-    font-style: bold;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    // margin-left: 70px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 42px;
-    color: #fff;
-  }
+  // .card2 {
+  //   // height: 60px;
+  //   line-height: 30px;
+  //   border-top-left-radius: 5px;
+  //   border-top-right-radius: 5px;
+  //   background: #676767;
+  //   display: flex;
+  //   gap: 10px;
+  //   align-items: center;
+  //   padding: 10px;
+  //   // box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
+  //   border-bottom: none;
+  //   font-style: bold;
+  //   margin-top: 20px;
+  //   margin-bottom: 30px;
+  //   // margin-left: 70px;
+  //   font-family: Montserrat;
+  //   font-style: normal;
+  //   font-weight: 500;
+  //   font-size: 30px;
+  //   line-height: 42px;
+  //   color: #fff;
+  // }
 
   .form-group {
     display: flex;
@@ -61,8 +63,61 @@
     background: #FAFAFA;
     box-shadow: -2px -2px 0px 0px rgba(0, 0, 0, 0.25);
   }
+  .button-outer-element {
+   float: right;
+
+    .create-new-btn {
+        // margin-left: 30%;
+        align-items: center;
+        appearance: none;
+        background-image: radial-gradient(100% 100% at 100% 0, #FD5E0F 0, #FD5E0F 100%);
+        border: 0;
+        gap: 7px;
+        border-radius: 6px;
+        box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: "montserrat";
+        // height: 48px;
+        justify-content: center;
+        line-height: 1;
+        list-style: none;
+        overflow: hidden;
+        padding-left: 16px;
+        padding-right: 16px;
+        position: relative;
+        text-align: left;
+        text-decoration: none;
+        transition: box-shadow .15s, transform .15s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+        will-change: box-shadow, transform;
+        font-size: 18px;
+        height: 40px;
+    }
+
+    .create-new-btn:focus {
+        box-shadow: #FD5E0F 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #FD5E0F 0 -3px 0 inset;
+    }
+
+    .create-new-btn:hover {
+        box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #FD5E0F 0 -3px 0 inset;
+        transform: translateY(-2px);
+    }
+
+    .create-new-btn:active {
+        box-shadow: #FD5E0F 0 3px 7px inset;
+        transform: translateY(2px);
+    }
 
 }
+
+}
+
 
 .button-29 {
   margin-left: 40%;
@@ -112,129 +167,106 @@
   transform: translateY(2px);
 }
 
-:host ::ng-deep {
-
-  .mat-mdc-table {
-    padding: 0px;
-    box-shadow: none;
-    cursor: pointer;
-    border-collapse: separate;
-    border-spacing: 0 7px;
-    width: 85%;
-    // border-spacing: 0 8px !important;
-    margin-top: 20px;
-    // margin-left: 7%;
-  }
-
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    width: 70%;
-  }
-
-  .mdc-data-table__header-cell {
-    // background: linear-gradient(180deg, #CB2C27 0%, #FD5E0F 100%) !important;
-    color: #393939;
-    // border-right: 1px solid #fff;
-    text-align: center;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 30px;
-    // margin-bottom: 10px !important;
-    // color: #344054;
-  }
-
-  .mat-sort-header-arrow {
-    color: #fff;
-  }
-
-  .mat-mdc-table tbody,
-  .mat-mdc-table tfoot,
-  .mat-mdc-cell,
-  .mat-mdc-footer-cell,
-  .mat-mdc-row,
-  .mat-mdc-footer-row {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    // background: rgba(220, 220, 220, 0.3);
-    // background: rgba(220, 220, 220, 0.30);
-    color: #000;
-    border: none;
-    height: 58px;
-    // padding: 6px
-  }
-
-  mat-row.mat-mdc-row.mdc-data-table__row.cdk-row:hover {
-    background: none;
-  }
-
-  mat-cell.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-Test-scenario.mat-column-Test-scenario {
-    border-bottom-left-radius: 7px;
-    // background: rgba(220, 220, 220, 0.30);
-    border-top-left-radius: 7px;
-  }
-
-  td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-AssignedTo.mat-column-AssignedTo.ng-star-inserted {
-    border-right: none;
-    border-bottom-right-radius: 7px;
-    border-top-right-radius: 7px;
-  }
-
-
-
-  .mat-mdc-row {
-    &:nth-of-type(even) {
-      // background: #C0C0C070;
-      border-top: 1px solid;
-      border-bottom: 1px solid;
-      margin-bottom: 10px !important;
-    }
-
-    &:nth-of-type(odd) {
-      // background: #DCDCDC4D;
-      border-top: 1px solid;
-      border-bottom: 1px solid;
-      margin-bottom: 10px !important;
-    }
-  }
-
-  .statusLabel {
-    width: 90px;
-    // border-radius: 20px;
-    padding-top: 6px;
-    padding-bottom: 8px;
-    // color: #ffffff;
-    font-family: Montserrat;
-    font-style: normal;
-    font-size: 14px;
-    line-height: 13px;
-    color: #000000;
-    font-weight: 700;
-    color: #58d754;
-    padding-left: 25px;
-    // padding-right: 17px;
-    background: #e5f9ea;
-
-  }
-
-  // .inactive{
-  //     // background: #2A5E7F;
-  //     padding-left: 20px;
-  //     padding-right: 17px;
-  //     cursor: pointer;
-  //     // border-radius: 20px;
-  //     // border: 2px solid #2454a1;
-  //     color: #fb1a1a;
-  //     background: #ffd3cf;
-  // }
-
-  // .true {
-  //     color: #58d754;
-  //     padding-left: 25px;
-  //     padding-right: 17px;
-  //     background: #e5f9ea;
-  // }
+div.btn-container {
+  margin-left: 105px;
+  font-family: Montserrat;
 
 }
+
+div.btn-container i {
+  display: inline-block;
+  position: relative;
+  top: -9px;
+}
+
+label {
+  color: #000;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.btn-color-mode-switch {
+  display: inline-block;
+  margin: 0px;
+  cursor: pointer;
+  position: relative;
+}
+
+.btn-color-mode-switch>label.btn-color-mode-switch-inner {
+  margin: 0px;
+  width: 290px;
+  cursor: pointer;
+  height: 40px;
+  // background: #E0E0E0;
+  // border-radius: 26px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+  /*box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;*/
+  display: block;
+  border-radius: 5px;
+  border: 1px solid #DADADA;
+  background: #FFF;
+}
+
+.btn-color-mode-switch>label.btn-color-mode-switch-inner:before {
+  content: attr(data-on);
+  position: absolute;
+  cursor: pointer;
+  top: 7px;
+  right: 20px;
+  color: #000;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+
+}
+
+.btn-color-mode-switch>label.btn-color-mode-switch-inner:after {
+  content: attr(data-off);
+  cursor: pointer;
+  width: 140px;
+  height: 40px;
+  border-radius: 26px;
+  position: absolute;
+  left: 2px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 6px -2px #111;
+  padding: 5px 0px;
+  border-radius: 5px 0px 0px 5px;
+  background: #676767;
+  color: #fff;
+}
+
+.btn-color-mode-switch input[type="checkbox"] {
+  cursor: pointer;
+  width: 50px;
+  height: 25px;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  margin: 0px;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner {
+  color: #fff;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner:after {
+  content: attr(data-on);
+  left: 149px;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner:before {
+  content: attr(data-off);
+  right: auto;
+  left: 20px;
+}
+
