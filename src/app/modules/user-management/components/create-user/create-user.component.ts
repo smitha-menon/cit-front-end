@@ -24,7 +24,7 @@ export class CreateUserComponent implements OnInit {
   selectedItems: string[] = [];
   logedUser: string | any;
   selectionEvent: boolean = false;
-
+  customizedRole: boolean = false;
 
 
   constructor(private fb: FormBuilder,
@@ -53,7 +53,9 @@ export class CreateUserComponent implements OnInit {
 
     })
   }
-
+  schedule() {
+   this.customizedRole = true;
+  }
   loadRole() {
     this.apiservice.getActiveRole().subscribe({
       next: (res: any) => {

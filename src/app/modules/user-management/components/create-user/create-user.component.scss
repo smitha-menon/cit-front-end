@@ -210,6 +210,7 @@
 table {
   border-collapse: collapse;
   width: 100%;
+  margin-top: 10px;
   color: #000;
   font-family: Montserrat;
   font-size: 16px;
@@ -236,11 +237,22 @@ tr:nth-child(even) {
 .role-table {
   border: 1px solid #C8C8C8;
   background: #FAFAFA;
-  width: 715px;
+  padding: 11px 11px
+  // width: 715px;
   /* height: 373.892px; */
   // display: flex;
   // gap: 10px;
   // align-items: center;
+}
+.custm-role-label {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  /* line-height: 21px; */
+  margin-left: 8px;
+  color: #474a4e;
+  margin-top: 10px;
 }
 
 :host ::ng-deep {
@@ -251,5 +263,9 @@ tr:nth-child(even) {
     height: 160px;
     overflow-y: scroll;
     margin-left: 50px;
+  }
+  .mat-mdc-list-option .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mat-mdc-list-option .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mat-mdc-list-option .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+    border-color: #018786;
+    background-color: #018786;
   }
 }
