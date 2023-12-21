@@ -201,8 +201,15 @@
     //   background: #FFF;
       width: 451px;
       height: 160px;
-      overflow-y: scroll;
+    //   overflow-y: scroll;
       margin-left: 170px;
+    }
+    .mat-mdc-list-option .mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle {
+        // border-color: #6200ee;
+        border-color: #00ba00;
+    }
+    .mat-mdc-list-option .mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle {
+        border-color: #00ba00;
     }
 }
 .overlay {
