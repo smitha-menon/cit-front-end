@@ -6,7 +6,9 @@ export const ROUTES = {
     CREATEINCIDENT: '/create-incident',
     USERS: '/users',
     ADDUSER: '/users/create-user',
-    GROUP: '/groups',
+    GROUP: '/rback',
+    CREATEROLE: '/rback/role-page',
+    CREATEGROUP: '/rback/group-page',
     APPROVALS: '/incident-approval',        
     ROLES: '/users/roles',
     REPORT: '/reports'

@@ -1,0 +1,37 @@
+<div class="main-element">
+    <div class="main-header">
+
+        <div style="border: 1px solid #b8b8b8; border-top: none;">
+            <div class="card2">
+                <label>Add Group</label>
+            </div>
+            <form [formGroup]="addGroupForm">
+                <div>
+                  <div class="form-group">
+        
+                    <label class="form-label">group name</label>
+                    <input matInput type="text" class="form-control" formControlName="groupname" name="groupname" required>
+        
+                  </div>
+              
+                  <div class="form-group">
+        
+                    <label class="form-label">Is Active</label>
+                    <input matInput type="text" class="form-control" formControlName="isactive" name="isactive" required>
+        
+                  </div>
+                
+                  <!-- <div class="form-group">
+        
+                    <label class="form-label">Features Allowed </label>
+                    <input matInput type="text" class="form-control" formControlName="allowed" name="allowed" required>
+        
+                  </div> -->
+                  <div>
+                    <button class="button-29" (click)="addGroup()" >Add Group</button>
+                  </div>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>

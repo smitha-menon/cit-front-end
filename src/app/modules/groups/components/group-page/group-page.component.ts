@@ -13,6 +13,7 @@ import { ApiservicesService } from 'src/app/services/apiservices.service';
 export class GroupPageComponent implements OnInit {
   isPageOne: boolean = true;
   // addFeatures: boolean = false;
+  public createGroup: FormGroup | any;
   groupList: Array<any> = [];
   addGroupForm: FormGroup | any;
   constructor(private apiservice: ApiservicesService, private fb: FormBuilder, private notifier: NotifierService) { }
@@ -23,8 +24,12 @@ export class GroupPageComponent implements OnInit {
       // anchorPlacement: 'example-anchor',
       offset: 0
     });
+    this.createGroup = this.fb.group({
+      groupname: [''],
+    
+    })
     this.loadGroup();
-
+ 
 
   }
 
@@ -47,6 +52,50 @@ export class GroupPageComponent implements OnInit {
         console.log(err)
       }
     })
+  }
+
+  editAccordian(feature: any, index: any) {
+    console.log(feature)
+    feature.addfeature = true
+    // this.editRoleId= feature.roleid;
+    this.createGroup= this.fb.group({
+      groupname:[feature.groupname],
+    });
+  }
+  cancelChanges(feature: any) {
+    feature.addfeature = false
+  }
+
+  deleteGroup(data:any){
+    console.log(data);
+    this.apiservice.deleteGroup(data.groupid).subscribe({
+      next:(response:any) =>{ 
+        console.log(response);
+        this.notifier.success(
+          'success',
+          'Role deleted successfully'            
+        )  ;
+        this.loadGroup();  
+      },
+      error:(err:any)=>{
+        console.log(err)
+        if (err.status === 410)
+        {
+          this.notifier.success(
+            'success',
+            'Role deleted successfully'            
+          )  ;
+          this.loadGroup();  
+        }
+        else{
+          this.notifier.error(
+            'Failed',
+            'Role deletion usuccessfull'            
+          ) 
+        }
+      }
+    });
+    
   }
 
 }

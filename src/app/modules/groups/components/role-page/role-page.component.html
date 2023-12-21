@@ -1,67 +1,88 @@
-<div  class="main-header" style="margin-top: 50px;" data-aos="fade-right" data-aos-delay="200"
-data-aos-duration="600">
-<mat-accordion displayMode="flat" multi class="mat-table">
-  <section class="mat-elevation-z2 mat-header-row">
-    <span class="mat-header-cell">Role Id</span>
-    <!-- <span class="mat-header-cell1">Steps</span> -->
-    <span class="mat-header-cell1">Role Code </span>
-    <span class="mat-header-cell2">Role Name</span>
-    <span class="mat-header-cell3">Is Active</span>
-  </section>
-  <mat-expansion-panel *ngFor="let role of roleList; let i = index">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{role.roleid}}
-      </mat-panel-title>
-      <mat-panel-title>
-        {{role.rolecode}}
-      </mat-panel-title>
-      <mat-panel-title>
-        {{role.rolename}}
-      </mat-panel-title>
-      <mat-panel-title *ngIf="role.isactive == true">
-        <label class="statusLabel" [ngClass]="role.isactive">True</label>
-      </mat-panel-title>
+<div class="main-header" style="margin-top: 50px;" data-aos="fade-right" data-aos-delay="200" data-aos-duration="600">
+  <mat-accordion displayMode="flat" multi class="mat-table">
+    <section class="mat-elevation-z2 mat-header-row">
+      <span class="mat-header-cell">Role Id</span>
+      <!-- <span class="mat-header-cell1">Steps</span> -->
+      <span class="mat-header-cell1">Role Code </span>
+      <span class="mat-header-cell2">Role Name</span>
+      <span class="mat-header-cell3">Is Active</span>
+    </section>
+    <mat-expansion-panel *ngFor="let role of roleList; let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{role.roleid}}
+        </mat-panel-title>
+        <mat-panel-title>
+          {{role.rolecode}}
+        </mat-panel-title>
+        <mat-panel-title>
+          {{role.rolename}}
+        </mat-panel-title>
+        <mat-panel-title *ngIf="role.isactive == true">
+          <label class="statusLabel" [ngClass]="role.isactive">True</label>
+        </mat-panel-title>
 
-    </mat-expansion-panel-header>
+      </mat-expansion-panel-header>
 
-    <div class="features-denied">
-      <div style="display: flex; gap: 10px;">
-        <label class="tag-label">Features Denied</label>
-        <div class="tag-content" *ngIf="role.addfeature">
-          <!-- <div class="search-tag">
-        <i class="fa-solid fa-magnifying-glass fa-xs" style="color: #14161a; margin-left: 10px;"></i> -->
-          <input type="text" class="search-input" placeholder="Add " />
-          <!-- </div> -->
-          <button class="add-tag-btn">Add</button>
-        </div>
+      <div class="features-denied">
+        <div style="display: flex;height: 50px;">
+          <label class="tag-label">Features Denied</label>
+          <div class="tag-content" *ngIf="role.addfeature">
 
-      </div>
+            <div>
+              <input type="text" class="search-input" placeholder="Add " />
+            </div>
+            <div>
+              <button class="add-tag-btn">Add</button>
+            </div>
+            <div>
+              <form [formGroup]="createRole">
+                <div class="form-group">
 
+                  <label class="form-label">Role name</label>
+                  <input matInput type="text" class="form-control" formControlName="rolename" name="rolename" required>
 
-      <div
-        style="overflow-y: scroll; margin-top: 10px; border: 1px solid #DADADA; background: #FFF; max-width: 450px; height: 186px;">
-        <div class="tags-bottom" *ngFor="let feature of role.deniedfeatures; let a = index">
-          <div class="tag-card">
-            {{feature}}
-            <i class="fa fa-times" style="cursor:pointer"></i>
+                </div>
+                <div class="form-group">
+
+                  <label class="form-label">Role Code</label>
+                  <input matInput type="text" class="form-control" formControlName="rolecode" name="rolecode" required>
+
+                </div>
+              </form>
+            </div>
+
           </div>
+        </div>
 
+
+        <div
+          style="overflow-y: scroll; margin-top: 10px; border: 1px solid #DADADA; background: #FFF; max-width: 450px; height: 186px;">
+          <div class="tags-bottom" *ngFor="let feature of role.deniedfeatures; let a = index">
+            <div class="tag-card">
+              {{feature}}
+              <i class="fa fa-times" style="cursor:pointer"></i>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div style="display: flex; margin-top: 20px; gap: 10px;">
+        <div>
+          <button class="save-btn" (click)="saveChanges()">Save</button>
+        </div>
+        <div>
+          <button class="delete-btn" (click)="deleteRole(role)">Delete Role</button>
+        </div>
+        <div>
+          <button class="edit-btn" (click)="editAccordian(role,i)">Edit</button>
+        </div>
+        <div>
+          <button class="cancel-btn" (click)="cancelChanges(role)">cancel</button>
         </div>
       </div>
-
-    </div>
-    <div style="display: flex; margin-top: 20px; gap: 10px;">
-      <div>
-        <button class="save-btn">Save</button>
-      </div>
-      <div>
-        <button class="edit-btn" (click)="editAccordian(role,i)">Edit</button>
-      </div>
-      <div>
-        <button class="cancel-btn">cancel</button>
-      </div>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

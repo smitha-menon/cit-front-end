@@ -27,6 +27,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { RolePageComponent } from './components/role-page/role-page.component';
 import { GroupPageComponent } from './components/group-page/group-page.component';
+import { CreateGroupPageComponent } from './components/create-group-page/create-group-page.component';
+import { CreateRolePageComponent } from './components/create-role-page/create-role-page.component';
 
 
 
@@ -34,7 +36,9 @@ import { GroupPageComponent } from './components/group-page/group-page.component
   declarations: [
     CreateGroupComponent,
     RolePageComponent,
-    GroupPageComponent
+    GroupPageComponent,
+    CreateGroupPageComponent,
+    CreateRolePageComponent
   ],
   imports: [
     CommonModule,

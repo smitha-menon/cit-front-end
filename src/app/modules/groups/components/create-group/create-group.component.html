@@ -8,10 +8,10 @@
 
   <!-- Roles Page starts here -->
   <div class="button-outer-element">
-    <button *ngIf="isPageOne" class="create-new-btn">
+    <button *ngIf="isPageOne" class="create-new-btn" (click)="addnewRole()">
       Add New Role
     </button>
-    <button *ngIf="!isPageOne" class="create-new-btn">
+    <button *ngIf="!isPageOne" class="create-new-btn" (click)="addnewGroup()">
       Add New Group
     </button>
   </div>

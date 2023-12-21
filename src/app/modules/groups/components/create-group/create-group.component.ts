@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import * as Aos from 'aos';
+import { ROUTES } from 'src/app/core/constants/constant';
 import { NotifierService } from 'src/app/core/utils/notifier';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 
@@ -18,7 +20,7 @@ export class CreateGroupComponent implements OnInit {
   groupList: Array<any> = [];
   addGroupForm: FormGroup | any;
   roleList: any = [];
-  constructor(private apiservice: ApiservicesService, private fb: FormBuilder, private notifier: NotifierService) { }
+  constructor(private apiservice: ApiservicesService, private fb: FormBuilder, private notifier: NotifierService, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -150,5 +152,10 @@ export class CreateGroupComponent implements OnInit {
     // Toggle the value of isPageOne
     this.isPageOne = !this.isPageOne;
   }
-
+  addnewRole() {
+    this.router.navigateByUrl(ROUTES.CREATEROLE)
+  }
+  addnewGroup() {
+    this.router.navigateByUrl(ROUTES.CREATEGROUP)
+  }
 }

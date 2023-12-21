@@ -49,7 +49,7 @@ const routes: Routes = [{
       loadChildren: () => import('./modules/user-management/user-management.module').then((m) => m.UserManagementModule)
     },
     {
-      path: 'groups',
+      path: 'rback',
       canActivate: [AuthGuard,HasRolesGuard],
       data: {
         role: userRoles.SA
