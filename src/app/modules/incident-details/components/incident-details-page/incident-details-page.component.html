@@ -112,6 +112,16 @@
                 <div>
                     <label class="steps-content">Please choose in which Group you want to Login</label>
                 </div>
+                <div>
+                    <mat-selection-list [multiple]="false" [(ngModel)]="selectedGroup"
+                                        [ngModelOptions]="{standalone: true}"
+                                       >
+                                        <mat-list-option *ngFor="let item of grouplist" [value]="item.groupId">
+                                          <div>  {{ item.groupName }}</div>
+                                        
+                                        </mat-list-option>
+                                    </mat-selection-list>
+                </div>
             </div>
         </div>
         <div>

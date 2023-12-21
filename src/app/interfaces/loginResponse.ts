@@ -1,18 +1,17 @@
 export interface loginResponse{
-    token:string,
-    // assignedGroupId:string,
-    assignedToId:string,
-    // deniedAccessMethodNames:string [],
-    // allowedAccessMethodNames:string[],
-    // roleCode:string,
+    token:string,    
+    assignedToId:string,   
     loginUser:string
     groupRoles: groupRole [],
-    roles:Role[]
+    groups:string [],
+    roles:Role[],    
+    currentGroupData:CurrentGroupRole
 }
 
 export interface groupRole{
     assignedGroupId:string,
-    roleId:string
+    roleId:string,
+    customizedPrivileges:string
 }
 
 export interface Role{
@@ -23,5 +22,12 @@ export interface Role{
     isActive:boolean,
     deniedAccessMethodNames:string [],
     allowedAccessMethodNames:string[],
+
+}
+export interface CurrentGroupRole{
+    assignedGroupId:string,
+    roleCode:string,
+    deniedAccessMethodNames:string [],
+    customizedPrivileges:any
 
 }

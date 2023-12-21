@@ -116,6 +116,8 @@
                                     <label class="custm-role-label">
                                         <input type="checkbox" id="customize" name="customize" style="    width: 20px;
                                         height: 18px;"
+                                        [(ngModel)]="isChecked"
+                                        [ngModelOptions]="{standalone: true}"
                                         (change)="eventCheck($event)">
                                      Customize Role
                                     </label>

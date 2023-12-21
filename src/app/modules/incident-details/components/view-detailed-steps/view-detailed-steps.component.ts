@@ -51,7 +51,8 @@ export class ViewDetailedStepsComponent implements OnInit {
     this.loadUsers();
     
     this.permissionsService.loginreponse$.subscribe((data) => {
-      this.userPermissions = data.roles[0].deniedAccessMethodNames;
+      this.userPermissions =(data.currentGroupData.customizedPrivileges==undefined)? data.currentGroupData.deniedAccessMethodNames:
+                                                                                    data.currentGroupData.customizedPrivileges ;
     });
    
     this.apiservice.getIncident(localStorage.getItem(INCIDENT_ID_KEY)).subscribe({

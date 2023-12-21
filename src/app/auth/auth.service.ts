@@ -80,7 +80,8 @@ export class AuthService {
                              groupRoles:data.groupRoles,
                              assignedToId:data.assignedToId,
                              loginUser: userdata.username, 
-                             roles:data.roles
+                             roles:data.roles,
+                             groups:data.groups
                              };
           
           this.permissionsService.setLoginResponse(this.logresponse);
