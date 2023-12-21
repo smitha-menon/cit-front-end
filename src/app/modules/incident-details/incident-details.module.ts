@@ -27,6 +27,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { ViewDetailedStepsComponent } from './components/view-detailed-steps/view-detailed-steps.component';
 import { ResolutionsComponent } from './components/resolutions/resolutions.component';
+import { MatListModule } from '@angular/material/list';
+ 
 
 
 @NgModule({
@@ -60,6 +62,7 @@ import { ResolutionsComponent } from './components/resolutions/resolutions.compo
     ReactiveFormsModule,
     MatSortModule,
     MatRadioModule,
+    MatListModule,
     NgbModule
    
   ],

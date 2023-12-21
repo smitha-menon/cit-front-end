@@ -54,7 +54,7 @@ this.loginuser={
     {
     //this.loginstatus = true;
     this.routes.navigateByUrl(ROUTES.INCIDENT)
-    this.notifierService.success("Login Success","User Logged in Successfully");
+   // this.notifierService.success("Login Success","User Logged in Successfully");
     }
     else{
       //this.loginstatus = false;

@@ -195,6 +195,16 @@
 	align-items: center;
 	justify-content: center;
 }
+:host ::ng-deep {
+    mat-selection-list.mat-mdc-selection-list.mat-mdc-list-base.mdc-list {
+    //   border: 1px solid #C8C8C8;
+    //   background: #FFF;
+      width: 451px;
+      height: 160px;
+      overflow-y: scroll;
+      margin-left: 170px;
+    }
+}
 .overlay {
     font-family: Montserrat;
     position: fixed;

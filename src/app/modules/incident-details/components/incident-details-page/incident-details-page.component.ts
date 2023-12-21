@@ -7,13 +7,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { ROUTES, userRoles } from 'src/app/core/constants/constant';
-import { INCIDENT_ID_KEY } from 'src/app/core/constants/local-storage-keys';
+import {  INCIDENT_ID_KEY } from 'src/app/core/constants/local-storage-keys';
 import { Incidents } from 'src/app/interfaces/incidents';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { PermissionsService } from 'src/app/services/permissions.service';
+import { loginResponse } from 'src/app/interfaces/loginResponse';
 
 @Injectable()
 
@@ -82,30 +83,33 @@ export class IncidentDetailsPageComponent implements OnInit {
   priorityList: any = [];
   stateList: any = [];
   assignUsrList: any;
+  grouplist:any =[];
+  selectedGroup:string="";
+  response!:loginResponse;
 
 
   constructor(private routes: Router, private permissionsService: PermissionsService,
-    private fb: FormBuilder, private apiservice: ApiservicesService) { }
+    private fb: FormBuilder, private apiservice: ApiservicesService) { }   
+
+    
 
   ngOnInit(): void {
     this.loadPriorityList();
     this.loadStates();
+    this.loadUsers();
 
     this.permissionsService.loginreponse$.subscribe((data) => {
       console.log("datauser" + JSON.stringify(data));
-      this.userid = (data.roles[0].roleCode == userRoles.BU || data.roles[0].roleCode == userRoles.SA) ? null : data.assignedToId;
-      this.groupid = (data.roles[0].roleCode == userRoles.BU || data.roles[0].roleCode == userRoles.SA) ? data.groupRoles[0].assignedGroupId : null;
-      this.userPermissions = data.roles[0].deniedAccessMethodNames;
-    });
-    console.log("permissiona" + this.userPermissions);
-    this.loadIncidents();
-    console.log("from init" + this.incidentDetails);
+      this.response=data;          
+      this.grouplist=data.groups;    
+      
+  });
+   
+    //this.loadIncidents();
+   
+}
 
-    this.loadPriorityList();
-    this.loadStates();
-    this.loadUsers();
-  
-    }
+
  
    loadStates(){
      this.apiservice.getStatusList().subscribe({
@@ -145,8 +149,12 @@ export class IncidentDetailsPageComponent implements OnInit {
        }
      });
    }
+
+   
+
   
    logGroup() {
+    this.setCurrentGroup();
     this.logGroupPopup = false;
    }
 
@@ -207,18 +215,38 @@ export class IncidentDetailsPageComponent implements OnInit {
     this.routes.navigateByUrl(ROUTES.VIEWSTEPS)
   }
 
+  setCurrentGroup(){
+    if(this.selectedGroup.length===0)
+    {
+      window.alert("select group");
+      return;
+    }
+   
+    var role= this.response.groupRoles.find((x:any)=>(x.assignedGroupId===this.selectedGroup[0]));
+   
+    this.response.currentGroupData={ 
+      assignedGroupId:this.selectedGroup,
+      roleCode: this.response.roles.find(y =>(y.roleId===role?.roleId))?.roleCode??"",
+      deniedAccessMethodNames:this.response.roles.find(y =>(y.roleId===role?.roleId))?.deniedAccessMethodNames??[],
+      customizedPrivileges:role?.customizedPrivileges
+
+    };
+    this.permissionsService.setLoginResponse(this.response);  
+    this.userid = ( this.response.currentGroupData.roleCode == userRoles.BU || this.response.currentGroupData.roleCode == userRoles.SA) ? null : this.response.assignedToId;
+    this.groupid = (this.response.currentGroupData.roleCode == userRoles.BU || this.response.currentGroupData.roleCode == userRoles.SA) ? this.response.currentGroupData.assignedGroupId : null;
+    
+    this.loadIncidents();
+  }
+
 
   public loadIncidents(): void {
     let newdata: any;
     this.showloader = true;
-    console.log("length" + this.filterInput?.length);
-
+   
     this.apiservice.getIncidentsList(this.startIndex, this.endIndex, this.filterInput, this.userid, this.groupid).subscribe({
       next: (response: any) => {
         console.log(response);
         newdata = response?.map((data: any) => {
-
-         // data=this.updateData(data);
           return {
             'Number': data.incidentId,
             'Active': this.checkActive(data.active),
@@ -231,18 +259,15 @@ export class IncidentDetailsPageComponent implements OnInit {
         this.showloader = false;
         if (this.filterInput?.length > 0) {
 
-          this.filteredIncidents = this.filteredIncidents.concat(newdata)
-          //this.updateData(this.filteredIncidents);
+          this.filteredIncidents = this.filteredIncidents.concat(newdata)        
           this.dataSource = new MatTableDataSource(this.filteredIncidents)
           this.incidentDetails = [];
-          this.updateIncidents(this.filteredIncidents);
+         
         }
         else {
           this.filteredIncidents = [];
-          this.incidentDetails = this.incidentDetails.concat(newdata);
-          //this.updateData(this.incidentDetails);
-          this.dataSource = new MatTableDataSource(this.incidentDetails)
-          this.updateIncidents(this.incidentDetails);
+          this.incidentDetails = this.incidentDetails.concat(newdata);          
+          this.dataSource = new MatTableDataSource(this.incidentDetails)          
         }
         this.dataSource.sort = this.matsort
         this.dataSource.paginator = this.paginator
@@ -264,50 +289,7 @@ export class IncidentDetailsPageComponent implements OnInit {
     }
   }
 
-  // loadPriorityList() {
-
-  //   this.apiservice.getPriorityList().subscribe({
-  //     next: (data: any) => {
-  //       console.log(data)
-  //       this.priorityList = data
-  //     },
-  //     error: (err: any) => {
-  //       console.log(err)
-
-  //     }
-  //   });
-  // }
-
-  // loadStates() {
-  //   this.apiservice.getStatusList().subscribe({
-  //     next: (data: any) => {
-  //       console.log(data)
-  //       this.stateList = data
-  //     },
-  //     error: (err: any) => {
-  //       console.log(err)
-
-  //     }
-  //   });
-  // }
-
-  updateIncidents(data: any) {
   
-    data.forEach((item: { Priority: any; State: any; }) => {
-      const foundPriority = this.priorityList.find((x: any) => x.priorityId === item.Priority);
-  
-      if (foundPriority) {
-        item.Priority = foundPriority.priorityValue;
-      }
-  
-      const foundState = this.stateList.find((x: any) => x.statusId === item.State);
-  
-      if (foundState) {
-        item.State = foundState.statusValue;
-      }
-    });
-  }
-
   // goToIncident() {
   //   this.routes.navigateByUrl(ROUTES.VIEWSTEPS)
   // }

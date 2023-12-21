@@ -25,6 +25,7 @@ export class CreateUserComponent implements OnInit {
   logedUser: string | any;
   selectionEvent: boolean = false;
   customizedRole: boolean = false;
+  isChecked:boolean=false;
 
 
   constructor(private fb: FormBuilder,
@@ -90,6 +91,12 @@ export class CreateUserComponent implements OnInit {
       });
 
     }
+    if(!data.target.checked)
+    {
+      this.userPermissions = [];
+      this.selectionEvent = false;
+    }
+
   }
   onSelectionChange(event: any) {
     this.selectedItems = event.source.selectedOptions.selected.map((option: any) => option.value);
@@ -113,22 +120,22 @@ export class CreateUserComponent implements OnInit {
   addUser() {
     let roles: groupRoles[] = [];
 
-    this.tableData.forEach((element: any) => {
+    // this.tableData.forEach((element: any) => {
 
-      roles.push({
-        assignedGroupId: element.column2,
-        customizedPrivileges: element.column3,
-        roleId: this.roleList.find((x: any) => x.roleName == element.column1).roleId
-      });
-    });
+    //   roles.push({
+    //     assignedGroupId: element.column2,
+    //     customizedPrivileges: element.column3,
+    //     roleId: this.roleList.find((x: any) => x.roleName == element.column1).roleId
+    //   });
+    // });
 
   this.tableData.forEach((element:any) => {
   
-  roles.push({assignedGroupId:this.assignGrpList.find((x:any)=> x.groupName==element.column2).groupId,
+    roles.push({assignedGroupId:this.assignGrpList.find((x:any)=> x.groupName==element.column2).groupId,
             customizedPrivileges:element.column3,
             roleId:this.roleList.find((x:any)=> x.roleName==element.column1).roleId
         });
-});
+    });
 
     const obj = {
       "username": this.createUser.value.username,
@@ -188,6 +195,7 @@ export class CreateUserComponent implements OnInit {
       column3: this.selectedItems
 
     });
+    this.isChecked=false;    
 
     //console.log(this.tableData)
   }
