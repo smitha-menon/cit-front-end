@@ -81,33 +81,33 @@ export class RolePageComponent implements OnInit{
     }
     console.log(obj)
     console.log("editdata"+ JSON.stringify(obj));
-    // this.apiService.modifyRole(obj).subscribe({
-    //   next:(response:any) =>{ 
-    //     console.log(response);
-    //     this.notifier.success(
-    //       'success',
-    //       'Role updated successfully'            
-    //     )  ;
-    //     this.loadRole();  
-    //   },
-    //   error:(err:any)=>{
-    //     console.log(err)
-    //     if (err.status === 200)
-    //     {
-    //       this.notifier.success(
-    //         'success',
-    //         'Role updated successfully'            
-    //       )  ;
-    //       this.loadRole();  
-    //     }
-    //     else{
-    //       this.notifier.error(
-    //         'Failed',
-    //         'Role updation unsuccessfull'            
-    //       ) 
-    //     }
-    //   }
-    // });
+    this.apiService.modifyRole(obj).subscribe({
+      next:(response:any) =>{ 
+        console.log(response);
+        this.notifier.success(
+          'success',
+          'Role updated successfully'            
+        )  ;
+        this.loadRole();  
+      },
+      error:(err:any)=>{
+        console.log(err)
+        if (err.status === 200)
+        {
+          this.notifier.success(
+            'success',
+            'Role updated successfully'            
+          )  ;
+          this.loadRole();  
+        }
+        else{
+          this.notifier.error(
+            'Failed',
+            'Role updation unsuccessfull'            
+          ) 
+        }
+      }
+    });
   }
   deleteRole(data:any){
     console.log(data);
