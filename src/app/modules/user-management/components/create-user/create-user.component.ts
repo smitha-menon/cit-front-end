@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTES } from 'src/app/core/constants/constant';
 import { NotifierService } from 'src/app/core/utils/notifier';
@@ -59,6 +59,9 @@ export class CreateUserComponent implements OnInit {
   
   }
 
+  get f() {
+    return this.createUser.controls;
+  }
   ngOnInit(): void {
     this.loadRole();
     this.loadGroups();
@@ -69,7 +72,7 @@ export class CreateUserComponent implements OnInit {
       company: ['G10X'],
       passwordtxt: [''],
       phone: [''],
-      email: [''],
+      email: ['', [Validators.required, Validators.email]],
       createdby: [this.logedUser],
       createdon: [(new Date()).toLocaleDateString("en-GB") + ' ' + (new Date()).toLocaleTimeString('en-IT', { hour12: false })],
 

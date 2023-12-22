@@ -202,7 +202,15 @@
       width: 451px;
       height: 160px;
     //   overflow-y: scroll;
-      margin-left: 170px;
+    //   margin-left: 170px;
+    }
+    span.mat-mdc-list-item-unscoped-content.mdc-list-item__primary-text {
+        color: #000;
+        font-family: Montserrat;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
     }
     .mat-mdc-list-option .mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle {
         // border-color: #6200ee;
@@ -230,7 +238,7 @@
     z-index: 99;
   
     .delete-popup {
-      width: 882px;
+    //   width: 882px;
       height: 550px;
       // margin-left: 30%;
       // margin-top: 6%;
