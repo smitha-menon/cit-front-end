@@ -3,9 +3,9 @@
         <div class="breadcrumbs-cvr">
             <span><a href="/users">Users</a></span>
             <span>></span>
-            <span class="active">Add User</span>
+            <span class="active">{{pageTitle}}</span>
         </div>
-        <label>Add User</label>
+        <label>{{pageTitle}}</label>
 
         <div style="border: 1px solid #b8b8b8; border-top: none;">
             <div class="card2">
@@ -63,7 +63,7 @@
                             <div class="form-group">
 
                                 <label class="form-label">Created by:</label>
-                                <input matInput type="text" class="form-control" formControlName="createdby"
+                                <input matInput type="text" class="form-control" [readonly]="isEditMode" formControlName="createdby"
                                     name="createdby" required>
                                 <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
                   Please provide a valid email
@@ -72,7 +72,7 @@
                             <div class="form-group">
 
                                 <label class="form-label">Created on:</label>
-                                <input matInput type="text" class="form-control" formControlName="createdon"
+                                <input matInput type="text" class="form-control" formControlName="createdon" [readonly]="isEditMode"
                                     name="createdon" required>
                                 <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
               Please provide a valid email
@@ -193,7 +193,7 @@
                         </div>
 
                         <div>
-                            <button class="button-29" (click)="addUser()">Add User</button>
+                            <button class="button-29" (click)="addUser()">{{pageTitle}}</button>
                         </div>
                     </form>
 

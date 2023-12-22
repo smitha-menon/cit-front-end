@@ -114,8 +114,8 @@ export class ApiservicesService {
 
   }
 
-  public getActiveUsers(): Observable<any> {
-    const url = `${this.apiUrl}/auth/getActiveUsers`;
+  public getUserById(userId:any): Observable<any> {
+    const url = `${this.apiUrl}/auth/getUserById/`+ `${userId}`;
     const token = localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     const options = {
@@ -257,6 +257,15 @@ export class ApiservicesService {
       headers: header,
     };
     return this.http.post<any>(this.apiUrl + '/auth/addUser' ,data ,options)
+  }
+
+  public modifyUser(data: any,id:any): Observable<any> {
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const options = {
+      headers: header,
+    };
+    return this.http.put<any>(this.apiUrl + '/auth/modifyUser/' + id,data ,options)
   }
   public addRole(data: any): Observable<any> {
     const token = localStorage.getItem(USER_TOKEN);

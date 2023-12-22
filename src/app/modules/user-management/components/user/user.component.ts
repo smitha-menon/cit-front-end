@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { ROUTES } from 'src/app/core/constants/constant';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 
@@ -51,7 +51,7 @@ export class UserComponent implements OnInit {
   }
 
   loadUsers() {
-    this.apiservice.getActiveUsers().subscribe({
+    this.apiservice.getUsersListToAssign().subscribe({
       next: (data: any) => {
         console.log(data)
         this.userList = data.map((res: any) => {
@@ -60,8 +60,9 @@ export class UserComponent implements OnInit {
             'role': res.role,
             'email':res.emailAddress,
             'state': this.checkState(res),
-            'number': res.phoneNumber
-          }
+            'number': res.phoneNumber,
+            'userId': res.userId
+            }
 
         })
         console.log(this.userList)
@@ -79,12 +80,19 @@ export class UserComponent implements OnInit {
     this.router.navigateByUrl(ROUTES.ROLES)
   }
   userEditPop(index: any) {
-    this.userEditPopup = true;
-    this.editUsersDetailsForm = this.fb.group({
-      editusername: [this.userList[index].name, [Validators.required]],
-      editemailid: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      edituserrole: [this.userList[index].role, [Validators.required]],
-    });
+    // this.userEditPopup = true;
+    // this.editUsersDetailsForm = this.fb.group({
+    //   editusername: [this.userList[index].name, [Validators.required]],
+    //   editemailid: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+    //   edituserrole: [this.userList[index].role, [Validators.required]],
+    // });
+   
+    const queryParams1: NavigationExtras = {
+      queryParams: {
+        editUser: this.userList[index].userId      
+      }
+    };
+    this.router.navigate([ROUTES.ADDUSER],queryParams1)
   }
 
   editCancelButton() {

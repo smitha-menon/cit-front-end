@@ -155,7 +155,7 @@ export class IncidentDetailsPageComponent implements OnInit {
   
    logGroup() {
     this.setCurrentGroup();
-    this.logGroupPopup = false;
+   
    }
 
   editForm(index: any) {
@@ -219,8 +219,9 @@ export class IncidentDetailsPageComponent implements OnInit {
     if(this.selectedGroup.length===0)
     {
       window.alert("select group");
-      return;
+      this.showloader = false;
     }
+    else{
    
     var role= this.response.groupRoles.find((x:any)=>(x.assignedGroupId===this.selectedGroup[0]));
    
@@ -236,6 +237,8 @@ export class IncidentDetailsPageComponent implements OnInit {
     this.groupid = (this.response.currentGroupData.roleCode == userRoles.BU || this.response.currentGroupData.roleCode == userRoles.SA) ? this.response.currentGroupData.assignedGroupId : null;
     
     this.loadIncidents();
+    this.logGroupPopup = false;
+  }
   }
 
 

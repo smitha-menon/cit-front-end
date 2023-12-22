@@ -4,6 +4,7 @@
             <label>Users</label>
             
             <button class="create-new-btn" (click)="addUserPopUp()">Add Users</button>
+            
         </div>
         <div class="search-container">
             <i class="fa-magnifying-glass fa-solid" style="color: #14161a; margin-left: 10px;font-size: 19px;"></i>
@@ -40,7 +41,7 @@
 
                 <!-- Role Column -->
                 <ng-container matColumnDef="Number">
-                    <mat-header-cell *matHeaderCellDef> Number </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
                     <mat-cell *matCellDef="let element">
                         {{element.phoneNumber}}
                     </mat-cell>
@@ -65,9 +66,10 @@
                     <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                     <mat-cell *matCellDef="let element; let i = index;">
                         <ng-container>
-                            <button class="edit-button" (click)="userEditPop(i)">Edit
-                                <img src="../../../../../assets/images/edit-icon.png">
+                            <button class="edit-button" (click)="userEditPop(i)">Edit                              
+                                <img src="../../../../../assets/images/edit-icon.png">                                
                             </button>
+                            
                         </ng-container>
                     </mat-cell>
                 </ng-container>
