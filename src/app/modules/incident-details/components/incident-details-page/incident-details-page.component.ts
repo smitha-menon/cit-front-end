@@ -78,7 +78,7 @@ export class IncidentDetailsPageComponent implements OnInit {
   userPermissions: string[] = [];
   groupid: any;
   userid: any;
-  logGroupPopup: boolean = true;
+  logGroupPopup: boolean = false;
   incidentDetailForm: boolean = false;
   priorityList: any = [];
   stateList: any = [];
@@ -105,7 +105,15 @@ export class IncidentDetailsPageComponent implements OnInit {
       
   });
    
-    //this.loadIncidents();
+  if (this.response.currentGroupData === undefined)
+  {
+    this.logGroupPopup=true;
+  }
+  else{
+   
+    this.loadIncidents();
+  }
+    
    
 }
 
@@ -232,9 +240,7 @@ export class IncidentDetailsPageComponent implements OnInit {
       customizedPrivileges:role?.customizedPrivileges
 
     };
-    this.permissionsService.setLoginResponse(this.response);  
-    this.userid = ( this.response.currentGroupData.roleCode == userRoles.BU || this.response.currentGroupData.roleCode == userRoles.SA) ? null : this.response.assignedToId;
-    this.groupid = (this.response.currentGroupData.roleCode == userRoles.BU || this.response.currentGroupData.roleCode == userRoles.SA) ? this.response.currentGroupData.assignedGroupId : null;
+    this.permissionsService.setLoginResponse(this.response); 
     
     this.loadIncidents();
     this.logGroupPopup = false;
@@ -245,6 +251,9 @@ export class IncidentDetailsPageComponent implements OnInit {
   public loadIncidents(): void {
     let newdata: any;
     this.showloader = true;
+
+    this.userid = ( this.response.currentGroupData.roleCode == userRoles.BU || this.response.currentGroupData.roleCode == userRoles.SA) ? null : this.response.assignedToId;
+    this.groupid = (this.response.currentGroupData.roleCode == userRoles.BU || this.response.currentGroupData.roleCode == userRoles.SA) ? this.response.currentGroupData.assignedGroupId : null;
    
     this.apiservice.getIncidentsList(this.startIndex, this.endIndex, this.filterInput, this.userid, this.groupid).subscribe({
       next: (response: any) => {
