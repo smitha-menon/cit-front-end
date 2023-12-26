@@ -340,6 +340,15 @@ export class ApiservicesService {
     };
     return this.http.put<any>(this.apiUrl + '/modifyRole/'+data.roleId ,data ,options)
   }
+  public modifyGroup(data:any): Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const options = {
+      headers: header,
+    };
+    console.log(data);
+    return this.http.put<any>(this.apiUrl + '/modifyAssignedGroup/'+data.groupId ,data ,options)
+  }
   
   public deleteGroup(grpId:any):Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
@@ -366,6 +375,22 @@ export class ApiservicesService {
     };
     const url = `${this.apiUrl}/getIncidentsForReportPageByFilters`;
     return this.http.post(url,filters,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  public getPrivileges():Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,      
+    };
+    const url = `${this.apiUrl}/getAllUserPrivileges`;
+    return this.http.get(url,options).pipe(
       tap(data => {
         console.log(data);
       }),

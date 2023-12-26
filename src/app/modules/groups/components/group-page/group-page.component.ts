@@ -66,6 +66,44 @@ export class GroupPageComponent implements OnInit {
     feature.addfeature = false
   }
 
+  modifyGroup(data:any)
+  {
+    console.log(data);
+
+    var model={
+      "groupId": data.groupid,
+      "groupName": this.createGroup.value.groupname,
+      "isActive": data.isactive
+    }
+    this.apiservice.modifyGroup(model).subscribe({
+      next:(response:any) =>{ 
+        console.log(response);
+        this.notifier.success(
+          'success',
+          'Group modified successfully'            
+        )  ;
+        this.loadGroup();  
+      },
+      error:(err:any)=>{
+        console.log(err)
+        if(err.status==200)
+        {
+          this.notifier.success(
+            'success',
+            'Group modified successfully'            
+          )  ;
+          this.loadGroup(); 
+        }
+        else{
+          this.notifier.error(
+            'Failure',
+            'Group modification unsuccessfull'            
+          )  ;
+        }
+      }
+    });
+  }
+
   deleteGroup(data:any){
     console.log(data);
     this.apiservice.deleteGroup(data.groupid).subscribe({
@@ -73,7 +111,7 @@ export class GroupPageComponent implements OnInit {
         console.log(response);
         this.notifier.success(
           'success',
-          'Role deleted successfully'            
+          'Group deleted successfully'            
         )  ;
         this.loadGroup();  
       },
@@ -83,14 +121,14 @@ export class GroupPageComponent implements OnInit {
         {
           this.notifier.success(
             'success',
-            'Role deleted successfully'            
+            'Group deleted successfully'            
           )  ;
           this.loadGroup();  
         }
         else{
           this.notifier.error(
             'Failed',
-            'Role deletion usuccessfull'            
+            'Group deletion usuccessfull'            
           ) 
         }
       }
