@@ -30,7 +30,13 @@
           <div class="tag-content" *ngIf="role.addfeature">
 
             <div>
-              <input type="text" class="search-input" placeholder="Add " />
+              <mat-select  class="form-control" placeholder="Role">
+
+              <mat-option *ngFor="let item of privilageList" [value]="item.name">{{
+                  item.name
+                  }}
+              </mat-option>
+          </mat-select>
             </div>
             <div>
               <button class="add-tag-btn">Add</button>
