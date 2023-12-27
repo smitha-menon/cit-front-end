@@ -12,7 +12,7 @@ import { ApiservicesService } from 'src/app/services/apiservices.service';
 })
 export class CreateRolePageComponent implements OnInit {
   public createRole: FormGroup | any;
-
+  privilageList: any = [];
   constructor(private apiService: ApiservicesService, private fb: FormBuilder, private notifier: NotifierService, private router: Router) { }
 
   ngOnInit(): void {
@@ -21,6 +21,19 @@ export class CreateRolePageComponent implements OnInit {
       rolename: [''],
       rolecode: [''],
       isactive: ['True'],
+    })
+    
+    this.apiService.getPrivileges().subscribe({
+      next:(res: any) => {
+        console.log(res)
+        this.privilageList = res.map((data: any) => {
+          return {
+            name: data.userPrivilegeName,
+            id: data.userPrivilegeId
+          }
+        })
+        
+      }
     })
   }
 
