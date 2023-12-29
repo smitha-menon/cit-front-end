@@ -42,10 +42,10 @@ const routes: Routes = [{
     },
     {
       path: 'users',
-      canActivate: [AuthGuard],
-      // data: {
-      //   role: userRoles.SRE
-      // },
+      canActivate: [AuthGuard,HasRolesGuard],
+      data: {
+        role: userRoles.SA
+      },
       loadChildren: () => import('./modules/user-management/user-management.module').then((m) => m.UserManagementModule)
     },
     {
@@ -68,6 +68,11 @@ const routes: Routes = [{
       path: 'reports',
       canActivate: [AuthGuard],
       loadChildren: () => import('./modules/report/report.module').then((m) => m.ReportModule)
+    },
+    {
+      path: 'create-application',
+      canActivate: [AuthGuard],
+      loadChildren:()=> import('./modules/applications/applications.module').then((m)=> m.ApplicationsModule)
     }
     
     // {path:'', redirectTo:'/login',pathMatch:'full'}  

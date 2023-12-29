@@ -69,8 +69,8 @@
 }
 
 .testplan-form {
-  display: block;
-  // justify-content: space-around;
+  display: flex;
+  //justify-content: space-around;
 }
 
 .form-label {
@@ -96,6 +96,17 @@
  
   /* flex-shrink: 0; */
  
+}
+.file-Upload{
+  width: 300px;
+  // height: 37px;
+  color: #656565;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  flex-shrink: 0;
 }
 .form-control {
   width: 300px;
@@ -275,4 +286,5 @@ tr:nth-child(even) {
     border-color: #018786;
     background-color: #018786;
   }
+  
 }

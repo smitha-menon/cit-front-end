@@ -113,12 +113,12 @@
             <!-- <li class="nav__item">
                
             </li> -->
-            <!-- <li class="nav__item">
-                <div class="nav_list" [ngClass]="{'active': tab==='groups'}" (click)="groups(); tab='groups'">
+            <li class="nav__item">
+                <div class="nav_list" [ngClass]="{'active': tab==='application'}" (click)="applications(); tab='application'">
                     <label class="nav_label">
-                        <i class="fa-solid fa-users-between-lines"></i>Groups </label>
+                        <i class="fa-solid fa-users-between-lines"></i>Add Application </label>
                 </div>
-            </li> -->
+            </li>
             <li class="nav__item" *ngIf="isUserInRole([rolesU.GA])">
                 <div class="nav_list" [ngClass]="{'active': tab==='approval'}" (click)="approvals(); tab='approval'">
                     <label class="nav_label">

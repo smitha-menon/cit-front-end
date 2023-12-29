@@ -397,6 +397,37 @@ export class ApiservicesService {
       catchError(this.handleError)
     );
   }
+  public uploadPhoto(photo:any,usrId:any):Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,      
+    };
+    const url = `${this.apiUrl}/auth/uploadProfilePicture/`+`${usrId}`;
+    return this.http.post(url,photo,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  public deletePhoto(Id:any):Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,
+    };
+    const url = `${this.apiUrl}/auth/deleteProfilePicture/`+`${Id}`;
+    return this.http.delete(url,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
 
 
   private handleError(error: any) {

@@ -17,7 +17,7 @@
 
 
                     <form class="testplan-form" [formGroup]="createUser">
-                        <div>
+                        <div >
                             <div class="form-group">
 
                                 <label class="form-label">Username</label>
@@ -79,122 +79,147 @@
             </div> -->
                             </div>
 
-
-                        </div>
-                        <br>
-                        <div>
+                            <div>
+                                <div>
 
 
-                            <label class="form-label">Add Roles & Groups:</label>
-                            <div class="role-table">
-                                <div style="display: flex; gap: 10px;     margin-top: 13px;
-                                margin-left: 10px;">
-                                    <div class="form-group">
-                                        <!-- 
-                                        <select [(ngModel)]="selectedRole" class="form-control"
-                                            [ngModelOptions]="{standalone: true}">
-                                            <option [value]="undefined">Role</option>
-                                            <option *ngFor="let item of roleList" [value]="item.roleName">{{
-                                                item.roleName
-                                                }}</option>
-                                        </select> -->
-
-                                        <mat-select [(ngModel)]="selectedRole" class="form-control" placeholder="Role"
-                                            [ngModelOptions]="{standalone: true}">
-
-                                            <mat-option *ngFor="let item of roleList" [value]="item.roleName">{{
-                                                item.roleName
-                                                }}
-                                            </mat-option>
-                                        </mat-select>
-
+                                    <label class="form-label">Add Roles & Groups:</label>
+                                    <div class="role-table">
+                                        <div style="display: flex; gap: 10px;     margin-top: 13px;
+                                        margin-left: 10px;">
+                                            <div class="form-group">
+                                                <!-- 
+                                                <select [(ngModel)]="selectedRole" class="form-control"
+                                                    [ngModelOptions]="{standalone: true}">
+                                                    <option [value]="undefined">Role</option>
+                                                    <option *ngFor="let item of roleList" [value]="item.roleName">{{
+                                                        item.roleName
+                                                        }}</option>
+                                                </select> -->
+        
+                                                <mat-select [(ngModel)]="selectedRole" class="form-control" placeholder="Role"
+                                                    [ngModelOptions]="{standalone: true}">
+        
+                                                    <mat-option *ngFor="let item of roleList" [value]="item.roleName">{{
+                                                        item.roleName
+                                                        }}
+                                                    </mat-option>
+                                                </mat-select>
+        
+                                            </div>
+        
+                                            <div class="form-group">
+                                                <!-- <select [(ngModel)]="selectedGroup" class="form-control" (change)="schedule()"
+                                                    [ngModelOptions]="{standalone: true}">
+                                                    <option [value]="undefined">Assigned Group</option>
+                                                    <option *ngFor="let item of assignGrpList" [value]="item.groupName">{{
+                                                        item.groupName
+                                                        }}</option>
+                                                </select> -->
+                                                <mat-select [(ngModel)]="selectedGroup" class="form-control"
+                                                    (selectionChange)="schedule()" placeholder="Assigned Group"
+                                                    [ngModelOptions]="{standalone: true}">
+        
+                                                    <mat-option *ngFor="let item of assignGrpList" [value]="item.groupName">
+                                                        {{
+                                                        item.groupName
+                                                        }}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </div>
+                                        </div>
+        
+                                        <div *ngIf="customizedRole" class="form-group" style="margin-left: 10px;">
+                                            <label class="custm-role-label">
+                                                <input type="checkbox" id="customize" name="customize" style="    width: 20px;
+                                                height: 18px;" [(ngModel)]="isChecked" [ngModelOptions]="{standalone: true}"
+                                                    (change)="eventCheck($event)">
+                                                Customize Role
+                                            </label>
+        
+                                        </div>
+                                        <!-- <div> -->
+        
+                                        <!-- </div> -->
+                                        <div *ngIf="selectionEvent">
+                                            <mat-selection-list [multiple]="true" [(ngModel)]="userPermissions"
+                                                [ngModelOptions]="{standalone: true}"
+                                                (selectionChange)="onSelectionChange($event)">
+                                                <mat-list-option *ngFor="let item of userPermissions" [value]="item">
+                                                    {{ item }}
+                                                </mat-list-option>
+                                            </mat-selection-list>
+                                        </div>
+                                        <div style="padding: 30px 0px;">
+                                            <button class="add-btn" (click)="addGroupRo()">Add</button>
+                                        </div>
+        
+                                        <table>
+                                            <colgroup>
+                                                <col span="1" style="width: 5%;">
+                                                <col span="1" style="width: 5%;">
+                                                <col span="1" style="width: 5%;">
+                                                <col span="1" style="width: 80%;">
+                                                <col span="1" style="width: 5%;">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th>Sl.no</th>
+                                                    <th>Roles</th>
+                                                    <th>Groups</th>
+                                                    <th>Customized Privileges</th>
+                                                    <th>Delete</th>
+                                                    <!-- Add more headers based on your API response structure -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let row of tableData">
+                                                    <td>{{ row.column4 }}</td>
+                                                    <td>{{ row.column1 }}</td>
+                                                    <td>{{ row.column2 }}</td>
+                                                    <td data-placement="top" title="{{row.column3 }}">{{ row.column3 }}</td>
+                                                    <td><a class="material-icons" (click)="deleteItem(row.column4)">delete</a>
+                                                    </td>
+                                                    <!-- Add more cells based on your API response structure -->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+        
                                     </div>
-
-                                    <div class="form-group">
-                                        <!-- <select [(ngModel)]="selectedGroup" class="form-control" (change)="schedule()"
-                                            [ngModelOptions]="{standalone: true}">
-                                            <option [value]="undefined">Assigned Group</option>
-                                            <option *ngFor="let item of assignGrpList" [value]="item.groupName">{{
-                                                item.groupName
-                                                }}</option>
-                                        </select> -->
-                                        <mat-select [(ngModel)]="selectedGroup" class="form-control"
-                                            (selectionChange)="schedule()" placeholder="Assigned Group"
-                                            [ngModelOptions]="{standalone: true}">
-
-                                            <mat-option *ngFor="let item of assignGrpList" [value]="item.groupName">
-                                                {{
-                                                item.groupName
-                                                }}
-                                            </mat-option>
-                                        </mat-select>
-                                    </div>
+        
+        
                                 </div>
-
-                                <div *ngIf="customizedRole" class="form-group" style="margin-left: 10px;">
-                                    <label class="custm-role-label">
-                                        <input type="checkbox" id="customize" name="customize" style="    width: 20px;
-                                        height: 18px;" [(ngModel)]="isChecked" [ngModelOptions]="{standalone: true}"
-                                            (change)="eventCheck($event)">
-                                        Customize Role
-                                    </label>
-
+        
+                                <div>
+                                    <button class="button-29" (click)="addUser()">{{pageTitle}}</button>
                                 </div>
-                                <!-- <div> -->
-
-                                <!-- </div> -->
-                                <div *ngIf="selectionEvent">
-                                    <mat-selection-list [multiple]="true" [(ngModel)]="userPermissions"
-                                        [ngModelOptions]="{standalone: true}"
-                                        (selectionChange)="onSelectionChange($event)">
-                                        <mat-list-option *ngFor="let item of userPermissions" [value]="item">
-                                            {{ item }}
-                                        </mat-list-option>
-                                    </mat-selection-list>
-                                </div>
-                                <div style="padding: 30px 0px;">
-                                    <button class="add-btn" (click)="addGroupRo()">Add</button>
-                                </div>
-
-                                <table>
-                                    <colgroup>
-                                        <col span="1" style="width: 5%;">
-                                        <col span="1" style="width: 5%;">
-                                        <col span="1" style="width: 5%;">
-                                        <col span="1" style="width: 80%;">
-                                        <col span="1" style="width: 5%;">
-                                    </colgroup>
-                                    <thead>
-                                        <tr>
-                                            <th>Sl.no</th>
-                                            <th>Roles</th>
-                                            <th>Groups</th>
-                                            <th>Customized Privileges</th>
-                                            <th>Delete</th>
-                                            <!-- Add more headers based on your API response structure -->
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let row of tableData">
-                                            <td>{{ row.column4 }}</td>
-                                            <td>{{ row.column1 }}</td>
-                                            <td>{{ row.column2 }}</td>
-                                            <td data-placement="top" title="{{row.column3 }}">{{ row.column3 }}</td>
-                                            <td><a class="material-icons" (click)="deleteItem(row.column4)">delete</a>
-                                            </td>
-                                            <!-- Add more cells based on your API response structure -->
-                                        </tr>
-                                    </tbody>
-                                </table>
-
                             </div>
 
 
                         </div>
-
+                        <br>
+                       
                         <div>
-                            <button class="button-29" (click)="addUser()">{{pageTitle}}</button>
-                        </div>
+                                <div  style="flex-direction: column;">
+                                    <label class="form-label">Upload Photo:</label>
+                                    <input type="file"class="file-Upload" (change)="onFileSelected($event)"  #fileUpload>
+                                    <img [src]="fileName" height="200" >
+                                    <div>
+                                        <button class="file-Upload" (click)="deleteUsrPhoto()">Remove uploaded Picture</button>
+                                    </div>
+                                   
+                                    <!-- <div class="file-upload">
+
+                                        {{fileName || "No file uploaded yet."}}
+                                    
+                                             <button mat-mini-fab color="primary" class="upload-btn"
+                                             (click)="fileUpload.click()">
+                                             <mat-icon>attach_file</mat-icon>
+                                             </button>
+                                    </div> -->
+                                    
+                                </div>
+                            </div>
                     </form>
 
                 </div>

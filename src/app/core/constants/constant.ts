@@ -11,7 +11,8 @@ export const ROUTES = {
     CREATEGROUP: '/rback/group-page',
     APPROVALS: '/incident-approval',        
     ROLES: '/users/roles',
-    REPORT: '/reports'
+    REPORT: '/reports',
+    APPLICATION:'/create-application'
 }
 
  export const statuses={ closedState:'closed'}

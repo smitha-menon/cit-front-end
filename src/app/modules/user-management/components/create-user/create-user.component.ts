@@ -30,7 +30,7 @@ export class CreateUserComponent implements OnInit {
 
   pageTitle:string ="Add User";
   editUser:any;
-  
+  fileName:any ="../../../assets/images/noprofile.png";
 
   constructor(private fb: FormBuilder,
     private apiservice: ApiservicesService,
@@ -54,19 +54,17 @@ export class CreateUserComponent implements OnInit {
             this.isEditMode=false;
           }
     });
-
-
   
   }
 
   get f() {
     return this.createUser.controls;
   }
+
   ngOnInit(): void {
     this.loadRole();
     this.loadGroups();
 
-    // console.log(this.permissonRes.getLoginResponse())
     this.createUser = this.fb.group({
       username: [''],
       company: ['G10X'],
@@ -79,6 +77,84 @@ export class CreateUserComponent implements OnInit {
     })
     this.loadUserById();
   }
+  
+
+  onFileSelected(event:any){
+    if(event.target.files.length >  0)
+    {
+      const file= event.target.files[0];
+      console.log(file);
+      console.log(file.type);
+      if(file.type === "image/png" || file.type === "image/jpeg" )
+      {
+        var reader = new FileReader();
+       reader.readAsDataURL(event.target.files[0]);
+       reader.onload=(data:any)=>{console.log(data.target.result);
+        this.fileName= data.target.result};
+        if(this.isEditMode)
+        {
+        const formData = new FormData();
+        formData.append('file', file);
+        this.apiservice.uploadPhoto(formData,this.editUser).subscribe({
+          next: (response: any) => {
+            console.log(response)
+           
+            this.notifier.success(
+              'Photo updated',
+              'success'
+            )
+           
+          },
+          error: (err: any) => {
+            console.log(err)
+            
+              this.notifier.error(
+                'Failed',
+                'Photo is not uploaded'
+              )
+          }
+    
+        });
+      }
+        
+      }
+      else{
+       
+        this.notifier.error("Error","wrong file type,choose png/jpeg file");
+        this.fileName="../../../assets/images/noprofile.png";
+        
+      }
+      
+    }
+
+  }
+
+
+  deleteUsrPhoto()
+  {
+    this.apiservice.deletePhoto(this.editUser).subscribe({
+      next: (response: any) => {
+        console.log(response)
+       
+        this.notifier.success(
+          'Photo deleted',
+          'success'
+        )
+        this.fileName="../../../assets/images/noprofile.png";
+      },
+      error: (err: any) => {
+        console.log(err)
+        
+          this.notifier.error(
+            'Failed',
+            'Photo is not deleted'
+          )
+      }
+
+    });
+
+  }
+  
   schedule() {
    this.customizedRole = true;
   }
@@ -276,7 +352,15 @@ export class CreateUserComponent implements OnInit {
           createdby: [respons.createdBy],
           createdon: [respons.createdOn],
     
-        })
+        }) 
+        
+        if(respons.image !=null)
+        {
+
+        this.fileName= `data:image/jpeg;base64,`+`${respons.image}`; 
+        var reader = new FileReader();       
+       reader.onload= this.fileName;
+        }
 
         var sno = 1;
           console.log(respons);
