@@ -285,6 +285,15 @@ export class ApiservicesService {
     return this.http.post<any>(this.apiUrl + '/addAssignedGroup', data, options)
   }
 
+  public addApplication(data: any): Observable<any> {
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const options = {
+      headers: header,
+    };
+    return this.http.post<any>(this.apiUrl + '/addApplication', data, options)
+  }
+
   public approveIncident(incidentId :any, status:any): Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
@@ -300,6 +309,22 @@ export class ApiservicesService {
       catchError(this.handleError)
     );
   }
+  public getApplications(): Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,
+    };
+    const url = `${this.apiUrl}/getAllApplications`;
+    return this.http.get(url,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   public getIncidentApprovals(groupId:any): Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
