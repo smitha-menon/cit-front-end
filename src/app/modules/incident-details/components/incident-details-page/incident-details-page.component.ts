@@ -66,7 +66,7 @@ export class IncidentDetailsPageComponent implements OnInit {
   startIndex: number = 1;
   endIndex: number = 16;
   showloader: boolean = true;
-  displayCols = ['Number', 'Active', 'State', 'Priority', 'Opened Date', 'Assigned To'];
+  displayCols = ['Number', 'Active', 'State', 'Priority','Application', 'Opened Date', 'Assigned To'];
   itemsPerPage = [5, 10, 15];
   incidentDetails: any = [];
   filteredIncidents: any = [];
@@ -262,10 +262,11 @@ export class IncidentDetailsPageComponent implements OnInit {
           return {
             'Number': data.incidentId,
             'Active': this.checkActive(data.active),
-            'State': this.stateList.find((x:any)=>( x.statusId === data.state))?.statusValue,
-            'Priority': this.priorityList.find((x:any)=>( x.priorityId === data.priority))?.priorityValue,
-            'Assigned To':this.assignUsrList.find((x:any)=>(x.userId == data.assignedTo))?.username,
-            'Opened Date': data.openedDate
+            'State': this.stateList.find((x:any)=>( x.statusId === data.state))?.statusValue??data.state,
+            'Priority': this.priorityList.find((x:any)=>( x.priorityId === data.priority))?.priorityValue??data.priority,
+            'Assigned To':this.assignUsrList.find((x:any)=>(x.userId == data.assignedTo))?.username??data.assignedTo,
+            'Opened Date': data.openedDate,
+            'Application':''
           }
         });
         this.showloader = false;

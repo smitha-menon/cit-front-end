@@ -20,13 +20,13 @@ export class CreateApplicationComponent implements OnInit {
       isactive: ['true']
     })
   }
-  addGroup() {
+  addAppln() {
     const data = {
-      "applicationName": this.addApplnForm.value.applnname,
-      "isActive": true
+      "applicationName": this.addApplnForm.value.applnname
+      // "isActive": true
     }
     console.log(data)
-    this.apiservice.addGroup(data).subscribe({
+    this.apiservice.addApplication(data).subscribe({
       next: (res: any) => {
         console.log(res)
 
@@ -40,7 +40,6 @@ export class CreateApplicationComponent implements OnInit {
           )
           this.addApplnForm.reset();
             this.router.navigateByUrl(ROUTES.APPLICATION)
-
         }
 
       }

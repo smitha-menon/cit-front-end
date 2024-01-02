@@ -64,9 +64,20 @@
               <input matInput type="text" class="form-control" formControlName="priority" name="priority" required>
 
             </div>
+          
             <div class="form-group">
 
-              <label class="form-label">Assigned To:</label>
+              <label class="form-label">Assigned Group:</label>
+              <!-- <input matInput type="text" class="form-control" formControlName="assignedgroup" name="assignedgroup"
+              required> -->
+              <select [(ngModel)]="selectedGroup" class="form-control" [ngModelOptions]="{standalone: true}">
+                <option [value]="undefined">{{defaultSelection}}</option>
+                <option *ngFor="let item of assignGrpList" [value]="item.groupId">{{ item.groupName }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+
+              <label class="form-label">Application:</label>
               <!-- <input matInput type="text" class="form-control" formControlName="assignedto" name="assignedto"
               required> -->
               <select [(ngModel)]="selectedUser" class="form-control" [ngModelOptions]="{standalone: true}">
@@ -77,13 +88,14 @@
             </div>
             <div class="form-group">
 
-              <label class="form-label">Assigned Group:</label>
-              <!-- <input matInput type="text" class="form-control" formControlName="assignedgroup" name="assignedgroup"
+              <label class="form-label">Assigned To:</label>
+              <!-- <input matInput type="text" class="form-control" formControlName="assignedto" name="assignedto"
               required> -->
-              <select [(ngModel)]="selectedGroup" class="form-control" [ngModelOptions]="{standalone: true}">
+              <select [(ngModel)]="selectedUser" class="form-control" [ngModelOptions]="{standalone: true}">
                 <option [value]="undefined">{{defaultSelection}}</option>
-                <option *ngFor="let item of assignGrpList" [value]="item.groupId">{{ item.groupName }}</option>
+                <option *ngFor="let item of assignUsrList" [value]="item.userId">{{ item.username }}</option>
               </select>
+
             </div>
             <div class="form-group">
 

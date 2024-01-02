@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.permissionService.loginreponse$.subscribe((data) => {
       this.loginUser = data.loginUser;
-      this.logedUserRole=data.roles[0].roleCode;
+      this.logedUserRole=data.currentGroupData.roleCode;
     });
   }
 
