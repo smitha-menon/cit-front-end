@@ -32,5 +32,33 @@
                 </div>
               </form>
         </div>
+        <br>
+        
+        <label>Application List</label>
+
+        <div>
+          <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="Application Id">
+              <mat-header-cell *matHeaderCellDef> Application Id </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.applicationId}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Application Name">
+              <mat-header-cell *matHeaderCellDef> Application Name </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.applicationName}}</mat-cell>
+            </ng-container> 
+            <ng-container matColumnDef="Delete">
+              <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element">
+                  <button mat-icon-button (click)="deleteAppln(element)">
+                      <mat-icon>cancel</mat-icon>
+                  </button>
+                  <!-- <i class="material-icons" >Action</i> -->
+              </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>  
+          </mat-table>
+        </div>
+    
     </div>
 </div>

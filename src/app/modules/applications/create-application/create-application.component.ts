@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ROUTES } from 'src/app/core/constants/constant';
 import { NotifierService } from 'src/app/core/utils/notifier';
@@ -12,13 +13,18 @@ import { ApiservicesService } from 'src/app/services/apiservices.service';
 })
 export class CreateApplicationComponent implements OnInit {
   addApplnForm: FormGroup | any;
-  constructor(private apiservice: ApiservicesService, private fb: FormBuilder, private notifier: NotifierService, private router: Router) { }
+  dataSource:any;
+  displayedColumns=['Application Id', 'Application Name', 'Delete'];
+
+  constructor(private apiService: ApiservicesService, private fb: FormBuilder, private notifier: NotifierService, private router: Router) { }
 
   ngOnInit(): void {
     this.addApplnForm = this.fb.group({
       applnname: [''],
       isactive: ['true']
     })
+
+    this.loadApplicationList();
   }
   addAppln() {
     const data = {
@@ -26,7 +32,7 @@ export class CreateApplicationComponent implements OnInit {
       // "isActive": true
     }
     console.log(data)
-    this.apiservice.addApplication(data).subscribe({
+    this.apiService.addApplication(data).subscribe({
       next: (res: any) => {
         console.log(res)
 
@@ -45,4 +51,48 @@ export class CreateApplicationComponent implements OnInit {
       }
     })
   }
+
+  loadApplicationList(){
+
+    this.apiService.getApplications().subscribe({
+      next:(response:any)=>{
+        this.dataSource= new MatTableDataSource(response);
+      },
+      error: (err: any) => {
+        console.log(err)}
+    });
+  }
+
+  
+  deleteAppln(data: any) {
+    console.log(data);
+    this.apiService.deleteAppln(data.applicationId).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.notifier.success(
+          'success',
+          'Application deleted successfully'
+        );
+        this.loadApplicationList();
+      },
+      error: (err: any) => {
+        console.log(err)
+        if (err.status === 200) {
+          this.notifier.success(
+            'success',
+            'Application deleted successfully'
+          );
+          this.loadApplicationList();
+        }
+        else {
+          this.notifier.error(
+            'Failed',
+            'Application deletion usuccessfull'
+          )
+        }
+      }
+    });
+
+  }
+
 }

@@ -454,6 +454,22 @@ export class ApiservicesService {
     );
   }
 
+  public deleteAppln(Id:any):Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,
+    };
+    const url = `${this.apiUrl}/deleteApplication/`+`${Id}`;
+    return this.http.delete(url,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
 
   private handleError(error: any) {
     return throwError(() => error);
