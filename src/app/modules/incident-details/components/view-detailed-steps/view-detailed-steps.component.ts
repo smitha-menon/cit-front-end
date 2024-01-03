@@ -34,6 +34,7 @@ export class ViewDetailedStepsComponent implements OnInit {
   isUpdateVisible:boolean =true;
   isAddTagVisible:boolean =true;
   comments:string | any;
+  assignAppList: any = [];
   constructor(private routes: Router, 
               private fb: FormBuilder,
                private apiservice: ApiservicesService,
@@ -49,6 +50,7 @@ export class ViewDetailedStepsComponent implements OnInit {
     this.loadGroups();
     this.loadStates();
     this.loadUsers();
+    this.loadApplication();
     
     this.permissionsService.loginreponse$.subscribe((data) => {
       this.userPermissions =(data.currentGroupData.customizedPrivileges==undefined)? data.currentGroupData.deniedAccessMethodNames:
@@ -204,6 +206,18 @@ saveTags(successMsg:string, failMsg:string){
         console.log(err)        
       }
     });
+  }
+
+  loadApplication() {
+    this.apiservice.getApplications().subscribe({
+      next: (data: any) => {
+        console.log(data)
+        this.assignAppList =data  
+      },
+      error: (err: any) => {
+        console.log(err)        
+      }
+    })
   }
 
   updateIncident(){

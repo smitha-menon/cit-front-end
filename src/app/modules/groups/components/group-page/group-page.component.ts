@@ -73,8 +73,10 @@ export class GroupPageComponent implements OnInit {
     var model={
       "groupId": data.groupid,
       "groupName": this.createGroup.value.groupname,
-      "isActive": data.isactive
+      "isActive": data.isactive,
+      "applications": data.applications
     }
+    console.log(model)
     this.apiservice.modifyGroup(model).subscribe({
       next:(response:any) =>{ 
         console.log(response);
