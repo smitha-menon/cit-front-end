@@ -84,6 +84,7 @@ export class IncidentDetailsPageComponent implements OnInit {
   stateList: any = [];
   assignUsrList: any;
   grouplist:any =[];
+  applnList:any=[];
   selectedGroup:string="";
   response!:loginResponse;
 
@@ -97,6 +98,7 @@ export class IncidentDetailsPageComponent implements OnInit {
     this.loadPriorityList();
     this.loadStates();
     this.loadUsers();
+    this.loadApplicationList();
 
     this.permissionsService.loginreponse$.subscribe((data) => {
       console.log("datauser" + JSON.stringify(data));
@@ -246,7 +248,16 @@ export class IncidentDetailsPageComponent implements OnInit {
     this.logGroupPopup = false;
   }
   }
+  public loadApplicationList(){
 
+    this.apiservice.getApplications().subscribe({
+      next:(data:any)=>{
+        this.applnList= data;
+      },
+      error: (err: any) => {
+        console.log(err)}
+    });
+  }
 
   public loadIncidents(): void {
     let newdata: any;
@@ -266,7 +277,7 @@ export class IncidentDetailsPageComponent implements OnInit {
             'Priority': this.priorityList.find((x:any)=>( x.priorityId === data.priority))?.priorityValue??data.priority,
             'Assigned To':this.assignUsrList.find((x:any)=>(x.userId == data.assignedTo))?.username??data.assignedTo,
             'Opened Date': data.openedDate,
-            'Application':''
+            'Application':this.applnList.find((x:any)=>(x.applicationId == data.applicationId))?.applicationName??data.applicationId
           }
         });
         this.showloader = false;

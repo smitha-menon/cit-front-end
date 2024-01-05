@@ -390,7 +390,37 @@ export class ApiservicesService {
       catchError(this.handleError)
     );
   }
+  public getGroupDetails(Id:any):Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,      
+    };
+    const url = `${this.apiUrl}/getAssignedGroupById/`+`${Id}`;
+    return this.http.get(url,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
 
+  public getUsersByGroup(Id:any):Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    //header.set('Access-Control-Allow-Origin','*');
+    const options = {
+      headers: header,      
+    };
+    const url = `${this.apiUrl}/auth/getUsersByAssignedGroupId/`+`${Id}`;
+    return this.http.get(url,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
   public getReport(filters:reportFilters):Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });

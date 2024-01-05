@@ -15,10 +15,13 @@ export class AddIncidentComponent implements OnInit{
   assignGrpList: any =[];
   priorityList: any = [];
   stateList:any =[];
+  applnList:any =[];
+  filteredapplnList:any =[];
   selectedState: string | any;
   selectedUser: string | any;
   selectedPriority:string | any;
   selectedGroup: string | any;
+  selectedAppln:string | any;
   defaultSelection: string ="--Select--";
   public addIncident: FormGroup | any;
 
@@ -29,6 +32,7 @@ export class AddIncidentComponent implements OnInit{
     this.loadStates();
     this.loadUsers();
     this.loadPriority();
+    this.loadApplicationList();
     
     this.addIncident = this.fb.group(({
       // state: [''],
@@ -93,6 +97,45 @@ export class AddIncidentComponent implements OnInit{
     });
   }
 
+  loadApplicationList() {
+    this.apiservice.getApplications().subscribe({
+      next: (data: any) => {
+        console.log(data)
+        this.applnList =data  
+      },
+      error: (err: any) => {
+        console.log(err)        
+      }
+    })
+  }
+  groupchange()
+  {
+    
+    this.apiservice.getGroupDetails(this.selectedGroup).subscribe({
+      next: (data: any) => {
+        
+         this.filteredapplnList =this.applnList.filter((item:any) => {
+          
+          if(data?.applications?.includes(item.applicationId))
+            {              
+              return {
+                "applicationId":item.applicationId,
+                "applicationName":item.applicationName
+              }
+            }
+            else{
+              return null;
+            }
+        })
+        
+      },
+      error: (err: any) => {
+        console.log(err)        
+      }
+    });
+    
+  }
+
   addinci() {
     const obj = {
       "state": this.selectedState,
@@ -110,7 +153,9 @@ export class AddIncidentComponent implements OnInit{
       "tags": [],
       "suggestedSteps": [],
       "generatedByUser": "true",
-      "comments": "NA"
+      "comments": "NA",
+      "applicationId": this.selectedAppln,
+      "approvalStatus": "PENDING",
     }
     console.log(obj)
     this.apiservice.addIncident(obj).subscribe({
