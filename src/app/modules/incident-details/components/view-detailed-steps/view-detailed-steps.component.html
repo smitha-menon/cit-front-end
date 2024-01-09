@@ -80,15 +80,15 @@
               <label class="form-label">Application:</label>
               <!-- <input matInput type="text" class="form-control" formControlName="assignedto" name="assignedto"
               required> -->
-              <!-- <select [(ngModel)]="selectedUser" class="form-control" [ngModelOptions]="{standalone: true}">
+              <select [(ngModel)]="selectedUser" class="form-control" [ngModelOptions]="{standalone: true}">
                 <option [value]="undefined">{{defaultSelection}}</option>
-                <option *ngFor="let item of assignUsrList" [value]="item.userId">{{ item.username }}</option>
-              </select> -->
-              <mat-select  class="form-control"  multiple="multiple">
+                <option *ngFor="let item of assignAppList" [value]="item.userId">{{ item.username }}</option>
+              </select>
+              <!-- <mat-select  class="form-control"  multiple="multiple">
 
                 <mat-option *ngFor="let item of assignAppList" [value]="item.userId">{{ item.username }}
                 </mat-option>
-            </mat-select>
+            </mat-select> -->
 
             </div>
             <div class="form-group">

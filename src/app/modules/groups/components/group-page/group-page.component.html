@@ -21,9 +21,20 @@
       </mat-expansion-panel-header>
       <div class="features-denied">
         <div style="display: flex;height: 88px;justify-content: flex-start;">
-          <label class="tag-label">Applications</label>
+          <label class="tag-label">Applications</label>     
           <div class="tag-content" *ngIf="group.addfeature">
-
+            <div>
+              <mat-select  class="form-control">
+  
+              <mat-option *ngFor="let item of applicationList" [value]="item.name">{{
+                  item.name
+                  }}
+              </mat-option>
+          </mat-select>
+            </div>
+            <div>
+              <button class="add-tag-btn">Add</button>
+            </div>
 
             <form [formGroup]="createGroup">
               <div class="form-group">
@@ -48,6 +59,7 @@
 
           </div>
         </div>
+        
 
         <div style="display: flex; margin-top: 20px; gap: 10px;">
           <div>

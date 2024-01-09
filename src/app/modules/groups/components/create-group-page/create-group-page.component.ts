@@ -12,18 +12,33 @@ import { ApiservicesService } from 'src/app/services/apiservices.service';
 })
 export class CreateGroupPageComponent implements OnInit {
   addGroupForm: FormGroup | any;
+  applicationList: Array<any> =[];
   constructor(private apiservice: ApiservicesService, private fb: FormBuilder, private notifier: NotifierService, private router: Router) { }
 
   ngOnInit(): void {
     this.addGroupForm = this.fb.group({
       groupname: [''],
-      isactive: ['true']
+      isactive: ['true'],
+      application: ['']
+    })
+    this.apiservice.getApplications().subscribe({
+      next:(res: any) => {
+        console.log(res)
+        this.applicationList = res.map((data: any) => {
+          return {
+            name: data.applicationName,
+            id: data.applicationId
+          }
+        })
+        
+      }
     })
   }
   addGroup() {
     const data = {
       "groupName": this.addGroupForm.value.groupname,
-      "isActive": true
+      "isActive": true,
+      "applications": this.addGroupForm.value.application
     }
     console.log(data)
     this.apiservice.addGroup(data).subscribe({

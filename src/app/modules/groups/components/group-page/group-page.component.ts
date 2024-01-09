@@ -15,6 +15,7 @@ export class GroupPageComponent implements OnInit {
   // addFeatures: boolean = false;
   public createGroup: FormGroup | any;
   groupList: Array<any> = [];
+  applicationList: Array<any> =[];
   addGroupForm: FormGroup | any;
   constructor(private apiservice: ApiservicesService, private fb: FormBuilder, private notifier: NotifierService) { }
 
@@ -29,6 +30,18 @@ export class GroupPageComponent implements OnInit {
     
     })
     this.loadGroup();
+    this.apiservice.getApplications().subscribe({
+      next:(res: any) => {
+        console.log(res)
+        this.applicationList = res.map((data: any) => {
+          return {
+            name: data.applicationName,
+            id: data.applicationId
+          }
+        })
+        
+      }
+    })
  
 
   }
@@ -44,6 +57,7 @@ export class GroupPageComponent implements OnInit {
             groupid: data.groupId,
             isactive: data.isActive,
             addfeature: false,
+            applications: data.applications
           }
         })
         console.log(this.groupList)
