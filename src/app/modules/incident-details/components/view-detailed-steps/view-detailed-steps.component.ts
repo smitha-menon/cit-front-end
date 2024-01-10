@@ -30,11 +30,13 @@ export class ViewDetailedStepsComponent implements OnInit {
   selectedState: string | any;
   selectedUser: string | any;
   selectedGroup: string | any;
+  selectedAppln: string | any;
   defaultSelection: string ="--Select--";
   isUpdateVisible:boolean =true;
   isAddTagVisible:boolean =true;
   comments:string | any;
   assignAppList: any = [];
+  filteredapplnList:any =[];
   constructor(private routes: Router, 
               private fb: FormBuilder,
                private apiservice: ApiservicesService,
@@ -49,7 +51,7 @@ export class ViewDetailedStepsComponent implements OnInit {
     this.stepArray = [];    
     this.loadGroups();
     this.loadStates();
-    this.loadUsers();
+   // this.loadUsers();
     this.loadApplication();
     
     this.permissionsService.loginreponse$.subscribe((data) => {
@@ -77,9 +79,11 @@ export class ViewDetailedStepsComponent implements OnInit {
         console.log(this.incidentDetails)
         this.tagsarr = this.incidentDetails[0].tags;
         this.selectedState =  this.incidentDetails[0].state
-        this.selectedGroup = this.incidentDetails[0].assignedGroup
+        this.selectedGroup = this.incidentDetails[0].assignedGroup??undefined
+        this.selectedAppln = this.incidentDetails[0].applicationId??undefined
         console.log("group:"+this.selectedGroup);
-        this.selectedUser = this.incidentDetails[0].assignedTo
+        this.setUsers();
+        this.selectedUser = this.incidentDetails[0].assignedTo??undefined
         localStorage.setItem(TAGS,this.tagsarr.join(','));
         this.comments=this.incidentDetails[0].comments;
        
@@ -217,7 +221,51 @@ saveTags(successMsg:string, failMsg:string){
       error: (err: any) => {
         console.log(err)        
       }
-    })
+    });
+  }
+
+  groupchange()
+  {
+    
+    this.apiservice.getGroupDetails(this.selectedGroup).subscribe({
+      next: (data: any) => {
+        
+         this.filteredapplnList =this.assignAppList.filter((item:any) => {
+          
+          if(data?.applications?.includes(item.applicationId))
+            {              
+              return {
+                "applicationId":item.applicationId,
+                "applicationName":item.applicationName
+              }
+            }
+            else{
+              return null;
+            }
+        })
+        
+      },
+      error: (err: any) => {
+        console.log(err)        
+      }
+    });
+    this.setUsers();
+  }
+
+  setUsers()
+  {    
+    
+    this.apiservice.getUsersByGroup(this.selectedGroup).subscribe({
+      next: (data: any) => {
+        
+         this.assignUsrList =data;
+      },
+      error: (err: any) => {
+        console.log(err)        
+      }
+    });
+    
+  
   }
 
   updateIncident(){

@@ -20,10 +20,19 @@
 
       </mat-expansion-panel-header>
       <div class="features-denied">
-        <div style="display: flex;height: 88px;justify-content: flex-start;">
-          <label class="tag-label">Applications</label>     
+        <div style="display: flex;height: 88px;justify-content: flex-start;"> 
           <div class="tag-content" *ngIf="group.addfeature">
+           
+            <form [formGroup]="createGroup">
+              <div class="form-group">
+
+                <label class="form-label">Group name</label>
+                <input matInput type="text" class="form-control" formControlName="groupname" name="groupname" required>
+
+              </div>
+            </form>
             <div>
+              <label class="tag-label">Applications</label>    
               <mat-select  class="form-control">
   
               <mat-option *ngFor="let item of applicationList" [value]="item.name">{{
@@ -36,21 +45,11 @@
               <button class="add-tag-btn">Add</button>
             </div>
 
-            <form [formGroup]="createGroup">
-              <div class="form-group">
-
-                <label class="form-label">Group name</label>
-                <input matInput type="text" class="form-control" formControlName="groupname" name="groupname" required>
-
-              </div>
-            </form>
-
-
           </div>
         </div>
         
         <div
-          style="overflow-y: scroll; margin-top: 10px; border: 1px solid #DADADA; background: #FFF; max-width: 450px; height: 186px;">
+          style="overflow-y: scroll; margin-top: 20px; border: 1px solid #DADADA; background: #FFF; max-width: 450px; height: 186px;">
           <div class="tags-bottom" *ngFor="let feature of group.applications; let a = index">
             <div class="tag-card">
               {{feature}}
