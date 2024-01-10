@@ -20,6 +20,7 @@ export class CreateRolePageComponent implements OnInit {
     this.createRole = this.fb.group({
       rolename: [''],
       rolecode: [''],
+      featuredenied: [''],
       isactive: ['True'],
     })
     
@@ -42,7 +43,7 @@ export class CreateRolePageComponent implements OnInit {
       roleName: this.createRole.value.rolename,
       roleCode: this.createRole.value.rolecode,
       isActive: true,
-      deniedAccessMethodNames: [],
+      deniedAccessMethodNames: this.createRole.value.featuredenied,
       allowedAccessMethodNames: []
     }
     console.log(obj)

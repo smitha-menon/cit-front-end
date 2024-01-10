@@ -131,8 +131,9 @@
     }
   
     .tag-content {
-      display: flex;
-      gap: 10px;
+      // display: flex;
+      // gap: 10px;
+
       .add-tag-btn {
         align-items: center;
         appearance: none;
@@ -190,8 +191,9 @@
       .form-group {
         display: flex;
         gap: 10px;
-        justify-content: center;
+        // justify-content: center;
         align-items: center;
+        margin-bottom: 8px;
       }
     
       .form-label {

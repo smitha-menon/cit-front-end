@@ -28,7 +28,7 @@
                   <div class="form-group">
         
                     <label class="form-label">Features Denied</label>
-                    <mat-select style="height: 126px;"  class="form-control"  multiple="multiple">
+                    <mat-select style="height: 126px;"  class="form-control" formControlName="featuredenied" name="featuredenied" multiple="multiple">
 
                     <mat-option *ngFor="let item of privilageList" [value]="item.name">{{
                         item.name
