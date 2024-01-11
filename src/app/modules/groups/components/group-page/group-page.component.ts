@@ -16,7 +16,11 @@ export class GroupPageComponent implements OnInit {
   public createGroup: FormGroup | any;
   groupList: Array<any> = [];
   applicationList: Array<any> =[];
+  usrList:any=[];
   addGroupForm: FormGroup | any;
+  selectedAppln:any;
+  selectedUser:string|any;
+  defaultSelection:string="--Select--";
   constructor(private apiservice: ApiservicesService, private fb: FormBuilder, private notifier: NotifierService) { }
 
   ngOnInit(): void {
@@ -30,6 +34,7 @@ export class GroupPageComponent implements OnInit {
     
     })
     this.loadGroup();
+    this.loadUsers();
     this.apiservice.getApplications().subscribe({
       next:(res: any) => {
         console.log(res)
@@ -46,6 +51,18 @@ export class GroupPageComponent implements OnInit {
 
   }
 
+  
+  loadUsers(){
+    this.apiservice.getUsersListToAssign().subscribe({
+      next :(data:any)=>{
+        console.log(data)
+        this.usrList =data         
+      },
+      error: (err: any) => {
+        console.log(err)        
+      }
+    });
+  }
 
   loadGroup() {
     this.apiservice.getAssignedGrpList().subscribe({
@@ -57,7 +74,8 @@ export class GroupPageComponent implements OnInit {
             groupid: data.groupId,
             isactive: data.isActive,
             addfeature: false,
-            applications: data.applications
+            applications: data.applications,
+            groupAdminId: data.groupAdminId
           }
         })
         console.log(this.groupList)
@@ -71,6 +89,8 @@ export class GroupPageComponent implements OnInit {
   editAccordian(feature: any, index: any) {
     console.log(feature)
     feature.addfeature = true
+    this.selectedUser=feature.groupAdminId;
+    this.selectedAppln=feature.applications;
     // this.editRoleId= feature.roleid;
     this.createGroup= this.fb.group({
       groupname:[feature.groupname],
@@ -79,16 +99,17 @@ export class GroupPageComponent implements OnInit {
   cancelChanges(feature: any) {
     feature.addfeature = false
   }
-
+  
   modifyGroup(data:any)
   {
     console.log(data);
-
+    console.log("appln",this.selectedAppln);
     var model={
       "groupId": data.groupid,
       "groupName": this.createGroup.value.groupname,
       "isActive": data.isactive,
-      "applications": data.applications
+      "applications": this.selectedAppln,
+      "groupAdminId": this.selectedUser
     }
     console.log(model)
     this.apiservice.modifyGroup(model).subscribe({

@@ -13,9 +13,13 @@ import { ApiservicesService } from 'src/app/services/apiservices.service';
 export class CreateGroupPageComponent implements OnInit {
   addGroupForm: FormGroup | any;
   applicationList: Array<any> =[];
+  usrList:any=[];
+  defaultSelection:string='--Select--';
+  selectedUser:string| any;
   constructor(private apiservice: ApiservicesService, private fb: FormBuilder, private notifier: NotifierService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loadUsers();
     this.addGroupForm = this.fb.group({
       groupname: [''],
       isactive: ['true'],
@@ -34,10 +38,23 @@ export class CreateGroupPageComponent implements OnInit {
       }
     })
   }
+
+  loadUsers(){
+    this.apiservice.getUsersListToAssign().subscribe({
+      next :(data:any)=>{
+        console.log(data)
+        this.usrList =data         
+      },
+      error: (err: any) => {
+        console.log(err)        
+      }
+    });
+  }
   addGroup() {
     const data = {
       "groupName": this.addGroupForm.value.groupname,
       "isActive": true,
+      "groupAdminId": this.selectedUser,
       "applications": this.addGroupForm.value.application
     }
     console.log(data)
