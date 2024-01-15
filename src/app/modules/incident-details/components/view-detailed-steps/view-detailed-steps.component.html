@@ -41,7 +41,7 @@
       </div>
 
       <div style="padding: 28px;">
-        <div style="display: flex; gap: 200px;">
+        <div style="display: flex; gap: 150px;">
 
 
           <form [formGroup]="editTestplanForm" class="testplan-form">
@@ -175,7 +175,7 @@
               </div>
             </div>
 
-            <div>
+            <div style="display: flex;align-items: baseline; flex-direction: column;">
               <label class="tag-label">Comments</label>
               <textarea class="textarea-comments" [(ngModel)]="comments" placeholder="Type here"></textarea>
 
