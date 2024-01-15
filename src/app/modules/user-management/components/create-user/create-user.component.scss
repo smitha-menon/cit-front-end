@@ -252,6 +252,10 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+td {
+  white-space: normal; /* This allows text to wrap within the cell */
+}
+
 .role-table {
   border: 1px solid #C8C8C8;
   background: #FAFAFA;

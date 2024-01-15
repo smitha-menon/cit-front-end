@@ -91,6 +91,7 @@ export class GroupPageComponent implements OnInit {
     feature.addfeature = true
     this.selectedUser=feature.groupAdminId;
     this.selectedAppln=feature.applications;
+    console.log("app",this.selectedAppln)
     // this.editRoleId= feature.roleid;
     this.createGroup= this.fb.group({
       groupname:[feature.groupname],

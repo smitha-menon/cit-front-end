@@ -18,6 +18,7 @@ export class RolePageComponent implements OnInit {
   roleList: any = [];
   privilageList: any = [];
   editRoleId: any;
+  selectedFeature:string|any;
   constructor(private apiService: ApiservicesService, private fb: FormBuilder, private notifier: NotifierService) { }
 
   ngOnInit(): void {
@@ -75,10 +76,13 @@ export class RolePageComponent implements OnInit {
   editAccordian(feature: any, index: any) {
     console.log(feature)
     feature.addfeature = true
+    this.selectedFeature=feature.deniedfeatures
     this.editRoleId = feature.roleid;
+    console.log("feat",this.selectedFeature)
     this.createRole = this.fb.group({
       rolename: [feature.rolename],
       rolecode: [feature.rolecode],
+      isactive:[feature.isactive]
     });
   }
   cancelChanges(feature: any) {
@@ -89,7 +93,7 @@ export class RolePageComponent implements OnInit {
       roleId: this.editRoleId,
       roleName: this.createRole.value.rolename,
       roleCode: this.createRole.value.rolecode,
-      isActive: true,
+      isActive: this.createRole.value.isactive,
       // deniedAccessMethodNames: this.createRole.value.denied.slice(","),
       allowedAccessMethodNames: []
     }

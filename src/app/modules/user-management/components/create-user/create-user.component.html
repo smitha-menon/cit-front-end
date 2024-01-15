@@ -145,8 +145,8 @@
                                             <mat-selection-list [multiple]="true" [(ngModel)]="userPermissions"
                                                 [ngModelOptions]="{standalone: true}"
                                                 (selectionChange)="onSelectionChange($event)">
-                                                <mat-list-option *ngFor="let item of userPermissions" [value]="item">
-                                                    {{ item }}
+                                                <mat-list-option *ngFor="let item of privilegeList" [value]="item.id">
+                                                    {{ item.name }}
                                                 </mat-list-option>
                                             </mat-selection-list>
                                         </div>

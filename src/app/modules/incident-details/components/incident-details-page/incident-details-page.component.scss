@@ -204,6 +204,9 @@
     //   overflow-y: scroll;
     //   margin-left: 170px;
     }
+    .mat-mdc-list-item {
+        width: 80%;
+    }
     span.mat-mdc-list-item-unscoped-content.mdc-list-item__primary-text {
         color: #000;
         font-family: Montserrat;
@@ -215,10 +218,13 @@
     .mat-mdc-list-option .mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle {
         // border-color: #6200ee;
         border-color: #00ba00;
+        
     }
     .mat-mdc-list-option .mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle {
         border-color: #00ba00;
+       
     }
+    
 }
 .overlay {
     font-family: Montserrat;
@@ -280,18 +286,18 @@
   
         .steps-content {
             color: #000;
-            font-family: Montserrat;
+            font-family: fantasy;
             font-size: 20px;
             font-style: normal;
             font-weight: 400;
             line-height: normal;
-            text-decoration-line: underline;
+            //text-decoration-line: underline;
         }
       }
     }
   
     .add-btn {
-        margin-left: 45%;
+        margin-left: 40%;
         // margin-top: 20px;
         align-items: center;
         appearance: none;

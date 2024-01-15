@@ -103,19 +103,21 @@
         </div>
         <div class="content">
             <div>
-                <div>
+                <!-- <div>
                     <label class="steps-label">User Logged in Successfully</label>
-                </div>
+                </div> -->
                 <div style="padding: 20px;">
                     <img src="../../../../../assets/images/check 2.png">
                 </div>
                 <div>
                     <label class="steps-content">Please choose a group to Proceed</label>
                 </div>
-                <div>
+                <br>
+                <br>
+                <div style="text-align: left;
+                padding-left: 130px;">
                     <mat-selection-list [multiple]="false" [(ngModel)]="selectedGroup"
-                                        [ngModelOptions]="{standalone: true}"
-                                       >
+                                        [ngModelOptions]="{standalone: true}">
                                         <mat-list-option *ngFor="let item of grouplist" [value]="item.groupId">
                                           <div>  {{ item.groupName }}</div>
                                         

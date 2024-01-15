@@ -27,6 +27,7 @@ export class CreateUserComponent implements OnInit {
   customizedRole: boolean = false;
   isChecked:boolean=false;
   isEditMode:boolean =false;
+  privilegeList:any=[];
 
   pageTitle:string ="Add User";
   editUser:any;
@@ -64,6 +65,7 @@ export class CreateUserComponent implements OnInit {
   ngOnInit(): void {
     this.loadRole();
     this.loadGroups();
+    this.loadPrivileges();
 
     this.createUser = this.fb.group({
       username: [''],
@@ -181,13 +183,28 @@ export class CreateUserComponent implements OnInit {
     });
   }
 
+  loadPrivileges(){
+    this.apiservice.getPrivileges().subscribe({
+      next:(res: any) => {
+        console.log(res)
+        this.privilegeList = res.map((data: any) => {
+          return {
+            name: data.userPrivilegeName,
+            id: data.userPrivilegeId
+          }
+        })
+        
+      }
+    })
+  }
+
   eventCheck(data: any) {
     this.selectionEvent = true;
     if (data.target.checked && this.selectedRole != "undefined") {
       this.userPermissions = [];
       this.roleList.find((x: any) => {
-        if (x.roleName === this.selectedRole) {
-          this.userPermissions = x.deniedAccessMethodNames;
+        if (x.roleName === this.selectedRole) {          
+          this.userPermissions = x.deniedAccessMethodNames;          
         }
       });
 
@@ -226,7 +243,7 @@ export class CreateUserComponent implements OnInit {
   this.tableData.forEach((element:any) => {
   
     roles.push({assignedGroupId:this.assignGrpList.find((x:any)=> x.groupName==element.column2).groupId,
-            customizedPrivileges:element.column3,
+            customizedPrivileges:element.column5,
             roleId:this.roleList.find((x:any)=> x.roleName==element.column1).roleId
         });
     });
@@ -316,19 +333,35 @@ export class CreateUserComponent implements OnInit {
 
   }
 
+  getPrivilegenames(data:string[]):any{
+    let selectedItemsName:string []= [];
+    data.forEach(item =>{
+      selectedItemsName.push(this.privilegeList.find((x:any)=>(x.id==item)).name);
+    })
+    console.log("adta");
+    return selectedItemsName;
+  }
+
   addGroupRo() {
 
     const groupValue = this.selectedGroup;
     const roleValue = this.selectedRole
 
+    // let selectedItemsName= this.selectedItems
+    // selectedItemsName.forEach(item =>{
+    //   console.log("item",item);
+    //   item=this.privilegeList.find((x:any)=> x.id==item).name;
+    //   console.log("item1",item);
+    // })
     var sno = this.tableData.length + 1;
-
+    let selectedItemsName= this.getPrivilegenames (this.selectedItems);
+    console.log("names",selectedItemsName);
     this.tableData.push({
       column4: sno,
       column1: roleValue,
       column2: groupValue,
-      column3: this.selectedItems
-
+      column3: selectedItemsName,
+      column5: this.selectedItems
     });
     this.isChecked=false;    
 
@@ -371,7 +404,8 @@ export class CreateUserComponent implements OnInit {
               column4: sno,
               column1: this.roleList.find((x:any)=> x.roleId==element.roleId).roleName,
               column2: this.assignGrpList.find((x:any)=> x.groupId==element.assignedGroupId).groupName,
-              column3: element.customizedPrivileges
+              column3: this.getPrivilegenames(element.customizedPrivileges),
+              column5: element.customizedPrivileges
         
             });
             sno+=1

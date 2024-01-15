@@ -103,7 +103,8 @@ export class IncidentDetailsPageComponent implements OnInit {
     this.permissionsService.loginreponse$.subscribe((data) => {
       console.log("datauser" + JSON.stringify(data));
       this.response=data;          
-      this.grouplist=data.groups;    
+      this.grouplist=data.groups; 
+      this.selectedGroup=  this.grouplist[0].groupId  
       
   });
    
@@ -307,7 +308,7 @@ export class IncidentDetailsPageComponent implements OnInit {
 
   checkActive(data: any) {
     if (data == 'null') {
-      return '-'
+      return ''
     } else {
       return data
     }
