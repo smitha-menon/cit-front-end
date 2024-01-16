@@ -31,6 +31,7 @@ export class GroupPageComponent implements OnInit {
     });
     this.createGroup = this.fb.group({
       groupname: [''],
+      isactive:['']
     
     })
     this.loadGroup();
@@ -89,12 +90,13 @@ export class GroupPageComponent implements OnInit {
   editAccordian(feature: any, index: any) {
     console.log(feature)
     feature.addfeature = true
-    this.selectedUser=feature.groupAdminId;
+    this.selectedUser=Number(feature.groupAdminId);
     this.selectedAppln=feature.applications;
     console.log("app",this.selectedAppln)
     // this.editRoleId= feature.roleid;
     this.createGroup= this.fb.group({
       groupname:[feature.groupname],
+      isactive:[feature.isactive]
     });
   }
   cancelChanges(feature: any) {
@@ -108,7 +110,7 @@ export class GroupPageComponent implements OnInit {
     var model={
       "groupId": data.groupid,
       "groupName": this.createGroup.value.groupname,
-      "isActive": data.isactive,
+      "isActive": this.createGroup.value.isactive,
       "applications": this.selectedAppln,
       "groupAdminId": this.selectedUser
     }

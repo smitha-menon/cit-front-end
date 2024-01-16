@@ -57,27 +57,21 @@
                                 <label class="form-label">Company:</label>
                                 <input matInput type="text" class="form-control" formControlName="company"
                                     name="company" required>
-                                <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                Please provide a valid email
-              </div> -->
+                               
                             </div>
                             <div class="form-group">
 
                                 <label class="form-label">Created by:</label>
                                 <input matInput type="text" class="form-control" [readonly]="isEditMode"
                                     formControlName="createdby" name="createdby" required>
-                                <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-                  Please provide a valid email
-                </div> -->
+                               
                             </div>
                             <div class="form-group">
 
                                 <label class="form-label">Created on:</label>
                                 <input matInput type="text" class="form-control" formControlName="createdon"
                                     [readonly]="isEditMode" name="createdon" required>
-                                <!-- <div class="text-danger input-feedback" *ngIf="f['email'].errors && f['email'].touched">
-              Please provide a valid email
-            </div> -->
+                               
                             </div>
 
                             <div>
@@ -96,7 +90,7 @@
                                                 </select> -->
 
                                             <mat-select [(ngModel)]="selectedRole" class="form-control"
-                                                placeholder="Role" [ngModelOptions]="{standalone: true}">
+                                                placeholder="Select Role" [ngModelOptions]="{standalone: true}">
 
                                                 <mat-option *ngFor="let item of roleList" [value]="item.roleName">{{
                                                     item.roleName
@@ -115,7 +109,7 @@
                                                         }}</option>
                                                 </select> -->
                                             <mat-select [(ngModel)]="selectedGroup" class="form-control"
-                                                (selectionChange)="schedule()" placeholder="Assigned Group"
+                                                (selectionChange)="schedule()" placeholder="Select Group"
                                                 [ngModelOptions]="{standalone: true}">
 
                                                 <mat-option *ngFor="let item of assignGrpList" [value]="item.groupName">

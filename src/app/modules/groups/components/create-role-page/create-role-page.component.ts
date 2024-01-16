@@ -37,13 +37,21 @@ export class CreateRolePageComponent implements OnInit {
       }
     })
   }
+  getPrivilegeIds(data:string[]):any{
+    let selectedItemsName:string []= [];
+    data.forEach(item =>{
+      selectedItemsName.push(this.privilageList.find((x:any)=>(x.name==item)).id);
+    })
+    console.log("adta");
+    return selectedItemsName;
+  }
 
   addRole() {
     const obj = {
       roleName: this.createRole.value.rolename,
       roleCode: this.createRole.value.rolecode,
       isActive: true,
-      deniedAccessMethodNames: this.createRole.value.featuredenied,
+      deniedAccessMethodNames:this.getPrivilegeIds(this.createRole.value.featuredenied),
       allowedAccessMethodNames: []
     }
     console.log(obj)

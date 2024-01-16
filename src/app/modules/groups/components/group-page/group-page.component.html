@@ -30,17 +30,24 @@
                 <input matInput type="text" class="form-control" formControlName="groupname" name="groupname" required>
 
               </div>
-            </form>
+           
             <div class="form-group">
 
               <label class="form-label">Group Owner:</label>
              
-              <mat-select [(ngModel)]="selectedUser" class="form-control" [ngModelOptions]="{standalone: true}">
-                <mat-option [value]="undefined">{{defaultSelection}}</mat-option>
+              <mat-select [(value)]="selectedUser" class="form-control" >
+                <!-- <mat-option [value]="undefined">{{defaultSelection}}</mat-option> -->
                 <mat-option *ngFor="let item of usrList" [value]="item.userId">{{ item.username }}</mat-option>
               </mat-select>
 
             </div>
+            <div class="form-group">
+
+              <label class="form-label">IsActive</label>
+              <input matInput type="text" class="form-control" formControlName="isactive" name="isactive" required>
+
+            </div>
+          </form>
             <div class="form-group">
               <label class="tag-label">Applications</label>    
               <mat-selection-list  class="form-control" style="overflow-y: scroll;margin-left: 25px;max-height: 200px;" [multiple] ="true"[(ngModel)]="selectedAppln"
@@ -57,7 +64,7 @@
         </div>
        
 
-        <div style="display: flex; margin-top: 220px; gap: 10px;">
+        <div style="display: flex; margin-top: 260px; gap: 10px;">
           <div>
             <button class="save-btn" (click)="modifyGroup(group)">Save</button>
           </div>

@@ -94,7 +94,7 @@ export class RolePageComponent implements OnInit {
       roleName: this.createRole.value.rolename,
       roleCode: this.createRole.value.rolecode,
       isActive: this.createRole.value.isactive,
-      // deniedAccessMethodNames: this.createRole.value.denied.slice(","),
+      deniedAccessMethodNames: this.selectedFeature,
       allowedAccessMethodNames: []
     }
     console.log(obj)

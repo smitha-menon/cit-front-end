@@ -104,13 +104,14 @@ export class IncidentDetailsPageComponent implements OnInit {
       console.log("datauser" + JSON.stringify(data));
       this.response=data;          
       this.grouplist=data.groups; 
-      this.selectedGroup=  this.grouplist[0].groupId  
+      this.selectedGroup=  this.grouplist[0]?.groupId  
       
   });
    
   if (this.response.currentGroupData === undefined)
   {
     this.logGroupPopup=true;
+    this.selectedGroup=  this.grouplist[0]?.groupId ;
   }
   else{
    
