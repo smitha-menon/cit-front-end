@@ -124,6 +124,7 @@
         z-index: 1;
         color: #fff;
         text-align: center;
+        padding: 24px;
     }
 
     td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-State.mat-column-State.progress.ng-star-inserted::before {
@@ -134,7 +135,7 @@
         height: 30px;
         height: 30px;
         width: 100px;
-        top: 14px;
+        top: 18px;
         left: 14px;
         border-radius: 12px;
         z-index: -1;
@@ -146,6 +147,7 @@
         line-height: 13px;
         color: #ffffff;
         font-weight: 700;
+
     }
     td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-State.mat-column-State.resolved.ng-star-inserted {
         position: relative;
