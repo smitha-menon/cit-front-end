@@ -1,19 +1,60 @@
-.row {
-	display: table;
-	background-color: #fbfbfb;
-	border: 1px solid #E9E9EF;
-	width: 90%;
-    margin-left: 60px;
-    margin-right: 60px;
-    margin-top: 110px;
-	border-radius: 10px;
-	height: 326px;
-	.column1 {
-		float: left;
-		width: 29%;
-		padding: 10px;
-		height: 326px;
-		/* Should be removed. Only for demonstration */
-		margin-top: 17px;
-    }
+
+	// .column1 {
+	// 	float: left;
+	// 	width: 29%;
+	// 	padding: 10px;
+	// 	height: 326px;
+	// 	/* Should be removed. Only for demonstration */
+	// 	margin-top: 17px;
+	// }
+
+.main-element {
+	margin-left: 80px;
+	margin-right: 20px;
+	margin-top: 100px;
+
+}
+
+.flex-container {
+	display: flex;
+	gap: 30px;
+	// flex-direction: column;
+	// margin-left: 63px;
+
+	.numberCard {
+		border-bottom: 5px solid #02c8f05e;
+		border-radius: 2px;
+		background-color: #ecf3fa;
+		height: 150px;
+		width: 230px;
+		padding: 10px 12px 0px 10px;
+
+		.presetLabel {
+			font-family: auto;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 14px;
+			line-height: 30px;
+			/* padding-left: 10PX; */
+			letter-spacing: 0.464048px;
+			text-transform: capitalize;
+			color: #344054;
+		}
+
+		.countLabel {
+			font-family: montserrat;
+			font-style: normal;
+			font-weight: bold;
+			padding: 27px;
+			font-size: 50px;
+			text-align: center;
+			line-height: 30px;
+			letter-spacing: 0.464048px;
+			text-transform: capitalize;
+			color: #3d7ce5;
+		}
+
+	}
+
+	
 }

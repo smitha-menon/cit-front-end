@@ -134,7 +134,7 @@
                 </div>
             </li>
             <li class="nav__item">
-                <div class="nav_list">
+                <div class="nav_list" [ngClass]="{'active': tab==='dashboard'}" (click)="dashboard(); tab='dashboard'">
                     <label class="nav_label">
                         <img src="../../../../assets/images/dasboard-cit.png" style="width: 20px;">
                         Dashboard</label>

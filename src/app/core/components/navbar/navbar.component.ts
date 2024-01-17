@@ -57,6 +57,9 @@ export class NavbarComponent implements OnInit {
   applications(){
     this.router.navigateByUrl(ROUTES.APPLICATION)
   }
+  dashboard() {
+    this.router.navigateByUrl(ROUTES.DASHBOARD)
+  }
   dropDown() {
     const app = document.getElementById("mobile-menu-items");
 

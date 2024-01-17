@@ -31,6 +31,11 @@ const routes: Routes = [{
       path: 'dashboard',
       canActivate:[AuthGuard],
       loadChildren: () => import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule)
+    },
+    {
+      path: 'dashboard',
+      canActivate:[AuthGuard],
+      loadChildren: () => import('./modules/dashboard/dashboard.module').then((m) => m.DashboardModule)
     },  
     {
       path: 'create-incident',

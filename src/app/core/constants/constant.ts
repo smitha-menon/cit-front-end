@@ -12,6 +12,7 @@ export const ROUTES = {
     APPROVALS: '/incident-approval',        
     ROLES: '/users/roles',
     REPORT: '/reports',
+    DASHBOARD: '/dashboard',
     APPLICATION:'/create-application'
 }
 

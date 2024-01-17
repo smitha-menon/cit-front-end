@@ -31,12 +31,12 @@ export class GraphDataComponent implements OnInit{
   //     data: [10.8, 9.2],
   //   }] ;
 
-  public doughnutChartLabels: Label[] = ['PHP', '.Net', 'Java'];
+  public doughnutChartLabels: Label[] = ['Open Incidents', 'Closed Incident'];
    
   public doughnutChartData: MultiDataSet = [
-    [250, 150, 100],
-    [160, 150, 130],
-    [250, 130, 70],
+    [250, 150],
+    [160, 150],
+    [250, 130],
   ];
    
   public doughnutChartType: ChartType = 'doughnut';

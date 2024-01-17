@@ -6,6 +6,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ChartsModule } from 'ng2-charts';
 
 
+
 @NgModule({
   declarations: [
     DashboardMainComponent,
