@@ -1,6 +1,67 @@
 <div class="main-element">
     <div class="main-header">
         <label>Incidents</label>
+
+        <div class="flex-container">
+
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-12 "> -->
+            <div class="numberCard" style="background-color: #535353">
+    
+              <div>
+                <label class="presetLabel">Open Incidents </label>
+                <div style="border: 1px solid #bbbb;"></div>
+    
+              </div>
+              <div class="countLabel"> {{cardData?.openIncidentsNumber}}</div>
+            </div>
+            <div class="numberCard" style="background-color: #535353;">
+
+                <div >
+                  <label class="presetLabel">Closed Incidents </label>
+                  <div style="border: 1px solid #bbbb;"></div>
+      
+                </div>
+                <div class="countLabel"> {{cardData?.closedIncidentsNumber}}</div>
+              </div>
+              <div class="numberCard" style="background-color: #535353;">
+      
+                <div>
+                  <label class="presetLabel">UnAssigned Incidents </label>
+                  <div style="border: 1px solid #bbbb;"></div>
+      
+                </div>
+                <div class="countLabel"> {{cardData?.unAssignedIncidentsNumber}}</div>
+              </div>
+              <div class="numberCard" style="background-color: #535353;">
+      
+                <div>
+                  <label class="presetLabel"> SLA Breached Incidents</label>
+                  <div style="border: 1px solid #bbbb;"></div>
+      
+                </div>
+                <div class="countLabel"> {{cardData?.slaBreachedIncidentsNumber}}</div>
+              </div>
+              <div class="numberCard" style="background-color: #535353;">
+      
+                <div>
+                  <label class="presetLabel">InProgress Incidents </label>
+                  <div style="border: 1px solid #bbbb;"></div>
+      
+                </div>
+                <div class="countLabel"> {{cardData?.inProgressIncidentsNumber}}</div>
+              </div>
+              <div class="numberCard" style="background-color: #535353;">
+      
+                <div>
+                  <label class="presetLabel">High Priority Incidents</label>
+                  <div style="border: 1px solid #bbbb;"></div>
+      
+                </div>
+                <div class="countLabel" *ngIf="cardData?.openP1IncidentsNumber!=undefined"> {{cardData?.openP1IncidentsNumber}}</div>
+              </div>
+        </div>
+
+
         <div>
             <div class="table-main">
                 <!-- <div>

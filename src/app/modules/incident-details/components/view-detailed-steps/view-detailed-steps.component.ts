@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationExtras,  Router } from '@angular/router';
 import { FEATURES, ROUTES, statuses } from 'src/app/core/constants/constant';
 import { INCIDENT_ID_KEY, TAGS } from 'src/app/core/constants/local-storage-keys';
 import { NotifierService } from 'src/app/core/utils/notifier';
@@ -37,6 +37,7 @@ export class ViewDetailedStepsComponent implements OnInit {
   comments:string | any;
   assignAppList: any = [];
   filteredapplnList:any =[];
+  //private router!:Router
   constructor(private routes: Router, 
               private fb: FormBuilder,
                private apiservice: ApiservicesService,
@@ -91,7 +92,7 @@ export class ViewDetailedStepsComponent implements OnInit {
                               this.userPermissions.includes(FEATURES.updateIncident))?false:true; 
         this.isAddTagVisible =this.userPermissions.includes(FEATURES.modifyTags)? false:true;
       
-
+          console.log("isUpdateVisible",this.selectedState);
         this.tagList = this.incidentDetails[0].tags.map((res: any) => {
                  
           return {
@@ -150,9 +151,15 @@ saveTags(successMsg:string, failMsg:string){
     this.tagName = '';    
   }
 
-  goToReso() {
-          
-    this.routes.navigateByUrl(ROUTES.RESOLUTION);    
+  goToReso(index:any) {
+    
+    const queryParams1: NavigationExtras = {
+      queryParams: {
+        tag: this.tagList[index].tagName//?.replace('#','').trimStart()    
+      }
+    };
+    this.routes.navigate([ROUTES.RESOLUTION],queryParams1)
+   // this.routes.navigateByUrl(ROUTES.RESOLUTION);    
     
   }
   tagClosepop(index: number) {
@@ -278,7 +285,7 @@ saveTags(successMsg:string, failMsg:string){
                       )},
                       error:(err:any)=>{
                         console.log(err)
-			                if(err.status==302)
+			                if(err.status==200)
                         {                       
                         
                         this.notifier.success(

@@ -50,6 +50,50 @@
     background-color: transparent;
 }
 
+.flex-container {
+	display: flex;
+	gap: 30px;
+	// flex-direction: column;
+	// margin-left: 63px;
+
+	.numberCard {
+		border-bottom: 5px solid  rgba(203, 43, 39);
+		border-radius: 2px;
+		background-color: #ecf3fa;
+		height: 150px;
+		width: 230px;
+		padding: 10px 12px 0px 10px;
+
+		.presetLabel {
+			font-family: auto;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 14px;
+			line-height: 30px;
+			/* padding-left: 10PX; */
+			letter-spacing: 0.464048px;
+			text-transform: capitalize;
+			color: #f0f0f0;
+		}
+
+		.countLabel {
+			font-family: montserrat;
+			font-style: normal;
+			font-weight: bold;
+			padding: 27px;
+			font-size: 50px;
+			text-align: center;
+			line-height: 30px;
+			letter-spacing: 0.464048px;
+			text-transform: capitalize;
+			color: #f0f0f0;
+		}
+
+	}
+
+	
+}
+
 :host ::ng-deep {
 
     .mat-mdc-paginator-container {
@@ -154,6 +198,7 @@
         z-index: 1;
         color: #fff;
         text-align: center;
+        padding-right: 30px;
     }
 
     td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-State.mat-column-State.resolved.ng-star-inserted::before {
@@ -182,12 +227,13 @@
         z-index: 1;
         color: #fff;
         text-align: center;
+        padding-right: 30px;
     }
 
     td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-State.mat-column-State.open.ng-star-inserted::before {
         content: "";
         position: absolute;
-        background: #B22222;
+        background: #f42020;
         width: 20px;
         height: 30px;
         height: 30px;

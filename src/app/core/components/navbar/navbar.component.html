@@ -134,11 +134,40 @@
                 </div>
             </li>
             <li class="nav__item">
-                <div class="nav_list" [ngClass]="{'active': tab==='dashboard'}" (click)="dashboard(); tab='dashboard'">
-                    <label class="nav_label">
+                <div class="nav_list" [ngClass]="{'active': tab==='dashboard'}" (click)="tab='dashboard'" id="mobile-menu-items1">
+                    <label class="nav_label" (click)="dropDown()">
                         <img src="../../../../assets/images/dasboard-cit.png" style="width: 20px;">
                         Dashboard</label>
+
+                        <div class="dropdown-content">
+
+                            <label class="nav_label" [ngClass]="{'sideactive': tab==='incidentapp'}"
+                            (click)="dashboard(1); tab='incidentapp'"><i class='fas fa-chess-pawn'></i>
+
+                            Incidents By App </label>
+
+                            <label class="nav_label" [ngClass]="{'sideactive': tab==='incidentteam'}"
+                            (click)="dashboard(2); tab='incidentteam'"><i class='fas fa-chess-pawn'></i>
+                            Incidents By Team</label>
+
+                            <label class="nav_label" [ngClass]="{'sideactive': tab==='incidentpriority'}"
+                            (click)="dashboard(3); tab='incidentpriority'"><i class='fas fa-chess-pawn'></i>
+                                Incidents By Priority</label>
+
+
+                                <label class="nav_label" [ngClass]="{'sideactive': tab==='incidenttrend'}"
+                                (click)="dashboard(4); tab='incidenttrend'"><i class='fas fa-chess-pawn'></i>
+                                    Incident Trend</label>
+                                
+                                    <label class="nav_label" [ngClass]="{'sideactive': tab==='incidenttrend'}"
+                                (click)="dashboard(5); tab='incidenttrend'"><i class='fas fa-chess-pawn'></i>
+                                     SLA Breached</label>
+
+                    </div>
                 </div>
+                 <img src="../../../../assets/images/drop-icon.png" style="position: absolute;
+                top: 20px;
+                right: 27px;" (click)="dropDown()">
             </li>
         </ul>
     </nav>

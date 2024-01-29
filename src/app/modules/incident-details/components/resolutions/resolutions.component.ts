@@ -26,7 +26,19 @@ export class ResolutionsComponent {
              private apiservice:ApiservicesService, 
              private notifier: NotifierService,
              private permissionsService: PermissionsService,
-             private fb: FormBuilder) {}
+             private fb: FormBuilder) {
+
+              this.route.queryParams.subscribe((params) => {
+
+                if (params['tag']!==undefined)
+                {
+                  console.log('tag',params['tag']);
+                  this.taglist=params['tag'];
+                  
+                }
+               
+          });
+             }
   incid:any;
   taglist:string | any;
   resolutiondata: string[] | any;
@@ -35,7 +47,7 @@ export class ResolutionsComponent {
 
 
   ngOnInit() {
-    this.taglist=localStorage.getItem(TAGS);    
+    //this.taglist=localStorage.getItem(TAGS);    
     this.incid=localStorage.getItem(INCIDENT_ID_KEY);   
     this.loadResolutions();
     this.permissionsService.loginreponse$.subscribe((data) => {

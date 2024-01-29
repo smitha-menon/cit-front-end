@@ -87,6 +87,7 @@ export class IncidentDetailsPageComponent implements OnInit {
   applnList:any=[];
   selectedGroup:string="";
   response!:loginResponse;
+  cardData: any;
 
 
   constructor(private routes: Router, private permissionsService: PermissionsService,
@@ -104,7 +105,7 @@ export class IncidentDetailsPageComponent implements OnInit {
       console.log("datauser" + JSON.stringify(data));
       this.response=data;          
       this.grouplist=data.groups; 
-      this.selectedGroup=  this.grouplist[0]?.groupId  
+      //this.selectedGroup=  this.grouplist[0]?.groupId  
       
   });
    
@@ -264,9 +265,10 @@ export class IncidentDetailsPageComponent implements OnInit {
   public loadIncidents(): void {
     let newdata: any;
     this.showloader = true;
+    this.loadCardData();
 
-    this.userid = ( this.response.currentGroupData.roleCode == userRoles.BU || this.response.currentGroupData.roleCode == userRoles.SA) ? null : this.response.assignedToId;
-    this.groupid = (this.response.currentGroupData.roleCode == userRoles.BU || this.response.currentGroupData.roleCode == userRoles.SA) ? this.response.currentGroupData.assignedGroupId : null;
+    this.userid = ( this.response.currentGroupData.roleCode == userRoles.BU || this.response.currentGroupData.roleCode == userRoles.SA || this.response.currentGroupData.roleCode == userRoles.GA) ? null : this.response.assignedToId;
+    this.groupid = (this.response.currentGroupData.roleCode == userRoles.BU || this.response.currentGroupData.roleCode == userRoles.SA || this.response.currentGroupData.roleCode == userRoles.GA) ? this.response.currentGroupData.assignedGroupId : null;
    
     this.apiservice.getIncidentsList(this.startIndex, this.endIndex, this.filterInput, this.userid, this.groupid).subscribe({
       next: (response: any) => {
@@ -314,7 +316,17 @@ export class IncidentDetailsPageComponent implements OnInit {
       return data
     }
   }
+  loadCardData()
+  {
 
+    this.apiservice.getDashboardData(this.response.currentGroupData.assignedGroupId).subscribe({
+      next:(response:any)=>{
+        console.log("dashboard",response);
+        this.cardData=response;
+      },
+      error:(err:any)=>{console.log(err)}
+    });
+  }
   
   // goToIncident() {
   //   this.routes.navigateByUrl(ROUTES.VIEWSTEPS)

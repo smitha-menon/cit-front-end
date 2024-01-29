@@ -19,72 +19,104 @@
     <div>
 
       <div class="flex-container">
+        
 
         <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-12 "> -->
-        <div class="numberCard">
+        <!-- <div class="numberCard" style="background-color: #d10e0e">
 
           <div>
             <label class="presetLabel">Open Incidents </label>
             <div style="border: 1px solid #bbbb;"></div>
 
           </div>
-          <div class="countLabel"> 6</div>
+          <div class="countLabel"> {{dashBoardData.openIncidentsNumber}}</div>
         </div>
-        <div class="numberCard">
+        <div class="numberCard" style="background-color: #7e6d6d;">
 
-          <div>
+          <div >
             <label class="presetLabel">Closed Incidents </label>
             <div style="border: 1px solid #bbbb;"></div>
 
           </div>
-          <div class="countLabel"> 2</div>
+          <div class="countLabel"> {{dashBoardData.closedIncidentsNumber}}</div>
         </div>
-        <div class="numberCard">
+        <div class="numberCard" style="background-color: #eb6262;">
 
           <div>
-            <label class="presetLabel">Open Major Incidents </label>
+            <label class="presetLabel">UnAssigned Incidents </label>
             <div style="border: 1px solid #bbbb;"></div>
 
           </div>
           <div class="countLabel"> 3</div>
         </div>
-        <div class="numberCard">
+        <div class="numberCard" style="background-color: #2020b4;">
 
           <div>
-            <label class="presetLabel">Incidents closed within SLA </label>
+            <label class="presetLabel"> SLA Breached Incidents</label>
             <div style="border: 1px solid #bbbb;"></div>
 
           </div>
-          <div class="countLabel"> 100%</div>
+          <div class="countLabel"> 3</div>
         </div>
-        <div class="numberCard">
+        <div class="numberCard" style="background-color: #ffa91b;">
 
           <div>
-            <label class="presetLabel">Open Incidents </label>
+            <label class="presetLabel">InProgress Incidents </label>
             <div style="border: 1px solid #bbbb;"></div>
 
           </div>
-          <div class="countLabel"> 6</div>
-        </div>
+          <div class="countLabel"> {{dashBoardData.inProgressIncidentsNumber}}</div>
+        </div> -->
         <!-- </div> -->
       </div>
-      <div class="flex-container" style="margin-top: 20px;">
+      <div class="flex-container" style="margin-top: 20px;" *ngIf="optionSelected==1">
         <div class="numberCard" style="    height: 288px;
         width: 455px;">
           <div>
-            <label class="presetLabel">Incidents </label>
+            <label class="presetLabel">Incidents by Application </label>
             <div style="border: 1px solid #bbbb;"></div>
 
           </div>
          
           <div class="column1">
             <canvas class="doughnut" baseChart [data]="doughnutChartData1" [labels]="doughnutChartLabels1" [chartType]="doughnutChartType1"
-            [legend]=false [colors]="doughnutChartColors" [options]="doughnutChartOptions1"  [plugins]="doughnutChartPlugins" size="50">
-        </canvas>
+            [legend]=true [colors]="doughnutChartColors" [options]="doughnutChartOptions1"  [plugins]="doughnutChartPlugins" size="50">
+          </canvas>
           </div>
         
         </div>
-        <div class="numberCard" style="    height: 288px;
+       
+          <!-- <div></div>
+          <div style="width:40%">
+            <canvas id="mychart" width="500px" height="250" #mychart></canvas>
+          </div> -->
+       
+        <!-- <div class="numberCard" style="    height: 288px;
+        width: 455px;">
+          <div>
+            <label class="presetLabel">Incidents1233 </label>
+            <div style="border: 1px solid #bbbb;"></div>
+
+          </div>
+         
+          <div class="column1">
+            <canvas baseChart 
+            [data]="doughnutChartData"
+            [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType">
+          </canvas>
+          </div>
+        
+        </div> -->
+      </div>
+    </div>
+    <div  class="flex-container" style="margin-top: 20px;" *ngIf="optionSelected==2">
+      <div style="width:40%">
+        <canvas id="mychart" width="500px" height="250" #mychart></canvas>
+      </div>
+    </div>
+    <div  class="flex-container" style="margin-top: 20px;" *ngIf="optionSelected==5">
+      <div class="numberCard" style="    height: 288px;
         width: 455px;">
           <div>
             <label class="presetLabel">Incidents </label>
@@ -101,5 +133,20 @@
           </div>
         
         </div>
-      </div>
+
     </div>
+    <div  style="display: flex;justify-content: space-evenly;" *ngIf="optionSelected==3">
+      
+          <div class="column1" style="width:40%" >
+            <label>Incidents by Priority</label>
+            <canvas id="mychart1" width="500px" height="250" #mychart1></canvas>
+          </div > 
+    </div>
+    <div  style="display: flex;justify-content: space-evenly;" *ngIf="optionSelected==4">
+          <div class="column1" style="width:40%" >
+            <label>Incident Trend</label>
+            <canvas id="myChart3" width="500px" height="250" #mychart3></canvas>
+          </div>
+    </div>
+  </div>
+</div>

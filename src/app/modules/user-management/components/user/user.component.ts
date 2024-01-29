@@ -80,13 +80,7 @@ export class UserComponent implements OnInit {
     this.router.navigateByUrl(ROUTES.ROLES)
   }
   userEditPop(index: any) {
-    // this.userEditPopup = true;
-    // this.editUsersDetailsForm = this.fb.group({
-    //   editusername: [this.userList[index].name, [Validators.required]],
-    //   editemailid: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-    //   edituserrole: [this.userList[index].role, [Validators.required]],
-    // });
-   
+    
     const queryParams1: NavigationExtras = {
       queryParams: {
         editUser: this.userList[index].userId      
