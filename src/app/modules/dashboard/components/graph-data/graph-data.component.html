@@ -112,7 +112,10 @@
     </div>
     <div  class="flex-container" style="margin-top: 20px;" *ngIf="optionSelected==2">
       <div style="width:40%">
-        <canvas id="mychart" width="500px" height="250" #mychart></canvas>
+        <canvas   id="mychart" width="500px" height="250" #mychart >   
+        
+
+        </canvas>
       </div>
     </div>
     <div  class="flex-container" style="margin-top: 20px;" *ngIf="optionSelected==5">
@@ -137,9 +140,11 @@
     </div>
     <div  style="display: flex;justify-content: space-evenly;" *ngIf="optionSelected==3">
       
-          <div class="column1" style="width:40%" >
-            <label>Incidents by Priority</label>
-            <canvas id="mychart1" width="500px" height="250" #mychart1></canvas>
+          <div class="column1" style="width:60%" >
+            <!-- <label>Incidents by Priority</label> -->
+            <canvas id="mychart1" width="500px" height="250" #mychart1>
+              
+            </canvas>
           </div > 
     </div>
     <div  style="display: flex;justify-content: space-evenly;" *ngIf="optionSelected==4">
