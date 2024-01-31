@@ -61,11 +61,11 @@ export class NavbarComponent implements OnInit {
     //this.router.navigateByUrl(ROUTES.DASHBOARD)
     this.router.navigate([ROUTES.DASHBOARD],{queryParams:{option:data}});
   }
-  dropDown() {
-    const app = document.getElementById("mobile-menu-items1");
+  // dropDown() {
+  //   const app = document.getElementById("mobile-menu-items1");
 
-    app?.classList.toggle("view-mobile-menu");
-  }
+  //   app?.classList.toggle("view-mobile-menu");
+  // }
   dropDowns() {
     const app = document.getElementById("mobile-menu-item");
 

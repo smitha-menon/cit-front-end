@@ -134,8 +134,8 @@
                 </div>
             </li>
             <li class="nav__item">
-                <div class="nav_list" [ngClass]="{'active': tab==='dashboard'}" (click)="tab='dashboard'" id="mobile-menu-items1">
-                    <label class="nav_label" (click)="dropDown()">
+                <div class="nav_list view-mobile-menu" [ngClass]="{'active': tab==='dashboard'}" (click)="tab='dashboard'" >
+                    <label class="nav_label" >
                         <img src="../../../../assets/images/dasboard-cit.png" style="width: 20px;">
                         Dashboard</label>
 
@@ -165,9 +165,9 @@
 
                     </div>
                 </div>
-                 <img src="../../../../assets/images/drop-icon.png" style="position: absolute;
+                 <!-- <img src="../../../../assets/images/drop-icon.png" style="position: absolute;
                 top: 20px;
-                right: 27px;" (click)="dropDown()">
+                right: 27px;" (click)="dropDown()"> -->
             </li>
         </ul>
     </nav>
