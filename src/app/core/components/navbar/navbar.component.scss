@@ -221,11 +221,13 @@
 				min-width: 200px;
 				height: auto;
 				top: -90px;
-				left: 168px;
+				left: 190px;
 				z-index: 99;
-				background: rgb(129 129 129);
+				background: #e5e5e5;
 				box-shadow: 2px 4px 14px rgba(0, 0, 0, 35%);
-				border-radius: 10px;
+				padding-left: 15px;
+				width: 250px;
+				//border-radius: 10px;
 				cursor: default;
 }
 
@@ -239,4 +241,8 @@
 
 .navback .nav-main {
 	display: block;
+}
+
+.sub-menu{
+	color:#353434
 }

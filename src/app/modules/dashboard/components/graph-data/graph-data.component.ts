@@ -21,10 +21,7 @@ export class GraphDataComponent implements OnInit{
   selectedGroup:any | any;
   dashBoardData:any | any;
 
-  // @ViewChild('mychart') mychart:any;
-  // @ViewChild('mychart1') mychart1:any;
-  // @ViewChild('mychart2') mychart2:any;
- // @ViewChild('mychart3') mychart3:any;
+  
   canvas1: any;
   canvas2:any;
   canvas3:any;
@@ -44,32 +41,44 @@ export class GraphDataComponent implements OnInit{
     }
   };
   public verticalBargraphLabel: Label[]=['january','february','march','april'];
+  trendData: any;
+  
   /**
    *
    */
   constructor(private route: ActivatedRoute) {
-   
+    this.permissionsService.loginreponse$.subscribe((data) => {
+      this.selectedGroup = data.currentGroupData.assignedGroupId;
+    });
     this.route.queryParams.subscribe((params) => {
 
       if (params['option']!==undefined)
       {
         console.log('option',params['option']);
         this.optionSelected=params['option'];
-        if( this.optionSelected==1)
+        if( this.optionSelected==5)
         {
-        this.loadData();
+          this.loadDataOption5();
         }
        
         if( this.optionSelected==3)
         {
           this.loadDataOption3();        
         
-        }
-      
+        }      
          if( this.optionSelected==2)
         { 
             this.loadOption2();
-        }    
+        } 
+        if(this.optionSelected==4)
+        {
+          this.loadDataOption4();
+        } 
+        if( this.optionSelected==1)
+        {
+            this.loadData();
+        }
+
       }
      
 });
@@ -84,48 +93,44 @@ export class GraphDataComponent implements OnInit{
   }
   ngAfterViewInit(): void {
    
-    if( this.optionSelected==4)
-    {
-      this.renderStackedBarChart();
-    } 
    
     // this.canvas1= this.mychart.nativeElement
     // this.ctx1=this.canvas1.getContext('2d');
     // this.canvas2= this.mychart1.nativeElement
     // this.ctx2=this.canvas2.getContext('2d');
     console.log("ctx1",this.ctx1);
-   
+    if(this.optionSelected==5)
+    {
+          this.loadDataOption5();
+    }
+       
+    if( this.optionSelected==3)
+    {
+      this.loadDataOption3();        
+    
+    }
   
 
     
-  }
+  } 
   
   
-  // public doughnutChartLabels1: Label[] = this.bargraphData?.map((data:any) => data.applicationName); //['Reused', 'modifed', 'new'];
-  // public doughnutChartData1: MultiDataSet = this.bargraphData?.map((data:any) => data.incidentsNumber); //[[50, 20, 30]];
-  // public doughnutChartType1: ChartType = 'doughnut';
-  // public doughnutChartOptions1: Chart.ChartOptions = {
-  //   tooltips: {
-  //     enabled: true
-  //   }
-  // };
   public doughnutChartColors: Color[] = [{
-    backgroundColor: ['#1A73E8', '#02C8F0', '#806DF0']
+    backgroundColor:['#FF5733','#cb2b27']//,'#FD5E0F'] //['#1A73E8', '#02C8F0', '#806DF0']
   }];
   // public chartDataset = [
   //   {
   //     data: [10.8, 9.2],
   //   }] ;
 
-  public doughnutChartLabels: Label[] = ['Open Incidents', 'Closed Incident'];
+  public doughnutChartLabels: Label[] = ['Today', 'Tomorrow','<2 days','<5 days'];
    
   public doughnutChartData: MultiDataSet = [
-    [250, 150],
-    [160, 150],
-    [250, 130],
+    [250,160,200,150]
+
   ];
    
-  public doughnutChartType: ChartType = 'doughnut';
+  public doughnutChartType: ChartType = 'pie';
 
 
     // chart plugin to add center text
@@ -134,9 +139,10 @@ export class GraphDataComponent implements OnInit{
         const ctx = chart.ctx;
   
         // get the sum of graph data set
-        var dataset = chart.tooltip._data.datasets[0].data
+        var dataset = chart.tooltip._data.datasets[0].data        
         var total: string = dataset.reduce((acc: any, cur: any) => acc + cur, 0).toString();
-        var txt2 = ('00');
+       
+        var txt2 = (total);
   
         if (Number(total) > 0) {
           var txt1 = 'Incidents';
@@ -183,17 +189,21 @@ export class GraphDataComponent implements OnInit{
     renderStackedBarChart() {
       // Get the canvas element
       const ctx = document.getElementById('myChart3') as HTMLCanvasElement;
-  
-      // Sample data for the chart
+      let itemlabels = this.trendData?.map((item:any) => item.monthName);
+      let breachedCount = this.trendData?.map((item:any) => item.slaBreachedIncidentsCount);
+      let closedCount = this.trendData?.map((item:any) => item.closedIncidentsCount);
+      let openCount = this.trendData?.map((item:any) => item.openIncidentsCount);    
+
+    
       const data = {
-        labels: ['January', 'February', 'March', 'April', 'May'],
+        labels: itemlabels,//['January', 'February', 'March', 'April', 'May'],
         datasets: [
           {
             label: 'Breached',
             backgroundColor: 'rgba(75, 192, 192, 0.5)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1,
-            data: [10, 20, 30, 40, 50],
+            data: breachedCount,//[10, 20, 30, 40, 50],
             stack: 'Stack 1'
           },
           {
@@ -201,7 +211,7 @@ export class GraphDataComponent implements OnInit{
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1,
-            data: [5, 15, 25, 35, 45],
+            data: openCount,//[5, 15, 25, 35, 45],
             stack: 'Stack 1'
           },
           {
@@ -209,7 +219,7 @@ export class GraphDataComponent implements OnInit{
             backgroundColor: 'rgba(255, 255, 0, 0.5)',
             borderColor: 'rgba(255, 255, 0, 1)',
             borderWidth: 1,
-            data: [15, 25, 35, 45, 55],
+            data: closedCount,//[15, 25, 35, 45, 55],
             stack: 'Stack 2'
           },
         ]
@@ -299,6 +309,31 @@ export class GraphDataComponent implements OnInit{
 
     }
 
+    loadDataOption5(){
+      this.apiservices.getIncidentBySlaBreach(this.selectedGroup).subscribe({
+        next:(response:any)=>{
+          console.log("slabraech",response);         
+          
+          this.doughnutChartData=Object.values(response);//[[250,160,200,150]]//;
+          console.log("slabraech1", this.doughnutChartData);
+         
+          
+        },
+        error:(err:any)=>{console.log(err)}
+      });
+    }
+
+    loadDataOption4(){
+      this.apiservices.getIncidentByTrend(this.selectedGroup).subscribe({
+        next:(response:any)=>{
+          console.log("trendData",response);
+          this.trendData=response;
+          this.renderStackedBarChart();
+        },
+        error:(err:any)=>{console.log(err)}
+      });
+    }
+
     loadDataOption3(){
       this.apiservices.getIncidentByPriority(this.selectedGroup).subscribe({
         next:(response:any)=>{
@@ -310,15 +345,21 @@ export class GraphDataComponent implements OnInit{
       });
     }
 
-    loadchartOption3(){
+  loadchartOption3(){
 
       const labels=this.dashBoardData?.map((data:any) => data.applicationName);
       let itemlabels = this.dashBoardData?.map((item:any) => item.data.map((x:any) => x.priority));
+      let bgColor= ['#727272',
+        '#f1595f',
+        '#79c36a',
+        '#599ad3',
+        '#f9a65a'];
+        
       
       let configData: any=[];
       let itemcount:any =[];
       // console.log("itemlabels",itemlabels);
-     
+      var index=0;
 
        itemlabels[0]?.forEach((element:any) => {    
        
@@ -330,33 +371,34 @@ export class GraphDataComponent implements OnInit{
             configData.push({
                     label: element,
                     data: itemcount,
-                    backgroundColor:"rgb(115,185,243 / 65%)",
+                    backgroundColor: bgColor[index],//["rgb(115,185,243 / 65%)","#47a0e8"],
                     borderColor:"#007ee7",
                     fill: true,});
 
-                // });
+              index=index+1;
         
         });
+        // configData=[{
+        //     label: 'Priority1',
+        //     data: [0,20,40,50],
+        //     backgroundColor:"rgb(115,185,243 / 65%)",
+        //     borderColor:"#007ee7",
+        //     fill: true,},
+        //     {
+        //     label: 'Priority2',
+        //     data: [0,20,40,60,80],
+        //     backgroundColor:"#47a0e8",
+        //     borderColor:"#007ee7",
+        //     fill: true,
+  
+        //   }];
      console.log("configData",configData);
       this.ctx2=document.getElementById('mychart1') as HTMLCanvasElement;
     new Chart(this.ctx2,{
       type: 'horizontalBar',
      data:{
       datasets:configData,
-        // datasets:[{
-        //   label: 'Priority1',
-        //   data: [0,20,40,50],
-        //   backgroundColor:"rgb(115,185,243 / 65%)",
-        //   borderColor:"#007ee7",
-        //   fill: true,},
-        //   {
-        //   label: 'Priority2',
-        //   data: [0,20,40,60,80],
-        //   backgroundColor:"#47a0e8",
-        //   borderColor:"#007ee7",
-        //   fill: true,
-
-        // }],
+        
         labels:labels//['Application1','Application2','Application3','Application4']
       }
     });
@@ -370,7 +412,7 @@ export class GraphDataComponent implements OnInit{
           console.log("dashboard",response);
           this.bargraphData=response;
           this.doughnutChartLabels1=response?.map((data:any) => data.applicationName); 
-          this.doughnutChartData1=response?.map((data:any) => data.incidentsNumber); 
+          this.doughnutChartData1=response?.map((data:any) => data.incidentsCount); 
           // console.log("dashboard1",this.doughnutChartLabels1);
           // console.log("dashboard2",this.doughnutChartData1);
         },

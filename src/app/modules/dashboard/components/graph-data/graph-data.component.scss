@@ -24,21 +24,21 @@
 	.numberCard {
 		border-bottom: 5px solid #02c8f05e;
 		border-radius: 2px;
-		background-color: #ecf3fa;
+		background-color: #f4f4f4;//#ecf3fa;
 		height: 150px;
 		width: 230px;
 		padding: 10px 12px 0px 10px;
 
 		.presetLabel {
-			font-family: auto;
+			font-family: montserrat;
 			font-style: normal;
 			font-weight: 600;
-			font-size: 14px;
+			font-size: 18px;
 			line-height: 30px;
 			/* padding-left: 10PX; */
 			letter-spacing: 0.464048px;
 			text-transform: capitalize;
-			color: #a3adbf;
+			color: #000000;;
 		}
 
 		.countLabel {

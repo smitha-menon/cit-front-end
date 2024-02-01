@@ -566,6 +566,37 @@ export class ApiservicesService {
     );
   }
 
+  public getIncidentByTrend(id:any):Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,      
+    };
+    const url = `${this.apiUrl}/getMonthTrendIncidentsCount/`+`${id}`;
+    return this.http.get(url,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+  public getIncidentBySlaBreach(id:any):Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,      
+    };
+    const url = `${this.apiUrl}/getSlaAboutToBreachIncidents/`+`${id}`;
+    return this.http.get(url,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
 
   private handleError(error: any) {
     return throwError(() => error);
