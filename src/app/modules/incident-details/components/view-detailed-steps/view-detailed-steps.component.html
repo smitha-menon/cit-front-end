@@ -175,13 +175,20 @@
               <!-- </div> -->
               <button class="add-tag-btn" *ngIf="isAddTagVisible" (click)="addTag()">Add</button>
             </div>
-            <br>
-            <br>
+            <br>         
 
 
             <div style="display: flex;align-items: baseline; flex-direction: column;">
               <label class="tag-label">Comments</label>
               <textarea class="textarea-comments" [(ngModel)]="comments" placeholder="Type here"></textarea>
+
+            </div>
+            <br>
+
+
+            <div style="display: flex;align-items: baseline; flex-direction: column;">
+              <label class="tag-label">Suggested Steps</label>
+              <textarea class="textarea-comments" [(ngModel)]="resolvedSteps" placeholder="Type here"></textarea>
 
             </div>
 

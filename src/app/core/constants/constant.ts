@@ -13,7 +13,8 @@ export const ROUTES = {
     ROLES: '/users/roles',
     REPORT: '/reports',
     DASHBOARD: '/dashboard',
-    APPLICATION:'/create-application'
+    APPLICATION:'/create-application',
+    PIELIST: '/dashboard/pie-incident-list'
 }
 
  export const statuses={ closedState:'closed'}

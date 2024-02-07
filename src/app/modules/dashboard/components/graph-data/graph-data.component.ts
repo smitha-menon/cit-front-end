@@ -1,7 +1,8 @@
 import { Component, OnInit ,ViewChild, inject} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ChartType , Chart, ChartConfiguration} from 'chart.js';
 import { MultiDataSet, Label, Color, PluginServiceGlobalRegistrationAndOptions } from 'ng2-charts';
+import { ROUTES } from 'src/app/core/constants/constant';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 import { PermissionsService } from 'src/app/services/permissions.service';
 
@@ -40,8 +41,67 @@ export class GraphDataComponent implements OnInit{
       enabled: true
     }
   };
+  public pieChartOptions: Chart.ChartOptions = {
+    legend: {
+      display:true,     
+      
+      position : 'right',
+      onClick: this.newLegendClickHandler
+    },
+    legendCallback: (chart:any) => {
+      const text = [];
+      text.push('<ul class="custom-legend">');
+      const data = chart.data;
+      if (data.labels.length) {
+        for (let i = 0; i < data.labels.length; i++) {
+          text.push('<li class="legend-item">');
+          text.push('<span style="background-color:' + data.datasets[0].backgroundColor[i] + '"></span>');
+          text.push('<span>' + data.labels[i] + ': ' + data.datasets[0].data[i] + '</span>');
+          text.push('</li>');
+        }
+      }
+      text.push('</ul>');
+      return text.join('');
+    }
+  };
+
+
+  public newLegendClickHandler (e:any, legendItem:any):void{
+
+    
+    var index = legendItem.index;
+        console.log('legend',legendItem);
+        let url=ROUTES.PIELIST;
+      //  var data:any =  localStorage.getItem("tabledata");
+      //  data=JSON.parse(data??"");
+      //  console.log('datalegend',data);
+      //  console.log("index",index);
+       switch (index){
+       case 0:     
+        url=url+"?index=0"
+        break;
+        case 1:
+          url=url+"?index=1"
+        break;
+        case 2:
+          url=url+"?index=2"
+        break;
+        case 3:
+          url=url+"?index=3"
+        break;
+        
+
+      }
+        //localStorage.setItem("tabledata",data?.todayIncidentsList);
+       
+          window.location.href =url;//ROUTES.PIELIST;
+        
+  }
+  
+
   public verticalBargraphLabel: Label[]=['january','february','march','april'];
   trendData: any;
+ 
   
   /**
    *
@@ -58,6 +118,7 @@ export class GraphDataComponent implements OnInit{
         this.optionSelected=params['option'];
         if( this.optionSelected==5)
         {
+          
           this.loadDataOption5();
         }
        
@@ -101,6 +162,18 @@ export class GraphDataComponent implements OnInit{
     console.log("ctx1",this.ctx1);
     if(this.optionSelected==5)
     {
+      const legendContainer = document.getElementById('legendContainer');
+      const piec = document.getElementById('mypie') as HTMLCanvasElement;
+
+      var piChart = new Chart(piec, {
+        type: this.doughnutChartType,        
+        options: this.pieChartOptions,
+      });
+    
+
+       if (legendContainer) {
+      legendContainer.innerHTML = piChart.generateLegend().toString();
+    }
           this.loadDataOption5();
     }
        
@@ -116,7 +189,7 @@ export class GraphDataComponent implements OnInit{
   
   
   public doughnutChartColors: Color[] = [{
-    backgroundColor:['#FF5733','#cb2b27']//,'#FD5E0F'] //['#1A73E8', '#02C8F0', '#806DF0']
+    backgroundColor:['#fd5e0f','#cb2b27','#9d446e','#FF5E5A']//['#8F4700','#C46100',  '#EC7A08',      '#EF9234']//,'#FD5E0F'] //['#1A73E8', '#02C8F0', '#806DF0']
   }];
   // public chartDataset = [
   //   {
@@ -172,8 +245,8 @@ export class GraphDataComponent implements OnInit{
         const elementHeight = (chart.innerRadius * 2);
   
         // Pick a new font size so it will not be larger than the height of label.
-        const fontSizeToUse = 25;
-        ctx.font = fontSizeToUse + 'px ProximaNova';
+        const fontSizeToUse = 50;
+        ctx.font = fontSizeToUse + 'montserrat';
         ctx.fillStyle = '#344054';
         ctx.weight = 'bold';
   
@@ -204,7 +277,8 @@ export class GraphDataComponent implements OnInit{
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1,
             data: breachedCount,//[10, 20, 30, 40, 50],
-            stack: 'Stack 1'
+           // stack: 'Stack 1'
+           fill: false
           },
           {
             label: 'Open',
@@ -212,7 +286,8 @@ export class GraphDataComponent implements OnInit{
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1,
             data: openCount,//[5, 15, 25, 35, 45],
-            stack: 'Stack 1'
+            //stack: 'Stack 1'
+            fill: false
           },
           {
             label: 'Closed',
@@ -220,7 +295,8 @@ export class GraphDataComponent implements OnInit{
             borderColor: 'rgba(255, 255, 0, 1)',
             borderWidth: 1,
             data: closedCount,//[15, 25, 35, 45, 55],
-            stack: 'Stack 2'
+            //stack: 'Stack 2'
+            fill: false
           },
         ]
       };
@@ -240,8 +316,8 @@ export class GraphDataComponent implements OnInit{
       // Create the stacked bar chart
       const stackedBarChart = new Chart(ctx, {
         type: 'line',
-        data: data,
-        options: options,
+        data: data
+        //options: options,
       });
     
   
@@ -297,8 +373,8 @@ export class GraphDataComponent implements OnInit{
               label: 'Incidents by Team',
               data: this.verticalBargraphData, //[0,20,40,50],
               fill: false,
-              borderColor: '#007ee7',
-              backgroundColor: "rgb(115,185,243 / 65%)",
+              borderColor: '#FF5E5A',//'#007ee7',
+              backgroundColor:"#FF5E5A",// "rgb(115,185,243 / 65%)",
               borderWidth: 1,
               
             },
@@ -312,11 +388,17 @@ export class GraphDataComponent implements OnInit{
     loadDataOption5(){
       this.apiservices.getIncidentBySlaBreach(this.selectedGroup).subscribe({
         next:(response:any)=>{
-          console.log("slabraech",response);         
-          
-          this.doughnutChartData=Object.values(response);//[[250,160,200,150]]//;
-          console.log("slabraech1", this.doughnutChartData);
-         
+          console.log("slabraech",response);  
+          //this.doughnutChartData=Object.values(response);
+          //console.log("slabraech1", this.doughnutChartData);
+          localStorage.setItem("tabledata",JSON.stringify(response));
+          let twodaysCount = response?.lessThanTwoDaysIncidentsCount; 
+          let tomorrowCount = response?.tomorrowIncidentsCount; 
+          let fivedaysCount = response?.lessThanFiveDaysIncidentsCount;      
+          let todayCount =response?.todayIncidentsCount; 
+          this.doughnutChartData=[todayCount,tomorrowCount,twodaysCount,fivedaysCount];//Object.values(response);//[[250,160,200,150]]//;
+          //this.permissionsService.setTableData(response.todayIncidentsList);
+          console.log("slabraech2", this.doughnutChartData);         
           
         },
         error:(err:any)=>{console.log(err)}

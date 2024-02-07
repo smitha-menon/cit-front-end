@@ -90,49 +90,7 @@
             </div>
 
             <div class="wrapper">
-                <!-- <div style="display: flex; gap: 25px; width: 89%;">
-                    <div class="search-container" style="width: 176px;
-                    height: 30px;
-                    ;">
-                        <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
-                        <input type="text" class="search-input" placeholder="Search Number" (keyup)="searchPageFilter($event)" />
-    
-                    </div>
-                    <div class="search-container" style="width: 164px;
-                    height: 30px; ;">
-                        <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
-                        <input type="text" class="search-input" placeholder="Search Active" (keyup)="searchPageFilter($event)" />
-    
-                    </div>
-                    <div class="search-container" style="width: 140px;
-                    height: 30px;
-                    ;">
-                        <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
-                        <input type="text" class="search-input" placeholder="Search state" (keyup)="searchPageFilter($event)" />
-    
-                    </div>
-                    <div class="search-container" style="width: 140px;
-                    height: 30px;
-                    ;">
-                        <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
-                        <input type="text" class="search-input" placeholder="Search priority" (keyup)="searchPageFilter($event)" />
-    
-                    </div>
-                    <div class="search-container" style="width: 252px;
-                    height: 30px;
-                    ;">
-                        <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
-                        <input type="text" class="search-input" placeholder="Search Opened Date" (keyup)="searchPageFilter($event)" />
-    
-                    </div>
-                    <div class="search-container" style="width: 139px;
-                    height: 30px;
-                    ;">
-                        <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
-                        <input type="text" class="search-input" placeholder="Search Assigned To" (keyup)="searchPageFilter($event)" />
-    
-                    </div>
-                </div> -->
+                
                 <mat-paginator [pageSizeOptions]="itemsPerPage" showFirstLastButtons (page)="onPageChange($event)"
                     aria-label="Select page"></mat-paginator>
                 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>

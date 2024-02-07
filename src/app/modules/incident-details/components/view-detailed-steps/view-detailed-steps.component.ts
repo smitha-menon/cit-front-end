@@ -35,6 +35,7 @@ export class ViewDetailedStepsComponent implements OnInit {
   isUpdateVisible:boolean =true;
   isAddTagVisible:boolean =true;
   comments:string | any;
+  resolvedSteps:string | any;
   assignAppList: any = [];
   filteredapplnList:any =[];
   //private router!:Router
@@ -87,6 +88,7 @@ export class ViewDetailedStepsComponent implements OnInit {
         this.selectedUser = this.incidentDetails[0].assignedTo??undefined
         localStorage.setItem(TAGS,this.tagsarr.join(','));
         this.comments=this.incidentDetails[0].comments;
+        this.resolvedSteps= this.incidentDetails[0].suggestedSteps;
        
         this.isUpdateVisible=(this.selectedState == statuses.closedState || 
                               this.userPermissions.includes(FEATURES.updateIncident))?false:true; 

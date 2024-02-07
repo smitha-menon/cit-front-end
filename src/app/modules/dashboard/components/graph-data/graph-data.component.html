@@ -20,7 +20,7 @@
          
           <div class="column1" style="margin-top: 30px;">
             <canvas class="doughnut" baseChart [data]="doughnutChartData1" [labels]="doughnutChartLabels1" [chartType]="doughnutChartType1"
-            [legend]=true [colors]="doughnutChartColors" [options]="doughnutChartOptions1"  [plugins]="doughnutChartPlugins" size="90">
+            [legend]=true [colors]="doughnutChartColors" [options]="doughnutChartOptions1"  [plugins]="doughnutChartPlugins" >
           </canvas>
           </div>
         
@@ -49,8 +49,9 @@
             [data]="doughnutChartData" 
             [labels]="doughnutChartLabels" 
             [chartType]="doughnutChartType"
-            [legend]=true [colors]="doughnutChartColors"   size="100">
+            [legend]=true [colors]="doughnutChartColors" [options]="pieChartOptions"  size="100" id ="mypie">
           </canvas>
+          <div id="legendContainer"></div>
           </div>
         
         </div>

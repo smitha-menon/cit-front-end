@@ -1,0 +1,32 @@
+<div class="main-element">
+    <div class="main-header">
+        <div class="breadcrumbs-cvr">
+            <span><a href="/dashboard?option=5">Dashboard</a></span>
+            <span>></span>
+            <span class="active">Incident List</span>
+        </div>
+        <p>Incident List</p>
+
+
+        <div class="wrapper">
+                
+            <!-- <mat-paginator [pageSizeOptions]="itemsPerPage" showFirstLastButtons (page)="onPageChange($event)"
+                aria-label="Select page"></mat-paginator> -->
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+                <ng-container [matColumnDef]="column" *ngFor="let column of displayCols">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="table-head">{{column}}
+                        <!-- <div class="search-container search-box" >
+                    <i class="fa-solid fa-magnifying-glass fa-xs"style="color: #676767; margin-left: 10px;"></i>
+                    <input type="text" class="search-input" placeholder="Search" (keyup)="searchPageFilter($event)" />
+
+                </div> -->
+                    </th>
+                    <td mat-cell *matCellDef="let emp" [ngClass]="emp[column] ">{{ emp[column] }}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayCols"></tr>
+                <tr mat-row *matRowDef="let emprow; columns: displayCols" ></tr>
+            </table>
+        </div>
+    </div>
+</div>

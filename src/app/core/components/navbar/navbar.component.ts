@@ -14,8 +14,8 @@ export class NavbarComponent implements OnInit {
   loginUser!: string;
   rolesU= userRoles;
   logedUserRole!:string;
-  constructor(private router: Router, private _authService: AuthService, private route: Router, private permissionService: PermissionsService) {
-    this.tab = this.route.url.replace('/', '');
+  constructor(private router: Router, private _authService: AuthService,  private permissionService: PermissionsService) {
+    this.tab = this.router.url.replace('/', '');
     console.log(this.tab)
   }
 
