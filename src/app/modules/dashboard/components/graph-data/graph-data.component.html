@@ -10,10 +10,15 @@
        
       </div>
       <div class="flex-container" style="margin-top: 20px; justify-content: space-evenly;" *ngIf="optionSelected==1">
-        <div class="numberCard" style="    height: 500px;
+        <div class="numberCard" style="    height: 600px;
         width: 700px;">
           <div>
-            <label class="presetLabel">Incidents by Application </label>
+            <!-- <label class="presetLabel">Incidents by Application </label> -->
+            <div >
+              <ng-container *ngTemplateOutlet="datepickerTemplate"></ng-container>
+              <button class="button-29" (click)="loadData()">view</button>
+            </div>
+            <br>
             <div style="border: 1px solid #bbbb;"></div>
 
           </div>
@@ -29,18 +34,28 @@
       </div>
     </div>
     <div  class="flex-container" style="margin-top: 20px; justify-content: space-evenly;" *ngIf="optionSelected==2">
-      <div style="width:60%">
+      <div class="numberCard" style="height: 600px; width: 800px;">
+      <div>
+        <ng-container *ngTemplateOutlet="datepickerTemplate"></ng-container>
+        <button class="button-29" (click)="loadOption2()">view</button>
+      </div>
+      <div style="width:100%">
         <canvas   id="mychart" width="500px" height="250" #mychart >         
 
         </canvas>
       </div>
+    </div>
     </div>
     <div  class="flex-container" style="margin-top: 20px;justify-content: space-evenly;" *ngIf="optionSelected==5">
       <div class="numberCard" style="    height: 500px;
         width: 600px;">
           <div>
             <label class="presetLabel">SLA about to breach </label>
-            <div style="border: 1px solid #bbbb;"></div>
+            <!-- <div >
+              <ng-container *ngTemplateOutlet="datepickerTemplate"></ng-container>
+              
+            </div> -->
+            <!-- <div style="border: 1px solid #bbbb;"></div> -->
 
           </div>        
           
@@ -57,20 +72,51 @@
         </div>
 
     </div>
-    <div  style="display: flex;justify-content: space-evenly;" *ngIf="optionSelected==3">
+    <div  class="flex-container" style="display: flex;justify-content: space-evenly;" *ngIf="optionSelected==3">
+      <div class="numberCard" style="    height: 550px;
+        width: 800px;">
+      <div >
+        <ng-container *ngTemplateOutlet="datepickerTemplate">
+          
+        </ng-container>
+        <button class="button-29" (click)="loadDataOption3()">view</button>
       
-          <div class="column1" style="width:60%" >
+      </div>
+      
+          <div class="column1" style="margin-top: 30px;" >
             <!-- <label>Incidents by Priority</label> -->
             <canvas  id="mychart1" width="500px" height="250" #mychart1 >
               
             </canvas>
           </div > 
+      </div>
     </div>
-    <div  style="display: flex;justify-content: space-evenly;" *ngIf="optionSelected==4">
-          <div class="column1" style="width:60%" >
+    <div class="flex-container"  style="display: flex;justify-content: space-evenly;" *ngIf="optionSelected==4">
+      <div class="numberCard" style="height: 550px; width: 800px;">
+      <div >
+        <ng-container *ngTemplateOutlet="datepickerTemplate"></ng-container>
+        <button class="button-29" (click)="loadDataOption4()">view</button>
+      </div>
+          <div class="column1" style="width:100%" >
             <!-- <label>Incident Trend</label> -->
             <canvas id="myChart3" width="500px" height="250" #mychart3></canvas>
           </div>
+      </div>
     </div>
   </div>
 </div>
+
+<ng-template #datepickerTemplate>
+  <mat-form-field appearance="outline" >
+    <mat-label>Select a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker" >
+      <input matStartDate matInput placeholder="Start date" [(ngModel)]="startDate" (dateChange)="startDateChanged($event)" [ngModelOptions]="{standalone: true}">
+      <input matEndDate matInput placeholder="End date" [(ngModel)]="endDate" (dateChange)="endDateChanged($event)" [ngModelOptions]="{standalone: true}">
+        <!-- <div> -->
+          <!-- <button class="button-29" (click)="loadDataOption3()">view</button> -->
+        <!-- </div> -->
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+</ng-template>

@@ -24,7 +24,7 @@ export interface Execution {
 export class ReportsComponent implements OnInit {
   displayedColumns = ['Number', 'Priority', 'State','Description','Assigned To','Opened Date','Opened By']
   public reportfilters : FormGroup | any;
-   rpt!:reportFilters;
+  rpt!:reportFilters;
   stateList:any;
   assignGrpList:any;
   priorityList:any;

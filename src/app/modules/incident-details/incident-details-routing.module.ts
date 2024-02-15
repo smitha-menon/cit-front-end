@@ -5,6 +5,7 @@ import { IncidentDetailsPageComponent } from './components/incident-details-page
 import { ViewDetailedStepsComponent } from './components/view-detailed-steps/view-detailed-steps.component';
 import { ResolutionsComponent } from './components/resolutions/resolutions.component';
 import { AuthGuard } from 'src/app/auth/guard/auth.guard';
+import { RCADetailsComponent } from './components/rca-details/rca-details.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
     canActivate:[AuthGuard],
     component: ResolutionsComponent
   },
+  {
+    path:'rca-details',
+    canActivate:[AuthGuard],
+    component: RCADetailsComponent
+  }
 ]
 
 @NgModule({

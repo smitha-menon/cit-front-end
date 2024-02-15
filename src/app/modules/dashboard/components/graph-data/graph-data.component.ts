@@ -3,6 +3,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ChartType , Chart, ChartConfiguration} from 'chart.js';
 import { MultiDataSet, Label, Color, PluginServiceGlobalRegistrationAndOptions } from 'ng2-charts';
 import { ROUTES } from 'src/app/core/constants/constant';
+import { dashboardFilters } from 'src/app/interfaces/incidents';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
 import { PermissionsService } from 'src/app/services/permissions.service';
 
@@ -21,7 +22,9 @@ export class GraphDataComponent implements OnInit{
   private permissionsService = inject(PermissionsService);
   selectedGroup:any | any;
   dashBoardData:any | any;
-
+  startDate:any | any;
+  endDate:any  | any;
+  filters!:dashboardFilters;
   
   canvas1: any;
   canvas2:any;
@@ -64,7 +67,6 @@ export class GraphDataComponent implements OnInit{
       return text.join('');
     }
   };
-
 
   public newLegendClickHandler (e:any, legendItem:any):void{
 
@@ -153,8 +155,6 @@ export class GraphDataComponent implements OnInit{
     console.log("inside init for option", this.optionSelected);
   }
   ngAfterViewInit(): void {
-   
-   
     // this.canvas1= this.mychart.nativeElement
     // this.ctx1=this.canvas1.getContext('2d');
     // this.canvas2= this.mychart1.nativeElement
@@ -221,7 +221,7 @@ export class GraphDataComponent implements OnInit{
           var txt1 = 'Incidents';
         }
         else {
-          var txt1 = 'Feature';
+          var txt1 = 'No Records';
         }
   
   
@@ -253,8 +253,8 @@ export class GraphDataComponent implements OnInit{
         // Draw text in center
         ctx.fillText(txt2, centerX, centerY - 10);
   
-        var fontSizeToUse1 = 13;
-        ctx.font = fontSizeToUse1 + 'px ProximaNova';
+        var fontSizeToUse1 = 50;
+        ctx.font = fontSizeToUse1 + 'montserrat';
         ctx.fillText(txt1, centerX, centerY + 10);
       }
     }];
@@ -348,7 +348,8 @@ export class GraphDataComponent implements OnInit{
     // }
 
     loadOption2(){
-      this.apiservices.getIncidentByUserData(this.selectedGroup).subscribe({
+      this.setFilter();
+      this.apiservices.getIncidentByUserData(this.selectedGroup,this.filters).subscribe({
         next:(response:any)=>{
           console.log("dashboard",response);
           this.verticalBargraphData=response?.map((data:any) => data.incidentsCount); 
@@ -406,7 +407,8 @@ export class GraphDataComponent implements OnInit{
     }
 
     loadDataOption4(){
-      this.apiservices.getIncidentByTrend(this.selectedGroup).subscribe({
+      this.setFilter();
+      this.apiservices.getIncidentByTrend(this.selectedGroup,this.filters).subscribe({
         next:(response:any)=>{
           console.log("trendData",response);
           this.trendData=response;
@@ -415,9 +417,23 @@ export class GraphDataComponent implements OnInit{
         error:(err:any)=>{console.log(err)}
       });
     }
+    setFilter()
+    {
+      this.startDate=isNaN(this.startDate)?new Date( Date.now()).toLocaleDateString("en-GB"):this.startDate.toLocaleDateString("en-GB");    
+      this.endDate =isNaN(this.endDate)?new Date( Date.now()).toLocaleDateString("en-GB"):this.endDate.toLocaleDateString("en-GB"); 
 
+      this.filters={
+
+        startDate:this.startDate +" 00:00:00",
+        endDate:this.endDate +" 00:00:00"
+      }
+    }
     loadDataOption3(){
-      this.apiservices.getIncidentByPriority(this.selectedGroup).subscribe({
+
+      this.setFilter();
+     
+
+      this.apiservices.getIncidentByPriority(this.selectedGroup,this.filters).subscribe({
         next:(response:any)=>{
           console.log("dashboard",response);
           this.dashBoardData=response;
@@ -430,7 +446,8 @@ export class GraphDataComponent implements OnInit{
   loadchartOption3(){
 
       const labels=this.dashBoardData?.map((data:any) => data.applicationName);
-      let itemlabels = this.dashBoardData?.map((item:any) => item.data.map((x:any) => x.priority));
+      let itemlabels = this.dashBoardData?.map((item:any) => item.priorityCountList.map((x:any) => x.priorityName));
+     
       let bgColor= ['#727272',
         '#f1595f',
         '#79c36a',
@@ -440,7 +457,7 @@ export class GraphDataComponent implements OnInit{
       
       let configData: any=[];
       let itemcount:any =[];
-      // console.log("itemlabels",itemlabels);
+      console.log("itemlabels",itemlabels);
       var index=0;
 
        itemlabels[0]?.forEach((element:any) => {    
@@ -449,6 +466,7 @@ export class GraphDataComponent implements OnInit{
         const v= this.dashBoardData.forEach((y:any) => {
           itemcount.push(y.data.find((x:any) => (x.priority===element))?.count)
         });
+        
         console.log("find",itemcount);
             configData.push({
                     label: element,
@@ -488,8 +506,8 @@ export class GraphDataComponent implements OnInit{
 
     loadData()
     {
-      
-      this.apiservices.getIncidentByApplnData(this.selectedGroup).subscribe({
+      this.setFilter();      
+      this.apiservices.getIncidentByApplnData(this.selectedGroup,this.filters).subscribe({
         next:(response:any)=>{
           console.log("dashboard",response);
           this.bargraphData=response;
@@ -502,6 +520,21 @@ export class GraphDataComponent implements OnInit{
       });
      
     }
+
+    startDateChanged(event: any) {
+      console.log('Start Date Changed:', event.value);
+      this.startDate=event.value;
+      // Run your function for start date change
+      // Example: this.someFunction(event.value);
+    }
+  
+    endDateChanged(event: any) {
+      console.log('End Date Changed:', event.value);
+      this.endDate=event.value;
+      // Run your function for end date change
+      // Example: this.someFunction(event.value);
+    }
+    
 
     
 }

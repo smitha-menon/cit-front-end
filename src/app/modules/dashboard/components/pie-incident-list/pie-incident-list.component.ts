@@ -29,48 +29,64 @@ export class PieIncidentListComponent implements OnInit {
   }
   ngOnInit(): void {
 
+    this.route.queryParams.subscribe((params) => {
+
+      if (params['index']!==undefined)
+      {
+        console.log('index',params['index']);
+        const data=this.setdatasource(params['index']);
+        console.log(data);
+        this.dataSource= new MatTableDataSource(data);
+      }
+    });
+
     // const tabledata= localStorage.getItem("tabledata")??"";
     // console.log(JSON.parse(tabledata));
 
-    var data:any =  localStorage.getItem("tabledata");
-       data=JSON.parse(data??"");
-       console.log('datalegend',data);
-     var  newdata = data.todayIncidentsList?.map((data: any) => {
-        return {
-          'Number': data.incidentId,
-          'SLA': data.sla,
-          'SLA Lapse':data.slalapse,
-          'Priority': data.priority,//this.priorityList.find((x:any)=>( x.priorityId === data.priority))?.priorityValue??data.priority,
-          'Assigned To':data.assignedTo,//this.assignUsrList.find((x:any)=>(x.userId == data.assignedTo))?.username??data.assignedTo,
-          'Opened Date': data.openedDate,
-          'Application':data.applicationId//this.applnList.find((x:any)=>(x.applicationId == data.applicationId))?.applicationName??data.applicationId
-        }
-      });
-      this.dataSource= new MatTableDataSource(newdata);
+    // var data:any =  localStorage.getItem("tabledata");
+    //    data=JSON.parse(data??"");
+    //    console.log('datalegend',data);
+    //  var  newdata = data.todayIncidentsList?.map((data: any) => {
+    //     return {
+    //       'Number': data.incidentId,
+    //       'SLA': data.sla,
+    //       'SLA Lapse':data.slalapse,
+    //       'Priority': data.priority,//this.priorityList.find((x:any)=>( x.priorityId === data.priority))?.priorityValue??data.priority,
+    //       'Assigned To':data.assignedTo,//this.assignUsrList.find((x:any)=>(x.userId == data.assignedTo))?.username??data.assignedTo,
+    //       'Opened Date': data.openedDate,
+    //       'Application':data.applicationId//this.applnList.find((x:any)=>(x.applicationId == data.applicationId))?.applicationName??data.applicationId
+    //     }
+    //   });
+    //   this.dataSource= new MatTableDataSource(newdata);
   }
 
-setdatasource(number:any){
+setdatasource(index:any):any{
 
    var data:any =  localStorage.getItem("tabledata");
   data=JSON.parse(data??"");
   console.log('datalegend',data);
   let listData=[];
-  switch (number){
-    case 0:
+  //listData=data.todayIncidentsList;
+  switch (index){
+    case '0':
+      {
       listData=data.todayIncidentsList;
+      console.log('datalegend1',listData);
       break;
-    case 1:
-      listData= data.tomorrowIncidentsList;
+      }
+    case '1':
+      {listData= data.tomorrowIncidentsList;
       break;
-    case 2:
+      }
+    case '2':
       listData= data.lessThanTwoDaysIncidentsList;
       break;
-    case 3:
+    case '3':
       listData= data.lessThanFiveDaysIncidentsList;
       break;
 
   }
-
+  
   var  newdata = listData?.map((data: any) => {
     return {
       'Number': data.incidentId,
@@ -83,6 +99,8 @@ setdatasource(number:any){
     }
   });
   this.dataSource= new MatTableDataSource(newdata);
+
+  return newdata;
 
 }
 

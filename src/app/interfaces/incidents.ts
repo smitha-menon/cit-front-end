@@ -33,3 +33,7 @@ export interface reportFilters{
 //   page: number,
 //   size: number
 }
+export interface dashboardFilters{
+    startDate: string,
+    endDate: string
+}

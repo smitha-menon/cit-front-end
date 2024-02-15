@@ -1,0 +1,103 @@
+<div class="main-element">
+    <div class="main-header">
+        <div class="breadcrumbs-cvr">
+            <span><a href="/incidents/view-steps">Incident Details</a></span>
+            <span>></span>
+            <span class="active">RCA</span>
+        </div>
+        <label>RCA Details</label>
+
+        <div style="border: 1px solid #b8b8b8; border-top: none; height:800px">
+            <div class="card2">
+
+            </div>
+
+            <div style="padding: 28px;">
+                <div >
+
+
+                    <form class="testplan-form" [formGroup]="rcaGroup">
+                        <div>
+                           
+                            <div class="form-group">
+
+                                <label class="form-label">RCA Type:</label>
+                                
+                                <!-- <select [(ngModel)]="selectedType" class="form-control" [ngModelOptions]="{standalone: true}" style="width: 300px;">
+                                  <option [value]="undefined">{{defaultSelection}}</option>
+                                  <option *ngFor="let item of rcaList" [value]="item.rcaTypeId">{{ item.rcaTypeName }}</option>
+                                </select> -->
+                                <mat-select [(ngModel)]="selectedType" class="form-control" style="width: 300px;margin-left: 10px;"
+                                                placeholder="Select RCA Type" [ngModelOptions]="{standalone: true}">
+
+                                                <mat-option *ngFor="let item of rcaList" [value]="item.rcaTypeId">{{
+                                                    item.rcaTypeName
+                                                    }}
+                                                </mat-option>
+                                            </mat-select>
+                               
+                  
+                              </div>
+                            <div class="form-group">
+                                <div style="display:flex;gap:10px">
+
+                                <label class="form-label">Remediation</label>
+                                <textarea class="textarea-comments" style="width: 500px; height: 200px;" formControlName="remediation"
+                                    name="remediation" required></textarea>
+                                </div>
+                            </div>
+                           
+                            <div class="form-group">
+                                <div style="display:flex;gap:10px">
+
+
+                                <label class="form-label">Additional Notes</label>
+                                <textarea class="textarea-comments" style="width: 500px; height: 200px;" formControlName="notes"
+                                    name="notes" ></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div style="position: absolute;
+                        top: -13px;
+                             left: 800px;
+                             bottom: 369px;">
+                             <div class="box">
+                             <label class="form-label">Attachments:</label>
+                             <input type="file" class="file-Upload" (change)="onFileSelected($event)" 
+                                                                    id="fleupload"  #fileUpload hidden>
+                             <label for ="fleupload" class="uploadlabel">
+                                <span><i class="fa fa-cloud-upload"></i></span>
+                                <p>Click To Upload</p>
+                             </label>
+                             <br>
+                            
+                             
+                           
+                            <div id ="filewrapper">
+                                <h3 class="uploaded">{{message}}</h3>
+                                <!-- <div class="showfilebox">
+                                    <div class="left">
+                                        <span class="filetype">  </span>
+                                        <h3>No Files Selected</h3>
+                                    </div>
+                                    <div class="right">
+                                        <span>&#215;</span>
+                                    </div>
+    
+                                </div> -->
+    
+                             </div>
+                            </div>
+ 
+                         </div>
+                        
+                    </form>
+                    <div>
+                        <button  class="button-29" (click)="addRCA()" [hidden]="isTextareaEmpty()">Submit</button>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

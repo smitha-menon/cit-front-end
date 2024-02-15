@@ -28,6 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ViewDetailedStepsComponent } from './components/view-detailed-steps/view-detailed-steps.component';
 import { ResolutionsComponent } from './components/resolutions/resolutions.component';
 import { MatListModule } from '@angular/material/list';
+import { RCADetailsComponent } from './components/rca-details/rca-details.component';
  
 
 
@@ -36,6 +37,7 @@ import { MatListModule } from '@angular/material/list';
     IncidentDetailsPageComponent,
     ViewDetailedStepsComponent,
     ResolutionsComponent,
+    RCADetailsComponent,
   ],
   imports: [
     CommonModule,

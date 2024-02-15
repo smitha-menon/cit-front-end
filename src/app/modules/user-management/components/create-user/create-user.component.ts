@@ -95,8 +95,8 @@ export class CreateUserComponent implements OnInit {
         this.fileName= data.target.result};
         if(this.isEditMode)
         {
-        const formData = new FormData();
-        formData.append('file', file);
+          const formData = new FormData();
+          formData.append('file', file);
         this.apiservice.uploadPhoto(formData,this.editUser).subscribe({
           next: (response: any) => {
             console.log(response)

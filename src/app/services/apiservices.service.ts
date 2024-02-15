@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap, throwError, BehaviorSubject } from 'rxjs';
-import { Incidents, drillIncidents, reportFilters } from '../interfaces/incidents';
+import { Incidents, dashboardFilters, drillIncidents, reportFilters } from '../interfaces/incidents';
 import { environment } from 'src/environment/environment';
 import { user } from '../interfaces/user';
 import { recommendations } from '../interfaces/knownErrors';
@@ -499,6 +499,38 @@ export class ApiservicesService {
       catchError(this.handleError)
     );
   }
+  public getRCATypeList():Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,      
+    };
+    const url = `${this.apiUrl}/getAllRcaTypes`;
+    return this.http.get(url,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  public addRCA(data:any):Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,      
+    };
+    const url = `${this.apiUrl}/addRcaByIncidentId`;
+    return this.http.post(url,data,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
 
   //************Dashboard apis******************
 
@@ -518,15 +550,19 @@ export class ApiservicesService {
     );
   }
 
-  public getIncidentByApplnData(id:any):Observable<any>{
+  public getIncidentByApplnData(id:any, filters:dashboardFilters):Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-    
+    const body ={
+      "startDate": "01/01/2020 00:00:00",
+      "endDate": "01/01/2022 00:00:00"
+    }
     const options = {
-      headers: header,      
+      headers: header 
+      //params: inputparams      
     };
     const url = `${this.apiUrl}/getApplicationIncident/`+`${id}`;
-    return this.http.get(url,options).pipe(
+    return this.http.post(url,filters,options).pipe(
       tap(data => {
         console.log(data);
       }),
@@ -534,15 +570,22 @@ export class ApiservicesService {
     );
   }
 
-  public getIncidentByUserData(id:any):Observable<any>{
+  public getIncidentByUserData(id:any,filters:dashboardFilters):Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-    
+    // let inputparams = new HttpParams();
+    // inputparams = inputparams.append('startDate', "01/01/2020 00:00:00");
+    // inputparams = inputparams.append('endDate', "01/01/2024 00:00:00");
+    const body ={
+      "startDate": "01/01/2020 00:00:00",
+      "endDate": "01/01/2022 00:00:00"
+    }
     const options = {
-      headers: header,      
+      headers: header  
+      //params: inputparams     
     };
     const url = `${this.apiUrl}/getUserIncidents/`+`${id}`;
-    return this.http.get(url,options).pipe(
+    return this.http.post(url, filters,options).pipe(
       tap(data => {
         console.log(data);
       }),
@@ -550,15 +593,20 @@ export class ApiservicesService {
     );
   }
 
-  public getIncidentByPriority(id:any):Observable<any>{
+  public getIncidentByPriority(id:any,filters:dashboardFilters):Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
+    const body ={
+      "startDate": "01/01/2020 00:00:00",
+      "endDate": "01/01/2022 00:00:00"
+    }
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     
     const options = {
-      headers: header,      
+      headers: header 
+      //params: inputparams       
     };
     const url = `${this.apiUrl}/getApplicationPriorityIncidents/`+`${id}`;
-    return this.http.get(url,options).pipe(
+    return this.http.post(url,filters,options).pipe(
       tap(data => {
         console.log(data);
       }),
@@ -566,15 +614,20 @@ export class ApiservicesService {
     );
   }
 
-  public getIncidentByTrend(id:any):Observable<any>{
+  public getIncidentByTrend(id:any,filters:dashboardFilters):Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
+    const body ={
+      "startDate": "01/01/2020 00:00:00",
+      "endDate": "01/01/2022 00:00:00"
+    }
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     
     const options = {
-      headers: header,      
+      headers: header 
+      //params: inputparams      
     };
     const url = `${this.apiUrl}/getMonthTrendIncidentsCount/`+`${id}`;
-    return this.http.get(url,options).pipe(
+    return this.http.post(url,filters,options).pipe(
       tap(data => {
         console.log(data);
       }),
@@ -583,10 +636,12 @@ export class ApiservicesService {
   }
   public getIncidentBySlaBreach(id:any):Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
+    
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     
     const options = {
-      headers: header,      
+      headers: header
+        
     };
     const url = `${this.apiUrl}/getSlaAboutToBreachIncidents/`+`${id}`;
     return this.http.get(url,options).pipe(

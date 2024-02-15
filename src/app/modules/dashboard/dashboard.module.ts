@@ -6,8 +6,12 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ChartsModule } from 'ng2-charts';
 import { PieIncidentListComponent } from './components/pie-incident-list/pie-incident-list.component';
 import { MatTableModule } from '@angular/material/table';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -23,7 +27,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ChartsModule,
     MatTableModule,
     MatPaginatorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
+    NgbModule,
+    MatDatepickerModule,
+    FormsModule,
+    MatNativeDateModule
   ]
 })
 export class DashboardModule { }

@@ -164,6 +164,10 @@ saveTags(successMsg:string, failMsg:string){
    // this.routes.navigateByUrl(ROUTES.RESOLUTION);    
     
   }
+
+  initiateRCA(){
+    this.routes.navigate([ROUTES.RCADETAILS]);
+  }
   tagClosepop(index: number) {
     this.tagIndexDelete = index;
     this.tagClose = true;

@@ -3,6 +3,7 @@ export const ROUTES = {
     INCIDENT: '/incidents',
     VIEWSTEPS: '/incidents/view-steps',
     RESOLUTION : '/incidents/resolutions',
+    RCADETAILS : '/incidents/rca-details',
     CREATEINCIDENT: '/create-incident',
     USERS: '/users',
     ADDUSER: '/users/create-user',
