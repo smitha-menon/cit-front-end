@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { FEATURES } from 'src/app/core/constants/constant';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FEATURES, ROUTES } from 'src/app/core/constants/constant';
 import { INCIDENT_ID_KEY, TAGS } from 'src/app/core/constants/local-storage-keys';
 import { NotifierService } from 'src/app/core/utils/notifier';
 import { ApiservicesService } from 'src/app/services/apiservices.service';
@@ -26,6 +26,7 @@ export class ResolutionsComponent {
              private apiservice:ApiservicesService, 
              private notifier: NotifierService,
              private permissionsService: PermissionsService,
+             private router:Router,
              private fb: FormBuilder) {
 
               this.route.queryParams.subscribe((params) => {
@@ -107,7 +108,11 @@ viewData(data: any , index: number) {
   console.log(data, index)
   this.viewDetails.push(data)
   this.errId = data.errorId
+  this.router.navigateByUrl(ROUTES.RESOLUTIONDET+"?Id="+this.errId)
  
+}
+viewRCA(data: any){
+  this.router.navigate([ROUTES.RCADETAILS]);
 }
   cancelPopUp() {
     this.viewPopup = false;

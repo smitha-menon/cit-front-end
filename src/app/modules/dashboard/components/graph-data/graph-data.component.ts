@@ -464,7 +464,7 @@ export class GraphDataComponent implements OnInit{
        
         itemcount=[];        
         const v= this.dashBoardData.forEach((y:any) => {
-          itemcount.push(y.data.find((x:any) => (x.priority===element))?.count)
+          itemcount.push(y.priorityCountList.find((x:any) => (x.priorityName===element))?.count)
         });
         
         console.log("find",itemcount);

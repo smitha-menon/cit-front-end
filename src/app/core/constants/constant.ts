@@ -15,7 +15,8 @@ export const ROUTES = {
     REPORT: '/reports',
     DASHBOARD: '/dashboard',
     APPLICATION:'/create-application',
-    PIELIST: '/dashboard/pie-incident-list'
+    PIELIST: '/dashboard/pie-incident-list',
+    RESOLUTIONDET:'/incidents/view-resolutions'
 }
 
  export const statuses={ closedState:'closed'}

@@ -530,6 +530,21 @@ export class ApiservicesService {
       catchError(this.handleError)
     );
   }
+  public getRCAData(id:any):Observable<any>{
+    const token = localStorage.getItem(USER_TOKEN);
+    const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    
+    const options = {
+      headers: header,      
+    };
+    const url = `${this.apiUrl}/getRcaByIncidentId/`+`${id}`;
+    return this.http.get(url,options).pipe(
+      tap(data => {
+        console.log(data);
+      }),
+      catchError(this.handleError)
+    );
+  }
 
 
   //************Dashboard apis******************

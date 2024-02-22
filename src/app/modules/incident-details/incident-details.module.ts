@@ -29,6 +29,7 @@ import { ViewDetailedStepsComponent } from './components/view-detailed-steps/vie
 import { ResolutionsComponent } from './components/resolutions/resolutions.component';
 import { MatListModule } from '@angular/material/list';
 import { RCADetailsComponent } from './components/rca-details/rca-details.component';
+import { ViewResolutionsComponent } from './components/view-resolutions/view-resolutions.component';
  
 
 
@@ -38,6 +39,7 @@ import { RCADetailsComponent } from './components/rca-details/rca-details.compon
     ViewDetailedStepsComponent,
     ResolutionsComponent,
     RCADetailsComponent,
+    ViewResolutionsComponent,
   ],
   imports: [
     CommonModule,

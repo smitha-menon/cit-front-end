@@ -6,6 +6,7 @@ import { ViewDetailedStepsComponent } from './components/view-detailed-steps/vie
 import { ResolutionsComponent } from './components/resolutions/resolutions.component';
 import { AuthGuard } from 'src/app/auth/guard/auth.guard';
 import { RCADetailsComponent } from './components/rca-details/rca-details.component';
+import { ViewResolutionsComponent } from './components/view-resolutions/view-resolutions.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
     path:'rca-details',
     canActivate:[AuthGuard],
     component: RCADetailsComponent
+  },
+  {
+    path:'view-resolutions',
+    canActivate:[AuthGuard],
+    component: ViewResolutionsComponent
   }
 ]
 

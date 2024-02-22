@@ -205,13 +205,17 @@
 
   .showfilebox{
     display: flex;
-    align-items: center;
+    //align-items: center;
     justify-content: space-between;
     margin: 10px 0;
     padding: 10px 15px;
     box-shadow: #0000000d 0px 0px 0px 1px,
     #d1d5db3d 0px 0px 0px 1px inset;
-    width: 400px;
+    width: 500px;
+    align-items:flex-start;
+    flex-direction:column;
+    max-height: 400px;
+    overflow-y: scroll;
   }
 
   .showfilebox .left {
@@ -219,16 +223,18 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
+    
   }
 
   .filetype{
-    background:#9a9c9d;// #18a7ff;
-    color:#fff;
+    //background:#9a9c9d;// #18a7ff;
+    //color:#fff;
     padding: 5px 15px;
-    font-size: 13px;
+    font-size: 15px;
     text-transform: capitalize;
     font-weight: 700;
     border-radius: 3px;
+    
   }
 
   .left h3{
@@ -266,3 +272,5 @@
     margin: 5px;
     max-width: 450px; 
   }
+
+  

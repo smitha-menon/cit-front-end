@@ -1,0 +1,109 @@
+<div class="main-element">
+    <div class="main-header">
+        <div class="breadcrumbs-cvr">
+            <span><a href="/incidents/view-steps">Incident Details</a></span>
+            <span>></span>
+            <span class="active">Resolution Details</span>
+        </div>
+        <p>Details</p>
+        <div class="outer-box">
+            <div class="card2">
+                <label></label>
+            </div>
+
+            <div class="inner-box">
+                <!-- <div class="Tags400BadRequest"><span
+                    style="color: black; font-size: 16px; font-family: Montserrat; font-weight: 600; word-wrap: break-word">Tags:
+                </span><span
+                    style="color: black; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">#fgfg,#fgg</span>
+            </div> -->
+            <p></p>
+            <p></p>
+            <p></p>
+            <div>
+                <label class="steps-label">Resolution Steps</label>
+                <p class="steps-content">"details.resolution"</p>
+            </div>
+            <div>
+                <section style="padding: 10px; display: flex; gap: 300px;">
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label" >Error ID:</label>
+                            <label class="form-control"  data-placement="top" title="dataByErrorId.errorId">{{dataByErrorId?.errorId}}</label>
+                          
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Created On:</label>
+                            <label class="form-control"  data-placement="top" title="dataByErrorId.createdOn">{{dataByErrorId?.createdOn}}</label>
+                          
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Updated On:</label>
+                            <label class="form-control"  data-placement="top" title="dataByErrorId.updatedOn">{{dataByErrorId?.updatedOn}}</label>
+                           
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Created By:</label>
+                            <label class="form-control"  data-placement="top" title="dataByErrorId.createdBy">{{dataByErrorId?.createdBy}}</label>
+                           
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Application</label>
+                            <label class="form-control"  data-placement="top" title="dataByErrorId.incidentIds">{{dataByErrorId?.applicationName}}</label>
+                           
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" style="margin-bottom: 90px;">Error Keywords:</label>
+                            <textarea class="textarea-pop" style="height: 100px;width:250px" data-placement="top" title="dataByErrorId.errorKeywords">{{dataByErrorId?.errorKeywords}}</textarea>
+                           
+                        </div>
+                        
+                    </div>
+                  <div style="display: flex; flex-direction: column;">
+                   
+                        <label class="form-label">Error Description:</label>                        
+                        <textarea class="textarea-pop" >{{dataByErrorId?.errorDescription}} </textarea>
+                        
+                    
+                  </div>
+
+                </section>
+            </div>
+            <div style="overflow-y: auto;width:600px;padding-left: 10px;">
+                <label class="form-label">Incident IDs:</label>
+                <table id="resolution">
+                    <thead>
+                        <tr>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let rw of dataByErrorId?.incidentIds; let i=index">
+                            <td>{{i + 1}}. {{rw}}</td>
+                            <td><button class="viewbtn" (click)="viewData(rw, i)">RCA</button></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+                <div style="margin-top: 50px;">
+                    <label style="padding-right:10px;font-family: Montserrat;font-size:large;line-height: 20px;">Use this Resolution for incident: <b>{{incid}} </b></label><span>
+                        <button class="addbtn" *ngIf="isUseVisible" (click)="UseResolution()">Submit</button></span></div>
+    
+    
+            </div>
+
+           
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+

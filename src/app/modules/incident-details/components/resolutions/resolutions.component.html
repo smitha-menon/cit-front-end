@@ -110,11 +110,11 @@
                             <label class="form-control"  data-placement="top" title="{{details.createdBy}}">{{details.createdBy}}</label>
                            
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="form-label">Incident IDs:</label>
                             <label class="form-control"  data-placement="top" title="{{details.incidentIds}}">{{details.incidentIds}}</label>
                            
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label class="form-label">Error Keywords:</label>
                             <label class="form-control" data-placement="top" title="{{details.errorKeywords}}">{{details.errorKeywords}}</label>
@@ -135,7 +135,24 @@
                   </div>
 
                 </section>
-                <div style="float:right">
+                <div style="height:180px;overflow-y: auto;">
+                    <label class="form-label">Incident IDs:</label>
+                    <table id="resolution">
+                        <thead>
+                            <tr>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let rw of details.incidentIds; let i=index">
+                                <td>{{i + 1}}. {{rw}}</td>
+                                <td><button class="viewbtn" (click)="viewRCA(rw)">RCA</button></td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+                <div style="float:right;margin-top: 50px;">
                     <label style="padding-right:10px;font-family: Montserrat;font-size:large;line-height: 20px;">Use this Resolution for <b>{{incid}} </b></label><span>
                         <button class="addbtn" *ngIf="isUseVisible" (click)="UseResolution()">Submit</button></span></div>
             </div>
