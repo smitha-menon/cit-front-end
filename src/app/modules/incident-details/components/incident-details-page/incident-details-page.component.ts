@@ -264,12 +264,11 @@ export class IncidentDetailsPageComponent implements OnInit {
 
   public loadIncidents(): void {
     let newdata: any;
-    this.showloader = true;
-    this.loadCardData();
+    this.showloader = true;  
 
     this.userid = ( this.response.currentGroupData.roleCode == userRoles.BU || this.response.currentGroupData.roleCode == userRoles.SA || this.response.currentGroupData.roleCode == userRoles.GA) ? null : this.response.assignedToId;
     this.groupid = (this.response.currentGroupData.roleCode == userRoles.BU || this.response.currentGroupData.roleCode == userRoles.SA || this.response.currentGroupData.roleCode == userRoles.GA) ? this.response.currentGroupData.assignedGroupId : null;
-   
+    this.loadCardData();
     this.apiservice.getIncidentsList(this.startIndex, this.endIndex, this.filterInput, this.userid, this.groupid).subscribe({
       next: (response: any) => {
         console.log(response);
@@ -318,8 +317,7 @@ export class IncidentDetailsPageComponent implements OnInit {
   }
   loadCardData()
   {
-
-    this.apiservice.getDashboardData(this.response.currentGroupData.assignedGroupId).subscribe({
+    this.apiservice.getDashboardData(this.userid,this.groupid).subscribe({
       next:(response:any)=>{
         console.log("dashboard",response);
         this.cardData=response;

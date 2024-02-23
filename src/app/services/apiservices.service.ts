@@ -549,14 +549,26 @@ export class ApiservicesService {
 
   //************Dashboard apis******************
 
-  public getDashboardData(id:any):Observable<any>{
+  public getDashboardData(assignedId:any,groupId:any):Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
     const header = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
     
     const options = {
       headers: header,      
     };
-    const url = `${this.apiUrl}/getDashBoardTabs/`+`${id}`;
+    let url = `${this.apiUrl}/getDashBoardTabs?`;
+    if(assignedId !=undefined && (groupId === undefined || groupId === null))
+    {
+      url = url + 'assignedId=' + `${assignedId}`;
+    }
+    if(groupId != undefined && (assignedId ===undefined || assignedId ===null))
+    {
+      url = url + 'groupId=' + `${groupId}`;
+    }
+    if(assignedId !=undefined && groupId != undefined)
+    {
+      url = url + 'assignedId=' + `${assignedId}` + '&groupId=' + `${groupId}`;
+    }
     return this.http.get(url,options).pipe(
       tap(data => {
         console.log(data);
