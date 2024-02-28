@@ -5,7 +5,7 @@
             <span>></span>
             <span class="active">Resolution Details</span>
         </div>
-        <p>Details</p>
+        <p style="color:#FFFFFF">Details</p>
         <div class="outer-box">
             <div class="card2">
                 <label></label>
@@ -20,7 +20,7 @@
             <p></p>
             <p></p>
             <p></p>
-            <div>
+            <div style="margin: 10px;margin-bottom: 30px;">
                 <label class="steps-label">Resolution Steps</label>
                 <p class="steps-content">{{dataByErrorId.resolution}}</p>
             </div>
@@ -86,7 +86,7 @@
                     </tbody>
                 </table>
                 <div style="margin-top: 50px;">
-                    <label style="padding-right:10px;font-family: Montserrat;font-size:large;line-height: 20px;">Use this Resolution for incident: <b>{{incid}} </b></label><span>
+                    <label style="padding-right:10px;font-family: Montserrat;font-size:large;line-height: 20px;color:#FFFFFF">Use this Resolution for incident: <b>{{incid}} </b></label><span>
                         <button class="addbtn" *ngIf="isUseVisible" (click)="UseResolution()">Submit</button></span></div>
     
     

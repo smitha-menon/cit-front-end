@@ -5,13 +5,13 @@
     .card2 {
         // height: 60px;
         line-height: 30px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        background: #676767;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        background: #282828;
         display: flex;
         gap: 10px;
         align-items: center;
-        padding: 10px;
+        padding: 30px;
         // box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
         border-bottom: none;
         font-style: bold;
@@ -24,6 +24,8 @@
         font-size: 30px;
         line-height: 42px;
         color: #fff;
+        margin-left: 10px;
+        margin-right: 10px;
       }
       .form-group {
         display: flex;
@@ -37,14 +39,14 @@
         width: 200px;
         height: 30px;
         padding: 4px;
-        color: #000;
-        font-family: Montserrat;
+        color: #FFFFFF;
+        font-family: montserrat;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
         /* flex-shrink: 0; */
-        background: #D9D9D9;
+        background: #000000;
       }
     
       .form-control {
@@ -107,4 +109,73 @@
         box-shadow: #ff8e5a 0 3px 7px inset;
         transform: translateY(2px);
       }
+
+      .wrapper {
+        overflow: hidden;
+       // padding: 24px 0px;
+        // background: linear-gradient(270deg,#e8807f,#e6c84f);
+        // background: #ffffff;
+        font-size: 15px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        //border-top: 3px solid #ff5e10;
+        //border-bottom: 3px solid #ff5e10;
+    }
 }
+
+:host ::ng-deep {
+
+
+  .mat-mdc-table {
+         padding: 0px;
+         box-shadow: none;
+         cursor: pointer;
+         border-collapse: separate;
+         border-spacing: 0 7px;
+         width: 85%;         
+         background: #333333;
+     }
+
+     .mdc-data-table__cell {
+       border-bottom-width: 1px; 
+       border-bottom-style: solid #C0C0C070; 
+       border-bottom: 1px solid #C0C0C070;
+       font-family: Montserrat;
+       font-style: normal;
+       font-weight: 400;
+       font-size: 14px;        
+       color: #ffffff;
+       text-align: center;
+  }
+ 
+ 
+     .mdc-data-table__header-cell {
+         background: #000000 !important;//#676767 ;
+         color: #fff;
+         //border-right: 1px solid #fff;
+         text-align: center;
+         font-family: Montserrat;
+         font-style: normal;
+         font-weight: 600;
+         font-size: 18px;
+         line-height: 30px;
+         
+     }
+ 
+    
+ 
+    
+     .mat-mdc-table tfoot,    
+     .mat-mdc-footer-cell,
+     .mat-mdc-row,
+     .mat-mdc-footer-row {
+         font-family: Montserrat;
+         font-style: normal;
+         font-weight: 400;
+         font-size: 14px;        
+         color: #ffffff;
+        // border: none;
+         padding: 10px;
+         //border-bottom: 1px solid #C0C0C070;
+     }
+    }

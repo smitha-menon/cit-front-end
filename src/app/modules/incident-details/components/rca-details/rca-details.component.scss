@@ -40,13 +40,13 @@
   .card2 {
     // height: 60px;
     line-height: 30px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background: #676767;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: #282828;
     display: flex;
     gap: 10px;
     align-items: center;
-    padding: 10px;
+    padding: 30px;
     // box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
     border-bottom: none;
     font-style: bold;
@@ -59,7 +59,10 @@
     font-size: 30px;
     line-height: 42px;
     color: #fff;
+    margin-left: 30px;
+    margin-right: 30px;
   }
+  
   
   .form-group {
     display: flex;
@@ -78,18 +81,18 @@
     width: 200px;
     height: 30px;
     padding: 4px;
-    color: #000;
+    color: #ffff;
     font-family: Montserrat;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     /* flex-shrink: 0; */
-    background: #D9D9D9;
+    background: #000000;
   }
   .button-29 {
     margin-left: 90%;
-    margin-top: 150px;
+    margin-top: 100px;
     align-items: center;
     appearance: none;
     background-image: radial-gradient(100% 100% at 100% 0, #ff8e5a 0, #FD5E0F 100%);
@@ -211,7 +214,7 @@
     padding: 10px 15px;
     box-shadow: #0000000d 0px 0px 0px 1px,
     #d1d5db3d 0px 0px 0px 1px inset;
-    width: 500px;
+    width: 450px;
     align-items:flex-start;
     flex-direction:column;
     max-height: 400px;
@@ -234,6 +237,7 @@
     text-transform: capitalize;
     font-weight: 700;
     border-radius: 3px;
+    color: #a5a5a5;
     
   }
 

@@ -57,8 +57,7 @@ export class RCADetailsComponent implements OnInit {
     return this.rcaGroup.controls;
   }
 
-  isTextareaEmpty(): boolean {
-    console.log("T",this.selectedType);
+  isTextareaEmpty(): boolean {    
     return !this.rcaGroup.value.remediation || this.rcaGroup.value.remediation.trim() === '' ||
      this.selectedType === undefined;
   }
@@ -146,7 +145,7 @@ export class RCADetailsComponent implements OnInit {
         var i=0;
         for(i=0; i< this.fileList.length;i++)
         {
-          this.fileshow("File-"+ new Date().toLocaleDateString()+"-"+i);
+          this.fileshow(this.fileList[i].fileName);//"File-"+ new Date().toLocaleDateString()+"-"+i);
 
         }
       },

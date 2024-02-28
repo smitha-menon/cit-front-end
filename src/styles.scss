@@ -9,7 +9,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: montserrat }
 
 body {
-    background: #fff;
+    background: #000000;//#fff;
     // background-image: url(./assets/images/rectangle-page.png);
     // background-repeat: no-repeat;
     // background-position: 100% 20%;
@@ -35,8 +35,8 @@ body {
     /* line-height: 30px; */
     /* border-top-left-radius: 5px; */
     /* border-top-right-radius: 5px; */
-    background: #e5e5e5;
-    padding: 10px;
+    background: #000000;//#e5e5e5;
+    padding: 30px;
     // box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
     border-bottom: none;
     font-style: bold;
@@ -64,7 +64,7 @@ body {
 }
 
 .search-container{
-    background: #fff;
+   // background: #fff;
     height: 30px;
     width: 30%;
     // margin-top: 32px;
@@ -84,6 +84,7 @@ body {
     margin-left: 5px;
     font-weight: 500;
     font-size: 16px;
+    color:#fff;
 }
 
 ::-webkit-scrollbar {

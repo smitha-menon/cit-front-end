@@ -1,8 +1,9 @@
 <div class="main-element">
     <div class="main-header">
-        <div style="border: 1px solid #b8b8b8; border-top: none;">
+      <label style="color:#fff">Add Application</label>
+        <div style="border: 1px solid #b8b8b8;  background-color: #333333;">
             <div class="card2">
-                <label>Add Applications</label>
+                
             </div>
             <form [formGroup]="addApplnForm">
                 <div>
@@ -34,9 +35,9 @@
         </div>
         <br>
         
-        <label>Application List</label>
+        <label style="color:#fff">Application List</label>
 
-        <div>
+        <div style="border: 1px solid #b8b8b8; height:800px;background: #333333;">
           <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="Application Id">
               <mat-header-cell *matHeaderCellDef> Application Id </mat-header-cell>

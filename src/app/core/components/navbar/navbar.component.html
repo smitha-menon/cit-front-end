@@ -2,19 +2,19 @@
     <div class="navbar-menu-left">
         <!-- <div> -->
         <!-- <div class="logo"> -->
-        <div style="width: 14%; height: 100%; background: rgba(217, 217, 217, 0.63)">
+        <div style="width: 14%; height: 100%; background:#333333">
             <a href="#">
-                <img class="logo1" src="../../../../assets/images/cit-logo.PNG">
+                <img class="logo1" src="../../../../assets/images/White.png">
             </a>
         </div>
         <div style="position: relative;" id="msbo">
             <!-- <button id="collapseBtn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleSideBar()" >
                 Toggle</button> -->
-            <img class="back-icon" src="../../../../assets/images/back-button.svg">
+            <!-- <img class="back-icon" src="../../../../assets/images/back-button.svg"> -->
         </div>
         <div
-            style="width: 100%; height: 100%; background: rgb(217 217 217); display: flex; align-items: center;justify-content: space-evenly;">
-            <label class="nav-label">Continous Incident Telemetry</label>
+            style="width: 100%; height: 100%; background:#333333; display: flex; align-items: center;justify-content: space-evenly;">
+            <label class="nav-label">Continuous Incident Telemetry</label>
             <div class="navbar-top-right-items">
                 <!-- <div>
                     <img src="../../../../assets/images/burger-bar (2) 1.png"> -->
@@ -22,7 +22,7 @@
 
                 <!-- </div> -->
                 <div (click)="logOut()" style="cursor: pointer;">
-                    <img src="../../../../assets/images/out 1.png">
+                    <img src="../../../../assets/images/out-white.png">
                 </div>
                 <!-- <div >
                         <img src="../../../../assets/images/settings (3) 1.png">      
@@ -30,7 +30,7 @@
                 <div class="navbar">
 
                     <div class="settings">
-                      <button class="dropbtn">  <img src="../../../../assets/images/settings (3) 1.png">    
+                      <button class="dropbtn">  <img src="../../../../assets/images/settings-white.png">    
                         <!-- <i class="fa fa-caret-down"></i> -->
                       </button>
                       <div class="settings-content">
@@ -103,7 +103,7 @@
             <div class="avatar">
                 <img src="../../../../assets/images/User.png" class="avatar-img">
                 <!-- <br> -->
-                <label>{{loginUser}}</label>
+                <label style="color:#fff;">{{loginUser}}</label>
 
             </div>
             <li class="nav__item">
@@ -111,7 +111,7 @@
                     (click)="goToIncident(); tab='incidents'" id="mobile-menu-items">
 
                     <label class="nav_label">
-                        <img src="../../../../assets/images/home-cit.png">
+                        <img src="../../../../assets/images/home-white.png">
                         Home</label>
 
                     <!-- <div class="dropdown-content">
@@ -155,14 +155,14 @@
             <li class="nav__item">
                 <div class="nav_list" [ngClass]="{'active': tab==='reports'}" (click)="reports(); tab='reports'">
                     <label class="nav_label">
-                        <img src="../../../../assets/images/report-cit.png"> Report </label>
+                        <img src="../../../../assets/images/report-white.png"> Report </label>
 
                 </div>
             </li>
             <li class="nav__item">
                 <div class="nav_list view-mobile-menu" [ngClass]="{'active': tab==='dashboard'}" (click)="tab='dashboard'" >
                     <label class="nav_label" >
-                        <img src="../../../../assets/images/dasboard-cit.png" style="width: 20px;">
+                        <img src="../../../../assets/images/dashboard-white.png" style="width: 20px;">
                         Dashboard</label>
 
                         <div class="dropdown-content">

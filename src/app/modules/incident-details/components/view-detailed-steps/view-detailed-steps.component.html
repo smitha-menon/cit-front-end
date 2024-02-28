@@ -1,8 +1,8 @@
 <div class="main-element">
   <div class="main-header">
-    <label>Incident details</label>
+    <label style="color:#FFF">Incident details</label>
 
-    <div style="border: 1px solid #b8b8b8; border-top: none;" *ngFor="let incident of incidentDetails">
+    <div style="border: 1px solid #b8b8b8;background: #333333;" *ngFor="let incident of incidentDetails">
       <div class="card2">
         <label>{{incident.incidentId}}</label>
         <div *ngIf="incident.active == true" style="background: #27CB4B;
@@ -41,7 +41,7 @@
       </div>
 
       <div style="padding: 28px;">
-        <div style="display: flex; gap: 150px;">
+        <div style="display: flex; gap: 250px;">
 
 
           <form [formGroup]="editTestplanForm" class="testplan-form">
@@ -144,6 +144,11 @@
     Please provide a valid email
   </div> -->
             </div>
+            <div class="form-group">
+
+              <label class="form-label">Description</label>
+              <textarea class="textarea-desc" readonly="true">{{incident.description}}</textarea>
+            </div>
             <div>
               <button *ngIf="isUpdateVisible" class="button-29" (click)="updateIncident()">Update</button>
             </div>
@@ -197,79 +202,14 @@
 
         </div>
 
-        <!-- <table id="customers">
-          <tr>
-            <th>State</th>
-            <th>Priority</th>
-            <th>Assigned To</th>
-            <th>Assigned Group</th>
-            <th>Due Date</th>
-          </tr>
-
-          <tr>
-            <td [ngClass]="incident.state">{{incident.state}}</td>
-            <td>{{incident.priority}}</td>
-            <td>{{incident.assignedTo}}</td>
-            <td>{{incident.assignedGroup}}</td>
-            <td>{{incident.dueDate| date: 'dd/MM/yyyy'}}</td>
-          </tr>
-
-
-
-        </table> -->
+        
+        <!-- <br>
+       
         <br>
-        <!-- <table id="customers">
-          <tr>
-            <th>Opened Date</th>
-            <th>Opened By</th>
-            <th>Resolved Date</th>
-            <th>SLA</th>
-            <th>SLA Lapse</th>
-          </tr>
-
-          <tr>
-            <td>{{incident.openedDate| date: 'dd/MM/yyyy'}}</td>
-            <td>{{incident.openedBy}}</td>
-            <td>{{incident.resolvedDate| date: 'dd/MM/yyyy'}}</td>
-            <td>{{incident.sla}}</td>
-            <td>{{incident.slalapse}}</td>
-          </tr>
-
-
-
-        </table> -->
-        <br>
-        <!-- <table id="customers">
-          <tr>
-            <th>State</th>
-            <th>Assigned Group</th>
-            <th>Assigned To</th>
-          </tr>
-          <tr>
-            <td>
-              <select [(ngModel)]="selectedState">
-                <option>--Select--</option>
-                <option *ngFor="let item of stateList" [value]="item">{{ item }}</option>
-              </select>
-            </td>
-            <td>
-              <select [(ngModel)]="selectedUser">
-                <option>--Select--</option>
-                <option *ngFor="let item of assignUsrList" [value]="item">{{ item }}</option>
-              </select>
-            </td>
-            <td>
-              <select [(ngModel)]="selectedGroup">
-                <option>--Select--</option>
-                <option *ngFor="let item of assignGrpList" [value]="item">{{ item }}</option>
-              </select>
-            </td>
-        </table> -->
-
-        <br>
-        <div style="display: flex; gap: 72px">
-          <!-- <div> -->
-
+       
+        <br> -->
+        <!-- <div style="display: flex; gap: 72px">
+          
           <table id="bottom">
             <tr>
               <th>Description</th>
@@ -282,11 +222,11 @@
             </tr>
           </table>
 
-        </div>
-        <br>
+        </div> -->
+        
         <div>
           <!-- <button *ngIf ="isVisible" class="button-29" (click)="updateIncident()">Save</button> -->
-          <button class="button-29" role="button" (click)="initiateRCA()">Initiate RCA</button>
+          <button class="button-29" style="margin-left: 970px;" role="button" (click)="initiateRCA()">Initiate RCA</button>
         </div>
         <br>
       </div>

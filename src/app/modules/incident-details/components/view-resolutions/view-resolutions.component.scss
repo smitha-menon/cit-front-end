@@ -41,20 +41,20 @@
   .outer-box {
     border: 1px solid #b8b8b8;
     border-top: none;
-    background: #F7F7F7;
+    background: #333333;// #F7F7F7;
   
   }
   
   .card2 {
     // height: 60px;
     line-height: 30px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background: #676767;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: #282828;
     display: flex;
     gap: 10px;
     align-items: center;
-    padding: 10px;
+    padding: 30px;
     box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
     border-bottom: none;
     font-style: bold;
@@ -67,6 +67,8 @@
     font-size: 30px;
     line-height: 42px;
     color: #ffffff;
+    margin-left: 10px;
+    margin-right: 10px;
   }
   
   .inner-box {
@@ -86,14 +88,14 @@
     width: 175px;
     height: 30px;
     padding: 4px;
-    color: #000;
+    color: #FFFFFF;
     font-family: Montserrat;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     /* flex-shrink: 0; */
-    background: #D9D9D9;
+    background: #000000;
   }
 
   .form-control {
@@ -104,7 +106,7 @@
     padding: 2px;
     width: 250px;
     height: 27px;
-    color: #656565;
+    color: #000000;
     font-family: Montserrat;
     font-size: 16px;
     font-style: normal;
@@ -197,11 +199,11 @@
   .viewbtn {
     width: 120px;
     height: 35px;
-    background: radial-gradient(100% 100% at 100% 0, #676767 0, #676767 100%);
+    //background: radial-gradient(100% 100% at 100% 0, #676767 0, #676767 100%);
     border-radius: 5px;
     border: none;
     float: right;
-    color: rgb(255 255 255);
+    //color: rgb(255 255 255);
   
   }
 
@@ -255,7 +257,7 @@
   .steps-label {
     width: 225px;
     //height: 30px;
-    color: #000;
+    color: #FFFFFF;
     font-family: Montserrat;
     font-size: 18px;
 
@@ -263,12 +265,12 @@
     padding: 5px;
     font-weight: 600;
 
-    background: #D9D9D9;
+    background: #000000;
   }
 
   .steps-content {
     margin-top: 7px;
-    color: #000;
+    color: #FFFFFF;
     font-family: Montserrat;
     font-size: 14px;
     font-style: normal;

@@ -42,16 +42,16 @@
 .outer-box {
   border: 1px solid #b8b8b8;
   border-top: none;
-  background: #F7F7F7;
+  background: #333333;//#F7F7F7;
 
 }
 
 .card2 {
   // height: 60px;
   line-height: 30px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  background: #676767;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  background: #282828;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -68,6 +68,8 @@
   font-size: 30px;
   line-height: 42px;
   color: #ffffff;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .inner-box {
@@ -80,7 +82,7 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  color: #000;
+  color: #FFFFFF;
   border-top: none;
   border: 1px solid #ddd;
   font-family: Montserrat;
@@ -111,18 +113,18 @@ th {
 
 #resolution tr:nth-child(even) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.50);
-  background: rgba(192, 192, 192, 0.44);
+  background: #333333;
   box-shadow: -2px -2px 0px 0px rgba(0, 0, 0, 0.25);
 }
 
 .viewbtn {
   width: 120px;
   height: 35px;
-  background: radial-gradient(100% 100% at 100% 0, #676767 0, #676767 100%);
+  //background: radial-gradient(100% 100% at 100% 0, #676767 0, #676767 100%);
   border-radius: 5px;
   border: none;
   float: right;
-  color: rgb(255 255 255);
+  //color: rgb(255 255 255);
 
 }
 

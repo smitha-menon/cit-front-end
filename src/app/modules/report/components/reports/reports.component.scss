@@ -6,13 +6,13 @@
     .card2 {
         // height: 60px;
         line-height: 30px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        background: #676767;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        background: #282828;
         display: flex;
         gap: 10px;
         align-items: center;
-        padding: 10px;
+        padding: 30px;
         // box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
         border-bottom: none;
         font-style: bold;
@@ -25,6 +25,8 @@
         font-size: 30px;
         line-height: 42px;
         color: #fff;
+        margin-left: 10px;
+        margin-right: 10px;
     }
     .testplan-form {
         display: flex;
@@ -61,12 +63,13 @@
         // border-spacing: 0 8px !important;
         margin-top: 20px;
         // margin-left: 7%;
+       // background-color: #333333;
     }
 
 
     .mdc-data-table__header-cell {
-        background: #e8e8e8 !important;
-        color: #000;
+        background: #000000 !important;
+        color: #FFFFFF;
         border-right: 1px solid #6b6b6b;
         text-align: center;
         font-family: Montserrat;
@@ -92,13 +95,13 @@
         font-size: 16px;
         // background: rgba(220, 220, 220, 0.3);
         // background: rgba(220, 220, 220, 0.30);
-        color: #393939;
+        color: #FFFFFF;
         border: none;
         // padding: 10px
     }
 
     mat-row.mat-mdc-row:hover {
-        background-color: #C0C0C070;
+        background-color: #4E4E4E;
     }
 
 
@@ -108,7 +111,7 @@
 
     .mat-mdc-row {
         &:nth-of-type(even) {
-            background: #e8e8e8;
+            background: #333333;
             padding: 0px;
             height: 52px;
             border-top: 1px solid rgb(101 94 94);
@@ -117,7 +120,7 @@
         }
 
         &:nth-of-type(odd) {
-            background: #fff;
+            background: #333333;
             padding: 0px;
             height: 52px;
             border-top: 1px solid rgb(101 94 94);
@@ -141,14 +144,14 @@
     width: 200px;
     height: 30px;
     padding: 4px;
-    color: #000;
-    font-family: Montserrat;
+    color: #FFFFFF;
+    font-family: montserrat;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     /* flex-shrink: 0; */
-    background: #D9D9D9;
+    background: #000000;
 }
 
 .form-control {

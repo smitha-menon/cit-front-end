@@ -25,7 +25,7 @@
 		}
 
 		.nav-label {
-			color: black;
+			color: #ffffff;//black;
 			font-size: 36px;
 			font-family: Montserrat;
 			font-weight: 700;
@@ -94,12 +94,12 @@
 }
 
 .nav__list {
-	background: #D9D9D9A1;
+	background:#333333;// #D9D9D9A1;
 	// box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
 	/* box-shadow: 0px 0px 19px var(--clr-gray200); */
-	padding: 1rem 0;
+	padding: 1rem;
 	/* border: 1px solid black; */
-	width: 12%;
+	width: 13%;
 	height: 100%;
 	position: fixed;
 	display: flex;
@@ -151,7 +151,7 @@
 		.nav_list {
 			// text-align: center;
 			border-bottom: 1px solid #000;
-			background: #e7e7e7;
+			//color: #ffffff;
 			// font-family: Montserrat;
 			// font-style: normal;
 			// font-weight: 500;
@@ -176,6 +176,7 @@
 		align-items: center;
 		gap: 6px;
 		height: 45px;
+		color: #ffffff;
 		// margin-left: 10px;
 		// justify-content: center;
 	}
@@ -195,7 +196,7 @@
 }
 
 .active {
-	background: #A7A7A7 !important;
+	background: #fd5e0f !important;
 	text-align: center;
 	// border-bottom: 1px solid #000;
 	// background: #676767;
