@@ -34,14 +34,19 @@ export class GraphDataComponent implements OnInit{
   ctx2:any;
   ctx3:any
   bargraphData!: any;
-  verticalBargraphData: any = [50, 20, 30];
+  verticalBargraphData: any = [];
   optionSelected: any;
-  public doughnutChartLabels1: Label[] = ['Reused', 'modifed', 'new'];
-  public doughnutChartData1: MultiDataSet = [[50, 20, 30]];
+  public doughnutChartLabels1: Label[] = [];//['Reused', 'modifed', 'new'];
+  public doughnutChartData1: MultiDataSet =[[]] ;//[[50, 20, 30]];
   public doughnutChartType1: ChartType = 'doughnut';
   public doughnutChartOptions1: Chart.ChartOptions = {
     tooltips: {
       enabled: true
+    },
+    legend: {
+      display:true,     
+      
+      position : 'bottom',
     }
   };
   public pieChartOptions: Chart.ChartOptions = {
@@ -131,7 +136,7 @@ export class GraphDataComponent implements OnInit{
         }      
          if( this.optionSelected==2)
         { 
-            this.loadOption2();
+            //this.loadOption2();
         } 
         if(this.optionSelected==4)
         {
@@ -189,7 +194,8 @@ export class GraphDataComponent implements OnInit{
   
   
   public doughnutChartColors: Color[] = [{
-    backgroundColor:['#fd5e0f','#cb2b27','#9d446e','#FF5E5A']//['#8F4700','#C46100',  '#EC7A08',      '#EF9234']//,'#FD5E0F'] //['#1A73E8', '#02C8F0', '#806DF0']
+    //backgroundColor:['#fd5e0f','#cb2b27','#9d446e','#FF5E5A']
+    backgroundColor:['#EF4B46','#FF7C3B','#E9E9E9','#73C766','#FFDB5C']
   }];
   // public chartDataset = [
   //   {
@@ -198,8 +204,7 @@ export class GraphDataComponent implements OnInit{
 
   public doughnutChartLabels: Label[] = ['Today', 'Tomorrow','<2 days','<5 days'];
    
-  public doughnutChartData: MultiDataSet = [
-    [250,160,200,150]
+  public doughnutChartData: MultiDataSet = [[250,160,200,150]
 
   ];
    
@@ -246,15 +251,13 @@ export class GraphDataComponent implements OnInit{
   
         // Pick a new font size so it will not be larger than the height of label.
         const fontSizeToUse = 50;
-        ctx.font = fontSizeToUse + 'montserrat';
-        ctx.fillStyle = '#344054';
+        ctx.font = '14px montserrat';
+        ctx.fillStyle = '#FFFFFF';
         ctx.weight = 'bold';
   
         // Draw text in center
-        ctx.fillText(txt2, centerX, centerY - 10);
-  
-        var fontSizeToUse1 = 50;
-        ctx.font = fontSizeToUse1 + 'montserrat';
+        ctx.fillText(txt2, centerX, centerY - 10); 
+        
         ctx.fillText(txt1, centerX, centerY + 10);
       }
     }];
@@ -408,7 +411,7 @@ export class GraphDataComponent implements OnInit{
 
     loadDataOption4(){
       this.setFilter();
-      this.apiservices.getIncidentByTrend(this.selectedGroup,this.filters).subscribe({
+      this.apiservices.getIncidentByTrend(this.selectedGroup).subscribe({
         next:(response:any)=>{
           console.log("trendData",response);
           this.trendData=response;
@@ -500,6 +503,11 @@ export class GraphDataComponent implements OnInit{
       datasets:configData,
         
         labels:labels//['Application1','Application2','Application3','Application4']
+      },
+      options:{
+        legend: {
+          position: 'bottom',
+        }
       }
     });
     }

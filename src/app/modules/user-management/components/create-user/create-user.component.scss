@@ -40,13 +40,13 @@
 .card2 {
   // height: 60px;
   line-height: 30px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  background: #676767;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background: #282828;
   display: flex;
   gap: 10px;
   align-items: center;
-  padding: 10px;
+  padding: 30px;
   // box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.13);
   border-bottom: none;
   font-style: bold;
@@ -59,6 +59,8 @@
   font-size: 30px;
   line-height: 42px;
   color: #fff;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .form-group {
@@ -78,14 +80,14 @@
   width: 200px;
   height: 30px;
   padding: 4px;
-  color: #000;
+  color: #FFFFFF;
   font-family: Montserrat;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   /* flex-shrink: 0; */
-  background: #D9D9D9;
+  background: #000000;
 }
 .form-checkbox {
  
@@ -108,6 +110,7 @@
   font-weight: 400;
   line-height: normal;
   flex-shrink: 0;
+ // background-color: #FF7C3B;
 }
 .form-control {
   width: 300px;

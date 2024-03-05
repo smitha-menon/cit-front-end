@@ -1,11 +1,11 @@
 
 <div class="main-element">
-  <div class="main-header" style="background: #fff;">   
+  <div class="main-header" style="background: #000000;">   
 
     <div>
 
       <div class="flex-container" style="padding-left: 30px;">
-        <label>Dashboard</label>
+        <label style="color:#FFFFFF">Dashboard</label>
 
        
       </div>
@@ -73,8 +73,8 @@
 
     </div>
     <div  class="flex-container" style="display: flex;justify-content: space-evenly;" *ngIf="optionSelected==3">
-      <div class="numberCard" style="    height: 550px;
-        width: 800px;">
+      <div class="numberCard" style="    height: 650px;
+        width: 900px;">
       <div >
         <ng-container *ngTemplateOutlet="datepickerTemplate">
           
@@ -94,8 +94,8 @@
     <div class="flex-container"  style="display: flex;justify-content: space-evenly;" *ngIf="optionSelected==4">
       <div class="numberCard" style="height: 550px; width: 800px;">
       <div >
-        <ng-container *ngTemplateOutlet="datepickerTemplate"></ng-container>
-        <button class="button-29" (click)="loadDataOption4()">view</button>
+        <!-- <ng-container *ngTemplateOutlet="datepickerTemplate"></ng-container> -->
+        <!-- <button class="button-29" (click)="loadDataOption4()">view</button> -->
       </div>
           <div class="column1" style="width:100%" >
             <!-- <label>Incident Trend</label> -->
@@ -109,9 +109,9 @@
 <ng-template #datepickerTemplate>
   <mat-form-field appearance="outline" >
     <mat-label>Select a date range</mat-label>
-    <mat-date-range-input [rangePicker]="picker" >
-      <input matStartDate matInput placeholder="Start date" [(ngModel)]="startDate" (dateChange)="startDateChanged($event)" [ngModelOptions]="{standalone: true}">
-      <input matEndDate matInput placeholder="End date" [(ngModel)]="endDate" (dateChange)="endDateChanged($event)" [ngModelOptions]="{standalone: true}">
+    <mat-date-range-input [rangePicker]="picker"  >
+      <input matStartDate matInput placeholder="Start date" [(ngModel)]="startDate" (dateChange)="startDateChanged($event)" [ngModelOptions]="{standalone: true}" style="color:#fff;">
+      <input matEndDate matInput placeholder="End date" [(ngModel)]="endDate" (dateChange)="endDateChanged($event)" [ngModelOptions]="{standalone: true}" style="color:#fff;">
         <!-- <div> -->
           <!-- <button class="button-29" (click)="loadDataOption3()">view</button> -->
         <!-- </div> -->

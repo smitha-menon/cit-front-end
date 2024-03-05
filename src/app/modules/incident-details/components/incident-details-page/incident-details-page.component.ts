@@ -91,7 +91,12 @@ export class IncidentDetailsPageComponent implements OnInit {
 
 
   constructor(private routes: Router, private permissionsService: PermissionsService,
-    private fb: FormBuilder, private apiservice: ApiservicesService) { }   
+    private fb: FormBuilder, private apiservice: ApiservicesService) { 
+      this.loadPriorityList();
+      this.loadStates();
+      this.loadUsers();
+      this.loadApplicationList();
+    }   
 
     
 

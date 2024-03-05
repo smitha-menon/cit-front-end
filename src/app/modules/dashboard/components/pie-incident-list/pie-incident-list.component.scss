@@ -65,11 +65,12 @@
       // border-spacing: 0 8px !important;
       margin-top: 20px;
       // margin-left: 7%;
+      background: #333333;
   }
 
 
   .mdc-data-table__header-cell {
-      background: #676767 !important;
+      background: #000000 !important;
       color: #fff;
       border-right: 1px solid #fff;
       text-align: center;
@@ -103,7 +104,7 @@
   }
 
   .mat-mdc-table tbody :hover {
-      background-color: #C0C0C070;
+      background-color: #4E4E4E;
   }
 
   td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-Number.mat-column-Number.ng-star-inserted {

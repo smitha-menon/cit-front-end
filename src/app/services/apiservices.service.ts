@@ -641,7 +641,7 @@ export class ApiservicesService {
     );
   }
 
-  public getIncidentByTrend(id:any,filters:dashboardFilters):Observable<any>{
+  public getIncidentByTrend(id:any):Observable<any>{
     const token = localStorage.getItem(USER_TOKEN);
     const body ={
       "startDate": "01/01/2020 00:00:00",
@@ -654,7 +654,7 @@ export class ApiservicesService {
       //params: inputparams      
     };
     const url = `${this.apiUrl}/getMonthTrendIncidentsCount/`+`${id}`;
-    return this.http.post(url,filters,options).pipe(
+    return this.http.post(url,null,options).pipe(
       tap(data => {
         console.log(data);
       }),

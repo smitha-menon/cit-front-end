@@ -33,7 +33,7 @@
                       <button class="dropbtn">  <img src="../../../../assets/images/settings-white.png">    
                         <!-- <i class="fa fa-caret-down"></i> -->
                       </button>
-                      <div class="settings-content">
+                      <div class="settings-content" *ngIf="isUserInRole([rolesU.SA])">
                         <h2 style="    border-bottom: 1px solid #000;
                         background: #e7e7e7;
                         font-family: Montserrat;
@@ -44,7 +44,7 @@
                         /* letter-spacing: 0em; */
                         text-align: left;
                         color: #515151;">Account</h2>
-                        <a >  <li class="nav__item" *ngIf="isUserInRole([rolesU.SA])">
+                        <a >  <li class="nav__item" >
                             <div class="nav_list" id="mobile-menu-item">
                                 <label class="nav_label" 
                                     (click)="groups(); tab='groups'">
@@ -52,7 +52,7 @@
                             </div>
                         </li></a>
                         <a>
-                            <li class="nav__item" *ngIf="isUserInRole([rolesU.SA])">
+                            <li class="nav__item" >
                                 <div class="nav_list" id="mobile-menu-item">
                 
                                     <!-- <label class="nav_label" (click)="dropDowns()">
@@ -107,8 +107,8 @@
 
             </div>
             <li class="nav__item">
-                <div class="nav_list" [ngClass]="{'active': tab==='incidents'}"
-                    (click)="goToIncident(); tab='incidents'" id="mobile-menu-items">
+                <div class="nav_list" [ngClass]="{'active': tab==='incidentshome'}"
+                    (click)="goToIncident(); tab='incidentshome'" id="mobile-menu-items">
 
                     <label class="nav_label">
                         <img src="../../../../assets/images/home-white.png">
@@ -135,15 +135,33 @@
             </li>
 
             <li class="nav__item" *ngIf="isUserInRole([rolesU.SRE , rolesU.GA])">
+                <div class="nav_list view-mobile-menu" [ngClass]="{'active': tab==='incidents'}" (click)="tab='incidents'">
+                    <label class="nav_label">
+                        <i class="fa-solid fa-circle-plus"></i>Incidents</label>
+
+                        <div class="dropdown-content">
+                            <label class="nav_label sub-menu" [ngClass]="{'sideactive': tab==='create-incident'}"
+                            (click)="addIncident(); tab='create-incident'"><i class='fa-thin fa-chess-pawn'></i>
+                                 Add Incident</label>
+
+                                <label class="nav_label sub-menu" [ngClass]="{'sideactive': tab==='approval'}" 
+                                (click)="approvals(); tab='approval'"><i class='fa-thin fa-chess-pawn'></i>
+                                   Approvals </label>
+                        </div>
+
+                </div>
+                 <img src="../../../../assets/images/drop-icon.png" style="position: absolute;
+                top: 20px;
+                right: 27px;" (click)="dropDown()">
+            </li>
+            <!-- <li class="nav__item" *ngIf="isUserInRole([rolesU.SRE , rolesU.GA])">
                 <div class="nav_list" [ngClass]="{'active': tab==='create-incident'}"
                     (click)="addIncident(); tab='create-incident'">
                     <label class="nav_label">
                         <i class="fa-solid fa-circle-plus"></i> Add Incident</label>
                 </div>
             </li>
-            <!-- <li class="nav__item">
-               
-            </li> -->
+           
           
             <li class="nav__item" *ngIf="isUserInRole([rolesU.GA])">
                 <div class="nav_list" [ngClass]="{'active': tab==='approval'}" (click)="approvals(); tab='approval'">
@@ -151,7 +169,7 @@
                         <i class="fa-solid fa-users-between-lines"></i>Approvals </label>
 
                 </div>
-            </li>
+            </li> -->
             <li class="nav__item">
                 <div class="nav_list" [ngClass]="{'active': tab==='reports'}" (click)="reports(); tab='reports'">
                     <label class="nav_label">
@@ -159,7 +177,7 @@
 
                 </div>
             </li>
-            <li class="nav__item">
+            <li class="nav__item" >
                 <div class="nav_list view-mobile-menu" [ngClass]="{'active': tab==='dashboard'}" (click)="tab='dashboard'" >
                     <label class="nav_label" >
                         <img src="../../../../assets/images/dashboard-white.png" style="width: 20px;">
@@ -168,25 +186,24 @@
                         <div class="dropdown-content">
 
                             <label class="nav_label sub-menu" [ngClass]="{'sideactive': tab==='incidentapp'}"
-                            (click)="dashboard(1); tab='incidentapp'"><i class='fas fa-chess-pawn'></i>
-
+                            (click)="dashboard(1); tab='incidentapp'"><i class="fa-thin fa-chess-pawn"></i>
                             Incidents By App </label>
 
                             <label class="nav_label sub-menu" [ngClass]="{'sideactive': tab==='incidentteam'}"
-                            (click)="dashboard(2); tab='incidentteam'"><i class='fas fa-chess-pawn'></i>
+                            (click)="dashboard(2); tab='incidentteam'"><i class='fa-thin fa-chess-pawn'></i>
                             Incidents By Team</label>
 
                             <label class="nav_label sub-menu" [ngClass]="{'sideactive': tab==='incidentpriority'}"
-                            (click)="dashboard(3); tab='incidentpriority'"><i class='fas fa-chess-pawn'></i>
+                            (click)="dashboard(3); tab='incidentpriority'"><i class='fa-thin fa-chess-pawn'></i>
                                 Incidents By Priority</label>
 
 
                                 <label class="nav_label sub-menu" [ngClass]="{'sideactive': tab==='incidenttrend'}"
-                                (click)="dashboard(4); tab='incidenttrend'"><i class='fas fa-chess-pawn'></i>
+                                (click)="dashboard(4); tab='incidenttrend'"><i class='fa-thin fa-chess-pawn'></i>
                                     Incident Trend</label>
                                 
                                     <label class="nav_label sub-menu" [ngClass]="{'sideactive': tab==='incidenttrend'}"
-                                (click)="dashboard(5); tab='incidenttrend'"><i class='fas fa-chess-pawn'></i>
+                                (click)="dashboard(5); tab='incidenttrend'"><i class='fa-thin fa-chess-pawn'></i>
                                      SLA Breached</label>
 
                     </div>
