@@ -1,4 +1,4 @@
-@import 'aos/dist/aos.css';
+
 
 :host ::ng-deep {
     .mat-elevation-z2 {
@@ -6,7 +6,7 @@
       line-height: 30px;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
-      background: #333333;
+      background: #282828;
       display: flex;
       gap: 10px;
       align-items: center;
@@ -74,20 +74,23 @@
       &:nth-of-type(even) {
   
         border-radius: 7px;
-        background: rgba(220, 220, 220, 0.30);
+        background: #333333;
         margin-bottom: 10px;
       }
   
       &:nth-of-type(odd) {
         border-radius: 7px;
-        background: rgba(192, 192, 192, 0.44);
+        background: #333333;
         margin-bottom: 10px;
       }
   
     }
+    .mat-expansion-panel-header-title {
+      color: #fff !important;
+    }
   
     mat-expansion-panel-header {
-      color: #000;
+      color: #ffffff !important;
       font-family: Montserrat;
       font-size: 16px;
       font-style: normal;
@@ -121,7 +124,7 @@
       width: 175px;
       height: 30px;
       padding: 4px;
-      color: #000;
+      color: #ffffff;
       font-family: Montserrat;
       font-size: 16px;
       // font-style: normal;
@@ -200,7 +203,7 @@
         width: 200px;
         height: 30px;
         padding: 4px;
-        color: #000;
+        color: #ffffff;
         font-family: Montserrat;
         font-size: 16px;
         font-style: normal;
@@ -255,7 +258,7 @@
       font-weight: 400;
       font-size: 15px;
       line-height: 15px;
-      color: #000000;
+      color: #ffffff;
     }
   
   

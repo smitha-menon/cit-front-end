@@ -22,11 +22,7 @@ export class RolePageComponent implements OnInit {
   constructor(private apiService: ApiservicesService, private fb: FormBuilder, private notifier: NotifierService) { }
 
   ngOnInit(): void {
-    Aos.init({
-      once: true,
-      // anchorPlacement: 'example-anchor',
-      offset: 0
-    });
+  
     // this.loadGroup();
     this.apiService.getPrivileges().subscribe({
       next:(res: any) => {

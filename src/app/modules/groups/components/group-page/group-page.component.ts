@@ -24,11 +24,7 @@ export class GroupPageComponent implements OnInit {
   constructor(private apiservice: ApiservicesService, private fb: FormBuilder, private notifier: NotifierService) { }
 
   ngOnInit(): void {
-    Aos.init({
-      once: true,
-      // anchorPlacement: 'example-anchor',
-      offset: 0
-    });
+ 
     this.createGroup = this.fb.group({
       groupname: [''],
       isactive:['']
