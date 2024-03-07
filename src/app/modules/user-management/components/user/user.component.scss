@@ -89,6 +89,7 @@
         margin-left: 5px;
         font-weight: 500;
         font-size: 16px;
+        color:#000;
         
       }
 }
@@ -104,6 +105,8 @@
         // border-spacing: 0 8px !important;
         margin-top: 20px;
         // margin-left: 7%;
+        background: #333333;
+        
     }
     mat-label ,
     .mat-mdc-select-value,
@@ -126,7 +129,7 @@
     }
 
     .mdc-data-table__header-cell {
-            background: #676767 !important;
+            background: #282828 !important;
             color: #fff;
             border-right: 1px solid #fff;
             text-align: center;
@@ -155,7 +158,7 @@
         font-size: 16px;
         // background: rgba(220, 220, 220, 0.3);
         // background: rgba(220, 220, 220, 0.30);
-        color: #000;
+        color: #FFFFFF;
         border: none;
         height: 58px;
         // padding: 6px
@@ -235,17 +238,19 @@
 
     .mat-mdc-row {
         &:nth-of-type(even) {
-            background: #C0C0C070;
+           // background: #4E4E4E;
             // border-top: 1px solid;
             // border-bottom: 1px solid;
             margin-bottom: 10px !important;
+            border-bottom: 1px solid #4E4E4E;
         }
 
         &:nth-of-type(odd) {
-            background: #DCDCDC4D;
+           // background: #4E4E4E;
             // border-top: 1px solid;
             // border-bottom: 1px solid;
             margin-bottom: 10px !important;
+            border-bottom: 1px solid #4E4E4E;
         }
     }
 

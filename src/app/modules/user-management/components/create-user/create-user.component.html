@@ -167,8 +167,11 @@
                                                 <td>{{ row.column1 }}</td>
                                                 <td>{{ row.column2 }}</td>
                                                 <td data-placement="top" title="{{row.column3 }}">{{ row.column3 }}</td>
-                                                <td><a class="material-icons"
+                                                <!-- <td><a class="material-icons"
                                                         (click)="deleteItem(row.column4)">delete</a>
+                                                </td> -->
+                                                <td>
+                                                    <img src="../../../../assets/images/delete-24.png" (click)="deleteItem(row.column4)">
                                                 </td>
                                                 <!-- Add more cells based on your API response structure -->
                                             </tr>

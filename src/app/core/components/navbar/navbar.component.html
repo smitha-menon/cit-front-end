@@ -34,34 +34,24 @@
                         <!-- <i class="fa fa-caret-down"></i> -->
                       </button>
                       <div class="settings-content" *ngIf="isUserInRole([rolesU.SA])">
-                        <h2 style="    border-bottom: 1px solid #000;
-                        background: #e7e7e7;
-                        font-family: Montserrat;
-                        font-size: 16px;
-                        font-weight: 500;
-                        /* text-align: center; */
-                        /* line-height: 20px; */
-                        /* letter-spacing: 0em; */
-                        text-align: left;
-                        color: #515151;">Account</h2>
-                        <a >  <li class="nav__item" >
-                            <div class="nav_list" id="mobile-menu-item">
-                                <label class="nav_label" 
-                                    (click)="groups(); tab='groups'">
-                                    <img src="../../../../assets/images/rback-cit.png">RBAC </label>
+                        <h2 class="h2style">Account</h2>
+                        <a>  <li class="nav__item" >
+                            <div class="nav_list" id="mobile-menu-item" (click)="groups(); tab='groups'">
+                                <label class="nav_label">
+                                    RBAC </label>
                             </div>
                         </li></a>
                         <a>
                             <li class="nav__item" >
-                                <div class="nav_list" id="mobile-menu-item">
+                                <div class="nav_list" id="mobile-menu-item" (click)="users(); tab='users'">
                 
                                     <!-- <label class="nav_label" (click)="dropDowns()">
                                         <img src="../../../../assets/images/user-mange-cit.png">
                                         User Management</label> -->
                 
                                     <!-- <div class="dropdown-content"> -->
-                                    <label class="nav_label"  (click)="users(); tab='users'">
-                                        <img src="../../../../assets/images/users-cits.png">Users </label>
+                                    <label class="nav_label">
+                                        Users </label>
                 
                 
                 
@@ -71,8 +61,7 @@
                                 </div>
                                 <!-- <img src="../../../../assets/images/drop-icon.png" style="position: absolute;
                                 top: 20px;
-                                right: 20px;" (click)="dropDowns()"> -->
-                
+                                right: 20px;" (click)="dropDowns()"> -->           
                 
                 
                             </li>
@@ -82,7 +71,7 @@
                             <li class="nav__item">
                                 <div class="nav_list"  (click)="applications(); tab='application'">
                                     <label class="nav_label">
-                                        <i class="fa-solid fa-users-between-lines"></i>Add Application </label>
+                                       Add Application </label>
                                 </div>
                             </li>
                         </a>
@@ -107,8 +96,8 @@
 
             </div>
             <li class="nav__item">
-                <div class="nav_list" [ngClass]="{'active': tab==='incidentshome'}"
-                    (click)="goToIncident(); tab='incidentshome'" id="mobile-menu-items">
+                <div class="nav_list" [ngClass]="{'active': tab==='incidents'}"
+                    (click)="goToIncident(); tab='incidents'" id="mobile-menu-items">
 
                     <label class="nav_label">
                         <img src="../../../../assets/images/home-white.png">
@@ -135,7 +124,7 @@
             </li>
 
             <li class="nav__item" *ngIf="isUserInRole([rolesU.SRE , rolesU.GA])">
-                <div class="nav_list view-mobile-menu" [ngClass]="{'active': tab==='incidents'}" (click)="tab='incidents'">
+                <div class="nav_list view-mobile-menu" [ngClass]="{'active': tab==='incidentslist'}" (click)="tab='incidentslist'">
                     <label class="nav_label">
                         <i class="fa-solid fa-circle-plus"></i>Incidents</label>
 
