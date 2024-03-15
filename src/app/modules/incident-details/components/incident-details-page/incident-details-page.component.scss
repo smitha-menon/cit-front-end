@@ -1,6 +1,6 @@
 .main-element {
-    margin-left: 80px;
-    margin-right: 20px;
+    // margin-left: 80px;
+    // margin-right: 20px;
     margin-top: 100px;
 
     .table-main {
@@ -53,41 +53,45 @@
 .flex-container {
 	display: flex;
 	gap: 30px;
+    justify-content: space-between;
 	// flex-direction: column;
 	// margin-left: 63px;
 
 	.numberCard {
 		//border-bottom: 5px solid  rgba(203, 43, 39);
-		border-radius: 2px;
+		border-radius: 10px;
 		background-color: #ecf3fa;
-		height: 150px;
-		width: 230px;
+		// height: 150px;
+		width: 160px;
+        max-width: calc((100% - 150px)/6);
 		padding: 10px 12px 0px 10px;
 
 		.presetLabel {
 			font-family: montserrat;
 			font-style: normal;
 			font-weight: 600;
+            height: 60px;
 			font-size: 14px;
-			line-height: 30px;
+			line-height: 20px;
 			/* padding-left: 10PX; */
 			letter-spacing: 0.464048px;
 			text-transform: capitalize;
 			color: #f0f0f0;
+            text-align: left;
+            vertical-align: top;
             //width: 170px;
 		}
 
 		.countLabel {
-			font-family: montserrat;
-			font-style: normal;
-			font-weight: bold;
-			padding: 27px;
-			font-size: 50px;
-			text-align: center;
-			line-height: 30px;
-			letter-spacing: 0.464048px;
-			text-transform: capitalize;
-			color: #f0f0f0;
+            color: #FFF;
+            font-family: Montserrat;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-align: center;
+            padding-top: 12px;
+            padding-bottom: 30px;
 		}
 
 	}
@@ -119,7 +123,11 @@
         cursor: pointer;
         border-collapse: separate;
         border-spacing: 0 7px;
-        width: 85%;
+        width: 100%;
+        max-width: 1150px;
+
+        height: 552px;
+        flex-shrink: 0;
         // border-spacing: 0 8px !important;
        // margin-top: 20px;
         // margin-left: 7%;
@@ -340,8 +348,8 @@
 
 .progress {
     color: #FCCA59 !important;
-    height: 0%;
-    border-radius: 1px;
+    height: 100%;
+
 }
 
 .resolved {
@@ -360,10 +368,18 @@
     color: green;
 }
 
-@media screen  and (min-device-width: 1200px) 
-and (max-device-width: 1600px) 
-and (-webkit-min-device-pixel-ratio: 2)
-and (min-resolution: 192dpi) { 
+@media screen and (max-width: 1200px) {
+    // .login-box {
+    //     width: 990px !important;
+    // }
+    // .subDesc {
+    //     width: 480px !important;
+    //     margin-top: 120px;
+    // }
+    // .loginImage {
+    //     margin-left: 30%;
+    // }
+
 }
 
 .example-loading-shade {
@@ -396,7 +412,7 @@ and (min-resolution: 192dpi) {
     span.mat-mdc-list-item-unscoped-content.mdc-list-item__primary-text {
         color: #000;
         font-family: Montserrat;
-        font-size: 17px;
+        font-size: 14px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -434,7 +450,7 @@ and (min-resolution: 192dpi) {
 
     .delete-popup {
         //   width: 882px;
-        height: 550px;
+        height: 450px;
         // margin-left: 30%;
         // margin-top: 6%;
         background: #fff;
@@ -447,13 +463,13 @@ and (min-resolution: 192dpi) {
             // justify-content: center;
             // align-items: center;
             font-family: Montserrat;
-            font-size: 32px;
+            font-size: 25px;
             padding: 8px;
             font-style: normal;
             font-weight: 600;
             line-height: normal;
             height: 60px;
-            background: #212020;
+            background: #282828;
             color: #ffff;
             // border-top-right-radius: 15px;
             // border-top-left-radius: 15px;
@@ -461,7 +477,7 @@ and (min-resolution: 192dpi) {
         }
 
         .content {
-            padding: 30px;
+            //padding: 30px;
             text-align: center;
 
             .steps-label {
@@ -534,3 +550,5 @@ and (min-resolution: 192dpi) {
     }
 
 }
+
+

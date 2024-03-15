@@ -44,13 +44,15 @@ export class GraphDataComponent implements OnInit{
       enabled: true
     },
     legend: {
-      display:true,    
+      display:true,     
+      
       position : 'bottom',
     }
   };
   public pieChartOptions: Chart.ChartOptions = {
     legend: {
-      display:true, 
+      display:true,     
+      
       position : 'right',
       onClick: this.newLegendClickHandler
     },

@@ -64,7 +64,7 @@ export class NavbarComponent implements OnInit {
   dropDown() {
     const app = document.getElementById("mobile-menu-items1");
 
-    app?.classList.toggle("view-mobile-menu");
+    app?.classList.toggle("view-mobile-menu1");
   }
   dropDowns() {
     const app = document.getElementById("mobile-menu-item");

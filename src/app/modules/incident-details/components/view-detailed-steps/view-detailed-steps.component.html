@@ -41,7 +41,7 @@
       </div>
 
       <div style="padding: 28px;">
-        <div style="display: flex; gap: 250px;">
+        <div style="display: flex; gap: 50px;">
 
 
           <form [formGroup]="editTestplanForm" class="testplan-form">
@@ -154,8 +154,8 @@
             </div>
           </form>
 
-          <div style=" border-top: none;">
-            <label class="tag-label" style="width:400px">Recommended Resolutions(click tags to view)</label>          
+          <div style=" border-top: none;width:calc((100% - 106)/2);">
+            <label class="tag-label" style="width:100%;">Recommended Resolutions(click tags to view)</label>          
 
 
             <div
@@ -226,7 +226,7 @@
         
         <div>
           <!-- <button *ngIf ="isVisible" class="button-29" (click)="updateIncident()">Save</button> -->
-          <button class="button-29" style="margin-left: 970px;" role="button" (click)="initiateRCA()">Initiate RCA</button>
+          <button class="button-29" style="margin-left: 770px;" role="button" (click)="initiateRCA()">Initiate RCA</button>
         </div>
         <br>
       </div>

@@ -2,7 +2,7 @@
     <div class="navbar-menu-left">
         <!-- <div> -->
         <!-- <div class="logo"> -->
-        <div style="width: 14%; height: 100%; background:#333333">
+        <div style="width: 240px; height: 100%; background:#333333">
             <a href="#">
                 <img class="logo1" src="../../../../assets/images/White.png">
             </a>
@@ -13,7 +13,7 @@
             <!-- <img class="back-icon" src="../../../../assets/images/back-button.svg"> -->
         </div>
         <div
-            style="width: 100%; height: 100%; background:#333333; display: flex; align-items: center;justify-content: space-evenly;">
+            style="width: calc(100% - 245px); height: 100%; background:#333333; display: flex; align-items: center;justify-content: space-evenly;">
             <label class="nav-label">Continuous Incident Telemetry</label>
             <div class="navbar-top-right-items">
                 <!-- <div>
@@ -141,7 +141,7 @@
                 </div>
                  <img src="../../../../assets/images/drop-icon.png" style="position: absolute;
                 top: 20px;
-                right: 27px;" (click)="dropDown()">
+                right: 27px;" >
             </li>
             <!-- <li class="nav__item" *ngIf="isUserInRole([rolesU.SRE , rolesU.GA])">
                 <div class="nav_list" [ngClass]="{'active': tab==='create-incident'}"
@@ -167,7 +167,7 @@
                 </div>
             </li>
             <li class="nav__item" >
-                <div class="nav_list view-mobile-menu" [ngClass]="{'active': tab==='dashboard'}" (click)="tab='dashboard'" >
+                <div class="nav_list view-mobile-menu" [ngClass]="{'active': tab==='dashboard'}" (click)="tab='dashboard'" id="mobile-menu-items1" >
                     <label class="nav_label" >
                         <img src="../../../../assets/images/dashboard-white.png" style="width: 20px;">
                         Dashboard</label>
@@ -199,7 +199,7 @@
                 </div>
                  <img src="../../../../assets/images/drop-icon.png" style="position: absolute;
                 top: 20px;
-                right: 27px;" >
+                right: 27px;" (click)="dropDown()" >
             </li>
         </ul>
     </nav>

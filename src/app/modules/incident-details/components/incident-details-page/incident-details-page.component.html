@@ -1,6 +1,13 @@
 <div class="main-element">
     <div class="main-header">
-        <label style="color:#fff;">Incidents</label>
+        <label style="color: #FFF;
+        font-family: Montserrat;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-bottom: 30px;
+        ">Incidents</label>
 
         <div class="flex-container">
 
@@ -34,7 +41,7 @@
               </div>
               <div class="numberCard" style="background-color: #333333;">
       
-                <div style="width:200px">
+                <div >
                   <label class="presetLabel"> SLA Breached Incidents</label>
                   <div style="border: 1px solid #333333;"></div>
       
@@ -71,7 +78,7 @@
                     <i class="fa-solid fa-magnifying-glass fa-xs"
                         style="color: #676767; margin-left: 10px;font-size: 19px;"></i>
                     <input type="text" ngbDatepicker #d="ngbDatepicker" (dateSelect)="onInputChange()"
-                        class="search-input" placeholder="search using Text/Date" [(ngModel)]="searchText"
+                        class="search-input" placeholder="Search using Text/Date" [(ngModel)]="searchText"
                         (keyup.enter)="onInputChange()" />
                     <button class="btn btn-primary calender-icon" (click)="d.toggle()"><i
                             class="fa fa-calendar"></i></button>
@@ -126,7 +133,7 @@
                 <!-- <div>
                     <label class="steps-label">User Logged in Successfully</label>
                 </div> -->
-                <div style="padding: 20px;">
+                <div style="padding: 10px;">
                     <img src="../../../../../assets/images/check 2.png">
                 </div>
                 <div>

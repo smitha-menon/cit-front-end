@@ -234,8 +234,9 @@ export class IncidentDetailsPageComponent implements OnInit {
   }
 
   setCurrentGroup(){
-    if(this.selectedGroup.length===0)
-    {
+    
+    if(this.selectedGroup.length===0)    {
+      
       window.alert("select group");
       this.showloader = false;
     }
