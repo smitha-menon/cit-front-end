@@ -65,6 +65,7 @@
 		width: 160px;
         max-width: calc((100% - 150px)/6);
 		padding: 10px 12px 0px 10px;
+        height:120px;
 
 		.presetLabel {
 			font-family: montserrat;
@@ -106,10 +107,12 @@
         background: #333333;
         color: #ffffff;
     }
-    
-    .mdc-icon-button{
-        background-color: rgb(249 249 249);
+    .mat-mdc-paginator-icon {
+        fill: #ffff;
     }
+    // .mdc-icon-button{
+    //     background-color: rgb(249 249 249);
+    // }
      .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
      .mdc-notched-outline .mdc-notched-outline__trailing,
     .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,    
@@ -136,14 +139,14 @@
 
 
     .mdc-data-table__header-cell {
-        background: #000000 !important;//#676767 ;
+        background: #282828 !important;//#676767 ;
         color: #fff;
         //border-right: 1px solid #fff;
         text-align: center;
         font-family: Montserrat;
         font-style: normal;
         font-weight: 600;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 30px;
         // color: #344054;
     }
@@ -176,6 +179,16 @@
 
     .mat-mdc-table tbody :hover {
         background-color: #4E4E4E;
+    }
+
+    th.mat-sort-header.mat-mdc-header-cell.mdc-data-table__header-cell.cdk-header-cell.table-head.ng-tns-c48-6.cdk-column-Assigned-To.mat-column-Assigned-To.ng-star-inserted,
+    th.mat-sort-header.mat-mdc-header-cell.mdc-data-table__header-cell.cdk-header-cell.table-head.ng-tns-c47-6.cdk-column-Assigned-To.mat-column-Assigned-To.ng-star-inserted{
+        border-top-right-radius: 25px;
+    }
+
+    th.mat-sort-header.mat-mdc-header-cell.mdc-data-table__header-cell.cdk-header-cell.table-head.ng-tns-c48-0.cdk-column-Number.mat-column-Number.ng-star-inserted,
+    th.mat-sort-header.mat-mdc-header-cell.mdc-data-table__header-cell.cdk-header-cell.table-head.ng-tns-c47-0.cdk-column-Number.mat-column-Number.ng-star-inserted{
+        border-top-left-radius: 25px;
     }
 
     // td.mat-mdc-cell.mdc-data-table__cell.cdk-cell.cdk-column-Number.mat-column-Number.ng-star-inserted {
