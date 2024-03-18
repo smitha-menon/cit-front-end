@@ -66,11 +66,11 @@ export class NavbarComponent implements OnInit {
 
     app?.classList.toggle("view-mobile-menu1");
   }
-  dropDowns() {
-    const app = document.getElementById("mobile-menu-item");
+  // dropDowns() {
+  //   const app = document.getElementById("mobile-menu-item");
 
-    app?.classList.toggle("view-mobile-menu");
-  }
+  //   app?.classList.toggle("view-mobile-menu");
+  // }
 
   reports() {
     this.router.navigateByUrl(ROUTES.REPORT)
