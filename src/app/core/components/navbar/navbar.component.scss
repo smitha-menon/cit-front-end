@@ -261,6 +261,8 @@
 	display: block;
 	background-color: #333333;
 	padding-left: 10px;
+	overflow-y: auto;
+    max-height: 150px;
 }
   .navbar a {
 	float: left;
@@ -341,3 +343,4 @@
     text-align: left;
     color: #FFFFFF;
   }
+  
