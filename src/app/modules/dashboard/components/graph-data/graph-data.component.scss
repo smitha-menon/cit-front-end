@@ -9,8 +9,8 @@
 	// }
 
 .main-element {
-	margin-left: 80px;
-	margin-right: 20px;
+	// margin-left: 80px;
+	// margin-right: 20px;
 	margin-top: 100px;
 
 }
@@ -22,11 +22,12 @@
 	// margin-left: 63px;
 
 	.numberCard {
-		border-bottom: 5px solid #02c8f05e;
+		border-bottom: 5px solid;
 		border-radius: 2px;
 		background-color:#333333;// #f4f4f4;//#ecf3fa;
-		height: 150px;
-		width: 230px;
+		height: 600px;
+		max-width: 1150px;
+		width:70%;
 		padding: 10px 12px 0px 10px;
 
 		.presetLabel {
@@ -64,7 +65,7 @@
     margin-top: 20px;
     align-items: center;
     appearance: none;
-    background-image: radial-gradient(100% 100% at 100% 0, #ff8e5a 0, #FD5E0F 100%);
+    background-image: radial-gradient(100% 100% at 100% 0, #FD5E0F 0, #FD5E0F 100%);
     border: 0;
     border-radius: 6px;
     box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
@@ -95,16 +96,16 @@
   }
   
   .button-29:focus {
-    box-shadow: #ff8e5a 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #ff8e5a 0 -3px 0 inset;
+    box-shadow: #FD5E0F 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #FD5E0F 0 -3px 0 inset;
   }
   
   .button-29:hover {
-    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #ff8e5a 0 -3px 0 inset;
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #FD5E0F 0 -3px 0 inset;
     transform: translateY(-2px);
   }
   
   .button-29:active {
-    box-shadow: #ff8e5a 0 3px 7px inset;
+    box-shadow: #FD5E0F 0 3px 7px inset;
     transform: translateY(2px);
   }
 

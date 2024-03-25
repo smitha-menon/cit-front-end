@@ -10,16 +10,15 @@
        
       </div>
       <div class="flex-container" style="margin-top: 20px; justify-content: space-evenly;" *ngIf="optionSelected==1">
-        <div class="numberCard" style="    height: 600px;
-        width: 700px;">
+        <div class="numberCard" >
           <div>
             <!-- <label class="presetLabel">Incidents by Application </label> -->
             <div >
               <ng-container *ngTemplateOutlet="datepickerTemplate"></ng-container>
               <button class="button-29" (click)="loadData()">view</button>
             </div>
-            <br>
-            <div style="border: 1px solid #bbbb;"></div>
+           
+            <!-- <div style="border: 1px solid #bbbb;"></div> -->
 
           </div>
          

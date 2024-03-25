@@ -263,9 +263,9 @@ th {
   white-space: nowrap;
   will-change: box-shadow, transform;
   font-size: 18px;
-  width: 285px;
+  max-width: 200px;
   height: 40px;
-  margin-left: 444px;
+  margin-left: calc(100% - 620px);
 }
 
 .create-btn:focus {
